@@ -58,12 +58,12 @@ Page({
   },
   confirmOrder() {
     if (this.data.orderInfo.is_platoon == 1) {
+      if (!this.data.canClickShouHuo) return
       // 只有参加公排的商品才走这个逻辑
       this.refs.shouhuo.show(res => {
         if (!res) return
-        if (!canClickShouHuo) return
         // 只要能来到这,无论请求成功与否,都不允许再次点击
-        thie.setData({
+        this.setData({
           canClickShouHuo: false
         })
         wx.showLoading({
