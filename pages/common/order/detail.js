@@ -8,7 +8,8 @@ Page({
       nickname: '',
       phone: ''
     },
-    showContact: false
+    showContact: false,
+    canClickShouHuo:true
   },
   onLoad(options) {
     this.setData({
@@ -66,6 +67,9 @@ Page({
           order_id: this.data.orderId
         }).then(res => {
           wx.hideLoading()
+          this.setData({
+            canClickShouHuo:false
+          })
           // wx.navigateBack({
           //   delta: 1
           // })
@@ -80,6 +84,9 @@ Page({
           })
         }).catch((e) => {
           wx.hideLoading()
+          this.setData({
+            canClickShouHuo:false
+          })
         })
       })
       return

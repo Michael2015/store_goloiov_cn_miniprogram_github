@@ -253,6 +253,15 @@ view{
   border-radius: 30rpx;
   margin-right: 24rpx;
 }
+.detail .action-bar .btn.forbid{
+  font-size: 24rpx;
+  padding: 16rpx 30rpx;
+  color: #ffffff;
+  border: 1px solid #e70002;
+  border-radius: 30rpx;
+  margin-right: 24rpx;
+  background: gray;
+}
 
 
 
