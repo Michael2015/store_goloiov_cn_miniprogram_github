@@ -408,7 +408,6 @@ Page({
     },
     // 滑动详情页
     descTouch(event) {
-        console.log(44477)
         // 动态计算swiper高度
         this.initContentSwiperHeight(0)
     },

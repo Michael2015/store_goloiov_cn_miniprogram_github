@@ -1,4 +1,4 @@
-page{
+forbidpage{
   background-color: #f9f9f9;
   padding-bottom: 124rpx;
 }
@@ -256,11 +256,10 @@ view{
 .detail .action-bar .forbid{
   font-size: 24rpx;
   padding: 16rpx 30rpx;
-  color: #ffffff;
-  border: 1px solid #e70002;
+  color: #b1b1b1;
+  border: 1px solid #f27c7e;
   border-radius: 30rpx;
   margin-right: 24rpx;
-  background: gray;
 }
 
 

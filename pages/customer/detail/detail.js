@@ -56,7 +56,7 @@ Page({
     onLoad: function (options) {
         this.setData({
             id: options.id || 2, // 获取商品id
-            share_type:options.type,
+            share_type:options.type || '',
             partner: {
                 nickname: app.globalData.userInfo.partner_name,
                 avatar: app.globalData.userInfo.partner_avatar,
