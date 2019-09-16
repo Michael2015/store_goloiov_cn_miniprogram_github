@@ -253,7 +253,7 @@ view{
   border-radius: 30rpx;
   margin-right: 24rpx;
 }
-.detail .action-bar .btn.forbid{
+.detail .action-bar .forbid{
   font-size: 24rpx;
   padding: 16rpx 30rpx;
   color: #ffffff;

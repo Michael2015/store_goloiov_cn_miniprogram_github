@@ -61,7 +61,15 @@ Page({
       // 只有参加公排的商品才走这个逻辑
       this.refs.shouhuo.show(res => {
         if (!res) return
-        wx.showLoading()
+        if (!canClickShouHuo) return
+        // 只要能来到这,无论请求成功与否,都不允许再次点击
+        thie.setData({
+          canClickShouHuo: false
+        })
+        wx.showLoading({
+          title:'正在加载中...',
+          mask:true
+        })
         app.http.get('/api/order/confirmOrder', {
           type: res,
           order_id: this.data.orderId
