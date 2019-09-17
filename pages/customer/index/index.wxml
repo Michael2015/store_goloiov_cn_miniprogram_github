@@ -13,7 +13,7 @@
 </swiper>
 </view>
 </view>
-<view class="goPartner" bindtap="register">成为合伙人</view>
+<!-- <view class="goPartner" bindtap="register">成为合伙人</view> -->
 <view class="other"></view>
 </view>
 
@@ -42,7 +42,7 @@
 <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
 <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
 </view>
-<view class="transverseCar-Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view>
+<!-- <view class="transverseCar-Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
 </view>
 <view class="item-title">
 <view class="top">
@@ -69,7 +69,7 @@
 <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
 <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
 </view>
-<view class="transverseCar-Free-sheet-one" wx:if="{{item.is_platoon === 1}}" >免单</view>
+<!-- <view class="transverseCar-Free-sheet-one" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
 </view>
 <view class="item-title">
 <view class="top">
@@ -114,7 +114,7 @@
 <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
 <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
 </view>
-<view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view>
+<!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
 </view>
 <view class="title_volume">
 <view class="title">
@@ -141,7 +141,7 @@
 <view style="height:70px"></view>
 </scroll-view>
 <contact-user id="contact-view"></contact-user>
-<image src="/assets/image/seeTutorial.png" mode="widthFix" class="seeTutorial" catchtap="goHelperAll"></image>
+<!-- <image src="/assets/image/seeTutorial.png" mode="widthFix" class="seeTutorial" catchtap="goHelperAll"></image>
 <view class="novice" catchtouchmove="touchMove" wx:if="{{noviceShow}}">
 <view class="novice_body">
 <image src="/assets/image/white_close.png" mode="widthFix" class="red_close" catchtap="closeNovice"></image>
@@ -152,7 +152,7 @@
 <image src="/assets/image/btn-cha.png" mode="widthFix" class="btn-cha" catchtap="goHelper"></image>
 </view>
 </view>
-</view>
+</view> -->
 <view class="modal-mask"  catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 </view>
 <wxs module="divisionMoney">

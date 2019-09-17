@@ -12,7 +12,7 @@
       <view class="item-content">{{name}}</view>
     </view>
     <view class="warp-item">
-      <view class="item-title">合伙人等级
+      <view class="item-title">等级
         <!-- <image src="/assets/image/question.png" class="question" bindtap="to" data-url="/pages/partner/personal/Explain/index" mode="widthFix"></image> -->
       </view>
       <view class="item-content">{{partner_level}}</view>
@@ -26,10 +26,10 @@
         </view>
       </view>
     </view>
-    <view class="warp-item" bindtap="to" data-url="/pages/partner/personal/partner/index">
+    <!-- <view class="warp-item" bindtap="to" data-url="/pages/partner/personal/partner/index">
       <view class="item-title">我发展的伙伴</view>
       <view class="item-content">{{num}}人 ></view>
-    </view>
+    </view> -->
   </view>
   <view class="mask" wx:if="{{showMask}}">
     <view class="phone-warp">

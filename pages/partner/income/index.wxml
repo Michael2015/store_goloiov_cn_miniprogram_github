@@ -11,14 +11,14 @@
       </view>
     </view>
     <view class="in-title">
-      <text class="{{index === 0 ? 'active':''}}" bindtap="setIndex" data-index="{{0}}">我的免单</text>
+      <text class="{{index === 0 ? 'active':''}}" bindtap="setIndex" data-index="{{0}}">我的销售</text>
       <text class="{{index === 1 ? 'active':''}}" bindtap="setIndex" data-index="{{1}}">收益</text>
     </view>
   </view>
   <swiper class="swiper" bindchange="change" current="{{index}}" style="{{hack}}">
     <swiper-item>
       <scroll-view scroll-y bindscrolltolower="gongPaiLoadmore" style="{{hack}}">
-        <navigator class="help" url="/pages/partner/personal/helper/gongpai">如何免单，查看介绍>></navigator>
+        <!-- <navigator class="help" url="/pages/partner/personal/helper/gongpai">如何免单，查看介绍>></navigator> -->
         <view class="pub-list">
           <view class="item" wx:for="{{list}}" wx:key="index">
             <view class="header border-bottom" bindtap="toOrderDetail" data-id="{{item.order_sn}}" data-userid="0">
@@ -49,7 +49,7 @@
     </swiper-item>
     <swiper-item>
       <scroll-view scroll-y bindscrolltolower="shouYiLoadmore" style="{{hack}}">
-        <navigator class="help" url="/pages/partner/personal/helper/income">收益及提现介绍>></navigator>
+        <!-- <navigator class="help" url="/pages/partner/personal/helper/income">收益及提现介绍>></navigator> -->
         <view class="in-record">
           <view class="item border-bottom" wx:for="{{list1}}" wx:key="index">
             <view class="left"  bindtap="toOrderDetail" data-id="{{item.order_sn}}" data-userid="{{item.user_id}}">

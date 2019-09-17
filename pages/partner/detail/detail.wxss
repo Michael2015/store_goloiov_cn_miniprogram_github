@@ -371,7 +371,7 @@ scroll-view{
   text-align: center;
 }
 .bar-item{
-  padding: 25rpx 20rpx;
+  padding: 25rpx 35rpx;
   border:1px solid rgba(224,224,224,1);
   display: flex;
   box-sizing: border-box;

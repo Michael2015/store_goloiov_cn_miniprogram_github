@@ -9,7 +9,7 @@
 -->
 </view>
 <!-- bindtap="checkoutFenXiang" -->
-<button class="share_btn" open-type="share">邀请合伙人</button>
+<!-- <button class="share_btn" open-type="share">邀请合伙人</button> -->
 </view>
 <view class="countTop">
 <!--  banner 轮播图  -->
@@ -25,13 +25,13 @@
 </swiper>
 </view>
 <!--  banner 轮播图  -->
-<view>
+<!-- <view>
 <view class="page_set">
 <swiper vertical duration='800' interval='2000' autoplay circular class="index_search_swiper">
 <swiper-item wx:for="{{getinfo.content}}" wx:key="{{index}}"><image class="lunImg" src="/assets/image/AnCrown.jpg"></image>{{item}}</swiper-item>
 </swiper>
 </view>
-</view>
+</view> -->
 <!-- 横向滑动 -->
 <view class="transverseCar">
 <view class="carTit">车联网专区</view>
@@ -44,7 +44,7 @@
 <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
 <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
 </view>
-<view class="transverseCar-Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view>
+<!-- <view class="transverseCar-Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
 </view>
 <view class="item-title">
 <view class="top">
@@ -71,7 +71,7 @@
 <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
 <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
 </view>
-<view class="transverseCar-Free-sheet-one" wx:if="{{item.is_platoon === 1}}" >免单</view>
+<!-- <view class="transverseCar-Free-sheet-one" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
 </view>
 <view class="item-title">
 <view class="top">
@@ -113,7 +113,7 @@
 <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
 <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
 </view>
-<view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view>
+<!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
 </view>
 <view class="title_volume">
 <view class="title">
@@ -132,7 +132,7 @@
 <no-data list="{{storelist}}" isLoad="{{isLoad}}" wx:if="(storelist&&storelist.length!==0) || isLoad"></no-data>
 <view style="height:50px"></view>
 </scroll-view>
-<image src="/assets/image/seeTutorial.png" mode="widthFix" class="seeTutorial" catchtap="goHelperAll"></image>
+<!-- <image src="/assets/image/seeTutorial.png" mode="widthFix" class="seeTutorial" catchtap="goHelperAll"></image>
 <view class="novice" catchtouchmove="touchMove" wx:if="{{noviceShow}}">
 <view class="novice_body">
 <image src="/assets/image/white_close.png" mode="widthFix" class="red_close" catchtap="closeNovice"></image>
@@ -143,7 +143,7 @@
 <image src="/assets/image/btn-cha.png" mode="widthFix" class="btn-cha" catchtap="goHelper"></image>
 </view>
 </view>
-</view>
+</view> -->
 <view class="modal-mask"  catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="fenxiang-mask" wx:if="{{fenXiangShow}}">
 <view class="select">

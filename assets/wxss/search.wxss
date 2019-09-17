@@ -19,7 +19,8 @@
 }
 
 .search_nav .search_input {
-    width: 72%;
+    /* width: 72%; */
+    width: 100%;
     height: 60rpx;
     margin: 15rpx 3% 15rpx 19rpx;
     overflow: hidden;

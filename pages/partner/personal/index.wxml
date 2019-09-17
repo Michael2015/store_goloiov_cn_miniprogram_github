@@ -12,7 +12,7 @@
       <view class="name">{{name}}
         <text>{{partner_level}}</text>
       </view>
-      <view class="num">伙伴{{num}}人</view>
+      <!-- <view class="num">伙伴{{num}}人</view> -->
     </view>
     <view class="right">
       <image src="/assets/image/right-white.png" mode="widthFix"></image>
@@ -81,13 +81,13 @@
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
 </view> -->
-<view class="group">
+<!-- <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/useDesc/index">
     <view class="icon"><image src="/assets/image/demo.png" mode="widthFix"></image></view>
     <view class="name">商城使用说明</view>
     <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
-</view>
+</view> -->
 
 </view>
