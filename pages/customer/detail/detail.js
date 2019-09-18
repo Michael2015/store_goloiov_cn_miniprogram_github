@@ -230,12 +230,11 @@ Page({
         app.http.get('/api/customer/product/getProductDesc', {
             product_id: this.data.id
         }).then(res => {
-            wx.hideLoading()
+            wx.hideLoading();
             let description = res.description.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
             description = description.replace(/float[\s]*:[\s]*(left|right)[\s]*;*/gi, 'float: auto;')
             this.setData({
-                description: WxParse.wxParse('description', 'html', description, this, 5)
-                // description: description
+                description: WxParse.wxParse('description', 'html', description, this, 5),
             })
             this.initContentSwiperHeight(0)
         }).catch((e) => {

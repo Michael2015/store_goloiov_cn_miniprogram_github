@@ -51,10 +51,12 @@
                 <view class="col-1">下单时间:</view>
                 <view class="col-2">{{orderInfo.add_time}}</view>
             </view>
-             <view class="row">
+            <!--
+            <view class="row">
                 <view class="col-1">免单方式:</view>
                 <view class="col-2">{{orderInfo.miandan_type}}</view>
             </view>
+            -->
             <view class="row">
                 <view class="col-1">物流信息:</view>
                 <view class="col-2">
@@ -87,7 +89,9 @@
             </block>
         </view>
     </view>
+    <!--
     <view style="margin-top:30rpx;color:#b1b1b1;text-align:center;font-size:24rpx;line-height:1.7;" wx:if="{{orderInfo.is_platoon == 1}}">适用免单奖励计划的商品不适用7天无理由退货</view>
+    -->
     <view class="action-bar" wx:if="{{orderInfo.is_allow_operation==1}}">
         <view class="btn" bindtap="copyInfo">复制信息</view>
         <view class="btn" bindtap="contact">联系卖家</view>
