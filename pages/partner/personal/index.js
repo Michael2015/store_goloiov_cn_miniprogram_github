@@ -11,7 +11,6 @@ Page({
     avatar: '',
     num:0,
     partner_level:'',
-    is_partner_vip:0
   },
   to: function(e) {
     const data = e.currentTarget.dataset
@@ -31,7 +30,6 @@ Page({
           name: this.cut(user.nickName),
           avatar: user.avatarUrl,
           partner_level:user.partner_level,
-          is_partner_vip:user.is_partner_vip
         })
       }
       this.data.inited = true
@@ -43,7 +41,7 @@ Page({
    */
   onReady: function () {
     // console.log(user)
-    console.log(app.globalData.userInfo)
+    //console.log(app.globalData.userInfo)
   },
   cut(str, len = 15) {
     if (str.length > len) {

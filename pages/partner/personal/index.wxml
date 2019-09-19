@@ -6,7 +6,6 @@
   <view>
     <view class="avatar">
       <image src="{{avatar}}" mode="widthFix"></image>
-      <image src="/assets/image/wan_vip.png" class="vip" wx:if="{{is_partner_vip === 1}}"></image>
     </view>
     <view class="info">
       <view class="name">{{name}}

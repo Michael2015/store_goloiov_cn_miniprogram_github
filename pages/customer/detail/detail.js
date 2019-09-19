@@ -232,7 +232,7 @@ Page({
         }).then(res => {
             wx.hideLoading();
             let description = res.description.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
-            description = description.replace(/float[\s]*:[\s]*(left|right)[\s]*;*/gi, 'float: auto;')
+            description = goSettlement.replace(/float[\s]*:[\s]*(left|right)[\s]*;*/gi, 'float: auto;')
             this.setData({
                 description: WxParse.wxParse('description', 'html', description, this, 5),
             })
@@ -316,6 +316,7 @@ Page({
     },
     goSettlement() {
         let product_id = this.data.id;
+        let that = this;
         wx.getSetting({
             success(res) {
                 let url;
@@ -327,8 +328,15 @@ Page({
                     let share_user_id = app.globalData.shareInfo.share_user_id;
                     let share_partner_id = app.globalData.shareInfo.share_partner_id;
                     let share_product_id = app.globalData.shareInfo.share_product_id || product_id;
-                    url = '/pages/login/index?type=share&share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
-                }
+                    if(that.data.share_type)
+                    {
+                        url = '/pages/login/index?type=share&share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
+                    }
+                    else
+                    {
+                        url = '/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
+                    }
+                   }
                 wx.navigateTo({
                     url: url
                 })

@@ -287,8 +287,6 @@ function analysisOptions(options, res) {
     } else {
         if (res.is_promoter === 0){
             // 客户进入
-            console.log('==============')
-            console.log(res.last_partner_info);
             if (!res.last_partner_info) {
                 // 是一个新用户 跳注册合伙人
                 // 直接进来注册合伙人 , 判断下 是不是客户，只有客户才来注册合伙人
@@ -298,7 +296,6 @@ function analysisOptions(options, res) {
             } else {
                 // 重做分享信息，相当于打开上次浏览的商品页
                 app.globalData.shareInfo = res.last_partner_info
-                console.log('重做上次分享信息：')
                 console.log(app.globalData.shareInfo)
                 wx.switchTab({
                     // url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id
