@@ -232,7 +232,7 @@ Page({
         }).then(res => {
             wx.hideLoading();
             let description = res.description.replace(/\<img/gi, '<img style="width:100%;height:auto" ')
-            description = goSettlement.replace(/float[\s]*:[\s]*(left|right)[\s]*;*/gi, 'float: auto;')
+            description = description.replace(/float[\s]*:[\s]*(left|right)[\s]*;*/gi, 'float: auto;')
             this.setData({
                 description: WxParse.wxParse('description', 'html', description, this, 5),
             })

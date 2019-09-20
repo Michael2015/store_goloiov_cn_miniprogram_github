@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab: 1, // 0 提现到银行卡， 1 提现到微信
+    tab: 0, // 0 提现到银行卡， 1 提现到微信
     all: '',
     value: '',
     bank_code: null,
@@ -19,10 +19,10 @@ Page({
     this.setData({
       tab: data.i
     })
-    if (this.data.tab === 0) {
+    if (this.data.tab === 1) {
       wx.showModal({
         title: '提示',
-        content: '暂不支持提现到银行卡',
+        content: '暂不支持提现到微信',
         showCancel: false,
         success:(res) => {
           if (res.confirm) {

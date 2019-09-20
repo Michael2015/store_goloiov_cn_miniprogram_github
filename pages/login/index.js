@@ -297,7 +297,7 @@ function analysisOptions(options, res) {
                 // 重做分享信息，相当于打开上次浏览的商品页
                 app.globalData.shareInfo = res.last_partner_info
                 console.log(app.globalData.shareInfo)
-                wx.switchTab({
+                wx.reLaunch({
                     // url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id
                     url: '/pages/customer/index/index'
                 })

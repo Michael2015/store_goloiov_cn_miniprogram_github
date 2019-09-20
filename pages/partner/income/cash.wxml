@@ -1,11 +1,11 @@
 <!--pages/partner/personal/wallet/cash.wxml-->
 <view class="wrap">
-  <!-- <view class="top-tab">
+  <view class="top-tab">
     <view class="{{tab===0?'active':''}}" bindtap="tab" data-i="{{0}}">提现到银行卡</view>
     <view class="{{tab===1?'active':''}}" bindtap="tab" data-i="{{1}}">提现到微信</view>
-  </view> -->
+  </view>
   <view class="bank-card" wx-if="{{tab===0}}">
-    <!-- <view class="t">提现至<text>银行卡</text></view> -->
+    <view class="t">提现至<text>银行卡</text></view>
     <block wx:if="{{bank_code}}">
       <view class="card">
         <view>
