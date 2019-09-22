@@ -13,7 +13,7 @@ Page({
         sendingcode: false,
         sendedcode: false,
         submiting: false,
-        argee: true
+        argee: true,
     },
     onLoad(options) {
         page = this;
@@ -66,8 +66,28 @@ Page({
                     // 提供给下一个
                     return res
                 }).then(page.authPhone).then(page.submitPhone).then((res)=>{
-                    // 判断入口参数
-                    analysisOptions(page.data.options, res)
+                    if(res.is_has_migrated == 0) {
+                        //重新切换身份
+                        let  userInfo3 = app.globalData.userInfo_login_auth_info;
+                        userInfo3.routine_openid = res.routine_openid;
+                        userInfo3.session_key = res.session_key;
+                        app.http.post('/routine/Login', {
+                            info: userInfo3,
+                            share_partner_id: getPartner(page.data.options)
+                        }).then(res => {
+                            // 保存用户信息
+                            app.globalData.userInfo = res;
+                            // 设置token
+                            app.globalData.token = res.token;
+                            app.globalData.role = res.is_promoter;
+                            analysisOptions(page.data.options, res)
+                        });
+                    }
+                    else
+                    {
+                        analysisOptions(page.data.options,res)
+                    }
+
                     // 不会走到这里来
                 }).catch(err => {
                     wx.hideLoading()
@@ -86,6 +106,7 @@ Page({
             // 保留用户信息
             // app.globalData.userInfo = res.detail.userInfo\
             if (this.data.argee) {
+                app.globalData.userInfo_login_auth_info = res.detail.userInfo;
                 this.login(res.detail.userInfo)
             } else {
                 wx.showToast({
@@ -110,7 +131,7 @@ Page({
                 if (res && res.phone) {
                     app.globalData.userInfo.phone = res.phone
                     // 绑定成功
-                    app.globalData.userInfo.bind_phone = true
+                    app.globalData.userInfo.bind_phone = true;
                 }
                 // 进入首页
                 wx.hideLoading()
@@ -255,6 +276,7 @@ Page({
 })
 
 function analysisOptions(options, res) {
+    //重新登录，刷新用户信息
     if (options.type === 'invite') {
         // 邀请合伙人
         wx.redirectTo({
@@ -266,7 +288,6 @@ function analysisOptions(options, res) {
         app.globalData.shareInfo.share_user_id = options.share_user_id // 推荐人
         app.globalData.shareInfo.share_partner_id = options.share_partner_id // 店铺 或者 合伙人id
         app.globalData.shareInfo.share_product_id = options.share_product_id // 商品id
-
         //根据用户身份不同去对应的商品详情页
         if(res.is_promoter === 0){
             if (!res.last_partner_info) {
@@ -287,7 +308,8 @@ function analysisOptions(options, res) {
     } else {
         if (res.is_promoter === 0){
             // 客户进入
-            if (!res.last_partner_info) {
+            if (res.last_partner_info.length == 0) {
+
                 // 是一个新用户 跳注册合伙人
                 // 直接进来注册合伙人 , 判断下 是不是客户，只有客户才来注册合伙人
                 wx.reLaunch({
@@ -296,7 +318,6 @@ function analysisOptions(options, res) {
             } else {
                 // 重做分享信息，相当于打开上次浏览的商品页
                 app.globalData.shareInfo = res.last_partner_info
-                console.log(app.globalData.shareInfo)
                 wx.reLaunch({
                     // url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id
                     url: '/pages/customer/index/index'
@@ -304,7 +325,7 @@ function analysisOptions(options, res) {
             }
         } else if (res.is_promoter === 1) {
             // 合伙人
-            wx.switchTab({
+            wx.reLaunch({
                 url: '/pages/partner/index/index'
             })
         }

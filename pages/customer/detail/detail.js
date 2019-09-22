@@ -337,7 +337,7 @@ Page({
                         url = '/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
                     }
                    }
-                wx.navigateTo({
+                wx.reLaunch({
                     url: url
                 })
             }
