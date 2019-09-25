@@ -180,14 +180,15 @@ Page({
   },
   toCash(e) {
     // 发现金额是0的时候拦截跳转页面
-    if (Number(this.data.cash) <= 0) {
-      wx.showToast({
-        title: '暂无可提现金额',
-        icon: 'none'
-      })
-    } else {
-      this.to(e)
-    }
+    // if (Number(this.data.cash) <= 0) {
+    //   wx.showToast({
+    //     title: '暂无可提现金额',
+    //     icon: 'none'
+    //   })
+    // } else {
+    //   this.to(e)
+    // }
+    this.to(e)
   },
   toOrderDetail(e) {
     const data = e.currentTarget.dataset

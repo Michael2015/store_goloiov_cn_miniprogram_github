@@ -46,7 +46,7 @@
                         <view class="no-more {{!buyRecordMore? 'no-more-show': ''}}">没有更多数据</view>
                     </view>
                 </swiper-item>
-                <swiper-item class="content-swiper-item">
+                <swiper-item class="content-swiper-item" wx:if="{{partner_level_num>0}}">
                     <view class="visitor-wrap" id="item-wrap2">
                         <view class="row">
                             <block wx:for="{{visitorList}}" wx:key="index">

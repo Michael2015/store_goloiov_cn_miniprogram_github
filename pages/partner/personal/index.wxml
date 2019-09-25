@@ -9,7 +9,7 @@
     </view>
     <view class="info">
       <view class="name">{{name}}
-        <text>{{partner_level}}</text>
+        <text wx:if="{{partner_level_num>0}}">{{partner_level}}</text>
       </view>
       <!-- <view class="num">伙伴{{num}}人</view> -->
     </view>
@@ -19,7 +19,7 @@
   </view>
   <view class="circle"></view>
 </view>
-<view class="tabs">
+<view class="tabs" wx:if="{{partner_level_num>0}}">
   <view bindtap="to" data-url="/pages/partner/personal/visitor/index">
     <image src="/assets/image/visitor.png" mode="widthFix" class="visitor"></image>
     <text>访客</text>

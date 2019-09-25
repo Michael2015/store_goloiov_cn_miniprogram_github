@@ -27,7 +27,7 @@ Page({
         success:(res) => {
           if (res.confirm) {
             this.setData({
-              tab: 1
+              tab: 0
             })
           }
         }
@@ -91,7 +91,7 @@ Page({
   },
   submit() {
     const value = Number(this.data.value)
-    if (value != this.data.value || value <= 0 || value < 10) {
+    if (value != this.data.value || value <= 0 || value < 10 || value > 50000) {
       wx.showToast({
         title: '请输入正确金额',
         icon: 'none',
@@ -123,15 +123,26 @@ Page({
       extract_type: ['bank', 'wx'][this.data.tab]
     }).then(data => {
       console.log(data)
-      wx.showToast({
-        title: data || '提现成功',
-        icon: 'none',
-        duration: 2000
-      })
+      // wx.showToast({
+      //   title: data || '提现成功',
+      //   icon: 'none',
+      //   duration: 2000
+      // })
       this.setData({
         value: ''
       })
       this.getAll()
+      // 跳转到提现记录页
+      wx.showModal({
+        title: '提示',
+        content: '申请提现成功，预计1-3个工作日内到账',
+        showCancel: false,
+        success:(res) => {
+          wx.navigateTo({
+            url: 'cash-record'
+          })
+        }
+      })
     }, () => {
       this.getAll()
     })

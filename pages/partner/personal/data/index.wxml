@@ -11,7 +11,7 @@
       <view class="item-title">名字</view>
       <view class="item-content">{{name}}</view>
     </view>
-    <view class="warp-item">
+    <view class="warp-item" wx:if="{{partner_level_num>0}}">
       <view class="item-title">等级
         <!-- <image src="/assets/image/question.png" class="question" bindtap="to" data-url="/pages/partner/personal/Explain/index" mode="widthFix"></image> -->
       </view>

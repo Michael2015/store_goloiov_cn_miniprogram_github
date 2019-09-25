@@ -35,7 +35,9 @@ Page({
         visitorList: [],
         // 访客记录是否有更多数据
         visitorMore: true,
-        tabs: ['详情', '购买记录', '访客','评论'],
+        // 没有合伙人等级不显示访客
+        partner_level_num: app.globalData.userInfo.partner_level_num,
+        tabs: app.globalData.userInfo.partner_level_num > 0 ? ['详情', '购买记录', '访客','评论'] : ['详情', '购买记录', '评论'],
         // 当前tab页下标
         currentTab: 0,
         // 内容swiper高度
