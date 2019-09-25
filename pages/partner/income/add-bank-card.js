@@ -41,6 +41,21 @@ Page({
       })
     }
   },
+  setprovince(e) {
+    this.setData({
+      p: e.detail.value
+    })
+  },
+  setcity(e) {
+    this.setData({
+      c: e.detail.value
+    })
+  },
+  setaddr(e) {
+    this.setData({
+      a: e.detail.value
+    })
+  },
   save() {
     let bank_id;
     for (let i in banklist) {
@@ -62,6 +77,27 @@ Page({
       })
       return;
     }
+    if (!this.data.p) {
+      wx.showToast({
+        title: '请填写银行卡所在省',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.data.c) {
+      wx.showToast({
+        title: '请填写银行卡所在市',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!this.data.a) {
+      wx.showToast({
+        title: '请填写银行卡开户支行',
+        icon: 'none'
+      })
+      return;
+    }
     // if (!bank_id) {
     //   wx.showToast({
     //     title: '请选择银行',
@@ -73,7 +109,8 @@ Page({
     this.bindbank({
       real_name: this.data.name,
       bank_code: this.data.cardid.replace(/[^\d]/g, ''),
-      bank_id
+      bank_id,
+      extra: this.data.p + ' ' + this.data.c + ' ' + this.data.a
     })
   },
   bank() {

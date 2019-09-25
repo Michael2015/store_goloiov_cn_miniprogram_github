@@ -12,6 +12,24 @@
                 <input type="text" placeholder="请输入银行卡号" placeholder-class="placeholder"  bindinput="setcardid" maxlength="24" value="{{cardid}}"/>
             </view>
         </view>
+        <view class="row">
+            <view class="col-1">银行卡所在省</view>
+            <view class="col-2">
+                <input type="text" placeholder="请输入银行卡所在省" placeholder-class="placeholder"  bindinput="setprovince" />
+            </view>
+        </view>
+        <view class="row">
+            <view class="col-1">银行卡所在市</view>
+            <view class="col-2">
+                <input type="text" placeholder="请输入银行卡所在市" placeholder-class="placeholder"  bindinput="setcity" />
+            </view>
+        </view>
+        <view class="row">
+            <view class="col-1">银行卡开户支行</view>
+            <view class="col-2">
+                <input type="text" placeholder="请输入银行卡开户支行" placeholder-class="placeholder"  bindinput="setaddr" />
+            </view>
+        </view>
         <!-- <view class="row">
             <view class="col-1">银行</view>
             <picker bindchange="bindPickerChange" value="{{index}}" range="{{bank_list}}">

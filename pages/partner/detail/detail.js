@@ -109,16 +109,22 @@ Page({
             visitorMore: true
         })
         if (index === 0) {
-            // 获取价格
+            // 获取商品详情
             this.getDescription()
         } else if (index === 1) {
-            // 获取商品详情
+            // 获取购买记录
             this.getRecord()
         } else if (index === 2) {
-            // 获取购买记录
-            this.getVisitor()
+            // 不是普通合伙人，可以看访客
+            if (this.data.partner_level_num > 0) {
+                // 获取访客记录
+                this.getVisitor()
+            } else {
+                // 获取评论
+                this.getComment()
+            }
         } else if (index === 3) {
-            // 获取访客记录
+            // 获取评论
             this.getComment()
         }else {
             console.log('没有该类型')

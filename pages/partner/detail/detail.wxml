@@ -79,7 +79,7 @@
                                     </view>
                                     <view class="t2">{{item.nickname}}</view>
                                     <view class="t3">
-                                         <view wx:for="{{item.imgs}}" wx:for-index="index">
+                                         <view wx:for="{{item.imgs}}" wx:for-index="index" wx:key="{{index}}">
                                             <image src="{{item}}" data-index="{{index}}"  class="contactIcon"></image>
                                         </view>
                                     </view>
@@ -91,7 +91,7 @@
                                 </view>
                                  <view class="col col-h">
                                     <view class="s">
-                                      <view wx:for="{{item.pics}}" wx:for-index="index" wx:for-item="it">
+                                      <view wx:for="{{item.pics}}" wx:for-index="index" wx:for-item="it" wx:key="{{index}}">
                                             <image src="{{it}}" data-index="{{index}}"  bindtap="preview"  data-src="{{it}}" data-list="{{item.pics}}" class="avatar-image"></image>
                                         </view>
                                     </view>
