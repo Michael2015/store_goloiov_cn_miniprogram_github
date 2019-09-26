@@ -188,6 +188,15 @@ Page({
     // } else {
     //   this.to(e)
     // }
+    // 临时用下token，完善重登录逻辑修改这里
+    if (!app.globalData.userInfo.token) {
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        showCancel: false
+      })
+      return
+    }
     this.to(e)
   },
   toOrderDetail(e) {
