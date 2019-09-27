@@ -1,0 +1,23 @@
+<view class="warp">
+    <view class="award">奖励金额：1500.00元
+    <view class="task">
+        分红=团队月利润*5%
+    </view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">奖励金额</view>
+        <view class="right"></view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">结算状态</view>
+        <view class="right">2019年05月21日 03:32:46</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">您的等级</view>
+        <view class="right">董事股东</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">本月团队总利润</view>
+        <view class="right">3783791万元</view>
+    </view>
+</view>

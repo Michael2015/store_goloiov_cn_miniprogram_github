@@ -1,0 +1,39 @@
+/* pages/partner/personal/strategy/index.wxss */
+page{
+    background: #F9F9F9;
+}
+.warp{
+    font-size: 28rpx;
+}
+.grade{
+    display: flex;
+    justify-content: space-between;
+    padding: 10rpx 30rpx;
+    background: #ffffff;
+    margin-top: 10rpx;
+}
+.grade_advantage{
+    margin-top: 10rpx;
+    padding: 10rpx 30rpx;
+}
+.task{
+    margin-top: 10rpx;
+    padding: 10rpx 30rpx;
+}
+.no{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    color: #999999;
+}
+.content{
+    color: #000000;
+}
+.content>span{
+    margin-left: 5rpx;
+    color: red;
+}
+.strip{
+    margin-top: 5rpx;
+}

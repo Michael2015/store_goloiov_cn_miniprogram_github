@@ -1,0 +1,19 @@
+<view class="warp">
+    <view class="award">分润奖金：20.06元</view>
+    <view class="simpleness_show">
+        <view class="left">订单号：1357263</view>
+        <view class="right"></view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">类别</view>
+        <view class="right">下级开发</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">所属商家</view>
+        <view class="right">XXXXXXXX</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">结算状态</view>
+        <view class="right">2018年10月21日  12:07:59</view>
+    </view>
+</view>

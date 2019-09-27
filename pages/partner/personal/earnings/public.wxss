@@ -1,0 +1,205 @@
+page{
+    background: #f9f9f9;
+}
+.warp{
+    font-size: 24rpx;
+}
+.warp .award{
+    color: #fff;
+    font-size: 34rpx;
+    height: 163rpx;
+    line-height: 163rpx;
+    background: linear-gradient(90deg, 
+    #f45445 0%, 
+    #e62a21 100%);
+    padding: 0 40rpx;
+    font-family: PingFangSC-Medium;
+}
+.warp .user_msg{
+    display: flex;
+    padding: 26rpx 30rpx 30rpx 30rpx;
+    background: #ffffff;
+}
+.user_msg image{
+    width: 46rpx;
+    margin-right: 16rpx;
+}
+.user_msg .msg{
+    flex: 1;
+}
+.msg .address{
+    color: #333333;
+    font-size: 26rpx;
+    height: 37rpx;
+    line-height: 37rpx;
+    margin-top: 4rpx;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.msg .name_phone{
+    margin-top: 20rpx;
+    display: flex;
+    color: #666666;
+    font-size: 24rpx;
+}
+.name_phone .name{
+    margin-right: 35rpx;
+}
+.name_phone .phone{
+    flex: 1;
+    color: #999999;
+}
+.warp .simpleness_show:nth-child(1){
+    margin-top: 20rpx;
+}
+.warp .simpleness_show{
+    margin-top: 2rpx;
+    font-size: 28rpx;
+    color: #9e9e9e;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding: 0 30rpx;
+    display: flex;
+    background: #fff;
+}
+.warp .simpleness_show .right{
+    color: #333333;
+    flex: 1;
+    text-align: right;
+}
+
+.warp .about_order{
+    margin-top: 2rpx;
+    background: #ffffff;
+    padding: 22rpx 30rpx;
+}
+.about_order .title{
+    color: #333;
+    font-size: 28rpx;
+}
+.about_order .order_list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.about_order .order_list .item{
+    min-width: 33.33%;
+    display: flex;
+    margin-top: 22rpx;
+}
+.about_order .order_list .item image{
+    width: 68rpx;
+    border-radius: 50%;
+    margin-right: 12rpx;
+}
+.about_order .order_list .item .order_msg{
+    flex:1
+}
+.about_order .order_list .item .order_msg .about_name{
+    color: #333;
+    font-size: 26rpx;
+    width: 144rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.about_order .order_list .item .order_msg .order_no{
+    font-size: 22rpx;
+    color: #999;
+    width: 144rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.warp .good_show{
+    margin-top: 20rpx;
+    background: #ffffff;
+    padding: 25rpx 20rpx 20rpx 20rpx;
+    display: flex;
+}
+.warp .good_show image{
+    width: 138rpx;
+    margin-right: 11rpx;
+}
+.warp .good_show .good_msg{
+    flex:1;
+}
+.main_show{
+    display: flex;
+    border-bottom: 1rpx solid #f2f2f2;
+    padding-bottom: 28rpx;
+}
+.main_show .desc{
+    width: 432rpx;
+    font-size: 26rpx;
+    color: #333333;
+}
+.main_show .desc .color{
+    color: #999999;
+    font-size: 24rpx;
+    margin-top: 16rpx;
+}
+.main_show .about_money{
+    flex: 1;
+    font-size: 24rpx;
+    text-align: right;
+}
+.main_show .about_money .money{
+    color: #000;
+}
+.main_show .about_money .count{
+    color: #666666;
+}
+.good_msg .allmoney{
+    text-align: right;
+    height:66rpx;
+    line-height: 66rpx;
+}
+.good_msg .allmoney span:nth-child(1){
+    color: #333333;
+    font-size: 22rpx;
+    margin-right: 20rpx;
+}
+.good_msg .allmoney span:nth-child(2){
+   display: inline-block;
+   width: 2rpx;
+   height: 23rpx;
+   background: #cfcfcf;
+   color: #cfcfcf;
+}
+.good_msg .allmoney span:nth-child(3){
+    font-size: 24rpx;
+    color: #333333;
+    margin-left: 20rpx;
+}
+.good_msg .allmoney span:nth-child(3) >span{
+    font-size: 24rpx;
+	color: #e31436;
+}
+.exey_show_list{
+    padding: 40rpx 30rpx;
+    background: #fff;
+    margin-top: 20rpx;
+}
+.exey_show_list .exey_show:nth-child(1){
+    margin-top: 0;
+}
+.exey_show_list .exey_show{
+    margin-top: 30rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    display: flex;
+    justify-content: space-between;
+    font-size: 28rpx
+}
+.exey_show_list .exey_show .left{
+    color: #9e9e9e;
+}
+.exey_show_list .exey_show .right{
+    color: #333;
+}

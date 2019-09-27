@@ -1,0 +1,25 @@
+<!-- pages/partner/personal/strategy/index.wxml -->
+<view>
+    <view class="warp">
+        <view class="grade">
+            <view class="title">我的等级</view>
+            <view class="content">{{grade}}</view>
+        </view>
+        <view class="grade_advantage no">
+            <view class="title">我的权益</view>
+            <view class="content">无</view>
+        </view>
+        <view class="grade">
+            <view class="title">下一等级</view>
+            <view class="content">VIP合伙人</view>
+        </view>
+        <view class="grade_advantage">
+            <view class="title">等级权益</view>
+            <view class="content strip">获得推广返利权益，当有人购买您分享出去的商品，您将获得商品相应的奖励</view>
+        </view>
+        <view class="task">
+            <view class="title">待完成任务</view>
+            <view class="content">购买一台golo x3</view>
+        </view>
+    </view>
+</view>

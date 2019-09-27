@@ -1,0 +1,36 @@
+page{
+    background: #f9f9f9;
+}
+.warp{
+    font-size: 24rpx;
+}
+.warp .award{
+    color: #fff;
+    font-size: 34rpx;
+    height: 163rpx;
+    line-height: 163rpx;
+    background: linear-gradient(90deg, 
+    #f45445 0%, 
+    #e62a21 100%);
+    padding: 0 40rpx;
+    font-family: PingFangSC-Medium;
+    position: relative;
+}
+.warp .simpleness_show:nth-child(1){
+    margin-top: 20rpx;
+}
+.warp .simpleness_show{
+    margin-top: 2rpx;
+    font-size: 28rpx;
+    color: #9e9e9e;
+    height: 88rpx;
+    line-height: 88rpx;
+    padding: 0 30rpx;
+    display: flex;
+    background: #fff;
+}
+.warp .simpleness_show .right{
+    color: #333333;
+    flex: 1;
+    text-align: right;
+}

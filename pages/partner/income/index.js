@@ -20,7 +20,8 @@ Page({
     page1: 1, // 收益页码
     loaded1: false, // 收益加载完毕
     requesting1: false, // 请求中
-    hack: ''
+    hack: '',
+    jumpObj:{},       //收益类型跳转对象
   },
   to: function(e) {
     const data = e.currentTarget.dataset
@@ -43,7 +44,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadData()
+    this.loadData();
+    // 初始化收益跳转对象
+    this.setData({
+      jumpObj:{
+        'public':'/pages/partner/personal/earnings/public',             //免单详情
+        'commission':'/pages/partner/personal/earnings/commission',     //合伙人津贴详情
+        'benifit':'/pages/partner/personal/earnings/benifit',           //返利详情
+        // 'public':'/pages/partner/personal/earnings/dividend',                 //董事分红详情
+        // 'commission':'/pages/partner/personal/earnings/profit',                   //开发供应商
+        // 'benifit':'/pages/partner/personal/earnings/cultivate'                 //培养合伙人
+      }
+    })
   },
   loadData() {
     this.showLoading()
@@ -203,6 +215,12 @@ Page({
     const data = e.currentTarget.dataset
     wx.navigateTo({
       url: '/pages/common/order/detail?orderId=' + data.id+'&userId='+data.userid
+    })
+  },
+  toEarningsDetail(e){
+    const data = e.currentTarget.dataset
+    wx.navigateTo({
+      url:this.data.jumpObj[data.type]
     })
   },
   hackHeight() {

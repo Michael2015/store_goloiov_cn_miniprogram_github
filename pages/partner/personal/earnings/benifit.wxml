@@ -1,0 +1,48 @@
+<view class="warp">
+    <view class="award">返利金额160元</view>
+    <view class="simpleness_show">
+        <view class="left">订单号：146389275538362</view>
+        <view class="right">已完成</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">结算状态:  2019年05月21日 03:32:46</view>
+        <view class="right">已结算</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">返利原因：  您是购买人的上级合伙人</view>
+        <view class="right"></view>
+    </view>
+    <view class="good_show">
+        <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+        <view class="good_msg">
+            <view class="main_show">
+                <view class="desc">
+                    <view class="good_name">元征goloX3 智能车联网车载智慧终端汽车诊断仪车载wifi智能盒子行车电脑</view>
+                    <view class="color">黑色</view>
+                </view>
+                <view class="about_money">
+                    <view class="money">¥1199.00</view>
+                    <view class="count">×1</view>
+                </view>
+            </view>
+            <view class="allmoney">
+                <span>已优惠金额：￥799.00</span>
+                <span></span>
+                <span>
+                    合计：
+                    <span>￥100.00</span>
+                </span>
+            </view>
+        </view>
+    </view>
+    <view class="exey_show_list">
+        <view class="exey_show">
+            <view class="left">购买人</view>
+            <view class="right">少年闰土</view>
+        </view>
+        <view class="exey_show">
+            <view class="left">下单时间</view>
+            <view class="right">2018年10月21日 12:07:59</view>
+        </view>
+    </view>
+</view>

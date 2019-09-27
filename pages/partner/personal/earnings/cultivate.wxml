@@ -1,0 +1,19 @@
+<view class="warp">
+    <view class="award">奖励金额：5000元</view>
+    <view class="simpleness_show">
+        <view class="left">结算状态</view>
+        <view class="right">2018年10月21日  12:07:59</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">被培养人</view>
+        <view class="right">少年闰土</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">达成级别</view>
+        <view class="right">区县合伙人</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">您的等级</view>
+        <view class="right">市级合伙人</view>
+    </view>
+</view>

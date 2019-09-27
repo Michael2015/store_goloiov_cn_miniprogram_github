@@ -35,7 +35,14 @@
     "pages/partner/comment/index",
     "pages/partner/personal/feedback/index",
     "pages/partner/personal/coupon/index",
-    "pages/partner/personal/data/index"
+    "pages/partner/personal/data/index",
+    "pages/partner/personal/strategy/index",
+    "pages/partner/personal/earnings/public",
+    "pages/partner/personal/earnings/commission",
+    "pages/partner/personal/earnings/benifit",
+    "pages/partner/personal/earnings/profit",
+    "pages/partner/personal/earnings/cultivate",
+    "pages/partner/personal/earnings/dividend"
   ],
   "tabBar": {
     "custom": true,
@@ -92,5 +99,3 @@
   },
   "sitemapLocation": "sitemap.json"
 }
-
-

@@ -1,0 +1,117 @@
+<view class="warp">
+    <view class="award">免单奖励100000000元</view>
+    <view class="user_msg">
+        <image src="/assets/image/location-red.png" mode="widthFix"></image>
+        <view class="msg">
+            <view class="address">广东省 深圳市 龙岗区 坂田五和大道远征工业园 远征研发大厦</view>
+            <view class="name_phone">
+                <view class="name">少年闰土</view>
+                <view class="phone">182****0000</view>
+            </view>
+        </view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">订单号:  1357263</view>
+        <view class="right">待发货</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">结算状态:  2019年05月21日 03:32:46</view>
+        <view class="right">待结算</view>
+    </view>
+    <view class="simpleness_show">
+        <view class="left">免单方式:  排队免单</view>
+        <view class="right"></view>
+    </view>
+    <view class="about_order">
+        <view class="title">关联订单:</view>
+        <view class="order_list">
+            <view class="item">
+                <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+                <view class="order_msg">
+                    <view class="about_name">用户名666666666</view>
+                    <view class="order_no">1256624</view>
+                </view>
+            </view>
+            <view class="item">
+                <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+                <view class="order_msg">
+                    <view class="about_name">用户名</view>
+                    <view class="order_no">1256624</view>
+                </view>
+            </view>
+            <view class="item">
+                <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+                <view class="order_msg">
+                    <view class="about_name">用户名</view>
+                    <view class="order_no">1256624</view>
+                </view>
+            </view>
+            <view class="item">
+                <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+                <view class="order_msg">
+                    <view class="about_name">用户名</view>
+                    <view class="order_no">1256624</view>
+                </view>
+            </view>
+            <view class="item">
+                <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+                <view class="order_msg">
+                    <view class="about_name">用户名</view>
+                    <view class="order_no">1256624</view>
+                </view>
+            </view>
+            <view class="item">
+                <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+                <view class="order_msg">
+                    <view class="about_name">用户名</view>
+                    <view class="order_no">1256624</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="good_show">
+        <image src="/assets/image/contactIcon.png" mode="widthFix"></image>
+        <view class="good_msg">
+            <view class="main_show">
+                <view class="desc">
+                    <view class="good_name">元征goloX3 智能车联网车载智慧终端汽车诊断仪车载wifi智能盒子行车电脑</view>
+                    <view class="color">黑色</view>
+                </view>
+                <view class="about_money">
+                    <view class="money">¥1199.00</view>
+                    <view class="count">×1</view>
+                </view>
+            </view>
+            <view class="allmoney">
+                <span>已优惠金额：￥799.00</span>
+                <span></span>
+                <span>
+                    合计：
+                    <span>￥100.00</span>
+                </span>
+            </view>
+        </view>
+    </view>
+    <view class="exey_show_list">
+        <view class="exey_show">
+            <view class="left">订单来源</view>
+            <view class="right">少年闰土</view>
+        </view>
+        <view class="exey_show">
+            <view class="left">购买人</view>
+            <view class="right">少年闰土</view>
+        </view>
+        <view class="exey_show">
+            <view class="left">下单时间</view>
+            <view class="right">2018年10月21日 12:07:59</view>
+        </view>
+        <view class="exey_show">
+            <view class="left">物流信息</view>
+            <view class="right">3726374892733</view>
+        </view>
+        <view class="exey_show">
+            <view class="left">赠送产品</view>
+            <view class="right">XXXXXXXXXXX</view>
+        </view>
+    </view>
+</view>
