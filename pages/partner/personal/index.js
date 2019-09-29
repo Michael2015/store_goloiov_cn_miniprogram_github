@@ -30,7 +30,7 @@ Page({
           name: this.cut(user.nickName),
           avatar: user.avatarUrl,
           partner_level:user.partner_level,
-          partner_level_num: user.partner_level_num ||1
+          partner_level_num: user.partner_level_num
         })
       }
       this.data.inited = true
