@@ -386,6 +386,7 @@ goList(e)
     this.setData({ scrollTop: res.scrollTop })
   },
   onShareAppMessage: function () {
+    console.log(app.globalData.userInfo.uid)
     return {
       title: `${app.globalData.userInfo.nickName}邀请你成为业务合伙人！`,
       path: '/pages/index/index?share_id=' + app.globalData.userInfo.uid + '&type=invite',
