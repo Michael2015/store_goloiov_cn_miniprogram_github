@@ -36,7 +36,7 @@ Page({
           avatar: user.avatarUrl,
           is_band_partner:user.is_band_partner,
           partner_level:user.partner_level,
-          partner_level_num: user.partner_level_num || 1
+          partner_level_num: user.partner_level_num
         })
         if(this.data.is_band_partner === 1){
           this.setData({
