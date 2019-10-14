@@ -125,6 +125,9 @@
             <view class="bar-button" bindtap="goSettlement">立即购买</view>
         </view>
     </scroll-view>
+    <view class="zhuan" bindtap="getShareImg">分享</view>
+    <canvas canvas-id='posterCanvas' style='width:560px;height:800px;'></canvas>
+    <composite-poster id="compositePoster-view"></composite-poster>
     <view class="fenxiang-mask" wx:if="{{fenXiangShow}}">
         <view class="select">
             <view class="select-top">
@@ -145,7 +148,5 @@
                 <button class="exit" bindtap="checkoutFenXiang">×</button>
             </view>
         </view>
-        <canvas canvas-id='posterCanvas' style='width:560px;height:800px;'></canvas>
-        <composite-poster id="compositePoster-view"></composite-poster>
     </view>
 </view>

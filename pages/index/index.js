@@ -26,12 +26,16 @@ Page({
                 var arr = scene.split(',')
                 // 重写入口参数 二维码带参格式有限制,所以采用这中简短格式
                 // 把他当做分享来处理
-                this.data.options = {
-                    s: arr[0],
-                    p: arr[1],
-                    st: arr[2],
-                    type: 'share'
-                }
+                // this.data.options = {
+                //     s: arr[0],
+                //     p: arr[1],
+                //     st: arr[2],
+                //     type: 'share'
+                // }
+                this.data.options.s = arr[0]
+                this.data.options.p = arr[1]
+                this.data.options.st = arr[2]
+                this.data.options.type = 'share'
             }
         }
         wx.getSetting({
@@ -52,17 +56,17 @@ Page({
                     app.globalData.partner_invite_id = options.share_id || 0;
                     app.globalData.shareInfo.share_user_id = options.s || 0; // 推荐人
                     app.globalData.shareInfo.share_partner_id = options.p || 0;// 店铺 或者 合伙人id
-                    app.globalData.shareInfo.share_product_id = options.st  || 0;// 商品id
+                    app.globalData.shareInfo.share_product_id = options.st || 0;// 商品id
                     if (options.type === 'invite') {
                         let partner_invite_id = app.globalData.partner_invite_id;
                         // 邀请合伙人
                         wx.redirectTo({
-                            url: '/pages/partner/personal/partner/invite?share_id='+partner_invite_id,
+                            url: '/pages/partner/personal/partner/invite?share_id=' + partner_invite_id,
                         });
                     } else if (options.type === 'share') {
                         // 分享进来的
                         wx.redirectTo({
-                            url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id+'&type=share'
+                            url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
                         });
                     } else {
                         wx.switchTab({
@@ -333,11 +337,11 @@ function analysisOptions(options, res) {
         //根据用户身份不同去对应的商品详情页
         if (res.is_promoter === 0) {
             wx.redirectTo({
-                url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id+'&type=share'
+                url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         } else if (res.is_promoter === 1) {
             wx.redirectTo({
-                url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id+'&type=share'
+                url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         }
     } else {

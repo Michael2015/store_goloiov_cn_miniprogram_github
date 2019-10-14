@@ -34,7 +34,7 @@ Page({
     }
     if (options && options.share_id) {
       this.data.shareId = options.share_id
-      app.http.get('/api/partner/index/invite',{share_id: options.share_id}).then(data => {
+      app.http.get('/api/partner/index/invite', { share_id: options.share_id }).then(data => {
         if (data) {
           this.setData({
             data
@@ -46,7 +46,11 @@ Page({
   },
   join() {
     if (this.data.ok) {
-      app.http.get('/api/partner/index/join', {spid: this.data.shareId}).then(data => {
+      if (!app.globalData.token) {
+        wx.reLaunch({ url: '/pages/login/index?type=invite&share_id=' + this.data.shareId });
+        return;
+      }
+      app.http.get('/api/partner/index/join', { spid: this.data.shareId }).then(data => {
         // 到这里说明已经加入团队了
         // 直接跳首页
         app.globalData.role = null

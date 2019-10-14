@@ -105,8 +105,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    console.log(app.globalData.userInfo.uid)
     return {
-      title: '邀请你成为业务合伙人！',
+      title: `${app.globalData.userInfo.nickName}邀请你成为业务合伙人！`,
       path: '/pages/index/index?share_id=' + app.globalData.userInfo.uid + '&type=invite',
       imageUrl: '/assets/image/partner_share_poster.png'
     }

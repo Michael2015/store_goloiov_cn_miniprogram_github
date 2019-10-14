@@ -34,14 +34,14 @@ Page({
           num: data.member_nums,
           name: this.cut(user.nickName),
           avatar: user.avatarUrl,
-          is_band_partner:user.is_band_partner,
+          is_band_partner:data.is_band_partner,
           partner_level:user.partner_level,
           partner_level_num: user.partner_level_num
         })
         if(this.data.is_band_partner === 1){
           this.setData({
-            spread_user_nickname:user.spread_user_nickname,
-            spread_user_phone:user.spread_user_phone,
+            spread_user_nickname:data.spread_user_nickname,
+            spread_user_phone:data.spread_user_phone,
           })
         }
       }
