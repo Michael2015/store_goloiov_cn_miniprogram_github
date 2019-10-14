@@ -218,9 +218,13 @@ Page({
     })
   },
   toEarningsDetail(e){
+    // const data = e.currentTarget.dataset
+    // wx.navigateTo({
+    //   url:this.data.jumpObj[data.type]
+    // })
     const data = e.currentTarget.dataset
     wx.navigateTo({
-      url:this.data.jumpObj[data.type]
+      url: '/pages/common/order/detail?orderId=' + data.id+'&userId='+data.userid
     })
   },
   hackHeight() {

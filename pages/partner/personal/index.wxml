@@ -63,14 +63,14 @@
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
 </view>
-<view class="group">
+<!-- <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/strategy/index">
     <view class="icon"><image src="/assets/image/strategy.png" mode="widthFix"></image></view>
     <view class="name">升级攻略</view>
     <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
-</view>
+</view> -->
 <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/feedback/index">
     <view class="icon"><image src="/assets/image/edit.png" mode="widthFix"></image></view>
