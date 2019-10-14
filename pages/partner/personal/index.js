@@ -29,8 +29,8 @@ Page({
           num: data.member_nums,
           name: this.cut(user.nickName),
           avatar: user.avatarUrl,
-          partner_level:user.partner_level,
-          partner_level_num: user.partner_level_num
+          partner_level:data.partner_level_label,
+          partner_level_num: data.partner_level
         })
       }
       this.data.inited = true
