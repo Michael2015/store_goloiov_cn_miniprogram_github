@@ -66,7 +66,9 @@ Page({
       app.http.get('/api/partner/index').then(data => {
         if (data) {
           this.setData({
-            num: data.member_nums
+            num: data.member_nums,
+            partner_level:data.partner_level_label,
+            partner_level_num: data.partner_level
           })
         }
       })
