@@ -52,7 +52,7 @@
         <!-- <navigator class="help" url="/pages/partner/personal/helper/income">收益及提现介绍>></navigator> -->
         <view class="in-record">
           <view class="item border-bottom" wx:for="{{list1}}" wx:key="index">
-            <view class="left"  bindtap="toEarningsDetail" data-type="{{item.type}}" data-id="{{item.order_sn}}" data-userid="0">
+            <view class="left"  bindtap="toEarningsDetail" data-type="{{item.type}}" data-id="{{item.order_sn}}" data-userid="{{item.user_id}}">
               <view class="name">{{item.type_text}}　<text>{{item.add_time}}</text></view>
               <view class="reason">{{item.title}}</view>
             </view>

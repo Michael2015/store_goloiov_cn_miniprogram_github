@@ -222,10 +222,14 @@ Page({
     // wx.navigateTo({
     //   url:this.data.jumpObj[data.type]
     // })
-    const data = e.currentTarget.dataset
-    wx.navigateTo({
-      url: '/pages/common/order/detail?orderId=' + data.id+'&userId='+data.userid
-    })
+    const data = e.currentTarget.dataset;
+    //user_id = 0 的时候，找不到订单号的时候，不跳转到订单详情
+    if(data.userid)
+    {
+      wx.navigateTo({
+        url: '/pages/common/order/detail?orderId=' + data.id+'&userId='+data.userid
+      })
+    }
   },
   hackHeight() {
     const query = wx.createSelectorQuery().in(this)
