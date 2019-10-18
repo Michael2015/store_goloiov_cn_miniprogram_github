@@ -55,7 +55,7 @@ Page({
                     }
                     // 设置tab
                     if (app.globalData.tabInst) {
-                        app.globalData.tabInst.forEach( item => {
+                        app.globalData.tabInst.forEach(item => {
                             if (item && item.updateTab) {
                                 console.log('uptab')
                                 item.updateTab()
@@ -65,10 +65,10 @@ Page({
                     }
                     // 提供给下一个
                     return res
-                }).then(page.authPhone).then(page.submitPhone).then((res)=>{
-                    if(res.is_has_migrated == 0) {
+                }).then(page.authPhone).then(page.submitPhone).then((res) => {
+                    if (res.is_has_migrated == 0) {
                         //重新切换身份
-                        let  userInfo3 = app.globalData.userInfo_login_auth_info;
+                        let userInfo3 = app.globalData.userInfo_login_auth_info;
                         userInfo3.routine_openid = res.routine_openid;
                         userInfo3.session_key = res.session_key;
                         app.http.post('/routine/Login', {
@@ -83,9 +83,8 @@ Page({
                             analysisOptions(page.data.options, res)
                         });
                     }
-                    else
-                    {
-                        analysisOptions(page.data.options,res)
+                    else {
+                        analysisOptions(page.data.options, res)
                     }
 
                     // 不会走到这里来
@@ -116,7 +115,7 @@ Page({
             }
         }
     },
-    handlePhoneNumber({detail}) {
+    handlePhoneNumber({ detail }) {
         if (detail.encryptedData && detail.iv) {
             // 拿到信息了
             // console.log(detail.encryptedData, detail.iv)
@@ -125,7 +124,7 @@ Page({
             app.http.post('/routine/login/getPhone', {
                 encryptedData: detail.encryptedData,
                 iv: detail.iv
-            }).then( res => {
+            }).then(res => {
                 // console.log(res)
                 // 成功了, 重写手机号码
                 if (res && res.phone) {
@@ -135,6 +134,8 @@ Page({
                 }
                 // 进入首页
                 wx.hideLoading()
+                this.data.next()
+            }, () => {
                 this.data.next()
             })
         } else {
@@ -149,7 +150,7 @@ Page({
         })
         if (res.bind_phone) {
             return Promise.resolve(res)
-        }else {
+        } else {
             this.setData({
                 showAuthPhone: true
             })
@@ -166,7 +167,7 @@ Page({
         })
         if (res.bind_phone) {
             return Promise.resolve(res)
-        }else {
+        } else {
             this.setData({
                 showBindPhone: true
             })
@@ -176,14 +177,14 @@ Page({
             })
         }
     },
-    setPhone({detail}) {
-        let {value} = detail
+    setPhone({ detail }) {
+        let { value } = detail
         this.setData({
             phone: value
         })
     },
-    setCode({detail}) {
-        let {value} = detail
+    setCode({ detail }) {
+        let { value } = detail
         this.setData({
             code: value
         })
@@ -213,7 +214,7 @@ Page({
                 title: '发送成功',
                 icon: 'none'
             })
-            const timer = setInterval(()=>{
+            const timer = setInterval(() => {
                 if (--all <= 0) {
                     clearInterval(timer)
                     this.setData({
@@ -232,7 +233,7 @@ Page({
         })
     },
     submit() {
-        if (!this.data.phone||!this.data.code) return
+        if (!this.data.phone || !this.data.code) return
         if (this.data.submiting) return
         if (!/^1[\d]{10}$/.test(this.data.phone)) {
             wx.showToast({
@@ -262,7 +263,7 @@ Page({
             this.data.submiting = false
         })
     },
-    checkboxChange({detail}) {
+    checkboxChange({ detail }) {
         // 协议处理
         if (detail.value && detail.value.length > 0) {
             this.data.argee = true
@@ -289,7 +290,7 @@ function analysisOptions(options, res) {
         app.globalData.shareInfo.share_partner_id = options.share_partner_id // 店铺 或者 合伙人id
         app.globalData.shareInfo.share_product_id = options.share_product_id // 商品id
         //根据用户身份不同去对应的商品详情页
-        if(res.is_promoter === 0){
+        if (res.is_promoter === 0) {
             if (!res.last_partner_info) {
                 // 是一个新用户 跳注册合伙人
                 // 直接进来注册合伙人 , 判断下 是不是客户，只有客户才来注册合伙人
@@ -298,15 +299,15 @@ function analysisOptions(options, res) {
                 })
             }
             wx.redirectTo({
-                url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id+'&type=share'
+                url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
-        }else{
+        } else {
             wx.redirectTo({
-                url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id+'&type=share'
+                url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         }
     } else {
-        if (res.is_promoter === 0){
+        if (res.is_promoter === 0) {
             // 客户进入
             if (res.last_partner_info.length == 0) {
 
