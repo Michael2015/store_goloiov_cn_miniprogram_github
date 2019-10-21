@@ -173,6 +173,8 @@ Page({
                 // 进入首页
                 wx.hideLoading()
                 this.data.next()
+            }, () => {
+                this.data.next()
             })
         } else {
             // 授权手机失败
