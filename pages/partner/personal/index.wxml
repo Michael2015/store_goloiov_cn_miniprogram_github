@@ -9,7 +9,7 @@
     </view>
     <view class="info">
       <view class="name">{{name}}
-        <text wx:if="{{partner_level_num>0}}">{{partner_level}}</text>
+        <text>{{partner_level}}</text>
       </view>
       <!-- <view class="num">伙伴{{num}}人</view> -->
     </view>

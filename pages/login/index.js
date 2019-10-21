@@ -290,13 +290,6 @@ function analysisOptions(options, res) {
         app.globalData.shareInfo.share_product_id = options.share_product_id // 商品id
         //根据用户身份不同去对应的商品详情页
         if(res.is_promoter === 0){
-            if (!res.last_partner_info) {
-                // 是一个新用户 跳注册合伙人
-                // 直接进来注册合伙人 , 判断下 是不是客户，只有客户才来注册合伙人
-                wx.reLaunch({
-                    url: '/pages/partner/register/index'
-                })
-            }
             wx.redirectTo({
                 url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id+'&type=share'
             })
