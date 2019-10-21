@@ -290,19 +290,8 @@ function analysisOptions(options, res) {
         app.globalData.shareInfo.share_partner_id = options.share_partner_id // 店铺 或者 合伙人id
         app.globalData.shareInfo.share_product_id = options.share_product_id // 商品id
         //根据用户身份不同去对应的商品详情页
-<<<<<<< HEAD
         if(res.is_promoter === 0){
-=======
-        if (res.is_promoter === 0) {
-            if (!res.last_partner_info) {
-                // 是一个新用户 跳注册合伙人
-                // 直接进来注册合伙人 , 判断下 是不是客户，只有客户才来注册合伙人
-                wx.reLaunch({
-                    url: '/pages/partner/register/index'
-                })
-            }
->>>>>>> 376b9016151a3f6995cac085fc3e2fc6383bb613
-            wx.redirectTo({
+           wx.redirectTo({
                 url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         } else {
