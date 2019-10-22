@@ -28,7 +28,7 @@ Page({
         this.setData({
           num: data.member_nums,
           name: this.cut(user.nickName),
-          avatar: user.avatarUrl,
+          avatar: data.avatar || user.avatar,
           partner_level:data.partner_level_label,
           partner_level_num: data.partner_level
         })
@@ -67,6 +67,7 @@ Page({
         if (data) {
           this.setData({
             num: data.member_nums,
+            avatar: data.avatar,
             partner_level:data.partner_level_label,
             partner_level_num: data.partner_level
           })
