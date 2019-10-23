@@ -10,10 +10,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
-  width: 64%;
+  width: 76%;
   border-radius: 8px;
   box-sizing: border-box;
-  padding: 0 60rpx 40rpx;
+  padding: 0 50rpx 40rpx;
   text-align: center;
 }
 .avatar{
@@ -65,4 +65,10 @@
   background: linear-gradient(to right, #ef5355, #e70203);
   border-radius: 40rpx;
   text-align: center;
+}
+.tt{
+  color: #e70002;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 20rpx;
 }

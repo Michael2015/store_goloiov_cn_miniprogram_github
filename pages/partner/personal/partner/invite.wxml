@@ -5,16 +5,15 @@
       <image src="{{data.avatar}}" mode="widthFix"></image>
     </view>
     <view class="nickname">{{data.nickname}}</view>
-    <view class="title">邀请你成为业务合伙人</view>
+    <view class="title">邀请你成为万车品商城会员</view>
     <view class="extra">
-      <view>万车品商城合伙人招募</view>
-      <view>—</view>
-      <view>自主创业，下单拿佣金</view>
-      <view>—</view>
-      <view>发展合伙人，在家收提成</view>
-      <view>—</view>
-      <view>在这里你就是老板</view>
+        <view class="tt">使命</view>
+        <view>为汽车提供智能化管理和一站式服务平台；</view>
+        <view>为有梦想的人提供公平自由的创业平台。</view>
+        <view class="tt">愿景</view>
+        <view>成为最优秀的车联网服务企业；</view>
+        <view>赢得创业者和客户的选择和尊重。</view>
     </view>
-    <view class="btn" bindtap="join">立即加入</view>
+    <view class="btn" bindtap="join">免费加入会员</view>
   </view>
 </view>
