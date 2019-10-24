@@ -107,9 +107,9 @@ Page({
   onShareAppMessage: function () {
     console.log(app.globalData.userInfo.uid)
     return {
-      title: `${app.globalData.userInfo.nickName}邀请你成为业务合伙人！`,
+      title: `${app.globalData.userInfo.nickName}邀请您免费注册万车品商城会员`,
       path: '/pages/index/index?share_id=' + app.globalData.userInfo.uid + '&type=invite',
-      imageUrl: '/assets/image/partner_share_poster.png'
+      imageUrl: '/assets/image/partner_share_poster3.jpeg'
     }
   }
 })
