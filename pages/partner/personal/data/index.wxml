@@ -4,7 +4,7 @@
     <view class="warp-item">
       <view class="item-title avatar-title">头像</view>
       <!-- <view class="item-content"> -->
-        <image src="{{avatar}}" class="avatar" mode="widthFix"></image>
+        <image src="{{avatar}}" class="avatar"></image>
       <!-- </view> -->
     </view>
     <view class="warp-item">
