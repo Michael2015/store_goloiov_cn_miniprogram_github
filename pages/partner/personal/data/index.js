@@ -32,7 +32,7 @@ Page({
       if (data) {
         this.setData({
           num: data.member_nums,
-          name: this.cut(user.nickName),
+          name: this.cut(data.nickName),
           avatar: data.avatar,
           is_band_partner:data.is_band_partner,
           partner_level:user.partner_level,
