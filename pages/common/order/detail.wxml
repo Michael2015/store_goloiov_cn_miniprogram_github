@@ -97,9 +97,9 @@
         <view class="btn" bindtap="contact">联系卖家</view>
         <view class="btn" wx:if="{{orderInfo.status_of_order === 0}}" bindtap="del">删除订单</view>
         <view class="btn" wx:if="{{orderInfo.status_of_order === 0}}" bindtap="goPay">重新支付</view>
-        <view class="btn" wx:if="{{orderInfo.status_of_order === 1 ||  orderInfo.status_of_order == 3}}" bindtap="refund">申请退款</view>
+        <view class="btn" wx:if="{{orderInfo.status_of_order === 1}}" bindtap="refund">申请退款</view>
+        <view class="btn" wx:if="{{(orderInfo.status_of_order === 5 && orderInfo.is_allow_refund !== 0) || orderInfo.status_of_order === 3}}" bindtap="toSalesBack">申请退货</view>
         <view class="{{canClickShouHuo?'btn':'forbid'}}" wx:if="{{orderInfo.status_of_order === 3}}" bindtap="confirmOrder">确认收货</view>
-        <view class="btn" wx:if="{{orderInfo.status_of_order === 5 && orderInfo.is_allow_refund !== 0}}" bindtap="toSalesBack">申请退货</view>
         <view class="btn" wx:if="{{orderInfo.status_of_order === 5 && orderInfo.status !== 3}}" bindtap="comment">去评价</view>
     </view>
     <!--<contact-user id="contact-view"></contact-user>-->
