@@ -21,6 +21,19 @@ page {
     display: flex;
     justify-content: flex-start;
 }
+.search_nav .login {
+  position: absolute;
+  right: 24rpx;
+  top:8rpx;
+  font-size: 30rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  color: #fff;
+  padding: 0 30rpx 0 30rpx;
+  box-shadow: 0px 1rpx 2rpx 0px rgba(0, 0, 0, 0.5);
+  border-radius: 4rpx;
+  text-align: center;
+}
 
 .head {
     padding: 8rpx 24rpx 0 24rpx;

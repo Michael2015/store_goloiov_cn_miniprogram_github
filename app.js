@@ -40,7 +40,10 @@ App({
             } 
             else if(data.code === 403)
             {
-              wx.reLaunch({url:'/pages/login/index'});
+              let share_user_id = app.globalData.shareInfo.share_user_id;
+              let share_partner_id = app.globalData.shareInfo.share_partner_id;
+              let share_product_id = app.globalData.shareInfo.share_product_id;
+              wx.reLaunch({url:'/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id});
               reject(data)
             }
             else {

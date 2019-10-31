@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view class="view">
 <view class="search_nav">
+<view class="login" bindtap="tologin">登录</view>
 <view class="head">
 <view class="headImg_call" bindtap="contact">
 <image src="{{getPartnerInfo.avatar}}" mode="aspectFit" class='user_head'></image>

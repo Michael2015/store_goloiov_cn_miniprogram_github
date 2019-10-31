@@ -273,6 +273,10 @@ Page({
     },
     onUnload() {
         wx.hideLoading()
+    },
+    //  微信7.0.7版本起，禁用返回首页按钮
+    onShow(){
+        wx.hideHomeButton()
     }
 })
 

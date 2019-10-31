@@ -23,7 +23,7 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.9.1",
 	"appid": "wx60b98db196fdfa62",
 	"projectname": "%E4%B8%87%E8%BD%A6%E5%93%81%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -50,7 +50,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 13,
+			"current": 14,
 			"list": [
 				{
 					"id": 0,
@@ -147,6 +147,14 @@
 					"id": -1,
 					"name": "pages/partner/index/index",
 					"pathName": "pages/partner/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 14,
+					"name": "pages/customer/index/index",
+					"pathName": "pages/customer/index/index",
+					"query": "",
 					"scene": null
 				}
 			]
