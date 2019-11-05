@@ -21,6 +21,24 @@ const list = [{
   text: "我的"
 }]
 
+// 客户端菜单配置(登陆后)
+// const list2 = [{
+//   pagePath: "/pages/partner/index/index",
+//   iconPath: "/assets/image/home_mall_sel.png",
+//   selectedIconPath: "/assets/image/home_mall.png",
+//   text: "商城"
+// }, {
+//   pagePath: "/pages/common/order/order",
+//   iconPath: "/assets/image/home_Order_sel.png",
+//   selectedIconPath: "/assets/image/home_Order.png",
+//   text: "订单"
+// }, {
+//   pagePath: "/pages/partner/income/index",
+//   iconPath: "/assets/image/home_income_sel.png",
+//   selectedIconPath: "/assets/image/home_income.png",
+//   text: "收益"
+// }]
+
 // 客户端菜单配置
 const list1 = [{
   pagePath: "/pages/customer/index/index",

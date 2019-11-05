@@ -47,6 +47,15 @@ page {
   height: 91rpx;
   line-height: 40rpx;
 }
+.commodity_item .new{
+  position: absolute;
+  background: #FF0000;
+  color: #fff;
+  font-size: 25rpx;
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
 .countTop{
   padding-bottom: 20rpx;
 }
@@ -570,4 +579,53 @@ button{
 {
   width: 70rpx;
   height: 70rpx;
+}
+.news_box{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  /* background: #Fff; */
+  border-radius: 20rpx;
+}
+
+.news_box .close{
+  width: 50rpx;
+  position: absolute;
+  right: 0rpx;
+  top: -55rpx;
+}
+.news_box .new_bg{
+  width: 600rpx;
+}
+.news_box .new_msg{
+  position: absolute;
+  right: 267rpx;
+  bottom: 175rpx;
+}
+.news_box .new_msg .discount{
+  font-weight: 550;
+  color: #BF0805;
+  text-align: center;
+  font-size: 35rpx;
+}
+
+.news_box .new_msg .discount_name{
+  font-weight: 550;
+  color: #fff;
+  text-align: center;
+}
+
+.news_box .new_msg .discount_time{
+  font-size: 20rpx;
+  color: #980120;
+  text-align: center;
+}
+
+.news_box .gobaybtn{
+  width: 128rpx;
+  height: 175rpx;
+  position: absolute;
+  right: 117rpx;
+  bottom: 153rpx;
 }

@@ -94,7 +94,7 @@ Page({
                     // 判断用户角色
                     if (res.is_promoter === 0) {
                         // 用户是客户
-                        app.globalData.role = 0
+                        app.globalData.role = 1
                         // wx.switchTab({
                         //   url: '/pages/customer/index/index'
                         //   // url: '/pages/partner/index/index'

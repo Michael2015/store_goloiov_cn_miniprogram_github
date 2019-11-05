@@ -5,15 +5,35 @@
         <image class="coupon" src="/assets/image/getcoupon2.png"  wx:if="{{data.coupon_id}}" bindtap="show_modal"></image>
         </view>
         <view class="p">
-            <em wx:if="{{(data.seckill.status == 0 || data.seckill.status == -1) && data.vip_price!=='0.00' && data.is_promoter == 0}}" class="compare"><text>原价</text>￥{{data.price}}</em>
-            <em wx:elif="{{data.seckill.status == 0 || data.seckill.status == -1}}">￥{{data.price}}</em>
+            <!-- <text>原价</text> -->
+            <em wx:if="{{(data.seckill.status == 0 || data.seckill.status == -1) && data.vip_price!=='0.00' && data.is_promoter == 0}}" class="compare">￥{{!!data.newbornzone.is_newborn?data.newbornzone.price:data.price}}</em>
+            <em wx:elif="{{(data.seckill.status == 0 || data.seckill.status == -1) && data.is_promoter == 1}}">￥{{!!data.newbornzone.is_newborn?data.newbornzone.price:data.vip_price}} ￥{{!!data.newbornzone.is_newborn?data.vip_price:data.price}}</em>
+            <em wx:elif="{{data.seckill.status == 0 || data.seckill.status == -1}}">￥{{data.newbornzone.is_newborn?data.newbornzone.price:data.price}}</em>
             <em wx:elif="{{data.seckill.status == 1}}">
                 <em>￥{{data.seckill.data.price}}</em>
-                <em class="text-u">￥{{data.price}}</em>
+                <em class="text-u">￥{{data.price}}</em> 
             </em>
+            <view class="{{data.is_promoter==1?'news_p':'news'}}" wx:if="{{!!data.newbornzone.is_newborn}}">
+                <em class="news_title">新人专享</em>
+            </view>
             <!-- <em wx:if="{{data.seckill.status !== 1 && data.vip_price!=='0.00' && data.is_promoter == 0}}" class="compare" style="color:#4A5EE2;text-align: center"><text>合伙人价</text>￥{{data.vip_price}}</em> -->
             <view wx:if="{{data.seckill.status !== 1 && data.vip_price!=='0.00' && data.is_promoter == 0}}" class="col-1 col-1-compare">{{data.sale}}份已售</view>
             <view wx:else class="col-1">{{data.sale}}份已售</view>
+        </view>
+        <view class="vip">
+            <view class="vip_price_show" wx:if="{{data.is_promoter == 0 && !!data.newbornzone.is_newborn}}">
+                <!-- wx:if="{{data.vip_price!=='0.00'}}" -->
+                <view class="price">
+                    ￥{{data.vip_price}}
+                </view>
+                <view>
+                    vip
+                </view>
+                <view bindtap='checkJoinMask'>
+                    免费加入会员
+                </view>
+            </view>
+              
         </view>
         <!-- <view class="joinTeam" wx:if="{{data.is_promoter ==0}}">
             <view class="join-title">
@@ -72,11 +92,12 @@
 </view>
 <view class="join-mask"  catchtouchmove="preventTouchMove" wx:if="{{joinMask}}">
     <view class="join-box">
-        <view class="inquiry">您正在加入推荐人的团队，是否确定？</view>
-        <view class="Explain" bindtap="toGPDesc"><image src="/assets/image/lever.png" />查看合伙人免单奖励说明</view>
+        <view class="title">免费加入会员</view>
+        <view class="inquiry">免费加入会员后，我们的商品将以超低的价格让利给会员。</view>
+        <!-- <view class="Explain" bindtap="toGPDesc"><image src="/assets/image/lever.png" />查看合伙人免单奖励说明</view> -->
         <view class="buts">
-            <view class="no" bind:tap="checkJoinMask">否</view>
-            <view class="yes" bind:tap="joinTeam">是</view>
+            <view class="no" bind:tap="checkJoinMask">放弃权益</view>
+            <view class="yes" bind:tap="joinTeam">免费加入</view>
         </view>
     </view>
 </view>

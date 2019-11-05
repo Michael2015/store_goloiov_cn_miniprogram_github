@@ -16,6 +16,8 @@ Page({
     phone: '',
     coupon_total:0,//包括优惠券和限时秒杀优惠价
     miandan_type:0,//免单类型,默认是无免单
+    total_num:1,  //购买数量
+    count_mask:false, //设置数量遮罩层
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -36,6 +38,7 @@ Page({
         pay_price:parseFloat(pay_price).toFixed(2),
         coupon_total:parseFloat(coupon_total2).toFixed(2),
         info: app.varStorage.get('storeDetail'),
+        coupon_total2
       });
       wx.hideLoading()
     })
@@ -105,7 +108,8 @@ Page({
           product_id: self.data.product_id,
           address_id: self.data.def_add.id,
           mark: self.data.mark,
-          miandan_type:self.data.miandan_type
+          miandan_type:self.data.miandan_type,
+          total_num:self.data.total_num
         }).then(res => {
           this.pay(res.order_id, formId)
           wx.hideLoading()
@@ -173,6 +177,7 @@ Page({
     }
   },
   formSubmit(e) {
+    console.log(e)
     if (isDisabled) {
       isDisabled = 0;
       this.setData({
@@ -214,5 +219,35 @@ Page({
   },
   onShow() {
     this.getAddressList();
+  },
+  checkmask(){
+    this.setData({
+      count_mask:!this.data.count_mask
+    })
+  },
+  add(){
+    this.setData({
+      total_num:++this.data.total_num
+    })
+    this.Calculation()
+  },
+  reduce(){
+    if(this.data.total_num <= 1){
+      return
+    }
+    this.setData({
+      total_num:--this.data.total_num
+    })
+    this.Calculation()
+  },
+  no(){},
+  // 重新计算总价
+  Calculation(){
+      const {coupon_total2,total_num,price} = this.data;
+      console.log(price.price*total_num-coupon_total2)
+      //重新计算优惠后的价格
+      this.setData({
+        pay_price:price.price*total_num-coupon_total2
+      });
   }
 })

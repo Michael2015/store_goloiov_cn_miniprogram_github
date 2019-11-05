@@ -244,7 +244,9 @@ Page({
                     coupon_price:res.coupon.data.price||0,
                     coupon_date:res.coupon.data.date||'',
                     seckill:res.seckill,
+                    vip_price:res.vip_price,
                     is_promoter:this.data.is_promoter,
+                    newbornzone:res.newbornzone
                 }
             });
         }).catch((e) => {

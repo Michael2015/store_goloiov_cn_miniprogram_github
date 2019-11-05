@@ -23,12 +23,15 @@ Page({
         categoryList1: [], //横向导航栏
         heightCount: 0,   //统计监控交互的高度
         scrollTop: 0,    //监控滑动距离
+        ReplacescrollTop: 0,    //监控滑动距离
         transverseCar_cateId: 0,  //车联网专区的分类id
         transverseCarList: [],    //车联网专区显示数据
         selectClassId: 0,         //标识选择id
         tabIndex: 0,       //目前切换到的首页tab下标
         contentSwiperHeight: defaultSwiperHeight,
-        isloading: false    //标识切换页是否处于加载状态
+        isloading: false,    //标识切换页是否处于加载状态
+        islogin: false,       //标识是否是登录状态
+        isfirst:true
     },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
@@ -145,6 +148,7 @@ Page({
         })
     },
     getPartnerInfo() {
+        // console.log(app.globalData)
         app.http.get('/api/customer/mall/getPartnerInfo', { share_id: app.globalData.shareInfo.share_user_id }).then(res => {
             app.globalData.partnerInfo = res;
             this.setData({
@@ -167,6 +171,9 @@ Page({
             return ele.id == e.currentTarget.id
         })
         app.varStorage.set('storeDetail', getProductList[0])
+        // this.setData({
+        //     ReplacescrollTop: this.data.scrollTop
+        // })
         wx.navigateTo({
             url: '/pages/customer/detail/detail?id=' + e.currentTarget.id
         })
@@ -178,6 +185,10 @@ Page({
         }
     },
     onLoad: function () {
+        // console.log(app.globalData)
+        this.setData({
+            islogin: !(app.globalData.token === '')
+        })
         self = this;
         this.getinfo()
         wx.showLoading({
@@ -233,13 +244,15 @@ Page({
         await this.getCategory()
         //获取车联网专区数据
         this.getTransverseCarData();
-        wx.pageScrollTo({
-            scrollTop: this.data.scrollTop,
-            duration: 0,
-            success: function (res) {
-                console.log(res);
-            }
-        })
+        // setTimeout(() => {
+        //     wx.pageScrollTo({
+        //         scrollTop: this.data.ReplacescrollTop,
+        //         duration: 0,
+        //         success: function (res) {
+        //             console.log(res);
+        //         }
+        //     })
+        // }, 2000)
     },
     async getCategory() {
         const categoryList = await app.http.post('/api/marketing/getCategory', {})
@@ -326,4 +339,12 @@ Page({
             url: '/pages/login/index?share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id
         })
     },
+    close(){
+        console.log('guanbi')
+        this.setData({isfirst:false})
+    },
+    goBay(){
+        wx.navigateTo({url:'/pages/customer/detail/detail?id=1'})
+        this.close()
+    }
 })

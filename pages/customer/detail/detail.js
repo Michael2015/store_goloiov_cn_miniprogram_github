@@ -52,6 +52,8 @@ Page({
         timeList:[],
         is_promoter:0,
         share_type:'',
+        detailTitle:{},  //显示文本弹框对象
+        first:true,      //记录是否是第一次点击
     },
     onLoad: function (options) {
         this.setData({
@@ -61,8 +63,10 @@ Page({
                 nickname: app.globalData.userInfo.partner_name,
                 avatar: app.globalData.userInfo.partner_avatar,
                 phone: app.globalData.userInfo.partner_phone,
-            }
+            },
+            detailTitle:this.selectComponent('.title')
         })
+        // console.log(app.globalData)
         this.getPartnerInfo()
         // 调用接口获取详情数据
         this.getDetail()
@@ -171,6 +175,7 @@ Page({
                     seckill:res.seckill,
                     vip_price:res.vip_price,
                     is_promoter:this.data.is_promoter,
+                    newbornzone:res.newbornzone
                 }
             })
         }).catch((e) => {
@@ -317,6 +322,13 @@ Page({
     goSettlement() {
         let product_id = this.data.id;
         let that = this;
+        if(this.data.first){
+            this.data.detailTitle.checkJoinMask();
+            this.setData({
+                first:false
+            })
+            return
+        }
         wx.getSetting({
             success(res) {
                 let url;

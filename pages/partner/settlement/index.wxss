@@ -3,10 +3,20 @@ page {
 }
 
 .confirm {
+    height: 90rpx;
+    width: 80%;
+    background-color: #e70002;
+    font-size: 36rpx;
+    color: #ffffff;
+    border-radius: 90rpx;
+}
+.confirm_btn{
     min-height: 96rpx;
     height: calc(96rpx + constant(safe-area-inset-bottom));
     height: calc(96rpx + env(safe-area-inset-bottom));
     width: 100vw;
+    text-align: center;
+    line-height: 96rpx;
     background-color: #e70002;
     font-size: 36rpx;
     color: #ffffff;
@@ -188,4 +198,53 @@ font-weight:bold;
     bottom: 0;
     margin: auto 0;
     right: 24rpx;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    top:0;
+    z-index: 1;
+}
+.mask_box{
+    background: #fff;
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%,-50%);
+    padding: 20rpx 10rpx;
+    border-radius: 30rpx;
+}
+.mask_box .setcount{
+    margin-bottom: 20rpx;
+    height: 70rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.setcount .add{
+    background:#FF0000;
+    height: 70rpx;
+    width: 70rpx;
+    border-radius: 50%;
+    line-height: 70rpx;
+    text-align: center;
+    color: #fff;
+}
+.setcount .reduce{
+    background:#FF0000;
+    height: 70rpx;
+    width: 70rpx;
+    border-radius: 50%;
+    line-height: 70rpx;
+    text-align: center;
+    color: #fff;
+}
+.setcount .count{
+    flex: 1;
+    text-align: center;
+    color: #B39999;
+    line-height: 70rpx;
 }
