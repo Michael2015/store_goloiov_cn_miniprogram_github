@@ -49,6 +49,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
@@ -169,6 +173,13 @@
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
 					"query": "type=share&s=231&p=231&st=1",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "pages/partner/personal/poster/detail",
+					"pathName": "pages/partner/personal/poster/detail",
+					"query": "",
 					"scene": null
 				}
 			]

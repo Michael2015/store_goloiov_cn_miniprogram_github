@@ -1,0 +1,16 @@
+.wrap
+{
+    padding:2%;
+}
+.wrap  .thunder image
+{
+    width:100%;
+}
+.wrap  button
+{
+    position: fixed;
+    bottom:0;
+    width:96%;
+    background:#e70002;
+    color:#fff;
+}

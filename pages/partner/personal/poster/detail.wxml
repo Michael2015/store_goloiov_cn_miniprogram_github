@@ -1,0 +1,10 @@
+<view class="wrap">
+    <view class="thunder">
+        <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
+    </view>
+    <view>
+        <button>保存到相册</button>
+    </view>
+</view>
+
+

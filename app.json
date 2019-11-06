@@ -42,7 +42,9 @@
     "pages/partner/personal/earnings/benifit",
     "pages/partner/personal/earnings/profit",
     "pages/partner/personal/earnings/cultivate",
-    "pages/partner/personal/earnings/dividend"
+    "pages/partner/personal/earnings/dividend",
+    "pages/partner/personal/poster/index",
+    "pages/partner/personal/poster/detail"
   ],
   "tabBar": {
     "custom": true,
