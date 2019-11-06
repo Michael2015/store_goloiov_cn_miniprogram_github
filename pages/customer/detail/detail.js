@@ -321,6 +321,7 @@ Page({
     },
     goSettlement() {
         let product_id = this.data.id;
+        const {is_newborn,limit_num,price} = this.data.title.newbornzone
         let that = this;
         if(this.data.first){
             this.data.detailTitle.checkJoinMask();
@@ -333,7 +334,7 @@ Page({
             success(res) {
                 let url;
                 if (res.authSetting['scope.userInfo'] && app.globalData.userInfo.is_promoter == 0) {
-                    url = '/pages/partner/settlement/index?id=' + product_id;
+                    url = `/pages/partner/settlement/index?id=${product_id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}`;
                 }
                 else
                 {

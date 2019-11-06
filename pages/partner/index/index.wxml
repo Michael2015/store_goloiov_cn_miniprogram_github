@@ -167,15 +167,15 @@
 </view>
 </view>
 </view>
-<view class="novice" wx:if="{{islogin&&isfirst}}">
+<view class="novice" wx:if="{{islogin && isfirst && newObj.id}}" catchtouchmove="preventTouchMove">
     <!-- wx:if="{{islogin&&isfirst}}" -->
     <view class="news_box">
         <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
         <image class="new_bg" src="/assets/image/news.png" mode="widthFix"/>
         <view class="new_msg">
-            <view class="discount">0.99元包邮！</view>
-            <view class="discount_name">纳米镀膜剂</view>
-            <view class="discount_time">48小时内购买有效</view>
+            <view class="discount">{{newObj.price}}元包邮！</view>
+            <view class="discount_name">{{newObj.store_name}}</view>
+            <view class="discount_time">{{newObj.valid_time}}小时内购买有效</view>
         </view>
         <view class="gobaybtn" bindtap='goBay'></view>
     </view>

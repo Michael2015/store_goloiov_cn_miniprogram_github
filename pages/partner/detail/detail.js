@@ -402,8 +402,9 @@ Page({
         })
     },
     goSettlement() {
+        const {is_newborn,limit_num,price} = this.data.title.newbornzone
         wx.navigateTo({
-            url: `/pages/partner/settlement/index?id=${self.data.info.id}`
+            url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}`
         })
     },
     onUnload() {

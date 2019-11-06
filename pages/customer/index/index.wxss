@@ -291,7 +291,7 @@ text.coupon3
     position: fixed;
     top: 118rpx;
     width: 100%;
-    z-index: 999;
+    z-index: 2;
     height: 66rpx;
     background: #E60000;
     overflow: hidden;
@@ -536,6 +536,10 @@ text.coupon3
     font-weight: 550;
     color: #fff;
     text-align: center;
+    width: 200rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .news_box .new_msg .discount_time{
