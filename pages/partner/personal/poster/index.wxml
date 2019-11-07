@@ -1,6 +1,15 @@
 <view class='post-list'>
     <block>
-        <view class="item">
+        <view class="item"  bindtap="goDetail" data-id="1">
+            <view>
+                <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
+            </view>
+            <view class="middle">
+                <view class="title">这是我的哦亲噢噢啊，一定要幸福hahhd的挥洒接收到</view>
+                <view>2019.10.16</view>
+            </view>
+        </view>
+        <view class="item"  bindtap="goDetail" data-id="1">
             <view>
                 <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
             </view>
@@ -8,48 +17,26 @@
                 <view class="title">这是我的哦亲噢噢啊，一定要幸福</view>
                 <view>2019.10.16</view>
             </view>
-            <view>
-                <button bindtap="goDetail" data-id="1"> 预 览 </button>
-            </view>
         </view>
-
-        <view class="item">
+         <view class="item"  bindtap="goDetail" data-id="1">
             <view>
                 <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
             </view>
             <view class="middle">
                 <view class="title">这是我的哦亲噢噢啊，一定要幸福</view>
-                <view>2019-10-16</view>
-            </view>
-            <view>
-                <button> 预 览 </button>
+                <view>2019.10.16</view>
             </view>
         </view>
-
-        <view class="item">
+         <view class="item"  bindtap="goDetail" data-id="1">
             <view>
                 <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
             </view>
             <view class="middle">
                 <view class="title">这是我的哦亲噢噢啊，一定要幸福</view>
-                <view>2019-10-16</view>
-            </view>
-            <view>
-                <button> 预 览 </button>
-            </view>
-        </view>
-
-        <view class="item">
-            <view>
-                <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
-            </view>
-            <view class="middle">
-                <view class="title">这是我的哦亲噢噢啊，一定要幸福</view>
-                <view>2019-10-16</view>
-            </view>
-            <view>
-                <button> 预 览 </button>
+                <view>2019.10.16</view>
             </view>
         </view>
     </block>
+    <canvas canvas-id='posterCanvas' style='width:560px;height:800px;'></canvas>
+    <composite-poster id="compositePoster-view"></composite-poster>
 </view>
