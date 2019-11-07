@@ -31,7 +31,8 @@ Page({
         contentSwiperHeight: defaultSwiperHeight,
         isloading: false,    //标识切换页是否处于加载状态
         islogin: false,       //标识是否是登录状态
-        isfirst:true
+        isfirst:true,         //是否是第一次进入首页
+        newObj:{},            //新人专区对象
     },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
@@ -253,6 +254,17 @@ Page({
         //         }
         //     })
         // }, 2000)
+        //获取新人专区信息
+        this.getNews()
+    },
+    getNews() {
+        if (this.data.islogin && this.data.isfirst) {
+          app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
+            this.setData({
+              newObj:res[0]
+            })
+          })
+        }
     },
     async getCategory() {
         const categoryList = await app.http.post('/api/marketing/getCategory', {})
@@ -344,7 +356,9 @@ Page({
         this.setData({isfirst:false})
     },
     goBay(){
-        wx.navigateTo({url:'/pages/customer/detail/detail?id=1'})
+        wx.navigateTo({url:`/pages/customer/detail/detail?id=${this.data.newObj.id}`})
         this.close()
-    }
+    },
+    //  禁用触摸穿透
+    preventTouchMove(){}
 })

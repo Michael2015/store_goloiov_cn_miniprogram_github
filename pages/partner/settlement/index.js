@@ -14,10 +14,10 @@ Page({
     user_address: '',
     real_name: '',
     phone: '',
-    coupon_total:0,//包括优惠券和限时秒杀优惠价
-    miandan_type:0,//免单类型,默认是无免单
-    total_num:1,  //购买数量
-    count_mask:false, //设置数量遮罩层
+    coupon_total: 0,//包括优惠券和限时秒杀优惠价
+    miandan_type: 0,//免单类型,默认是无免单
+    total_num: 1,  //购买数量
+    count_mask: false, //设置数量遮罩层
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -27,19 +27,35 @@ Page({
       let pay_price = res.price;
       //优惠券合伙秒杀//优惠券
       let coupon_total2 = 0.00;
-      if(res.discount.status == 1)
-      {
+      //区分是否有优惠券以及是否从现有订单进来支付页
+      if (res.discount.status == 1 && this.data.is_show_action == 0) {
         coupon_total2 = res.discount.data.total || res.discount.data.save_money;
-        pay_price =res.discount.data.price ? res.discount.data.price : (pay_price - coupon_total2);
+        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
+      } else if (res.discount.status == 1 && this.data.is_show_action == 1) {
+        coupon_total2 = res.discount.data.total || res.discount.data.save_money;
+        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price - coupon_total2);
+      } else if (res.discount.status == 0 && this.data.is_show_action == 0) {
+        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
+      } else {
+        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price - coupon_total2);
       }
       //计算优惠后的价格
       this.setData({
         price: res,
-        pay_price:parseFloat(pay_price).toFixed(2),
-        coupon_total:parseFloat(coupon_total2).toFixed(2),
+        pay_price: parseFloat(pay_price).toFixed(2),
+        coupon_total: parseFloat(coupon_total2).toFixed(2),
         info: app.varStorage.get('storeDetail'),
         coupon_total2
       });
+      //  如果是新人专区商品,重新计算
+      if (this.data.isnew == 'true') {
+        let price = this.data.price;
+        price.price = this.data.new_price,
+          this.setData({
+            price,
+            pay_price: price.price
+          })
+      }
       wx.hideLoading()
     })
   },
@@ -74,8 +90,8 @@ Page({
               disabled_loading: false
             });
             //重定向到订单详情页面
-             wx.navigateTo({
-              url: '/pages/common/order/detail?orderId=' + order_id+'&userId=0',
+            wx.navigateTo({
+              url: '/pages/common/order/detail?orderId=' + order_id + '&userId=0',
             })
           }
         })
@@ -93,33 +109,32 @@ Page({
       this.pay(this.data.orderId, formId);
       wx.hideLoading()
       isDisabled = 1;
-    }else if (!this.data.orderId && self.data.product_id && self.data.def_add && self.data.def_add.id) {
-       //下单之前让用户选择排队的队列
-       //如果是加入公排，判断加入自购免单还是快速免单
-      if(this.data.info.is_platoon == 1 && this.data.info.is_self_buy_platoon == 1)
-      {
+    } else if (!this.data.orderId && self.data.product_id && self.data.def_add && self.data.def_add.id) {
+      //下单之前让用户选择排队的队列
+      //如果是加入公排，判断加入自购免单还是快速免单
+      if (this.data.info.is_platoon == 1 && this.data.info.is_self_buy_platoon == 1) {
         //判断是否有快速免单
-        this.setData({miandan_type:1});
+        this.setData({ miandan_type: 1 });
       }
-       wx.showLoading({
-          mask: true
-        });
-        app.http.post('/api/order/createOrder', {
-          product_id: self.data.product_id,
-          address_id: self.data.def_add.id,
-          mark: self.data.mark,
-          miandan_type:self.data.miandan_type,
-          total_num:self.data.total_num
-        }).then(res => {
-          this.pay(res.order_id, formId)
-          wx.hideLoading()
-          isDisabled = 1;
-        }, () => {
-          isDisabled = 1;
-          self.setData({
-            disabled_loading: false
-          })
+      wx.showLoading({
+        mask: true
+      });
+      app.http.post('/api/order/createOrder', {
+        product_id: self.data.product_id,
+        address_id: self.data.def_add.id,
+        mark: self.data.mark,
+        miandan_type: self.data.miandan_type,
+        total_num: self.data.total_num
+      }).then(res => {
+        this.pay(res.order_id, formId)
+        wx.hideLoading()
+        isDisabled = 1;
+      }, () => {
+        isDisabled = 1;
+        self.setData({
+          disabled_loading: false
         })
+      })
     } else {
       wx.showToast({
         title: '请添加收货地址',
@@ -177,7 +192,6 @@ Page({
     }
   },
   formSubmit(e) {
-    console.log(e)
     if (isDisabled) {
       isDisabled = 0;
       this.setData({
@@ -195,12 +209,16 @@ Page({
         orderId: e.order_id || '',
         mark: e.mark || '',
         user_address: e.user_address || '',
-        phone: e.phone||'',
-        real_name: e.real_name||'',
+        phone: e.phone || '',
+        real_name: e.real_name || '',
+        isnew: e.isnew
       })
 
       if (e.order_id) {
-        this.setData({is_show_action: 0})
+        this.setData({ is_show_action: 0, total_num: e.total_num })
+      }
+      if (e.isnew) {
+        this.setData({ limit_num: e.limit_num, new_price: e.price })
       }
       //this.getCoupon(e.id);
       this.price(e.id);
@@ -220,34 +238,39 @@ Page({
   onShow() {
     this.getAddressList();
   },
-  checkmask(){
+  checkmask() {
     this.setData({
-      count_mask:!this.data.count_mask
+      count_mask: !this.data.count_mask
     })
   },
-  add(){
+  add() {
+    if (this.data.isnew == 'true') {
+      if (this.data.total_num + 1 > this.data.limit_num) {
+        wx.showToast({title:`最多下单${this.data.limit_num}个`,icon:'none'})
+        return
+      }
+    }
     this.setData({
-      total_num:++this.data.total_num
+      total_num: ++this.data.total_num
     })
     this.Calculation()
   },
-  reduce(){
-    if(this.data.total_num <= 1){
+  reduce() {
+    if (this.data.total_num <= 1) {
       return
     }
     this.setData({
-      total_num:--this.data.total_num
+      total_num: --this.data.total_num
     })
     this.Calculation()
   },
-  no(){},
+  no() { },
   // 重新计算总价
-  Calculation(){
-      const {coupon_total2,total_num,price} = this.data;
-      console.log(price.price*total_num-coupon_total2)
-      //重新计算优惠后的价格
-      this.setData({
-        pay_price:price.price*total_num-coupon_total2
-      });
+  Calculation() {
+    const { coupon_total2, total_num, price } = this.data;
+    //重新计算优惠后的价格
+    this.setData({
+      pay_price: parseFloat(price.price * total_num - coupon_total2).toFixed(2)
+    });
   }
 })

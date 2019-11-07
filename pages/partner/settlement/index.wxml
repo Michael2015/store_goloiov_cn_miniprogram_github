@@ -42,13 +42,14 @@
             </view>
             <view style="height:100rpx"></view>
         </scroll-view>
-        <view class="confirm_btn" bindtap='checkmask'>立即购买</view>
+        <button class="confirm_btn" form-type="submit" wx:if="{{is_show_action === 0}}" loading="{{disabled_loading}}" disabled="{{disabled_loading}}">立即购买</button>
+        <view class="confirm_btn" bindtap='checkmask' wx:elif="{{is_show_action === 1}}">立即购买</view>
         <view class="mask" wx:if="{{count_mask}}" catchtap='checkmask'>
             <view class="mask_box" catchtap='no'>
                 <view class="setcount">
-                    <view class="add" bindtap="add">+</view>
-                    <view class="count">{{total_num}}</view>
                     <view class="reduce" bindtap='reduce'>-</view>
+                    <view class="count">{{total_num}}</view>
+                    <view class="add" bindtap="add">+</view>
                 </view>
                 <button class="confirm" form-type="submit" loading="{{disabled_loading}}" disabled="{{disabled_loading}}">
                     立即购买
