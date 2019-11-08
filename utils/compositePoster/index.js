@@ -198,7 +198,7 @@ Component({
       })
       app.http.get('/api/partner.partner/getQrCode', {
         page: 'pages/index/index',
-        scene: `${props[0].data.uid},${props[0].data.pid},${props[0].data.id}`
+        scene: `${props[0].data.uid},${props[0].data.pid},${props[0].data.id},${props[0].data.type}`
       }).then(res => {
         this.createCanvas(res.replace('.', app.globalData.HOST), props[0] ? props[0].data.image : {}, props[0].data.store_name)
       })

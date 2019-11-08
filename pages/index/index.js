@@ -32,10 +32,10 @@ Page({
                 //     st: arr[2],
                 //     type: 'share'
                 // }
-                this.data.options.s = arr[0]
-                this.data.options.p = arr[1]
-                this.data.options.st = arr[2]
-                this.data.options.type = 'share'
+                this.data.options.s = arr[0]// 推荐人
+                this.data.options.p = arr[1]// 店铺 或者 合伙人id
+                this.data.options.st = arr[2]// 商品id
+                this.data.options.type = arr[3] || 'share'
             }
         }
         wx.getSetting({

@@ -397,7 +397,8 @@ Page({
         compositePoster.createPoster({
             data: Object.assign(self.data.info, {
                 uid: app.globalData.userInfo.uid,
-                pid: app.globalData.userInfo.uid
+                pid: app.globalData.userInfo.uid,
+                type:'share'
             })
         })
     },

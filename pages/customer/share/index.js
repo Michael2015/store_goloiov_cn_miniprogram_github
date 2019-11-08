@@ -135,7 +135,8 @@ hide_modal()
     compositePoster.createPoster({
       data: Object.assign(self.data.info, {
         uid: app.globalData.userInfo.uid,
-        pid: app.globalData.role === 0 ? app.globalData.shareInfo.share_partner_id : app.globalData.userInfo.uid
+        pid: app.globalData.role === 0 ? app.globalData.shareInfo.share_partner_id : app.globalData.userInfo.uid,
+        type:'share'
       })
     })
   },
