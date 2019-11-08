@@ -408,3 +408,27 @@ line-height:38rpx;
   padding: 0 20rpx;
   background: #FFCCFF;
 }
+em .no_partner
+{
+  text-decoration:line-through;
+  color:#999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

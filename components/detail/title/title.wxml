@@ -7,7 +7,7 @@
         <view class="p">
             <!-- <text>原价</text> -->
             <em wx:if="{{(data.seckill.status == 0 || data.seckill.status == -1) && data.vip_price!=='0.00' && data.is_promoter == 0}}" class="compare">￥{{!!data.newbornzone.is_newborn?data.newbornzone.price:data.price}}</em>
-            <em wx:elif="{{(data.seckill.status == 0 || data.seckill.status == -1) && data.is_promoter == 1}}">￥{{!!data.newbornzone.is_newborn?data.newbornzone.price:data.vip_price}} ￥{{!!data.newbornzone.is_newborn?data.vip_price:data.price}}</em>
+            <em wx:elif="{{(data.seckill.status == 0 || data.seckill.status == -1) && data.is_promoter == 1}}">￥{{!!data.newbornzone.is_newborn?data.newbornzone.price:data.vip_price}} <text class="no_partner">￥{{!!data.newbornzone.is_newborn?data.vip_price:data.price}}</text></em>
             <em wx:elif="{{data.seckill.status == 0 || data.seckill.status == -1}}">￥{{data.newbornzone.is_newborn?data.newbornzone.price:data.price}}</em>
             <em wx:elif="{{data.seckill.status == 1}}">
                 <em>￥{{data.seckill.data.price}}</em>

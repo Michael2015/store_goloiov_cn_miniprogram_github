@@ -58,7 +58,10 @@ Page({
         //控制分享显示
         fenXiangShow:false,
         is_promoter:1,
-        share_type:''
+        share_type:'',
+        count_mask: false, //设置数量遮罩层
+        total_num: 1,  //购买数量
+        click_buy_num:0,//点击购买次数
     },
     toList() {
         wx.reLaunch({
@@ -403,10 +406,28 @@ Page({
         })
     },
     goSettlement() {
-        const {is_newborn,limit_num,price} = this.data.title.newbornzone
-        wx.navigateTo({
-            url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}`
-        })
+        if(this.data.click_buy_num == 0)
+        {
+            this.setData({
+                count_mask:true,
+                click_buy_num:1
+            });    
+        }
+        else
+        {
+            const {is_newborn,limit_num,price} = this.data.title.newbornzone;
+            let total_num = this.data.total_num;
+            wx.navigateTo({
+                url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}&total_num=${total_num}`
+            })
+        }
+    },
+    //返回显示购买数量
+    onShow() {
+        this.setData({
+            count_mask:false,
+            click_buy_num:0
+        });    
     },
     onUnload() {
         wx.hideLoading()
@@ -432,6 +453,40 @@ Page({
             current: src, // 当前显示图片的http链接
             urls: imgList // 需要预览的图片http链接列表
         })
+    },
+    checkmask() {
+        this.setData({
+          count_mask: !this.data.count_mask
+        })
+      },
+    add_pruduct_num() {
+        const {is_newborn,limit_num,price} = this.data.title.newbornzone
+        if (is_newborn == true) {
+          if (this.data.total_num + 1 > limit_num) {
+            wx.showToast({title:`最多下单${this.limit_num}个`,icon:'none'})
+            return
+          }
+        }
+        this.setData({
+          total_num: ++this.data.total_num
+        })
+        this.Calculation()
+    },
+    reduce_pruduct_num() {
+        if (this.data.total_num <= 1) {
+          return
+        }
+        this.setData({
+          total_num: --this.data.total_num
+        })
+        this.Calculation()
+      },
+      // 重新计算总价
+    Calculation() {
+        const { coupon_total2, total_num, price } = this.data;
+        //重新计算优惠后的价格
+        this.setData({
+          pay_price: parseFloat(price.price * total_num - coupon_total2).toFixed(2)
+        });
     }
-
 })

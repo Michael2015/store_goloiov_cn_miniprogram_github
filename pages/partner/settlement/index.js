@@ -17,14 +17,13 @@ Page({
     coupon_total: 0,//包括优惠券和限时秒杀优惠价
     miandan_type: 0,//免单类型,默认是无免单
     total_num: 1,  //购买数量
-    count_mask: false, //设置数量遮罩层
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
       product_id,
       order_id: this.data.orderId
     }).then(res => {
-      let pay_price = res.price;
+      let pay_price = res.price*this.data.total_num;
       //优惠券合伙秒杀//优惠券
       let coupon_total2 = 0.00;
       //区分是否有优惠券以及是否从现有订单进来支付页
@@ -51,10 +50,10 @@ Page({
       if (this.data.isnew == 'true') {
         let price = this.data.price;
         price.price = this.data.new_price,
-          this.setData({
+        this.setData({
             price,
             pay_price: price.price
-          })
+        })
       }
       wx.hideLoading()
     })
@@ -116,9 +115,6 @@ Page({
         //判断是否有快速免单
         this.setData({ miandan_type: 1 });
       }
-      wx.showLoading({
-        mask: true
-      });
       app.http.post('/api/order/createOrder', {
         product_id: self.data.product_id,
         address_id: self.data.def_add.id,
@@ -211,7 +207,8 @@ Page({
         user_address: e.user_address || '',
         phone: e.phone || '',
         real_name: e.real_name || '',
-        isnew: e.isnew
+        isnew: e.isnew,
+        total_num:e.total_num
       })
 
       if (e.order_id) {
@@ -237,40 +234,5 @@ Page({
   },
   onShow() {
     this.getAddressList();
-  },
-  checkmask() {
-    this.setData({
-      count_mask: !this.data.count_mask
-    })
-  },
-  add() {
-    if (this.data.isnew == 'true') {
-      if (this.data.total_num + 1 > this.data.limit_num) {
-        wx.showToast({title:`最多下单${this.data.limit_num}个`,icon:'none'})
-        return
-      }
-    }
-    this.setData({
-      total_num: ++this.data.total_num
-    })
-    this.Calculation()
-  },
-  reduce() {
-    if (this.data.total_num <= 1) {
-      return
-    }
-    this.setData({
-      total_num: --this.data.total_num
-    })
-    this.Calculation()
-  },
-  no() { },
-  // 重新计算总价
-  Calculation() {
-    const { coupon_total2, total_num, price } = this.data;
-    //重新计算优惠后的价格
-    this.setData({
-      pay_price: parseFloat(price.price * total_num - coupon_total2).toFixed(2)
-    });
   }
 })

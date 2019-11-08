@@ -54,6 +54,8 @@ Page({
         share_type:'',
         detailTitle:{},  //显示文本弹框对象
         first:true,      //记录是否是第一次点击
+        total_num: 1,  //购买数量
+        click_buy_num:0,//点击购买次数
     },
     onLoad: function (options) {
         this.setData({
@@ -303,8 +305,6 @@ Page({
             wx.hideLoading()
         })
     },
-
-
     // 初始化内容swiper高度
     initContentSwiperHeight(index) {
         wx.createSelectorQuery().select('#item-wrap' + index).boundingClientRect().exec(rect => {
@@ -323,38 +323,51 @@ Page({
         let product_id = this.data.id;
         const {is_newborn,limit_num,price} = this.data.title.newbornzone
         let that = this;
-        if(this.data.first){
-            this.data.detailTitle.checkJoinMask();
+        let total_num = this.data.total_num;
+        //弹出选择购买数量
+        if(this.data.click_buy_num == 0)
+        {
             this.setData({
-                first:false
-            })
-            return
+                count_mask:true,
+                click_buy_num:1
+            });
+            return ;    
         }
-        wx.getSetting({
-            success(res) {
-                let url;
-                if (res.authSetting['scope.userInfo'] && app.globalData.userInfo.is_promoter == 0) {
-                    url = `/pages/partner/settlement/index?id=${product_id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}`;
-                }
-                else
-                {
-                    let share_user_id = app.globalData.shareInfo.share_user_id;
-                    let share_partner_id = app.globalData.shareInfo.share_partner_id;
-                    let share_product_id = app.globalData.shareInfo.share_product_id || product_id;
-                    if(that.data.share_type)
-                    {
-                        url = '/pages/login/index?type=share&share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
+        else
+        {
+            if(this.data.first){
+                this.data.detailTitle.checkJoinMask();
+                this.setData({
+                    first:false
+                })
+                return
+            }
+            wx.getSetting({
+                success(res) {
+                    let url;
+                    if (res.authSetting['scope.userInfo'] && app.globalData.userInfo.is_promoter == 0) {
+                        url = `/pages/partner/settlement/index?id=${product_id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}&total_num=${total_num}`;
                     }
                     else
                     {
-                        url = '/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
-                    }
-                   }
-                wx.reLaunch({
-                    url: url
-                })
-            }
-        });
+                        let share_user_id = app.globalData.shareInfo.share_user_id;
+                        let share_partner_id = app.globalData.shareInfo.share_partner_id;
+                        let share_product_id = app.globalData.shareInfo.share_product_id || product_id;
+                        if(that.data.share_type)
+                        {
+                            url = '/pages/login/index?type=share&share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
+                        }
+                        else
+                        {
+                            url = '/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id;
+                        }
+                       }
+                    wx.reLaunch({
+                        url: url
+                    })
+                }
+            });
+        }
 
     },
     toList() {
@@ -407,6 +420,46 @@ Page({
     },
     //  微信7.0.7版本起，禁用返回首页按钮
     onShow(){
-        wx.hideHomeButton()
+        this.setData({
+            count_mask:false,
+            click_buy_num:0
+        });    
+        wx.hideHomeButton();
+    },
+
+    checkmask() {
+        this.setData({
+          count_mask: !this.data.count_mask
+        })
+      },
+    add_pruduct_num() {
+        const {is_newborn,limit_num,price} = this.data.title.newbornzone
+        if (is_newborn == true) {
+          if (this.data.total_num + 1 > limit_num) {
+            wx.showToast({title:`最多下单${this.limit_num}个`,icon:'none'})
+            return
+          }
+        }
+        this.setData({
+          total_num: ++this.data.total_num
+        })
+        this.Calculation()
+    },
+    reduce_pruduct_num() {
+        if (this.data.total_num <= 1) {
+          return
+        }
+        this.setData({
+          total_num: --this.data.total_num
+        })
+        this.Calculation()
+      },
+      // 重新计算总价
+    Calculation() {
+        const { coupon_total2, total_num, price } = this.data;
+        //重新计算优惠后的价格
+        this.setData({
+          pay_price: parseFloat(price.price * total_num - coupon_total2).toFixed(2)
+        });
     }
 })
