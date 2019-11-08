@@ -1,0 +1,21 @@
+<!-- pages/partner/personal/admin/applyadopt.wxml -->
+<view class="warp">
+    <view class="item">
+        <view class="left">区域管理员</view>
+        <view class="right">{{applyObj.user_name}}</view>
+    </view>
+    <view class="item">
+        <view class="left">管理等级</view>
+        <view class="right">{{levelObj[applyObj.agent_level]}}</view>
+    </view>
+    <view class="item">
+        <view class="left">管理区域</view>
+        <view class="right">{{applyObj.agent_name}}</view>
+    </view>
+    <view class="item_b">
+        <view class="left">管理权益</view>
+        <view class="Equity_item">区县区域管理员：销往本市golo产品<text>0.5%</text>的提成</view>
+        <view class="Equity_item">市区域管理员：销往本市golo产品<text>1%</text>的提成</view>
+        <view class="Equity_item">省区域管理员：销往本省golo产品<text>1.5%</text>的提成</view>
+    </view>
+</view>

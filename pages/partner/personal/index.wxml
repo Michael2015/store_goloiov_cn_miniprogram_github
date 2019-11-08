@@ -39,10 +39,18 @@
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view> 
   -->
-  <view class="group">
+<view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/poster/index">
-    <view class="icon"><image src="/assets/image/haibao.png" mode="widthFix"></image></view>
+    <view class="icon"><image src="/assets/image/Slice1.png" mode="widthFix"></image></view>
     <view class="name">我的海报</view>
+    <view class="right-text"></view>
+    <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
+  </view>
+</view>
+<view class="group">
+  <view class="nav" bindtap="SeeFlag" data-url="/pages/partner/personal/admin/index">
+    <view class="icon"><image src="/assets/image/Slice2.png" mode="widthFix"></image></view>
+    <view class="name">区域管理员</view>
     <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>

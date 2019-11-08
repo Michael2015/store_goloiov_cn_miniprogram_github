@@ -44,7 +44,12 @@
     "pages/partner/personal/earnings/cultivate",
     "pages/partner/personal/earnings/dividend",
     "pages/partner/personal/poster/index",
-    "pages/partner/personal/poster/detail"
+    "pages/partner/personal/poster/detail",
+    "pages/partner/personal/admin/index",
+    "pages/partner/personal/admin/applyflag",
+    "pages/partner/personal/admin/applylist",
+    "pages/partner/personal/admin/applydetail",
+    "pages/partner/personal/admin/applyadopt"
   ],
   "tabBar": {
     "custom": true,

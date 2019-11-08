@@ -54,7 +54,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 22,
 			"list": [
 				{
 					"id": 0,
@@ -180,6 +180,41 @@
 					"name": "pages/partner/personal/poster/detail",
 					"pathName": "pages/partner/personal/poster/detail",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/applydetails",
+					"pathName": "pages/partner/personal/admin/applydetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/index",
+					"pathName": "pages/partner/personal/admin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/index",
+					"pathName": "pages/partner/personal/admin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/applylist",
+					"pathName": "pages/partner/personal/admin/applylist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/applydetail",
+					"pathName": "pages/partner/personal/admin/applydetail",
+					"query": "id=4",
 					"scene": null
 				}
 			]

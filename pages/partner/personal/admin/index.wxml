@@ -1,0 +1,22 @@
+<!-- pages/partner/personal/admin/index.wxml -->
+<view class="warp">
+    <input type="text" placeholder="姓名" bindinput="inputName" />
+    <input type="Number" placeholder="手机" bindinput="inputPhone" />
+    <view class="Apply_item" bind:tap="selectAdmin">
+        <view class="name">申请类型</view>
+        <view class="show">{{adminObj[selectId]}}</view>
+        <view class="right-icon">
+            <image src="/assets/image/right.png" mode="widthFix"></image>
+        </view>
+    </view>
+    <view class="Apply_item" bindtap="goAddAddress">
+        <view class="name">申请城市</view>
+        <view class="show">{{addressTitle}}</view>
+        <view class="right-icon">
+            <image src="/assets/image/right.png" mode="widthFix"></image>
+        </view>
+    </view>
+    <textarea cols="30" rows="10" placeholder="申请原因" bindinput="inputReason"></textarea>
+    <view class="Apply_record" bindtap="goapplyList">申请记录</view>
+    <view class="Apply_btn" bindtap="goApply">立即申请</view>
+</view>

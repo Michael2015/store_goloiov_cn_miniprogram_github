@@ -7,17 +7,34 @@ Page({
    */
   data: {
     inited: false,
-    name:'',
+    name: '',
     avatar: '',
-    num:0,
-    partner_level:'',
+    num: 0,
+    partner_level: '',
   },
-  to: function(e) {
+  to: function (e) {
     const data = e.currentTarget.dataset
     const url = data.url
-    wx.navigateTo({url})
+    wx.navigateTo({ url })
   },
-  
+  // 跳转之前查看该用户的申请状态
+  SeeFlag(e) {
+    app.http.get('/api/partner/home/get_region_partner').then(res => {
+      //  后台查不到数据说明没有申请过
+      if(res == null){
+        // 不需要修改路径
+      }else if (res.status == 0) {
+        // 审核中
+        e.currentTarget.dataset.url = "/pages/partner/personal/admin/applyflag"
+      } else if (res.status == 1) {
+        // 审核通过
+        e.currentTarget.dataset.url = `/pages/partner/personal/admin/applyadopt?id=${res.id}`
+      } else if (res.status == -1) {
+        // 拒绝通过不需要改路径
+      }
+      this.to(e)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -29,7 +46,7 @@ Page({
           num: data.member_nums,
           name: this.cut(data.nickName),
           avatar: data.avatar || user.avatar,
-          partner_level:data.partner_level_label,
+          partner_level: data.partner_level_label,
           partner_level_num: data.partner_level
         })
       }
@@ -69,7 +86,7 @@ Page({
             num: data.member_nums,
             name: data.nickName,
             avatar: data.avatar,
-            partner_level:data.partner_level_label,
+            partner_level: data.partner_level_label,
             partner_level_num: data.partner_level
           })
         }
