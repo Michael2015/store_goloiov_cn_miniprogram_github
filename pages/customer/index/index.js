@@ -356,7 +356,7 @@ Page({
         this.setData({isfirst:false})
     },
     goBay(){
-        wx.navigateTo({url:`/pages/customer/detail/detail?id=${this.data.newObj.id}`})
+        wx.navigateTo({url:`/pages/customer/detail/detail?id=${this.data.newObj.pro_id}`})
         this.close()
     },
     //  禁用触摸穿透

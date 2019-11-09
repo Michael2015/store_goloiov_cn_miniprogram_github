@@ -58,10 +58,11 @@ Page({
                     app.globalData.shareInfo.share_partner_id = options.p || 0;// 店铺 或者 合伙人id
                     app.globalData.shareInfo.share_product_id = options.st || 0;// 商品id
                     if (options.type === 'invite') {
-                        let partner_invite_id = app.globalData.partner_invite_id;
+                        // let partner_invite_id = app.globalData.partner_invite_id;
+                        let share_user_id = app.globalData.shareInfo.share_user_id;
                         // 邀请合伙人
                         wx.redirectTo({
-                            url: '/pages/partner/personal/partner/invite?share_id=' + partner_invite_id,
+                            url: '/pages/partner/personal/partner/invite?share_id=' + share_user_id,
                         });
                     } else if (options.type === 'share') {
                         // 分享进来的

@@ -37,7 +37,7 @@ Page({
         visitorMore: true,
         // 没有合伙人等级不显示访客
         partner_level_num: app.globalData.userInfo.partner_level_num,
-        tabs: app.globalData.userInfo.partner_level_num > 0 ? ['详情', '购买记录', '访客','评论'] : ['详情', '购买记录', '评论'],
+        tabs: app.globalData.userInfo.partner_level_num > 0 ? ['详情', '购买记录', '访客', '评论'] : ['详情', '购买记录', '评论'],
         // 当前tab页下标
         currentTab: 0,
         // 内容swiper高度
@@ -48,20 +48,20 @@ Page({
         commentRecordPage: 1,
         //评论记录是否有更多数据
         commentRecordMore: true,
-        coupon_id:0,
-        coupon_date:'',
-        coupon_price:0,
-        coupon_title:'',
-        seckill:'',
-        time_backward:[],
-        timeList:[],
+        coupon_id: 0,
+        coupon_date: '',
+        coupon_price: 0,
+        coupon_title: '',
+        seckill: '',
+        time_backward: [],
+        timeList: [],
         //控制分享显示
-        fenXiangShow:false,
-        is_promoter:1,
-        share_type:'',
+        fenXiangShow: false,
+        is_promoter: 1,
+        share_type: '',
         count_mask: false, //设置数量遮罩层
         total_num: 1,  //购买数量
-        click_buy_num:0,//点击购买次数
+        click_buy_num: 0,//点击购买次数
     },
     toList() {
         wx.reLaunch({
@@ -69,18 +69,24 @@ Page({
         })
     },
 
-    checkoutFenXiang(){
+    inputTotalnum(e) {
         this.setData({
-            fenXiangShow:!this.data.fenXiangShow
+            total_num: e.detail.value
+        })
+    },
+
+    checkoutFenXiang() {
+        this.setData({
+            fenXiangShow: !this.data.fenXiangShow
         })
     },
     onLoad: function (options) {
         self = this;
         this.setData({
             id: options.id || 2, // 获取商品id
-            seckill:'',
+            seckill: '',
             info: app.varStorage.get('storeDetail'),
-            share_type:options.type || '',
+            share_type: options.type || '',
         })
         this.getPrice();
         // 调用接口获取详情数据
@@ -129,7 +135,7 @@ Page({
         } else if (index === 3) {
             // 获取评论
             this.getComment()
-        }else {
+        } else {
             console.log('没有该类型')
         }
     },
@@ -153,7 +159,7 @@ Page({
         }
 
         //获取评论
-        if (this.data.currentTab === 3 && this.data.commentRecordMore){
+        if (this.data.currentTab === 3 && this.data.commentRecordMore) {
             let page = this.data.commentRecordPage + 1
             this.setData({
                 commentRecordPage: page
@@ -174,11 +180,9 @@ Page({
         }).then(res => {
             wx.hideLoading()
             this.data.commentRecordList.push(...res)
-            for(var key in this.data.commentRecordList)
-            {
+            for (var key in this.data.commentRecordList) {
                 let arr = [];
-                for(let ii = 0;ii < this.data.commentRecordList[key]['star_num'];ii++)
-                {
+                for (let ii = 0; ii < this.data.commentRecordList[key]['star_num']; ii++) {
                     arr.push('../../../assets/image/star_y.png');
                     this.data.commentRecordList[key]['imgs'] = arr;
                 }
@@ -202,15 +206,13 @@ Page({
         let timeList2 = [];
         wx.showLoading();
         //商品详情页带上分享信息
-        if(this.data.share_type == 'share')
-        {
+        if (this.data.share_type == 'share') {
             var params = {
                 product_id: this.data.id,
                 ...app.globalData.shareInfo
             }
         }
-        else
-        {
+        else {
             var params = {
                 product_id: this.data.id,
             }
@@ -220,12 +222,11 @@ Page({
             res.image = res.slider_image[0]
             app.varStorage.set('storeDetail', res);
             //判断是否有秒杀活动
-            if(res.seckill.status == 1 || res.seckill.status == -1)
-            {
-                let time = res.seckill.status == 1 ? res.seckill.data.stop_time :res.seckill.data.start_time ;
+            if (res.seckill.status == 1 || res.seckill.status == -1) {
+                let time = res.seckill.status == 1 ? res.seckill.data.stop_time : res.seckill.data.start_time;
                 timeList2.push(time);
                 this.setData({
-                    timeList:timeList2,
+                    timeList: timeList2,
                 });
                 this.countDown();
             }
@@ -233,7 +234,7 @@ Page({
                 info: res,
                 imgUrls: res.slider_image,
                 share_url_query: res.share_url_query,
-                seckill:res.seckill,
+                seckill: res.seckill,
                 title: {
                     title: res.store_name,
                     price: res.price,
@@ -242,14 +243,14 @@ Page({
                     platoon_fast: res.platoon_fast,
                     store_name: res.store_name,
                     is_platoon: res.is_platoon,
-                    coupon_id:res.coupon.data.id||0,
-                    coupon_title:res.coupon.data.title||'',
-                    coupon_price:res.coupon.data.price||0,
-                    coupon_date:res.coupon.data.date||'',
-                    seckill:res.seckill,
-                    vip_price:res.vip_price,
-                    is_promoter:this.data.is_promoter,
-                    newbornzone:res.newbornzone
+                    coupon_id: res.coupon.data.id || 0,
+                    coupon_title: res.coupon.data.title || '',
+                    coupon_price: res.coupon.data.price || 0,
+                    coupon_date: res.coupon.data.date || '',
+                    seckill: res.seckill,
+                    vip_price: res.vip_price,
+                    is_promoter: this.data.is_promoter,
+                    newbornzone: res.newbornzone
                 }
             });
         }).catch((e) => {
@@ -257,25 +258,22 @@ Page({
         })
     },
     //秒杀倒计时
-    timeFormat(param){//小于10的格式化函数
+    timeFormat(param) {//小于10的格式化函数
         return param < 10 ? '0' + param : param;
     },
     //秒杀倒计时
-    countDown()
-    {
+    countDown() {
         // 获取当前时间，同时得到活动结束时间数组
         let newTime = new Date().getTime();
         let endTimeList = this.data.timeList;
         let countDownArr = [];
         // 对结束时间进行处理渲染到页面
-        for(let key in endTimeList)
-        {
-            if(endTimeList[key])
-            {
+        for (let key in endTimeList) {
+            if (endTimeList[key]) {
                 let endTime = new Date(endTimeList[key]).getTime();
                 let obj = null;
                 // 如果活动未结束，对时间进行处理
-                if (endTime - newTime > 0){
+                if (endTime - newTime > 0) {
                     let time = (endTime - newTime) / 1000;
                     // 获取天、时、分、秒
                     let day = parseInt(time / (60 * 60 * 24));
@@ -288,7 +286,7 @@ Page({
                         min: this.timeFormat(min),
                         sec: this.timeFormat(sec)
                     }
-                }else{//活动已结束，全部设置为'00'
+                } else {//活动已结束，全部设置为'00'
                     obj = {
                         day: '00',
                         hou: '00',
@@ -300,8 +298,8 @@ Page({
             }
         }
         // 渲染，然后每隔一秒执行一次倒计时函数
-        this.setData({time_backward: countDownArr});
-        setTimeout(this.countDown,1000);
+        this.setData({ time_backward: countDownArr });
+        setTimeout(this.countDown, 1000);
     },
     getPrice() {
         wx.showLoading()
@@ -401,22 +399,28 @@ Page({
             data: Object.assign(self.data.info, {
                 uid: app.globalData.userInfo.uid,
                 pid: app.globalData.userInfo.uid,
-                type:'share'
+                type: 'share'
             })
         })
     },
     goSettlement() {
-        if(this.data.click_buy_num == 0)
-        {
+        if (this.data.click_buy_num == 0) {
             this.setData({
-                count_mask:true,
-                click_buy_num:1
-            });    
+                count_mask: true,
+                click_buy_num: 1
+            });
         }
-        else
-        {
-            const {is_newborn,limit_num,price} = this.data.title.newbornzone;
+        else {
+            const { is_newborn, limit_num, price } = this.data.title.newbornzone;
             let total_num = this.data.total_num;
+            if (isNaN(total_num)) {
+                wx.showToast({title: '请输入正确数字',icon: 'none'})
+                return
+            }
+            if (is_newborn && total_num > limit_num) {
+                wx.showToast({ title: `最多下单${limit_num}个`, icon: 'none' })
+                return
+            }
             wx.navigateTo({
                 url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}&total_num=${total_num}`
             })
@@ -425,9 +429,9 @@ Page({
     //返回显示购买数量
     onShow() {
         this.setData({
-            count_mask:false,
-            click_buy_num:0
-        });    
+            count_mask: false,
+            click_buy_num: 0
+        });
     },
     onUnload() {
         wx.hideLoading()
@@ -445,8 +449,7 @@ Page({
         this.initContentSwiperHeight(0)
     },
     //图片预览
-    preview:function(event)
-    {
+    preview: function (event) {
         var imgList = event.currentTarget.dataset.list;//获取data-list
         var src = event.currentTarget.dataset.src;//获取data-list
         wx.previewImage({
@@ -456,37 +459,37 @@ Page({
     },
     checkmask() {
         this.setData({
-          count_mask: !this.data.count_mask
+            count_mask: !this.data.count_mask
         })
-      },
+    },
     add_pruduct_num() {
-        const {is_newborn,limit_num,price} = this.data.title.newbornzone
+        const { is_newborn, limit_num, price } = this.data.title.newbornzone
         if (is_newborn == true) {
-          if (this.data.total_num + 1 > limit_num) {
-            wx.showToast({title:`最多下单${this.limit_num}个`,icon:'none'})
-            return
-          }
+            if (this.data.total_num + 1 > limit_num) {
+                wx.showToast({ title: `最多下单${limit_num}个`, icon: 'none' })
+                return
+            }
         }
         this.setData({
-          total_num: ++this.data.total_num
+            total_num: ++this.data.total_num
         })
         this.Calculation()
     },
     reduce_pruduct_num() {
         if (this.data.total_num <= 1) {
-          return
+            return
         }
         this.setData({
-          total_num: --this.data.total_num
+            total_num: --this.data.total_num
         })
         this.Calculation()
-      },
-      // 重新计算总价
+    },
+    // 重新计算总价
     Calculation() {
         const { coupon_total2, total_num, price } = this.data;
         //重新计算优惠后的价格
         this.setData({
-          pay_price: parseFloat(price.price * total_num - coupon_total2).toFixed(2)
+            pay_price: parseFloat(price.price * total_num - coupon_total2).toFixed(2)
         });
     }
 })

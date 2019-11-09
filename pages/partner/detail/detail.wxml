@@ -157,7 +157,7 @@
             <view class="label">数量</view>
             <view class="setcount">
                     <view class="reduce_pruduct_num" bindtap='reduce_pruduct_num'>-</view>
-                    <view class="count_pruduct_num">{{total_num}}</view>
+                    <input class="count_pruduct_num" type="number" bindinput="inputTotalnum" value="{{total_num}}"></input>
                     <view class="add_pruduct_num" bindtap="add_pruduct_num">+</view>
             </view>
             <view class="label">规格</view>

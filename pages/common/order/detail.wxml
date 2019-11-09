@@ -20,7 +20,7 @@
                     <view class="col-2">
                         <view class="f">
                             <view class="title">{{orderInfo.store_name}}</view>
-                            <view class="price">¥{{orderInfo.pay_price}}</view>
+                            <view class="price">¥{{orderInfo.per_price}}</view>
                         </view>
                         <view class="s">
                             <view class="desc">{{orderInfo.suk}}</view>

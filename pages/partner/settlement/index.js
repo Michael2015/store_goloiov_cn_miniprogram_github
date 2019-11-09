@@ -23,7 +23,7 @@ Page({
       product_id,
       order_id: this.data.orderId
     }).then(res => {
-      let pay_price = res.price*this.data.total_num;
+      let pay_price = res.price;
       //优惠券合伙秒杀//优惠券
       let coupon_total2 = 0.00;
       //区分是否有优惠券以及是否从现有订单进来支付页
@@ -32,11 +32,11 @@ Page({
         pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       } else if (res.discount.status == 1 && this.data.is_show_action == 1) {
         coupon_total2 = res.discount.data.total || res.discount.data.save_money;
-        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price - coupon_total2);
+        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       } else if (res.discount.status == 0 && this.data.is_show_action == 0) {
         pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       } else {
-        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price - coupon_total2);
+        pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       }
       //计算优惠后的价格
       this.setData({
@@ -46,13 +46,13 @@ Page({
         info: app.varStorage.get('storeDetail'),
         coupon_total2
       });
-      //  如果是新人专区商品,重新计算
+      //如果是新人专区商品,重新计算
       if (this.data.isnew == 'true') {
         let price = this.data.price;
         price.price = this.data.new_price,
         this.setData({
             price,
-            pay_price: price.price
+            pay_price: price.price*+this.data.total_num
         })
       }
       wx.hideLoading()
