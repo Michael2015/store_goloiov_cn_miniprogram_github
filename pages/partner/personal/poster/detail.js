@@ -18,7 +18,7 @@ Page({
       this.getPosterDetail(options.id);
       //this.getQrCode();
     },
-  
+
     getPosterDetail(postId)
     {
       app.http.get('/api/partner.partner/getposterdetail?id='+postId).then(res => {
