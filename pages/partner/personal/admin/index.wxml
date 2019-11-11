@@ -9,13 +9,15 @@
             <image src="/assets/image/right.png" mode="widthFix"></image>
         </view>
     </view>
-    <view class="Apply_item" bindtap="goAddAddress">
-        <view class="name">申请城市</view>
-        <view class="show">{{addressTitle}}</view>
-        <view class="right-icon">
-            <image src="/assets/image/right.png" mode="widthFix"></image>
+    <picker mode="region" value="{{areaList}}" bindchange="goAddAddress">
+        <view class="Apply_item">
+            <view class="name">申请城市</view>
+            <view class="show">{{AdressList.length?addressTitle:'请选择地址'}}</view>
+            <view class="right-icon">
+                <image src="/assets/image/right.png" mode="widthFix"></image>
+            </view>
         </view>
-    </view>
+    </picker>
     <textarea cols="30" rows="10" placeholder="申请原因" bindinput="inputReason"></textarea>
     <view class="Apply_record" bindtap="goapplyList">申请记录</view>
     <view class="Apply_btn" bindtap="goApply">立即申请</view>

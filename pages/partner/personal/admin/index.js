@@ -1,4 +1,5 @@
 // pages/partner/personal/admin/index.js
+import areaList from '../../../../assets/js/area.min'
 let self;
 const app = getApp()
 Page({
@@ -17,7 +18,9 @@ Page({
       '3': '市区域管理员',
       '4': '省区域管理员'
     },
-    addressTitle: ''
+    addressTitle: '',
+    areaList,
+    AdressList:[]
   },
 
   /**
@@ -55,6 +58,12 @@ Page({
         self.setData({
           selectId: res.tapIndex + 2
         })
+        if(self.data.AdressList.length){
+          self.setData({
+            AdressList:[],
+            addressTitle:''
+          })
+        }
       },
       fail(res) {
         self.setData({
@@ -78,69 +87,29 @@ Page({
       reason: e.detail.value
     })
   },
-  goAddAddress() {
-    if (this.data.selectId == 0) {
-      wx.showToast({
-        title: '请选择申请类型',
-        icon: 'none'
+  goAddAddress(e) {
+    // if (this.data.selectId == 0) {
+    //   wx.showToast({
+    //     title: '请选择申请类型',
+    //     icon: 'none'
+    //   })
+    //   return
+    // }
+    if(this.data.selectId == 0 || this.data.selectId == 2){
+      this.setData({
+        AdressList:e.detail.value,
       })
-      return
+    }else if(this.data.selectId == 3){
+      this.setData({
+        AdressList:[e.detail.value[0],e.detail.value[1]],
+      })
+    }else if(this.data.selectId == 4){
+      this.setData({
+        AdressList:[e.detail.value[0]],
+      })
     }
-    wx.chooseLocation({
-      success(res) {
-        let region = res.address !== res.name && res.address.replace(res.name, '').match(/.+?(省|市|自治区|自治州|县|区|盟|旗|乡|镇|岛|仔)/g);
-        self.setData({
-          region: region.length === 3 ? region : '',
-          detail: `${res.name}`,
-          latitude: res.latitude,
-          longitude: res.longitude
-        })
-        if (self.data.region === '') {
-          wx.showModal({
-            title: '提示',
-            content: '请手动选择您的所在地'
-          })
-          return
-        }
-        if (self.data.selectId == 2) {
-        } else if (self.data.selectId == 3) {
-          self.data.region.pop()
-        } else if (self.data.selectId == 4) {
-          self.data.region.pop()
-          self.data.region.pop()
-        }
-        self.setData({
-          addressTitle: self.data.region.join('-')
-        })
-      },
-      fail() {
-        wx.getSetting({
-          success(res) {
-            if (res.authSetting['scope.userLocation'] === false) {
-              wx.showModal({
-                'title': '您取消了授权',
-                'content': '请允许我们访问您的位置信息',
-                success(e) {
-                  if (e.confirm) {
-                    wx.openSetting({
-                      complete(e) {
-                        if (e.authSetting['scope.userLocation'] === true) {
-                          self.goAddAddress()
-                        } else {
-                          wx.showToast({
-                            title: '未获得权限',
-                            icon: 'none'
-                          })
-                        }
-                      }
-                    });
-                  }
-                }
-              })
-            }
-          }
-        })
-      }
+    this.setData({
+      addressTitle:this.data.AdressList.join(' ')
     })
   },
   goApply() {
