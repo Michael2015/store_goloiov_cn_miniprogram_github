@@ -47,13 +47,13 @@ Page({
     //调用详情页统计
     app.http.post('/api/partner.partner/createPosterImage', {
       poster_img_url: this.data.poster_detail.img_url,
-      qrcode_img_path: this.data.qrCodeUrl
+      qrcode_img_url: this.data.qrCodeUrl,
+      poster_name:this.data.poster_detail.name
     }).then(res=> {
         this.setData({
           posterImgUrl: res.img_url
         })
     })
-
     /*
     compositePoster.createPoster({
       data: Object.assign({
