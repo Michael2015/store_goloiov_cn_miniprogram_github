@@ -1,0 +1,17 @@
+<view class="mask" wx:if="{{isShow}}">
+        <view class="close" catchtap='checkmask'>
+            <image src="/assets/image/closeTip.png"></image>
+        </view>
+        <view class="mask_box">
+            <view class="label">数量</view>
+            <view class="setcount">
+                <view class="reduce_pruduct_num" bindtap='reduce_pruduct_num'>-</view>
+                <input class="count_pruduct_num" type="number" bindinput="inputTotalnum" value="{{total_num}}" min="1"></input>
+                <view class="add_pruduct_num" bindtap="add_pruduct_num">+</view>
+            </view>
+            <view class="label">规格</view>
+            <view class="setcount">
+                <view class="btn">默认尺寸</view>
+            </view>
+        </view>
+</view>

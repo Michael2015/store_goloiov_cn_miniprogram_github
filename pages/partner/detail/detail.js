@@ -59,22 +59,19 @@ Page({
         fenXiangShow: false,
         is_promoter: 1,
         share_type: '',
-        count_mask: false, //设置数量遮罩层
-        total_num: 1,  //购买数量
-        click_buy_num: 0,//点击购买次数
+        first: true,      //记录是否是第一次点击
+        total_num: 1,     //购买数量
+        click_buy_num: 0, //点击购买次数
+        limit_num: 1,
+        is_newborn: 0,
+        sku: {},
+        count_mask: false,
     },
     toList() {
         wx.reLaunch({
             url: '/pages/partner/index/index'
         })
     },
-
-    inputTotalnum(e) {
-        this.setData({
-            total_num: e.detail.value
-        })
-    },
-
     checkoutFenXiang() {
         this.setData({
             fenXiangShow: !this.data.fenXiangShow
@@ -403,28 +400,29 @@ Page({
             })
         })
     },
+    //子组件sku
+    sku(e) {
+        let total_num = e.detail.total_num < 1 ? 1 : e.detail.total_num;
+        this.setData({
+            total_num: e.detail.total_num,
+        })
+    },
     goSettlement() {
-        if (this.data.click_buy_num == 0) {
-            this.setData({
+        let that = this;
+        const {is_newborn,price,limit_num} = this.data.title.newbornzone;
+        if (that.data.click_buy_num == 0) {
+            that.setData({
                 count_mask: true,
-                click_buy_num: 1
+                click_buy_num: 1,
+                limit_num:limit_num,
+                is_newborn:is_newborn
             });
+            return;
         }
-        else {
-            const { is_newborn, limit_num, price } = this.data.title.newbornzone;
-            let total_num = this.data.total_num;
-            if (isNaN(total_num)) {
-                wx.showToast({title: '请输入正确数字',icon: 'none'})
-                return
-            }
-            if (is_newborn && total_num > limit_num) {
-                wx.showToast({ title: `最多下单${limit_num}个`, icon: 'none' })
-                return
-            }
-            wx.navigateTo({
+        let total_num = this.data.total_num;
+        wx.navigateTo({
                 url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}&total_num=${total_num}`
-            })
-        }
+        })
     },
     //返回显示购买数量
     onShow() {
