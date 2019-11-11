@@ -12,7 +12,7 @@ Page({
     self = this;
     this.getPosterList();
   },
-  
+
   getPosterList()
   {
     app.http.get('/api/partner.partner/getposterlist').then(res => {
@@ -21,23 +21,15 @@ Page({
      });
     });
   },
-  //生成海报
-  goDetail(e)
-  {
+  goDetail(e){
     let id = e.currentTarget.dataset.id;
     let target_poster = this.data.poster_list.filter(function (item, index) {
       return index == id;
     });
-    compositePoster.createPoster({
-      data: Object.assign({
-          id : 0,// 商品id
-          uid: app.globalData.userInfo.uid,//合伙人ID
-          pid: app.globalData.userInfo.uid,//店铺ID
-          type:'poster',
-          image:target_poster[0].img_url,
-          store_name:target_poster[0].name
-      })
-  })
+    wx.navigateTo({
+      url: `/pages/partner/personal/poster/detail?id=${target_poster[0]['id']}`
+    })
   }
+  
 
 })

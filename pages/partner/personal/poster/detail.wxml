@@ -1,10 +1,8 @@
 <view class="wrap">
     <view class="thunder">
-        <image src="/assets/image/contactIcon.png" mode="widthFix" class="icon"></image>
+        <image src="{{posterImgUrl}}" mode="widthFix" class="icon"></image>
     </view>
     <view>
-        <button>保存到相册</button>
+        <div class='btn' bindtap="save">保存到相册</div>
     </view>
 </view>
-
-

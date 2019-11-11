@@ -10,6 +10,5 @@
             </view>
         </view>
     </block>
-    <canvas canvas-id='posterCanvas' style='width:560px;height:800px;'></canvas>
-    <composite-poster id="compositePoster-view"></composite-poster>
+    
 </view>

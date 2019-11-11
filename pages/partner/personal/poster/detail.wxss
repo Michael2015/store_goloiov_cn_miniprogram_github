@@ -1,6 +1,6 @@
-.wrap
-{
-    padding:2%;
+
+.thunder{
+    padding-bottom:100rpx;
 }
 .wrap  .thunder image
 {
@@ -12,5 +12,15 @@
     bottom:0;
     width:96%;
     background:#e70002;
+    color:#fff;
+}
+.btn{
+    position: fixed;
+    bottom:0;
+    width:100%;
+    background:#e70002;
+    height:100rpx;
+    line-height:100rpx;
+    text-align:center;
     color:#fff;
 }
