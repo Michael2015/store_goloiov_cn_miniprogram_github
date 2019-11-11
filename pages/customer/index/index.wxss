@@ -515,43 +515,48 @@ text.coupon3
     width: 50rpx;
     position: absolute;
     right: 0rpx;
-    top: -55rpx;
+    top: 70rpx;
   }
   .news_box .new_bg{
-    width: 600rpx;
+    width: 536rpx;
   }
   .news_box .new_msg{
     position: absolute;
-    right: 267rpx;
-    bottom: 175rpx;
+    left: 50%;
+    top:40%;
+    transform: translate(-50%,-50%);
+    width: 467rpx;
   }
   .news_box .new_msg .discount{
-    font-weight: 550;
-    color: #BF0805;
+    color: #ff9f0e;
     text-align: center;
-    font-size: 35rpx;
+    font-size: 32rpx;
+    margin-top: 38rpx
   }
-
+  .news_box .new_msg .discount > text{
+    color: #ff6815;
+    font-size: 38rpx;
+  }
   .news_box .new_msg .discount_name{
-    font-weight: 550;
-    color: #fff;
+    color: #ff6815;
     text-align: center;
-    width: 200rpx;
+    font-size: 36rpx;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   
-  .news_box .new_msg .discount_time{
-    font-size: 20rpx;
-    color: #980120;
-    text-align: center;
+  .discount_time {
+    font-size: 32rpx;
+    color: #ff9f0e;
+    margin-top: 14rpx;
   }
-
+  
   .news_box .gobaybtn{
-    width: 128rpx;
-    height: 175rpx;
+    width: 360rpx;
+    height: 88rpx;
     position: absolute;
-    right: 117rpx;
-    bottom: 153rpx;
+    right: 90rpx;
+    bottom: 6rpx;
+    border-radius: 88rpx
   }
