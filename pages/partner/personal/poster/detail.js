@@ -82,7 +82,7 @@ Page({
             wx.showToast({
               title: '保存成功',
               icon: 'success',
-              duration: 2000
+              duration: 3000
             })
           },
           fail: function (err) {
@@ -105,6 +105,7 @@ Page({
             console.log(res);
           }
         })
+    
       }
     })
   }
