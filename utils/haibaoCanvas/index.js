@@ -89,7 +89,7 @@ Component({
               })
             },
             fail(res) {
-              wx.hideLoading()
+              wx.hideLoading()  
               wx.showToast({
                 title: '请稍后重试',
                 icon: 'none'
