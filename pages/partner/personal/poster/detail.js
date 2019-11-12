@@ -33,7 +33,7 @@ Page({
     {
       app.http.post('/api/partner.partner/getQrCode',{
         page: 'pages/index/index',
-        scene: app.globalData.userInfo.uid +","+app.globalData.userInfo.uid+",0"+',poster'
+        scene: app.globalData.userInfo.uid +","+app.globalData.userInfo.uid+",0"+',invite'
       }).then(res => {
         this.setData({
           qrCodeUrl:res
