@@ -32,7 +32,7 @@
             </view>
             <view class="footer">
               <view class="left">
-                <text>订单尾号：{{tailSix(item.order_sn)}}</text>
+                <text>订单尾号：{{tailSix(item.order_sn_ex)}}</text>
                 <text> | </text>
                 <text wx:if="{{item.coupon_price}}">已优惠金额：{{item.coupon_price}}</text>
               </view>
@@ -80,6 +80,6 @@
 <wxs module="tailSix">
   module.exports = function(str) {
     var s = str + ''
-    return s[s.length-6] + s[s.length-5] + s[s.length-4] + s[s.length-3] + s[s.length-2] + s[s.length-1]
+    return s[s.length-7]+s[s.length-6] + s[s.length-5] + s[s.length-4] + s[s.length-3] + s[s.length-2] + s[s.length-1]
   }
 </wxs>
