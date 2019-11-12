@@ -75,7 +75,6 @@ Component({
             total_num: e.detail.value
           });
       }
-      console.log(e.detail.value)
       this.triggerEvent('myevent', { 'total_num': this.data.total_num });
     },
     reduce_pruduct_num() {
