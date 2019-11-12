@@ -5,6 +5,6 @@
     <view>
         <div class='btn' bindtap="save">保存到相册</div>
     </view> -->
-    <canvas canvas-id='posterCanvas' style="width:690px; height:1230px;"></canvas>
+    <canvas canvas-id='posterCanvas' style="width:690px; height:1370px;"></canvas>
     <composite-poster id="compositePoster-view" bind:setcanvas="setCanvas" ></composite-poster>
 </view>
