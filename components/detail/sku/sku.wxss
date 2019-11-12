@@ -4,6 +4,8 @@
     width: 92%;
     position: fixed;
     bottom:108rpx;
+    bottom: calc(108rpx + constant(safe-area-inset-bottom));
+    bottom: calc(108rpx + env(safe-area-inset-bottom));
     padding:4%;
     font-size:24rpx;
     box-sizing:content-box;

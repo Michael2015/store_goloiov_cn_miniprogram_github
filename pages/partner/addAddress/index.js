@@ -171,6 +171,28 @@ Page({
         })
         return
       }
+      // 检查名字
+      if(this.data.real_name.trim().length == 0){
+        wx.showToast({
+          title: '请输入收货人姓名',
+          icon: 'none'
+        })
+        return
+      }
+      if(this.data.region.length == 0){
+        wx.showToast({
+          title: '请选择地区',
+          icon: 'none'
+        })
+        return
+      }
+      if(this.data.detail.trim().length == 0){
+        wx.showToast({
+          title: '请输入详细地址',
+          icon: 'none'
+        })
+        return
+      }
       this.addAddress();
     } else {
       wx.showToast({

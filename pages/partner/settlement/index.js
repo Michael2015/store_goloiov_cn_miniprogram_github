@@ -52,7 +52,7 @@ Page({
         price.price = this.data.new_price,
         this.setData({
             price,
-            pay_price: price.price*+this.data.total_num
+            pay_price: parseFloat(price.price*+this.data.total_num).toFixed(2)
         })
       }
       wx.hideLoading()

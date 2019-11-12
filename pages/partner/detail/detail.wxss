@@ -361,6 +361,8 @@ scroll-view{
 .action-bar{
   width: 100%;
   min-height: 108rpx;
+  height: calc(108rpx + constant(safe-area-inset-bottom));
+  height: calc(108rpx + env(safe-area-inset-bottom));
   position: fixed;
   left: 0;
   bottom: 0;
@@ -371,10 +373,12 @@ scroll-view{
   text-align: center;
 }
 .bar-item{
-  padding: 25rpx 35rpx;
+  padding: 0 35rpx;
+  height: 100%;
   border:1px solid rgba(224,224,224,1);
   display: flex;
   box-sizing: border-box;
+  align-items: center;
 }
 
 .bar-item .image{
@@ -419,6 +423,8 @@ scroll-view{
   font-size: 32rpx;
   color: #fff;
   line-height: 108rpx;
+  line-height: calc(108rpx + constant(safe-area-inset-bottom));
+  line-height: calc(108rpx + env(safe-area-inset-bottom));
 }
 
 .fenxiang-mask{

@@ -130,7 +130,7 @@
 -->
 </view>
 <view class="volume">  
-<block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}"><em  class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.price)[1]}}</text></em></block> 
+<block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}"><em  class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text></em></block> 
 <block wx:if="{{item.seckill.status == 1}}"><em class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.seckill.data.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.seckill.data.price)[1]}}</text></em> <em class="text-u">￥{{item.price}}</em></block>  <small class="small">销量 {{item.sales>999?'999+':item.sales}} </small>
 </view>
 </view>

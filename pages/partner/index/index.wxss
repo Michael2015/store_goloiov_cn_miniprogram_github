@@ -601,15 +601,17 @@ button{
 .news_box .new_msg{
   position: absolute;
   left: 50%;
-  top:40%;
+  top:42%;
   transform: translate(-50%,-50%);
   width: 467rpx;
 }
 .news_box .new_msg .discount{
   color: #ff9f0e;
-  text-align: center;
   font-size: 32rpx;
-  margin-top: 38rpx
+  margin-top: 38rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .news_box .new_msg .discount > text{
   color: #ff6815;
