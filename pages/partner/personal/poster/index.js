@@ -30,6 +30,4 @@ Page({
       url: `/pages/partner/personal/poster/detail?id=${target_poster[0]['id']}`
     })
   }
-  
-
 })
