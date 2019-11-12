@@ -162,7 +162,7 @@ Page({
     }
   },
   save() {
-    if (this.data.real_name && this.data.phone && this.data.detail && this.data.region[0]) {
+    if (this.data.real_name.trim() && this.data.phone.trim() && this.data.detail.trim() && this.data.region[0]) {
       // 检查电话
       if (!/^1[3456789]\d{9}$/.test(this.data.phone)) {
         wx.showToast({
