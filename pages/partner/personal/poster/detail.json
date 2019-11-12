@@ -4,6 +4,6 @@
     "detail-swiper": "/components/detail/swiper/swiper",
     "detail-title": "/components/detail/title/title",
     "detail-tab": "/components/detail/tab/tab",
-    "composite-poster": "/utils/compositePoster/index"
+    "composite-poster": "/utils/haibaoCanvas/index"
   }
 }

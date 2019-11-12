@@ -1,0 +1,4 @@
+<view class="content">
+  <image src="{{tempFilePath}}" class="cImg" mode="widthFix"></image>
+  <div class="save" bindtap="save">保存到相册</div>
+</view>

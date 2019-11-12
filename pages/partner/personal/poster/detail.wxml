@@ -1,8 +1,10 @@
 <view class="wrap">
-    <view class="thunder">
+    <!-- <view class="thunder">
         <image src="{{posterImgUrl}}" mode="widthFix" class="icon"></image>
     </view>
     <view>
         <div class='btn' bindtap="save">保存到相册</div>
-    </view>
+    </view> -->
+    <canvas canvas-id='posterCanvas' style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;"></canvas>
+    <composite-poster id="compositePoster-view" bind:setcanvas="setCanvas" ></composite-poster>
 </view>
