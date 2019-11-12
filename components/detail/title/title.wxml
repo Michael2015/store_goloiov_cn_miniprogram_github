@@ -21,7 +21,7 @@
             <view wx:else class="col-1">{{data.sale}}份已售</view>
         </view>
         <view class="vip">
-            <view class="vip_price_show" wx:if="{{data.is_promoter == 0 && !!data.newbornzone.is_newborn}}">
+            <view class="vip_price_show" wx:if="{{data.is_promoter == 0 && !data.newbornzone.is_newborn}}">
                 <!-- wx:if="{{data.vip_price!=='0.00'}}" -->
                 <view class="price">
                     ￥{{data.vip_price}}

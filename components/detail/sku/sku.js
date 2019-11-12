@@ -38,15 +38,34 @@ Component({
               return
           }
       }
+      //限制50单
+      if(this.data.total_num > 50)
+      {
+        wx.showToast({ title: `单次限购50件`, icon: 'none' });
+        return;
+      }
+
       this.setData({
           total_num: ++this.data.total_num
       });
       this.triggerEvent('myevent',{'total_num':this.data.total_num});
   },
   inputTotalnum(e) {
-    this.setData({
-        total_num: e.detail.value
-    })
+
+    if(e.detail.value > 50)
+      {
+        wx.showToast({ title: `单次限购50件`, icon: 'none' });
+        this.setData({
+          total_num: 50
+      });
+      }
+      else
+      {
+        this.setData({
+          total_num: e.detail.value
+      });
+      }
+    this.triggerEvent('myevent',{'total_num':this.data.total_num});
   },
   reduce_pruduct_num() {
       if (this.data.total_num <= 1) {
