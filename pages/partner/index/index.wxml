@@ -104,6 +104,7 @@
 <view wx:if="{{scrollTop >= heightCount}}" style="height:66rpx;width:100%"></view>
 <view class="commodity_showList">
 <view class="commodity_item" wx:for="{{storelist}}" wx:key="{{index}}">
+<view class="new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
 <view style="padding:20rpx;background:#fff">
 <view style="width:100%;height:100%;overflow: hidden;" catchtap="goDetails" id="{{item.id}}" >
 <view class="showImg">
@@ -120,7 +121,7 @@
 <text>{{item.store_name}}</text>
 </view>
 <view class="volume">  
-<block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}"><em  class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.price)[1]}}</text></em></block> 
+<block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}"><em  class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text></em></block> 
 <block wx:if="{{item.seckill.status == 1}}"><em class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.seckill.data.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.seckill.data.price)[1]}}</text></em> <em class="text-u">￥{{item.price}}</em></block>  <small class="small">销量 {{item.sales>999?'999+':item.sales}} </small>
 </view>
 </view>
@@ -165,6 +166,19 @@
 <button class="exit" bindtap="checkoutFenXiang">×</button>
 </view>
 </view>
+</view>
+<view class="novice" wx:if="{{islogin && isfirst && newObj.id}}" catchtouchmove="preventTouchMove">
+    <!-- wx:if="{{islogin&&isfirst}}" -->
+    <view class="news_box">
+        <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
+        <image class="new_bg" src="/assets/image/news.png" mode="widthFix"/>
+        <view class="new_msg">
+            <view class="discount_name">{{newObj.store_name}}</view>
+            <view class="discount">新人专享爆款抢购<text>{{newObj.price}}元</text>包邮！</view>
+            <view class="discount_time">{{newObj.valid_time}}小时内购买有效</view>
+        </view>
+        <view class="gobaybtn" bindtap='goBay'></view>
+    </view>
 </view>
 </view>
 <canvas canvas-id='sharePosterCanvas' style='width:560px;height:800px;'></canvas>

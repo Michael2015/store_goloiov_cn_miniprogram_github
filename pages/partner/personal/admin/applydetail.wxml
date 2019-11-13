@@ -1,0 +1,31 @@
+<!-- pages/partner/personal/admin/applydetail.wxml -->
+<view class="apply_warp">
+    <view class="item">
+        <view class="left">审核状态</view>
+        <view class="red">{{applyObj[showObj.status]}}</view>
+    </view>
+    <view class="item">
+        <view class="left">审核人</view>
+        <view class="pink">管理员</view>
+    </view>
+    <view class="item">
+        <view class="left">申请手机</view>
+        <view class="pink">{{showObj.phone}}</view>
+    </view>
+    <view class="item">
+        <view class="left">申请类型</view>
+        <view class="pink">{{levelObj[showObj.agent_level]}}</view>
+    </view>
+    <view class="item">
+        <view class="left">申请城市</view>
+        <view class="pink">{{showObj.agent_name}}</view>
+    </view>
+    <view class="item_b">
+        <view class="left">申请原因</view>
+        <textarea cols="30" rows="10" value="{{showObj.mark}}" disabled></textarea>
+    </view>
+    <!-- <view class="item_b">
+        <view class="left">驳回原因</view>
+        <textarea cols="30" rows="10"></textarea>
+    </view> -->
+</view>

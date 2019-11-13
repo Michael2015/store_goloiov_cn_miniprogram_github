@@ -1,0 +1,37 @@
+
+.thunder{
+    padding-bottom:100rpx;
+}
+.wrap  .thunder image
+{
+    width:100%;
+}
+.wrap  button
+{
+    position: fixed;
+    bottom:0;
+    width:96%;
+    background:#e70002;
+    color:#fff;
+}
+.btn{
+    position: fixed;
+    bottom:0;
+    width:100%;
+    background:#e70002;
+    height:100rpx;
+    line-height:100rpx;
+    text-align:center;
+    color:#fff;
+}
+
+page{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.wrap{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

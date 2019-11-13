@@ -32,10 +32,11 @@ Page({
                 //     st: arr[2],
                 //     type: 'share'
                 // }
-                this.data.options.s = arr[0]
-                this.data.options.p = arr[1]
-                this.data.options.st = arr[2]
-                this.data.options.type = 'share'
+                this.data.options.s = arr[0]// 推荐人
+                this.data.options.p = arr[1]// 店铺 或者 合伙人id
+                this.data.options.st = arr[2]// 商品id
+                this.data.options.type = arr[3] || 'share'
+                this.data.options.share_id = arr[0]// 推荐人
             }
         }
         wx.getSetting({
@@ -58,10 +59,11 @@ Page({
                     app.globalData.shareInfo.share_partner_id = options.p || 0;// 店铺 或者 合伙人id
                     app.globalData.shareInfo.share_product_id = options.st || 0;// 商品id
                     if (options.type === 'invite') {
-                        let partner_invite_id = app.globalData.partner_invite_id;
+                        // let partner_invite_id = app.globalData.partner_invite_id;
+                        let share_user_id = app.globalData.partner_invite_id || app.globalData.shareInfo.share_user_id;
                         // 邀请合伙人
                         wx.redirectTo({
-                            url: '/pages/partner/personal/partner/invite?share_id=' + partner_invite_id,
+                            url: '/pages/partner/personal/partner/invite?share_id=' + share_user_id,
                         });
                     } else if (options.type === 'share') {
                         // 分享进来的
@@ -94,7 +96,7 @@ Page({
                     // 判断用户角色
                     if (res.is_promoter === 0) {
                         // 用户是客户
-                        app.globalData.role = 0
+                        app.globalData.role = 1
                         // wx.switchTab({
                         //   url: '/pages/customer/index/index'
                         //   // url: '/pages/partner/index/index'

@@ -162,11 +162,33 @@ Page({
     }
   },
   save() {
-    if (this.data.real_name && this.data.phone && this.data.detail && this.data.region[0]) {
+    if (this.data.real_name.trim() && this.data.phone.trim() && this.data.detail.trim() && this.data.region[0]) {
       // 检查电话
       if (!/^1[3456789]\d{9}$/.test(this.data.phone)) {
         wx.showToast({
           title: '电话格式不正确',
+          icon: 'none'
+        })
+        return
+      }
+      // 检查名字
+      if(this.data.real_name.trim().length == 0){
+        wx.showToast({
+          title: '请输入收货人姓名',
+          icon: 'none'
+        })
+        return
+      }
+      if(this.data.region.length == 0){
+        wx.showToast({
+          title: '请选择地区',
+          icon: 'none'
+        })
+        return
+      }
+      if(this.data.detail.trim().length == 0){
+        wx.showToast({
+          title: '请输入详细地址',
           icon: 'none'
         })
         return

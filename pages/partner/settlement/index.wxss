@@ -3,10 +3,20 @@ page {
 }
 
 .confirm {
+    height: 90rpx;
+    width: 80%;
+    background-color: #e70002;
+    font-size: 36rpx;
+    color: #ffffff;
+    border-radius: 90rpx;
+}
+.confirm_btn{
     min-height: 96rpx;
     height: calc(96rpx + constant(safe-area-inset-bottom));
     height: calc(96rpx + env(safe-area-inset-bottom));
     width: 100vw;
+    text-align: center;
+    line-height: 96rpx;
     background-color: #e70002;
     font-size: 36rpx;
     color: #ffffff;

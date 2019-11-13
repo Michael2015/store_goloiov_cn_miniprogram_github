@@ -1,0 +1,13 @@
+<!-- pages/partner/personal/admin/applyrecord.wxml -->
+<view class="record_warp">
+    <view class="record_item" wx:for="{{showList}}" bind:tap="checkitem" data-id='{{item.id}}' >
+        <view class="top">
+            <view class="address">{{item.agent_name}}</view>
+            <view class="apply">{{adminObj[item.agent_level]}}申请</view>
+        </view>
+        <view class="bottom">
+            <view class="time">{{item.addtime}}</view>
+            <view class="apply_flag ing">{{applyObj[item.status]}}</view>
+        </view>
+    </view>
+</view>

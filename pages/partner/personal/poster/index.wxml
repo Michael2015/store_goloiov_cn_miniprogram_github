@@ -1,0 +1,17 @@
+<view class='post-list'>
+<scroll-view scroll-y bindscrolltolower="load" lower-threshold="20">
+    <view class="wrap">
+        <view class="item" wx:for="{{list}}" wx:key="index"  bindtap="goDetail" data-id="{{index}}">
+            <view>
+                <image src="{{item.img_url}}" class="icon"></image>
+            </view>
+            <view class="middle">
+                <view class="title">{{item.name}}</view>
+                <view>{{item.add_time}}</view>
+            </view>
+        </view>
+        <view class="no-more">没有更多数据</view>
+        <!--no-data isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}" /!-->
+    </view>
+    </scroll-view>
+</view>

@@ -320,7 +320,7 @@ function analysisOptions(options, res) {
         } else if (res.is_promoter === 1) {
             // 合伙人
             wx.reLaunch({
-                url: '/pages/partner/index/index'
+                url: '/pages/partner/index/index'   
             })
         }
 

@@ -7,6 +7,7 @@
     "detail-title": "/components/detail/title/title",
     "detail-tab": "/components/detail/tab/tab",
     "composite-poster": "/utils/compositePoster/index",
-    "activity-seckill": "/components/activity/seckill/index"
+    "activity-seckill": "/components/activity/seckill/index",
+    "detail-sku": "/components/detail/sku/sku"
   }
 }

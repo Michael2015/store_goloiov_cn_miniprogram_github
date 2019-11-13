@@ -205,7 +205,7 @@ Page({
     goPay()
     {
         wx.navigateTo({
-            url: `/pages/partner/settlement/index?order_id=${this.data.orderId}&id=${this.data.orderInfo.product_id}&mark=${this.data.orderInfo.mark}&user_address=${this.data.orderInfo.user_address}&real_name=${this.data.orderInfo.real_name}&phone=${this.data.orderInfo.user_phone}`
+            url: `/pages/partner/settlement/index?order_id=${this.data.orderId}&id=${this.data.orderInfo.product_id}&mark=${this.data.orderInfo.mark}&user_address=${this.data.orderInfo.user_address}&real_name=${this.data.orderInfo.real_name}&phone=${this.data.orderInfo.user_phone}&total_num=${this.data.orderInfo.total_num}`
         })
     },
     // 跳转查询物流信息

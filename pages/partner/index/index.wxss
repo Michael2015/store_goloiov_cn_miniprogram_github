@@ -47,6 +47,15 @@ page {
   height: 91rpx;
   line-height: 40rpx;
 }
+.commodity_item .new{
+  position: absolute;
+  background: #FF0000;
+  color: #fff;
+  font-size: 25rpx;
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
 .countTop{
   padding-bottom: 20rpx;
 }
@@ -470,7 +479,7 @@ button{
   position: fixed;
   top: 86rpx;
   width: 100%;
-  z-index: 999;
+  z-index: 2;
   height: 66rpx;
   background: #E60000;
   overflow: hidden;
@@ -570,4 +579,64 @@ button{
 {
   width: 70rpx;
   height: 70rpx;
+}
+.news_box{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  /* background: #Fff; */
+  border-radius: 20rpx;
+}
+
+.news_box .close{
+  width: 50rpx;
+  position: absolute;
+  right: 0rpx;
+  top: 70rpx;
+}
+.news_box .new_bg{
+  width: 536rpx;
+}
+.news_box .new_msg{
+  position: absolute;
+  left: 50%;
+  top:42%;
+  transform: translate(-50%,-50%);
+  width: 467rpx;
+}
+.news_box .new_msg .discount{
+  color: #ff9f0e;
+  font-size: 32rpx;
+  margin-top: 38rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.news_box .new_msg .discount > text{
+  color: #ff6815;
+  font-size: 38rpx;
+}
+.news_box .new_msg .discount_name{
+  color: #ff6815;
+  text-align: center;
+  font-size: 36rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.discount_time {
+  font-size: 32rpx;
+  color: #ff9f0e;
+  margin-top: 14rpx;
+}
+
+.news_box .gobaybtn{
+  width: 360rpx;
+  height: 88rpx;
+  position: absolute;
+  right: 90rpx;
+  bottom: 6rpx;
+  border-radius: 88rpx
 }

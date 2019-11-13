@@ -1,0 +1,36 @@
+canvas {
+    position: fixed;
+    top: -300vh;
+}
+
+.content {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10001;
+    overflow: auto;
+    padding-bottom: 100rpx;
+    box-sizing: border-box;
+}
+
+.content .cImg {
+    width: 100%;
+    display:inline-block;
+    /* margin: 75rpx auto 0 auto; */
+}
+
+.content .save {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    background: #e31336;
+    display: block;
+    color: #fff;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 30rpx;
+}

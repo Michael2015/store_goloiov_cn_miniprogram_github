@@ -21,6 +21,19 @@ page {
     display: flex;
     justify-content: flex-start;
 }
+.search_nav .login {
+  position: absolute;
+  right: 24rpx;
+  top:8rpx;
+  font-size: 30rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  color: #fff;
+  padding: 0 30rpx 0 30rpx;
+  box-shadow: 0px 1rpx 2rpx 0px rgba(0, 0, 0, 0.5);
+  border-radius: 4rpx;
+  text-align: center;
+}
 
 .head {
     padding: 8rpx 24rpx 0 24rpx;
@@ -83,6 +96,16 @@ page {
     word-break: break-all;
     height: 75rpx;
     line-height: 40rpx;
+}
+
+.commodity_item .new{
+  position: absolute;
+  background: #FF0000;
+  color: #fff;
+  font-size: 25rpx;
+  padding: 0 20rpx;
+  height: 40rpx;
+  line-height: 40rpx;
 }
 
 .title_swiper {
@@ -268,7 +291,7 @@ text.coupon3
     position: fixed;
     top: 118rpx;
     width: 100%;
-    z-index: 999;
+    z-index: 2;
     height: 66rpx;
     background: #E60000;
     overflow: hidden;
@@ -478,4 +501,62 @@ text.coupon3
     color: #fff;
     padding: 10rpx;
     border-radius: 0 0 0 15rpx;
+  }
+  .news_box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    /* background: #Fff; */
+    border-radius: 20rpx;
+  }
+
+  .news_box .close{
+    width: 50rpx;
+    position: absolute;
+    right: 0rpx;
+    top: 70rpx;
+  }
+  .news_box .new_bg{
+    width: 536rpx;
+  }
+  .news_box .new_msg{
+    position: absolute;
+    left: 50%;
+    top:40%;
+    transform: translate(-50%,-50%);
+    width: 467rpx;
+  }
+  .news_box .new_msg .discount{
+    color: #ff9f0e;
+    text-align: center;
+    font-size: 32rpx;
+    margin-top: 38rpx
+  }
+  .news_box .new_msg .discount > text{
+    color: #ff6815;
+    font-size: 38rpx;
+  }
+  .news_box .new_msg .discount_name{
+    color: #ff6815;
+    text-align: center;
+    font-size: 36rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .discount_time {
+    font-size: 32rpx;
+    color: #ff9f0e;
+    margin-top: 14rpx;
+  }
+  
+  .news_box .gobaybtn{
+    width: 360rpx;
+    height: 88rpx;
+    position: absolute;
+    right: 90rpx;
+    bottom: 6rpx;
+    border-radius: 88rpx
   }

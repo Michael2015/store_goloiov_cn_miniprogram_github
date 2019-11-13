@@ -23,7 +23,7 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.9.1",
 	"appid": "wx60b98db196fdfa62",
 	"projectname": "%E4%B8%87%E8%BD%A6%E5%93%81%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -49,8 +49,12 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 13,
+			"current": 24,
 			"list": [
 				{
 					"id": 0,
@@ -147,6 +151,84 @@
 					"id": -1,
 					"name": "pages/partner/index/index",
 					"pathName": "pages/partner/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 14,
+					"name": "pages/customer/index/index",
+					"pathName": "pages/customer/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "pages/customer/detail/detail",
+					"pathName": "pages/customer/detail/detail",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": 16,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "type=share&s=231&p=231&st=1",
+					"scene": null
+				},
+				{
+					"id": 17,
+					"name": "pages/partner/personal/poster/detail",
+					"pathName": "pages/partner/personal/poster/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/applydetails",
+					"pathName": "pages/partner/personal/admin/applydetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/index",
+					"pathName": "pages/partner/personal/admin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/index",
+					"pathName": "pages/partner/personal/admin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/applylist",
+					"pathName": "pages/partner/personal/admin/applylist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/admin/applydetail",
+					"pathName": "pages/partner/personal/admin/applydetail",
+					"query": "id=4",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "scene=183,183,0,invite",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/partner/personal/poster/detail",
+					"pathName": "pages/partner/personal/poster/detail",
+					"query": "id=1000019",
 					"scene": null
 				}
 			]

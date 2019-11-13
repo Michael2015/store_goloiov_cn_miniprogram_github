@@ -149,4 +149,5 @@
             </view>
         </view>
     </view>
+    <detail-sku isShow="{{count_mask}}" limit_num="{{limit_num}}" is_newborn="{{is_newborn}}"  bind:myevent="sku"></detail-sku>
 </view>

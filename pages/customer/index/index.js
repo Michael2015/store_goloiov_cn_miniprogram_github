@@ -10,25 +10,29 @@ Page({
         getnotice: [],
         getProductList: [],
         page: 1,
-        limit:10,
+        limit: 10,
         getPartnerInfo: {},
         loading: false, // 加载中
         loaded: false, // 加载完毕
-        showModal:false,//是否显示模态框
-        coupon_id:0,
-        coupon_date:'',
-        coupon_price:0,
-        pid:0,
-        bannerList:[],
-        categoryList1:[], //横向导航栏
-        heightCount:0,   //统计监控交互的高度
-        scrollTop:0,    //监控滑动距离
-        transverseCar_cateId:0,  //车联网专区的分类id
-        transverseCarList:[],    //车联网专区显示数据
-        selectClassId:0,         //标识选择id
-        tabIndex:0,       //目前切换到的首页tab下标
+        showModal: false,//是否显示模态框
+        coupon_id: 0,
+        coupon_date: '',
+        coupon_price: 0,
+        pid: 0,
+        bannerList: [],
+        categoryList1: [], //横向导航栏
+        heightCount: 0,   //统计监控交互的高度
+        scrollTop: 0,    //监控滑动距离
+        ReplacescrollTop: 0,    //监控滑动距离
+        transverseCar_cateId: 0,  //车联网专区的分类id
+        transverseCarList: [],    //车联网专区显示数据
+        selectClassId: 0,         //标识选择id
+        tabIndex: 0,       //目前切换到的首页tab下标
         contentSwiperHeight: defaultSwiperHeight,
-        isloading:false    //标识切换页是否处于加载状态
+        isloading: false,    //标识切换页是否处于加载状态
+        islogin: false,       //标识是否是登录状态
+        isfirst:true,         //是否是第一次进入首页
+        newObj:{},            //新人专区对象
     },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
@@ -36,19 +40,19 @@ Page({
         let height = 0;
         let query = wx.createSelectorQuery()
         const lun = query.select('#item-wrap' + this.data.tabIndex)
-        lun.boundingClientRect().exec(res =>{
+        lun.boundingClientRect().exec(res => {
             height = res[0].height
-            if(height < defaultSwiperHeight){
+            if (height < defaultSwiperHeight) {
                 height = defaultSwiperHeight
             }
-            this.setData({contentSwiperHeight:height})
+            this.setData({ contentSwiperHeight: height })
         })
     },
-    onReachBottom(){
+    onReachBottom() {
         this.nextPage()
     },
-    tabPageChange(event){
-        this.goList({currentTarget:{dataset:{id:event.detail.currentItemId,index:event.detail.current}}})
+    tabPageChange(event) {
+        this.goList({ currentTarget: { dataset: { id: event.detail.currentItemId, index: event.detail.current } } })
     },
     getnotice() {
         app.http.get('/api/customer/mall/getnotice').then(res => {
@@ -75,15 +79,15 @@ Page({
     getProductList() {
         const size = this.data.limit; // 默认一页条数
         if (this.data.loading) return // 已经在加载中了
-        console.log('页数：'+this.data.page)
+        console.log('页数：' + this.data.page)
         wx.showLoading({
             title: '加载中',
         })
         this.data.loading = true
         // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-        const apiUrl = this.data.selectClassId === 0?'/api/customer/mall/getProductList':'/api/marketing/getCategoryProducts'
-        const httpObj = this.data.selectClassId === 0?{page: this.data.page,limit: this.data.limit}:{cate_id:this.data.selectClassId}
-        app.http.get(apiUrl,httpObj).then(res => {
+        const apiUrl = this.data.selectClassId === 0 ? '/api/customer/mall/getProductList' : '/api/marketing/getCategoryProducts'
+        const httpObj = this.data.selectClassId === 0 ? { page: this.data.page, limit: this.data.limit } : { cate_id: this.data.selectClassId }
+        app.http.get(apiUrl, httpObj).then(res => {
             let getProductList = this.data.getProductList.concat(res)
             this.setData({
                 getProductList
@@ -101,29 +105,26 @@ Page({
         wx.hideLoading();
     },
 
-    show_modal(e)
-    {
+    show_modal(e) {
         let pid = e.currentTarget.dataset.pid;
         app.http.post('/api/coupon/getCouponByPid', {
-            product_id:pid
+            product_id: pid
         }).then(res => {
             this.setData({
                 coupon_id: res.data.id,
-                coupon_price:res.data.price,
-                coupon_date:res.data.date,
-                showModal:true,
+                coupon_price: res.data.price,
+                coupon_date: res.data.date,
+                showModal: true,
             })
         })
     },
-    hide_modal()
-    {
+    hide_modal() {
         this.setData({
-            showModal:false,
+            showModal: false,
         })
     },
     //领取优惠券
-    get_coupon()
-    {
+    get_coupon() {
         app.http.post('/api/coupon/setcoupon', {
             coupon_id: this.data.coupon_id,
         }).then(res => {
@@ -133,7 +134,7 @@ Page({
             })
 
             //隐藏成功领取的优惠券
-            let  getProductList = this.data.getProductList;
+            let getProductList = this.data.getProductList;
             let index = 0;
             for (let item of getProductList) {
                 if (item.id == this.data.pid) {
@@ -142,13 +143,14 @@ Page({
                 index++;
             }
             this.setData({
-                showModal:false,
-                getProductList:getProductList,
+                showModal: false,
+                getProductList: getProductList,
             })
         })
     },
     getPartnerInfo() {
-        app.http.get('/api/customer/mall/getPartnerInfo',{share_id:app.globalData.shareInfo.share_user_id}).then(res => {
+        // console.log(app.globalData)
+        app.http.get('/api/customer/mall/getPartnerInfo', { share_id: app.globalData.shareInfo.share_user_id }).then(res => {
             app.globalData.partnerInfo = res;
             this.setData({
                 getPartnerInfo: res
@@ -158,11 +160,10 @@ Page({
         })
     },
     //获取首页banner轮播图
-    getBanner()
-    {
+    getBanner() {
         app.http.post('/api/marketing/getbanner', {}).then(res => {
             this.setData({
-                bannerList:res,
+                bannerList: res,
             })
         });
     },
@@ -171,17 +172,24 @@ Page({
             return ele.id == e.currentTarget.id
         })
         app.varStorage.set('storeDetail', getProductList[0])
+        // this.setData({
+        //     ReplacescrollTop: this.data.scrollTop
+        // })
         wx.navigateTo({
             url: '/pages/customer/detail/detail?id=' + e.currentTarget.id
         })
     },
     nextPage() {
-        console.log('loaded'+this.data.loaded)
+        console.log('loaded' + this.data.loaded)
         if (!this.data.loaded) { // 没有到最后一页
             this.getProductList()
         }
     },
     onLoad: function () {
+        // console.log(app.globalData)
+        this.setData({
+            islogin: !(app.globalData.token === '')
+        })
         self = this;
         this.getinfo()
         wx.showLoading({
@@ -211,7 +219,7 @@ Page({
             this.getTabBar().toggleToClient()
         }
     },
-    onPageScroll:function(res){
+    onPageScroll: function (res) {
         this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
@@ -237,30 +245,49 @@ Page({
         await this.getCategory()
         //获取车联网专区数据
         this.getTransverseCarData();
+        // setTimeout(() => {
+        //     wx.pageScrollTo({
+        //         scrollTop: this.data.ReplacescrollTop,
+        //         duration: 0,
+        //         success: function (res) {
+        //             console.log(res);
+        //         }
+        //     })
+        // }, 2000)
+        //获取新人专区信息
+        this.getNews()
     },
-    async getCategory()
-    {
+    getNews() {
+        if (this.data.islogin && this.data.isfirst) {
+          app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
+            this.setData({
+              newObj:res[0]
+            })
+          })
+        }
+    },
+    async getCategory() {
         const categoryList = await app.http.post('/api/marketing/getCategory', {})
-        let categoryList1 = categoryList.filter(function(item,index){
+        let categoryList1 = categoryList.filter(function (item, index) {
             return index != 0;
         });
-        let transverseCar = categoryList.filter(function(item,index){
+        let transverseCar = categoryList.filter(function (item, index) {
             return index === 0
         })
         this.setData({
-            transverseCar_cateId:transverseCar[0].id
+            transverseCar_cateId: transverseCar[0].id
         })
         this.setData({
             categoryList1: categoryList1,
         })
     },
     // 获取车联网专区的数据
-    getTransverseCarData(){
-        app.http.post('/api/marketing/getCategoryProducts',{cate_id :this.data.transverseCar_cateId}).then(res =>{
-            this.setData({transverseCarList:res})
+    getTransverseCarData() {
+        app.http.post('/api/marketing/getCategoryProducts', { cate_id: this.data.transverseCar_cateId }).then(res => {
+            this.setData({ transverseCarList: res })
         })
     },
-    async CalculationHeight(){
+    async CalculationHeight() {
         let height = 0;
         let query = wx.createSelectorQuery()
         const lun = query.select('.countTop')
@@ -276,20 +303,19 @@ Page({
         })
         height = res.height
         // console.log(res)
-        this.setData({heightCount:height})
+        this.setData({ heightCount: height })
     },
     //跳转分类列表页面
-    goList(e)
-    {
+    goList(e) {
         let cat_id = +e.currentTarget.dataset.id;
         let tab_id = +e.currentTarget.dataset.index;
         this.setData({
-            tabIndex:tab_id,
-            selectClassId:cat_id,
-            isloading:true
+            tabIndex: tab_id,
+            selectClassId: cat_id,
+            isloading: true
         })
-        app.http.post('/api/marketing/getCategoryProducts',{cate_id :cat_id}).then(res =>{
-            this.setData({getProductList:res,loaded:true,isloading:false})
+        app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id }).then(res => {
+            this.setData({ getProductList: res, loaded: true, isloading: false })
         })
     },
     touchMove() {
@@ -316,5 +342,23 @@ Page({
                 })
             }
         })
-    }
+    },
+    tologin() {
+        let share_user_id = app.globalData.shareInfo.share_user_id;
+        let share_partner_id = app.globalData.shareInfo.share_partner_id;
+        let share_product_id = app.globalData.shareInfo.share_product_id;
+        wx.reLaunch({
+            url: '/pages/login/index?share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id
+        })
+    },
+    close(){
+        console.log('guanbi')
+        this.setData({isfirst:false})
+    },
+    goBay(){
+        wx.navigateTo({url:`/pages/customer/detail/detail?id=${this.data.newObj.pro_id}`})
+        this.close()
+    },
+    //  禁用触摸穿透
+    preventTouchMove(){}
 })
