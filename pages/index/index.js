@@ -36,6 +36,7 @@ Page({
                 this.data.options.p = arr[1]// 店铺 或者 合伙人id
                 this.data.options.st = arr[2]// 商品id
                 this.data.options.type = arr[3] || 'share'
+                this.data.options.share_id = arr[0]// 推荐人
             }
         }
         wx.getSetting({
