@@ -1,4 +1,3 @@
-
 <view class='post-list'>
 <scroll-view scroll-y bindscrolltolower="load" lower-threshold="20">
     <view class="wrap">

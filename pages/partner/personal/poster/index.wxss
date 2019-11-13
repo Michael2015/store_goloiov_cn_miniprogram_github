@@ -62,8 +62,6 @@ scroll-view{
   font-size:30rpx;
   line-height:60rpx;
 }
-
-
 .no-more {
   text-align: center;
   color: #aaa;
