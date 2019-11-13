@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "我的海报",
+  "disableScroll": true,
   "usingComponents": {
     "detail-swiper": "/components/detail/swiper/swiper",
     "detail-title": "/components/detail/title/title",

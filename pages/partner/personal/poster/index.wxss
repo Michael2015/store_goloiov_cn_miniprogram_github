@@ -1,9 +1,17 @@
-page {
-  background: #F9F9F9;
+page{
+  background: #f9f9f9;
+  min-height: 100vh;
+}
+.wrap{
+  padding: 24rpx;
+}
+scroll-view{
+  height: 100vh;
+  box-sizing: border-box;
 }
 .post-list
 {
-  padding:4%;
+  padding:0 2% 2% 2%;
 }
 .post-list .item
 {
@@ -55,4 +63,13 @@ page {
   line-height:60rpx;
 }
 
+
+.no-more {
+  text-align: center;
+  color: #aaa;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  visibility:visible;
+  margin-top: 20rpx;
+}
 
