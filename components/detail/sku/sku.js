@@ -50,6 +50,12 @@ Component({
       this.triggerEvent('myevent', { 'total_num': this.data.total_num });
     },
     inputTotalnum(e) {
+      /*number检测*/
+      let re = /^[0-9]+$/;
+      if (!re.test(e.detail.value)) {
+        e.detail.value = 1
+      }
+
       let limit_total_num = 50;
       let title = `单次限购50件`;
       if (this.data.is_newborn == true) {
