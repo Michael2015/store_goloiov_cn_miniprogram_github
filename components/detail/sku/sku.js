@@ -58,6 +58,7 @@ Component({
 
       let limit_total_num = 50;
       let title = `单次限购50件`;
+      
       if (this.data.is_newborn == true) {
         title = `该活动每人限购${this.data.limit_num}件`
         limit_total_num = this.data.limit_num;
