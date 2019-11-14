@@ -273,6 +273,10 @@ Page({
     },
     onUnload() {
         wx.hideLoading()
+    },
+    onShow()
+    {
+        wx.hideHomeButton();
     }
 })
 
