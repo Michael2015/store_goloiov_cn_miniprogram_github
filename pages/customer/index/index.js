@@ -6,6 +6,7 @@ const defaultSwiperHeight = 200
 Page({
     data: {
         userInfo: {},
+        alllist: [],
         getinfo: {},
         getnotice: [],
         getProductList: [],
@@ -26,13 +27,13 @@ Page({
         ReplacescrollTop: 0,    //监控滑动距离
         transverseCar_cateId: 0,  //车联网专区的分类id
         transverseCarList: [],    //车联网专区显示数据
-        selectClassId: 0,         //标识选择id
+        selectClassId: -1,         //标识选择id
         tabIndex: 0,       //目前切换到的首页tab下标
         contentSwiperHeight: defaultSwiperHeight,
         isloading: false,    //标识切换页是否处于加载状态
         islogin: false,       //标识是否是登录状态
-        isfirst:true,         //是否是第一次进入首页
-        newObj:{},            //新人专区对象
+        isfirst: true,         //是否是第一次进入首页
+        newObj: {},            //新人专区对象
     },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
@@ -85,22 +86,34 @@ Page({
         })
         this.data.loading = true
         // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-        const apiUrl = this.data.selectClassId === 0 ? '/api/customer/mall/getProductList' : '/api/marketing/getCategoryProducts'
-        const httpObj = this.data.selectClassId === 0 ? { page: this.data.page, limit: this.data.limit } : { cate_id: this.data.selectClassId }
+        const apiUrl = this.data.selectClassId === -1 ? '/api/customer/mall/getProductList' : '/api/marketing/getCategoryProducts'
+        const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit } : { cate_id: this.data.selectClassId }
         app.http.get(apiUrl, httpObj).then(res => {
-            let getProductList = this.data.getProductList.concat(res)
-            this.setData({
-                getProductList
-            })
+            if (this.data.selectClassId !== -1) {
+                // let getProductList = this.data.getProductList.concat(res)
+                let getProductList = res
+                this.setData({
+                    getProductList
+                })
+            } else if (this.data.selectClassId == -1) {
+                if (this.data.loaded) {
+                    wx.hideLoading()
+                    return
+                }
+                let alllist = this.data.alllist.concat(res)
+                this.setData({
+                    alllist
+                })
+                if (res && res.length < size) {
+                    this.setData({
+                        loaded: true
+                    })
+                } else {
+                    this.data.page++
+                }
+            }
             wx.hideLoading()
             this.data.loading = false
-            if (res && res.length < size) {
-                this.setData({
-                    loaded: true
-                })
-            } else {
-                this.data.page++
-            }
         })
         wx.hideLoading();
     },
@@ -232,10 +245,10 @@ Page({
         if (!this.data.loading) {
             // 重置数据
             this.setData({
-                getProductList: [],
-                page: 1,
+                // getProductList: [],
+                // page: 1,
                 loading: false,
-                loaded: false
+                // loaded: false   
             })
             this.getProductList()
         }
@@ -259,11 +272,11 @@ Page({
     },
     getNews() {
         if (this.data.islogin && this.data.isfirst) {
-          app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
-            this.setData({
-              newObj:res[0]
+            app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
+                this.setData({
+                    newObj: res[0]
+                })
             })
-          })
         }
     },
     async getCategory() {
@@ -314,6 +327,10 @@ Page({
             selectClassId: cat_id,
             isloading: true
         })
+        if (cat_id == -1) {
+            this.getProductList()
+            return
+        }
         app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id }).then(res => {
             this.setData({ getProductList: res, loaded: true, isloading: false })
         })
@@ -351,14 +368,14 @@ Page({
             url: '/pages/login/index?share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id
         })
     },
-    close(){
+    close() {
         console.log('guanbi')
-        this.setData({isfirst:false})
+        this.setData({ isfirst: false })
     },
-    goBay(){
-        wx.navigateTo({url:`/pages/customer/detail/detail?id=${this.data.newObj.pro_id}`})
+    goBay() {
+        wx.navigateTo({ url: `/pages/customer/detail/detail?id=${this.data.newObj.pro_id}` })
         this.close()
     },
     //  禁用触摸穿透
-    preventTouchMove(){}
+    preventTouchMove() { }
 })
