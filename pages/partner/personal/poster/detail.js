@@ -31,9 +31,9 @@ Page({
 
     getQrCode()
     {
-      app.http.post('/api/partner.partner/getQrCode',{
+      app.http.get('/api/partner.partner/getQrCode',{
         page: 'pages/index/index',
-        scene: app.globalData.userInfo.uid +","+app.globalData.userInfo.uid+",0"+',invite'
+        scene: `${app.globalData.userInfo.uid},${app.globalData.userInfo.uid},0,invite`
       }).then(res => {
         this.setData({
           qrCodeUrl:res

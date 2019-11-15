@@ -54,7 +54,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 24,
+			"current": 25,
 			"list": [
 				{
 					"id": 0,
@@ -229,6 +229,13 @@
 					"name": "pages/partner/personal/poster/detail",
 					"pathName": "pages/partner/personal/poster/detail",
 					"query": "id=1000019",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "scene= 183,183,0,invite",
 					"scene": null
 				}
 			]
