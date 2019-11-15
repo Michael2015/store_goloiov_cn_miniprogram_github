@@ -94,6 +94,7 @@
 <!-- 导航 -->
 <view class="btn-area-nav">
 <view class="{{scrollTop >= heightCount?'ding':'category'}}">
+<!-- <button class="active">首页</button> -->
 <button wx:for="{{categoryList1}}" class="{{selectClassId===item.id?'active':''}}" wx:key="item" bindtap="goList" data-id="{{item.id}}" data-index="{{index}}">{{item.cate_name}}</button>
 </view>
 </view>

@@ -283,9 +283,24 @@ Page({
 function analysisOptions(options, res) {
     //重新登录，刷新用户信息
     if (options.type === 'invite') {
-        // 邀请合伙人
-        wx.redirectTo({
-            url: '/pages/partner/personal/partner/invite?share_id=' + options.share_id
+        // login.js type目前只有邀请页检测未登录进来,需求改为直接跳去首页,不跳回 邀请合伙人
+        // wx.redirectTo({
+        //     url: '/pages/partner/personal/partner/invite?share_id=' + options.share_id
+        // })
+        if(app.globalData.role == 1){
+            // 已经是合伙人就直接跳首页,不去调接口
+            wx.reLaunch({
+                url: '/pages/index/index',
+            });
+            return
+        }
+        app.http.get('/api/partner/index/join', { spid: options.share_id }).then(data => {
+            // 到这里说明已经加入团队了
+            // 直接跳首页
+            app.globalData.role = null
+            wx.reLaunch({
+              url: '/pages/index/index'
+            })
         })
         return true
     } else if (options.type === 'share') {
