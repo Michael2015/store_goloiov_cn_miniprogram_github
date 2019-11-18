@@ -7,12 +7,14 @@
         <view class="title">可提现金额</view>
         <view class="all"><text>￥</text>{{cash}}</view>
         <view class="detail">待结算　¥ <text>{{uncash}}</text>　|　总收入　¥ <text>{{all}}</text></view>
+        <!--20191118  不允许提现
         <view class="{{'btn' + (cash <= 0&&false ? ' hui':'')}}" bindtap="toCash" data-url="cash">提现</view>
+        -->
       </view>
     </view>
     <view class="in-title">
       <text class="{{index === 0 ? 'active':''}}" bindtap="setIndex" data-index="{{0}}">我的销售</text>
-      <text class="{{index === 1 ? 'active':''}}" bindtap="setIndex" data-index="{{1}}">收益</text>
+      <text class="{{index === 1 ? 'active':''}}" bindtap="setIndex" data-index="{{1}}">我的积分</text>
     </view>
   </view>
   <swiper class="swiper" bindchange="change" current="{{index}}" style="{{hack}}">
