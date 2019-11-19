@@ -26,9 +26,7 @@
                 <view class="price">
                     ￥{{data.vip_price}}
                 </view>
-                <view>
-                    vip
-                </view>
+                <view>VIP</view>
                 <view bindtap='checkJoinMask'>
                     免费加入会员
                 </view>

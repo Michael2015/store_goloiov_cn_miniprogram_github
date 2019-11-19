@@ -46,10 +46,11 @@
   border:1rpx solid #e6e6e6;
   display:block;
   height:60rpx;
-  padding:0 8px;
+  width:80rpx;
   text-align:center;
   line-height:54rpx;
   float:left;
+  overflow:hidden;
 }
 .mask .close
 {
@@ -62,6 +63,48 @@
   height:40rpx;
   width:40rpx;
 }
+.mask_box .setcount2
+{
+  display:block;
+}
+.mask_box .setcount2 .btn{
+  margin-right:20rpx;
+}
+.mask_box .setcount2 .btn.active
+{
+  color:#fff;
+  background:#e70002;
+}
+.mask .head{
+  display:flex;
+}
+.mask .head .left{
+  width:35%;
+}
+.mask .head .left image
+{
+  width:90%;
+  height:150rpx;
+}
+.mask .head .right p{
+  display:block;
+  line-height:75rpx;
+  font-size:30rpx;
+}
+.mask .head .right p em{
+  color:#e70002;
+  font-weight:bold;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

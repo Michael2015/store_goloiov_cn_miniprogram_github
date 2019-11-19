@@ -190,6 +190,8 @@ Page({
     }
   },
   onLoad(e) {
+    console.log('===============');
+    console.log(e.unique);
     self = this;
     app.varStorage.del('isShareBack')
     if (e.id) {

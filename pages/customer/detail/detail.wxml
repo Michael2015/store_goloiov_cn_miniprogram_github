@@ -110,5 +110,5 @@
     </view>
     <!-- <view class="zhuan" bindtap="toShare">赚</view> -->
     <contact-user id="contact-view"></contact-user>
-    <detail-sku isShow="{{count_mask}}" limit_num="{{limit_num}}" is_newborn="{{is_newborn}}"  bind:myevent="sku"></detail-sku>
+    <detail-sku isShow="{{count_mask}}" unique="{{unique}}" limit_num="{{limit_num}}"  attr_attr_name="{{attr_attr_name}}"  attr_price="{{attr_price}}" attr_product_image_url="{{attr_product_image_url}}" attr_attr="{{attr_attr}}" attr="{{attr}}" attr_value="{{attr_value}}" is_newborn="{{is_newborn}}"  bind:myevent="sku"></detail-sku>
 </view>

@@ -2,6 +2,15 @@
         <view class="close" catchtap='checkmask'>
             <image src="/assets/image/closeTip.png"></image>
         </view>
+        <view class="head">
+            <view class="left">
+                <image src="{{attr_product_image_url}}"></image>
+            </view>
+            <view class="right">
+                <p>价格：¥<em>{{attr_price}}</em>元</p>
+                <p>请选择规格属性</p>
+            </view>
+        </view>
         <view class="mask_box">
             <view class="label">数量</view>
             <view class="setcount">
@@ -9,9 +18,14 @@
                 <input class="count_pruduct_num" type="number" bindchange="inputTotalnum" value="{{total_num}}" min="1"></input>
                 <view class="add_pruduct_num" bindtap="add_pruduct_num">+</view>
             </view>
-            <view class="label">规格</view>
-            <view class="setcount">
-                <view class="btn">默认尺寸</view>
-            </view>
+            <block wx:for="{{attr}}" wx:for-index="index1" wx:for-item="item">
+                <view class="label">{{item.attr_name}}</view>
+                <view class="setcount setcount2">
+                    <block  wx:for="{{item.attr_values}}"  wx:for-item="item2" wx:for-index="index2">
+                        <view class="btn active" wx:if="{{attr_attr[index1][index2] == 1}}" bindtap="selectSku" data-name="{{item2}}" data-index="{{index1}}_{{index2}}">{{item2}}</view>
+                        <view class="btn" wx:else data-index="{{index1}}_{{index2}}" bindtap="selectSku" data-name="{{item2}}">{{item2}}</view>
+                    </block>
+                </view>
+            </block>
         </view>
 </view>
