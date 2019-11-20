@@ -87,6 +87,11 @@
                     <view class="col-2">{{orderInfo.refund_reason_time}}</view>
                 </view>
             </block>
+
+            <view class="row">
+                <view class="col-1">支付方式:</view>
+                <view class="col-2">{{orderInfo.pay_type}}</view>
+            </view>
         </view>
     </view>
     <!--

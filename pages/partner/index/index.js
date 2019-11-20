@@ -7,6 +7,7 @@ const defaultSwiperHeight = 200
 Page({
   data: {
     storelist: [],
+    alllist: [],
     isLoad: 0,
     page: 1,
     limit: 10,
@@ -33,13 +34,13 @@ Page({
     tabTime: '',
     transverseCar_cateId: 0,  //车联网专区的分类id
     transverseCarList: [],    //车联网专区显示数据
-    selectClassId: 0,         //标识选择id
+    selectClassId: -1,         //标识选择id
     tabIndex: 0,       //目前切换到的首页tab下标
     contentSwiperHeight: defaultSwiperHeight,
     isloading: false,    //标识切换页是否处于加载状态
     islogin: false,       //标识是否是登录状态
     isfirst: true,        //是否是第一次进入首页
-    newObj:{},            //新人专区对象
+    newObj: {},            //新人专区对象
   },
   getShareImg() {
     sharePoster.createPoster({
@@ -82,27 +83,40 @@ Page({
     this.data.isAllowLoad = false;
     let timeList2 = [];
     // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-    const apiUrl = this.data.selectClassId === 0 ? '/api/partner/home/storelist' : '/api/marketing/getCategoryProducts'
-    const httpObj = this.data.selectClassId === 0 ? { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword } : { cate_id: this.data.selectClassId }
+    const apiUrl = this.data.selectClassId === -1 ? '/api/partner/home/storelist' : '/api/marketing/getCategoryProducts'
+    const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword } : { cate_id: this.data.selectClassId }
     app.http.post(apiUrl, httpObj).then(res => {
-      let storelist = this.data.storelist.concat(res);
-      //处理倒计时
-      for (let key in storelist) {
-        if (storelist[key].seckill.status == 1) {
-          timeList2[key] = storelist[key].seckill.data.stop_time;
+      if (this.data.selectClassId !== -1) {
+        // let storelist = this.data.storelist.concat(res);
+        let storelist = res;
+        //处理倒计时
+        for (let key in storelist) {
+          if (storelist[key].seckill.status == 1) {
+            timeList2[key] = storelist[key].seckill.data.stop_time;
+          }
+        }
+        this.setData({
+          storelist,
+          timeList: timeList2,
+        });
+      } else if (this.data.selectClassId == -1) {
+        if(this.data.isLoad ==1 ){
+          wx.hideLoading();
+          return
+        }
+        let alllist = this.data.alllist.concat(res)
+        this.setData({
+          alllist
+        })
+        if (res && res.length < this.data.limit) {
+          this.setData({
+            isLoad: 1
+          })
+        } else {
+          this.data.page++
         }
       }
-      if (res && res.length < this.data.limit) {
-        this.setData({
-          isLoad: 1
-        })
-      } else {
-        this.data.page++
-      }
-      this.setData({
-        storelist,
-        timeList: timeList2,
-      });
+
       this.data.isAllowLoad = true;
       wx.hideLoading();
     })
@@ -150,6 +164,10 @@ Page({
       selectClassId: cat_id,
       isloading: true
     })
+    if (cat_id == -1) {
+      this.storelist()
+      return
+    }
     app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id }).then(res => {
       this.setData({ storelist: res, isLoad: 1, isloading: false })
     })
@@ -359,10 +377,10 @@ Page({
         title: '加载中',
       })
       this.setData({
-        page: 1,
-        storelist: [],
+        // page: 1,
+        // storelist: [],
         keyword: '', // 不搜索空串
-        isLoad: 0,
+        // isLoad: 0,
       })
       this.storelist();
     } else {
@@ -381,7 +399,7 @@ Page({
     if (this.data.islogin && this.data.isfirst) {
       app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
         this.setData({
-          newObj:res[0]
+          newObj: res[0]
         })
       })
     }
@@ -431,5 +449,5 @@ Page({
     this.close()
   },
   //  禁用触摸穿透
-  preventTouchMove(){}
+  preventTouchMove() { }
 })

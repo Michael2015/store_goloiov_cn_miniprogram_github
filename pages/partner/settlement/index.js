@@ -15,7 +15,6 @@ Page({
     real_name: '',
     phone: '',
     coupon_total: 0,//包括优惠券和限时秒杀优惠价
-    miandan_type: 0,//免单类型,默认是无免单
     total_num: 1,  //购买数量
   },
   price(product_id) {
@@ -110,16 +109,10 @@ Page({
       isDisabled = 1;
     } else if (!this.data.orderId && self.data.product_id && self.data.def_add && self.data.def_add.id) {
       //下单之前让用户选择排队的队列
-      //如果是加入公排，判断加入自购免单还是快速免单
-      if (this.data.info.is_platoon == 1 && this.data.info.is_self_buy_platoon == 1) {
-        //判断是否有快速免单
-        this.setData({ miandan_type: 1 });
-      }
       app.http.post('/api/order/createOrder', {
         product_id: self.data.product_id,
         address_id: self.data.def_add.id,
         mark: self.data.mark,
-        miandan_type: self.data.miandan_type,
         total_num: self.data.total_num
       }).then(res => {
         this.pay(res.order_id, formId)
@@ -197,6 +190,8 @@ Page({
     }
   },
   onLoad(e) {
+    console.log('===============');
+    console.log(e.unique);
     self = this;
     app.varStorage.del('isShareBack')
     if (e.id) {
