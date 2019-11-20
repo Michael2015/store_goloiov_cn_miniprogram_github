@@ -1,0 +1,14 @@
+<!-- 收货弹窗 -->
+<view wx:if="{{show}}">
+  <view class="wrap">
+    <view class="title">请选择支付方式</view>
+    <view class="title price">999.00元</view>
+    <radio-group class="radio" bindchange="radioChange">
+      <view wx:for="{{payType}}" wx:key="id" class="line">
+        <label><image src="{{item.icon}}"></image>  {{item.name}}<em>{{item.label}}</em></label>
+        <radio value="{{item.id}}" checked="{{item.checked}}" bindtap="updataRadio"></radio>
+        <view class="clear"></view>
+      </view>
+    </radio-group>
+  </view>
+</view>

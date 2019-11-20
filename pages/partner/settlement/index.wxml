@@ -45,5 +45,4 @@
         <button class="confirm_btn" form-type="submit" loading="{{disabled_loading}}" disabled="{{disabled_loading}}">立即购买</button>
     </form>
 </view>
-<popup-miandan ref="miandan"></popup-miandan>
-<popup-paytype ref="paytype"></popup-paytype>
+<popup-paytype bind:myevent="selectPayType"></popup-paytype>

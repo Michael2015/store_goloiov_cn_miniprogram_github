@@ -4,7 +4,6 @@
   "navigationBarBackgroundColor": "#e70002",
   "disableScroll": true,
   "usingComponents": {
-    "popup-miandan": "/components/order/popup/miandan",
-    "popup-paytpye": "/components/order/popup/paytpye"
+    "popup-paytype": "/components/order/popup/paytype"
   }
 }

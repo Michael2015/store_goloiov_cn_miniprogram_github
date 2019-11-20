@@ -16,6 +16,7 @@ Page({
     phone: '',
     coupon_total: 0,//包括优惠券和限时秒杀优惠价
     total_num: 1,  //购买数量
+    pay_type:'weixin',//默认支付方式
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -80,7 +81,7 @@ Page({
             }).then(res => {
               // &position=${res.position}&outnums=${res.outnums}
               wx.reLaunch({
-                "url": `/pages/customer/paysuccess/index?total_price=${res.total_price}&platoon_number=${res.platoon_number}&position=${res.position}&is_platoon=${res.is_platoon}`
+                "url": `/pages/customer/paysuccess/index?total_price=${res.total_price}&platoon_number=${res.platoon_number}&position=${res.position}&is_platoon=${res.is_platoon}&pay_type=${self.data.pay_type}`
               })
             })
           },
@@ -116,6 +117,7 @@ Page({
         mark: self.data.mark,
         total_num: self.data.total_num,
         unique:self.data.unique,
+        paytype:self.data.pay_type,
       }).then(res => {
         this.pay(res.order_id, formId)
         wx.hideLoading()
@@ -187,12 +189,22 @@ Page({
       isDisabled = 0;
       this.setData({
         disabled_loading: true
-      }),
-
-      console.log(e.detail);
-      //this.createOrder(e.detail.formId)
+      })
+      this.createOrder(e.detail.formId)
     }
   },
+  //选择支付方式
+  selectPayType(e)
+  {
+    let  pay_type = e.detail.pay_type;
+    if(pay_type)
+    {
+      this.setData({
+        pay_type:pay_type,
+      });
+    }
+  },
+
   onLoad(e) {
     self = this;
     app.varStorage.del('isShareBack');
