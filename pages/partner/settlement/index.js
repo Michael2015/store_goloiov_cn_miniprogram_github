@@ -77,7 +77,7 @@ Page({
             self.setData({
               disabled_loading: false
             })
-            paySuccessRedirect(order_id,form_id);
+            this.paySuccessRedirect(order_id,form_id);
           },
           fail() {
             self.setData({
@@ -91,7 +91,7 @@ Page({
         })
       } 
       else if(res && pay_type == 'yue'){
-        paySuccessRedirect(order_id,form_id);
+        this.paySuccessRedirect(order_id,form_id);
       }
       else {
         wx.showModal({
