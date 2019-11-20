@@ -237,6 +237,13 @@
 					"pathName": "pages/index/index",
 					"query": "scene= 110,110,1, share",
 					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "支付页",
+					"pathName": "pages/partner/settlement/index",
+					"query": "token=6fe1e9112fc458415fe7126ce2a8f253&id=2&unique=0&total_num=2",
+					"scene": null
 				}
 			]
 		}

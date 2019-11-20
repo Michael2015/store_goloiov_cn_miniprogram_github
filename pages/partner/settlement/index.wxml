@@ -46,3 +46,4 @@
     </form>
 </view>
 <popup-miandan ref="miandan"></popup-miandan>
+<popup-paytype ref="paytype"></popup-paytype>

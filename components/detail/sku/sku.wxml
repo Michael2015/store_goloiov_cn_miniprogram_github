@@ -26,6 +26,7 @@
                         <view class="btn" wx:else data-index="{{index1}}_{{index2}}" bindtap="selectSku" data-name="{{item2}}">{{item2}}</view>
                     </block>
                 </view>
+                <view class="clear"></view>
             </block>
         </view>
 </view>

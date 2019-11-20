@@ -16,6 +16,11 @@ Page({
             sale: 0,
             store_name: ''
         },
+        //商品属性
+        attr:{},
+        attr_value:{},
+        attr_attr:[],
+        unique:'',
         // 价格
         price: {},
         // 商品详情
@@ -165,8 +170,6 @@ Page({
         }
 
     },
-
-
     // 获取评论记录
     getComment() {
         wx.showLoading()
@@ -227,11 +230,41 @@ Page({
                 });
                 this.countDown();
             }
+            //sku默认初始值
+            let attr_attr_arr = [];
+            let attr_attr_name = [];
+            let attr_price = res.price;//默认属性价格
+            let attr_product_image_url = res.slider_image;//默认属性商品图片
+            let unique = '';
+            for(let i = 0; i < res.attr_attr_length;i++)
+            {
+                attr_attr_arr[i] = [];
+                attr_attr_arr[i][0] = 1; 
+                attr_attr_name[i] = res.attr[i].attr_values[0];
+            }
+            let attr_attr_name_str = attr_attr_name.join(',');
+            for(let key in res.attr_value)
+            {
+                if(key == attr_attr_name_str)
+                {
+                    attr_price = res.attr_value[key].price;
+                    attr_product_image_url = res.attr_value[key].image;
+                    unique = res.attr_value[key].unique;//默认sku值
+                }
+            }    
+
             this.setData({
                 info: res,
                 imgUrls: res.slider_image,
                 share_url_query: res.share_url_query,
                 seckill: res.seckill,
+                attr:res.attr,
+                attr_attr:attr_attr_arr,
+                attr_value:res.attr_value,
+                attr_price:attr_price,
+                attr_product_image_url:attr_product_image_url,
+                attr_attr_name:attr_attr_name,
+                unique:unique,    
                 title: {
                     title: res.store_name,
                     price: res.price,
@@ -403,8 +436,10 @@ Page({
     //子组件sku
     sku(e) {
         let total_num = e.detail.total_num < 1 ? 1 : e.detail.total_num;
+        let unique = e.detail.unique ? e.detail.unique : this.data.unique;
         this.setData({
-            total_num: e.detail.total_num,
+            total_num: total_num,
+            unique: unique,
         })
     },
     goSettlement() {
@@ -420,8 +455,9 @@ Page({
             return;
         }
         let total_num = this.data.total_num;
+        let unique = this.data.unique;
         wx.navigateTo({
-                url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}&total_num=${total_num}`
+                url: `/pages/partner/settlement/index?id=${self.data.info.id}&isnew=${!!is_newborn}&limit_num=${!!limit_num?limit_num:0}&price=${!!price?price:0.00}&total_num=${total_num}&unique=${unique}`
         })
     },
     //返回显示购买数量

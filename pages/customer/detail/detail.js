@@ -166,8 +166,8 @@ Page({
             //sku默认初始值
             let attr_attr_arr = [];
             let attr_attr_name = [];
-            let attr_price = '';//默认属性价格
-            let attr_product_image_url = '';//默认属性商品图片
+            let attr_price = res.price;//默认属性价格
+            let attr_product_image_url = res.slider_image;//默认属性商品图片
             let unique = '';
             for(let i = 0; i < res.attr_attr_length;i++)
             {
@@ -182,13 +182,9 @@ Page({
                 {
                     attr_price = res.attr_value[key].price;
                     attr_product_image_url = res.attr_value[key].image;
-                    console.log('+++++++++++++++')
-                    console.log(res.attr_value[key].unique)
-                    unique:res.attr_value[key].unique;//默认sku值
+                    unique = res.attr_value[key].unique;//默认sku值
                 }
             }
-            console.log('+++++++++++++++')
-            console.log(unique)
             this.setData({
                 allInfo: res,
                 imgUrls: res.slider_image,

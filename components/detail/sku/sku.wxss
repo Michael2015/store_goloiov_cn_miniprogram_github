@@ -38,8 +38,10 @@
     border:1rpx solid  #e6e6e6;
 }
 .mask_box .label{
-  height:50rpx;
-  line-height:50rpx;
+  height:60rpx;
+  line-height:60rpx;
+  text-align:left;
+  display:block;
 }
 
 .mask_box  .setcount .btn{
@@ -96,7 +98,10 @@
   font-weight:bold;
 }
 
-
+.mask_box .clear
+{
+  clear:both;
+}
 
 
 

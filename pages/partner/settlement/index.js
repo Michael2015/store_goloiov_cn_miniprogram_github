@@ -20,7 +20,8 @@ Page({
   price(product_id) {
     app.http.post('/api/partner/store/price', {
       product_id,
-      order_id: this.data.orderId
+      order_id: this.data.orderId,
+      unique:this.data.unique,
     }).then(res => {
       let pay_price = res.price;
       //优惠券合伙秒杀//优惠券
@@ -113,7 +114,8 @@ Page({
         product_id: self.data.product_id,
         address_id: self.data.def_add.id,
         mark: self.data.mark,
-        total_num: self.data.total_num
+        total_num: self.data.total_num,
+        unique:self.data.unique,
       }).then(res => {
         this.pay(res.order_id, formId)
         wx.hideLoading()
@@ -185,15 +187,15 @@ Page({
       isDisabled = 0;
       this.setData({
         disabled_loading: true
-      })
-      this.createOrder(e.detail.formId)
+      }),
+
+      console.log(e.detail);
+      //this.createOrder(e.detail.formId)
     }
   },
   onLoad(e) {
-    console.log('===============');
-    console.log(e.unique);
     self = this;
-    app.varStorage.del('isShareBack')
+    app.varStorage.del('isShareBack');
     if (e.id) {
       this.setData({
         product_id: e.id,
@@ -203,7 +205,8 @@ Page({
         phone: e.phone || '',
         real_name: e.real_name || '',
         isnew: e.isnew,
-        total_num:e.total_num
+        total_num:e.total_num,
+        unique:e.unique || 0,
       })
 
       if (e.order_id) {

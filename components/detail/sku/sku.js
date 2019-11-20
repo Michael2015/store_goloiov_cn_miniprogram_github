@@ -133,7 +133,7 @@ Component({
       {
         if(k == skues[0])
         {
-          for(let kk in  this.data.attr)
+          for(let kk in  this.data.attr[k].attr_values)
           {
            if(kk == skues[1])
            {
@@ -146,6 +146,7 @@ Component({
           }
         }
       }
+      
       this.setData({
         attr_attr:temp,
         attr_price:this.data.attr_value[this.data.attr_attr_name].price,
