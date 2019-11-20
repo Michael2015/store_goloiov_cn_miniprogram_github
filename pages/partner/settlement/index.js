@@ -16,7 +16,9 @@ Page({
     phone: '',
     coupon_total: 0,//包括优惠券和限时秒杀优惠价
     total_num: 1,  //购买数量
-    pay_type:'weixin',//默认支付方式
+    pay_type:'',//默认支付方式
+    pay_type_show:false,
+    now_money:0.00,//我的积分余额
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -45,7 +47,8 @@ Page({
         pay_price: parseFloat(pay_price).toFixed(2),
         coupon_total: parseFloat(coupon_total2).toFixed(2),
         info: app.varStorage.get('storeDetail'),
-        coupon_total2
+        coupon_total2,
+        now_money:res.now_money,
       });
       //如果是新人专区商品,重新计算
       if (this.data.isnew == 'true') {
@@ -59,12 +62,11 @@ Page({
       wx.hideLoading()
     })
   },
-  pay(order_id, form_id) {
-    app.http.get('/api/customer/pay/pay', {
-      order_id
-    }).then(res => {
+  pay(order_id,form_id,pay_type="weixin") {
+    //调用微信
+    app.http.get('/api/customer/pay/pay', {order_id,pay_type}).then(res => {
       wx.hideLoading()
-      if (res) {
+      if (res && pay_type == 'weixin') {
         wx.requestPayment({
           timeStamp: res.timeStamp,
           nonceStr: res.nonceStr,
@@ -75,15 +77,7 @@ Page({
             self.setData({
               disabled_loading: false
             })
-            app.http.get('/api/customer/pay/queryOrder', {
-              order_id,
-              form_id,
-            }).then(res => {
-              // &position=${res.position}&outnums=${res.outnums}
-              wx.reLaunch({
-                "url": `/pages/customer/paysuccess/index?total_price=${res.total_price}&platoon_number=${res.platoon_number}&position=${res.position}&is_platoon=${res.is_platoon}&pay_type=${self.data.pay_type}`
-              })
-            })
+            paySuccessRedirect(order_id,form_id);
           },
           fail() {
             self.setData({
@@ -95,12 +89,28 @@ Page({
             })
           }
         })
-      } else {
+      } 
+      else if(res && pay_type == 'yue'){
+        paySuccessRedirect(order_id,form_id);
+      }
+      else {
         wx.showModal({
           content: '稍后重试 ',
           showCancel: false
         })
       }
+    })
+  },
+  paySuccessRedirect(order_id,form_id)
+  {
+    app.http.get('/api/customer/pay/queryOrder', {
+      order_id,
+      form_id,
+    }).then(res => {
+      // &position=${res.position}&outnums=${res.outnums}
+      wx.reLaunch({
+        "url": `/pages/customer/paysuccess/index?total_price=${res.total_price}&platoon_number=${res.platoon_number}&position=${res.position}&is_platoon=${res.is_platoon}`
+      })
     })
   },
   createOrder(formId) {
@@ -110,7 +120,7 @@ Page({
       wx.hideLoading()
       isDisabled = 1;
     } else if (!this.data.orderId && self.data.product_id && self.data.def_add && self.data.def_add.id) {
-      //下单之前让用户选择排队的队列
+      //创建订单
       app.http.post('/api/order/createOrder', {
         product_id: self.data.product_id,
         address_id: self.data.def_add.id,
@@ -119,7 +129,7 @@ Page({
         unique:self.data.unique,
         paytype:self.data.pay_type,
       }).then(res => {
-        this.pay(res.order_id, formId)
+        this.pay(res.order_id, formId,self.data.pay_type)
         wx.hideLoading()
         isDisabled = 1;
       }, () => {
@@ -173,7 +183,7 @@ Page({
     else {
       let def_add = {};
       let address = this.data.user_address.split(" ");
-      def_add.province = address[0],
+        def_add.province = address[0],
         def_add.city = address[1],
         def_add.district = address[2],
         def_add.detail = address[3],
@@ -186,11 +196,17 @@ Page({
   },
   formSubmit(e) {
     if (isDisabled) {
-      isDisabled = 0;
       this.setData({
-        disabled_loading: true
-      })
-      this.createOrder(e.detail.formId)
+        pay_type_show:true,
+      });
+      if(this.data.pay_type)
+      {
+        isDisabled = 0;
+        this.setData({
+            disabled_loading: true,
+        });
+        this.createOrder(e.detail.formId)
+      }
     }
   },
   //选择支付方式
@@ -220,14 +236,13 @@ Page({
         total_num:e.total_num,
         unique:e.unique || 0,
       })
-
       if (e.order_id) {
         this.setData({ is_show_action: 0, total_num: e.total_num })
       }
       if (e.isnew) {
         this.setData({ limit_num: e.limit_num, new_price: e.price })
       }
-      //this.getCoupon(e.id);
+      //获取价格
       this.price(e.id);
     } else
       wx.navigateBack()

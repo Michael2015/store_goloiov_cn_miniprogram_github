@@ -3,16 +3,23 @@ Component({
    * 组件的属性列表
    */
   properties: {
-  },
+    pay_type_show: {
+      type: Boolean,
+      value: false
+    },
+    now_money:{
+      type: Number,
+      value: 0.00
+    }
 
+  },
   /**
    * 组件的初始数据
    */
   data: {
-    show: true,
     payType:[
-      {id:'yue', name:"积分支付",label:"(剩余1999.99积分)",icon:"/assets/image/jifenpay.png"},
-      {id:'weixin', name:"微信支付",label:"",checked:'true',icon:"/assets/image/weixinpay.png"},
+      {id:'yue', name:"积分支付",icon:"/assets/image/jifenpay.png"},
+      {id:'weixin', name:"微信支付",icon:"/assets/image/weixinpay.png"},
       ]
   },
   /**
