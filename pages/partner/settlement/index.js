@@ -41,6 +41,13 @@ Page({
       } else {
         pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       }
+
+      let can_use_jifen = true;
+      //判断是否能用积分支付
+      if(pay_price > res.now_money)
+      {
+        can_use_jifen = false;
+      }
       //计算优惠后的价格
       this.setData({
         price: res,
@@ -49,6 +56,7 @@ Page({
         info: app.varStorage.get('storeDetail'),
         coupon_total2,
         now_money:res.now_money,
+        can_use_jifen,
       });
       //如果是新人专区商品,重新计算
       if (this.data.isnew == 'true') {

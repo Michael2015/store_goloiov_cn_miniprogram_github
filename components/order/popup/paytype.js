@@ -10,7 +10,11 @@ Component({
     now_money:{
       type: Number,
       value: 0.00
-    }
+    },
+    pay_price:{
+      type: Number,
+      value: 0.00
+    },
 
   },
   /**

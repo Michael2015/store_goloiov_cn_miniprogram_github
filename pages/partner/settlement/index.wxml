@@ -45,4 +45,4 @@
         <button class="confirm_btn" form-type="submit" loading="{{disabled_loading}}" disabled="{{disabled_loading}}">立即购买</button>
     </form>
 </view>
-<popup-paytype bind:myevent="selectPayType" pay_type_show="{{pay_type_show}}" now_money="{{now_money}}"></popup-paytype>
+<popup-paytype bind:myevent="selectPayType" pay_type_show="{{pay_type_show}}" now_money="{{now_money}}" can_use_jifen="{{can_use_jifen}}" pay_price="{{pay_price}}"></popup-paytype>
