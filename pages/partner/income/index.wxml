@@ -2,11 +2,13 @@
 <view class="wrap">
   <view id="topbox">
     <view class="banner">
-      <view class="circle"></view>
       <view class="content">
-        <view class="title">可提现金额</view>
+        <view class="title">账号总余额</view>
         <view class="all"><text>￥</text>{{cash}}</view>
-        <view class="detail">待结算　¥ <text>{{uncash}}</text>　|　总收入　¥ <text>{{all}}</text></view>
+          <view class="detail">待结算　¥ <text>{{uncash}}</text></view>
+          <view class="detail">总收入　¥ <text>{{all}}</text></view>
+          <view class="detail">可提现　¥ <text>{{can_withdraw}}</text></view>
+          <view class="detail">可消费　¥ <text>{{can_consume}}</text></view>
         <view class="{{'btn' + (cash <= 0&&false ? ' hui':'')}}" bindtap="toCash" data-url="cash">提现</view>
       </view>
     </view>

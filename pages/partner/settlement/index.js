@@ -71,6 +71,7 @@ Page({
     })
   },
   pay(order_id,form_id,pay_type="weixin") {
+    let that = this;
     //调用微信
     app.http.get('/api/customer/pay/pay', {order_id,pay_type}).then(res => {
       wx.hideLoading()
@@ -85,7 +86,7 @@ Page({
             self.setData({
               disabled_loading: false
             })
-            this.paySuccessRedirect(order_id,form_id);
+            that.paySuccessRedirect(order_id,form_id);
           },
           fail() {
             self.setData({
@@ -99,7 +100,7 @@ Page({
         })
       } 
       else if(res && pay_type == 'yue'){
-        this.paySuccessRedirect(order_id,form_id);
+        that.paySuccessRedirect(order_id,form_id);
       }
       else {
         wx.showModal({

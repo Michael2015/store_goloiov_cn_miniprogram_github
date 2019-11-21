@@ -51,6 +51,10 @@ page{
 }
 .banner .detail{
   font-size: 24rpx;
+  height:40rpx;
+  line-height:40rpx;
+  width:50%;
+  float:left;
 }
 .banner .detail text{
   font-size: 28rpx;

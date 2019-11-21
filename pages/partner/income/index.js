@@ -11,6 +11,8 @@ Page({
     loading: false,// 加载中
     cash: '', // 可提现金额
     uncash: '',// 未结算
+    can_withdraw:0.00,
+    can_consume:0.00,
     all: '', // 总收入
     list: [], // 公排列表
     page: 1, // 公排列表页码
@@ -64,7 +66,9 @@ Page({
         this.setData({
           cash: data.cash_money,
           uncash: data.unsettled_money,
-          all: data.total_money
+          all: data.total_money,
+          can_withdraw:data.can_withdraw,
+          can_consume:data.can_consume,
         })
       }),
       this.loadGongPai(),
