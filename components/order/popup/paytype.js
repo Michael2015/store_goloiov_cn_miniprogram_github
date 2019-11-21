@@ -15,7 +15,10 @@ Component({
       type: Number,
       value: 0.00
     },
-
+    can_use_jifen:{
+      type: Boolean,
+      value: false
+    }
   },
   /**
    * 组件的初始数据
