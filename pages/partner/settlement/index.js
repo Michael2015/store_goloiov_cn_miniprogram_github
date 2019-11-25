@@ -254,7 +254,11 @@ Page({
       //获取价格
       this.price(e.id);
     } else
+    {
       wx.navigateBack()
+    }
+    //禁止返回首页
+    wx.hideHomeButton();
   },
   goAddAddress() {
     wx.navigateTo({

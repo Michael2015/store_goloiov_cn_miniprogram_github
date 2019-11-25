@@ -25,7 +25,7 @@
 .setcount .reduce_pruduct_num{
     height: 60rpx;
     width:  60rpx;
-    line-height: 50rpx;
+    line-height: 60rpx;
     text-align: center;
     border:1rpx solid  #e6e6e6; 
 }
