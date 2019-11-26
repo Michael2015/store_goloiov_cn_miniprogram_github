@@ -91,9 +91,9 @@ Component({
       
       if (this.data.is_newborn == true) {
         title = `该活动每人限购${this.data.limit_num}件`
-        limit_total_num = this.data.limit_num;
+        limit_total_num = this.data.limit_num > limit_total_num ? limit_total_num : this.data.limit_num;
       }
-      if (e.detail.value > limit_total_num) {
+      if (e.detail.value >= limit_total_num) {
         wx.showToast({ title: title, icon: 'none' });
         this.setData({
           total_num: limit_total_num

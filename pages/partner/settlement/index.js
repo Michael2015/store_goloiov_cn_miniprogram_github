@@ -41,10 +41,15 @@ Page({
       } else {
         pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       }
+       //如果是新人专区商品,重新计算
+       if (this.data.isnew == 'true') {
+        res.price = this.data.new_price;
+        pay_price = res.price*+this.data.total_num;
+      }
 
       let can_use_jifen = true;
-      //判断是否能用积分支付
-      if(pay_price > res.now_money)
+      //判断是否能用积分支付,如果是未支付订单重新支付，不能使用积分
+      if(pay_price > res.now_money || this.data.orderId)
       {
         can_use_jifen = false;
       }
@@ -58,15 +63,7 @@ Page({
         now_money:res.now_money,
         can_use_jifen,
       });
-      //如果是新人专区商品,重新计算
-      if (this.data.isnew == 'true') {
-        let price = this.data.price;
-        price.price = this.data.new_price,
-        this.setData({
-            price,
-            pay_price: parseFloat(price.price*+this.data.total_num).toFixed(2)
-        })
-      }
+     
       wx.hideLoading()
     })
   },
@@ -125,7 +122,8 @@ Page({
   createOrder(formId) {
     //待支付订单处理逻辑
     if (this.data.orderId) {
-      this.pay(this.data.orderId, formId);
+      this.pay(this.data.orderId,formId);
+      //待支付状态只有微信支付，所以积分支付是不能选择
       wx.hideLoading()
       isDisabled = 1;
     } else if (!this.data.orderId && self.data.product_id && self.data.def_add && self.data.def_add.id) {

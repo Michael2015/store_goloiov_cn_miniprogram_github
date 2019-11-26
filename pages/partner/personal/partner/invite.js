@@ -43,6 +43,8 @@ Page({
         }
       })
     }
+     //禁止返回首页
+     wx.hideHomeButton();
   },
   join() {
     if (this.data.ok) {

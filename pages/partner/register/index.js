@@ -19,7 +19,9 @@ Page({
           data
         })
       }
-    })
+    }),
+     //禁止返回首页
+     wx.hideHomeButton();
   },
   join() {
     // 这里是没有上级的
