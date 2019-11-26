@@ -15,6 +15,8 @@ Page({
       miandanma: e.platoon_number,
       is_platoon: e.is_platoon // 是否是参加公排的商品
     });
+      //禁止返回首页
+      wx.hideHomeButton();
   },
   goIndex() {
     if (app.globalData.role === 0)

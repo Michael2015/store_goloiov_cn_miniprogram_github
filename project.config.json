@@ -235,7 +235,7 @@
 					"id": 25,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
-					"query": "scene= 110,110,1, share",
+					"query": "scene= 2,2,2,share",
 					"scene": null
 				},
 				{
