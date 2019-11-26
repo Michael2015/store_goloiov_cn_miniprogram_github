@@ -43,7 +43,8 @@ App({
               let share_user_id = app.globalData.shareInfo.share_user_id;
               let share_partner_id = app.globalData.shareInfo.share_partner_id;
               let share_product_id = app.globalData.shareInfo.share_product_id;
-              wx.reLaunch({url:'/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id});
+              let type = app.globalData.shareInfo.type;
+              wx.reLaunch({url:'/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id+'&type='+type});
               reject(data)
             }
             else {
@@ -100,6 +101,7 @@ App({
     userInfo: {},
     partnerInfo: {},
     token: '' || '92f862c626264fdf7ec87b7b1b80c917',
+    //token: "b81eb331547538053441176f6df4d096",
     // role: 用户角色 0客户 1合伙人
     role: null,   
     //HOST: 'https://wcp.szyrwl.com',

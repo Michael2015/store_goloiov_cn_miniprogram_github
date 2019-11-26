@@ -58,6 +58,7 @@ Page({
                     app.globalData.shareInfo.share_user_id = options.s || 0; // 推荐人
                     app.globalData.shareInfo.share_partner_id = options.p || 0;// 店铺 或者 合伙人id
                     app.globalData.shareInfo.share_product_id = options.st || 0;// 商品id
+                    app.globalData.shareInfo.type = options.type || ''; // 分享类型
                     if (options.type === 'invite') {
                         // let partner_invite_id = app.globalData.partner_invite_id;
                         let share_user_id = app.globalData.partner_invite_id || app.globalData.shareInfo.share_user_id;
@@ -338,6 +339,7 @@ function analysisOptions(options, res) {
         app.globalData.shareInfo.share_user_id = options.s // 推荐人
         app.globalData.shareInfo.share_partner_id = options.p // 店铺 或者 合伙人id
         app.globalData.shareInfo.share_product_id = options.st // 商品id
+        app.globalData.shareInfo.type = options.type // 分享类型
         //根据用户身份不同去对应的商品详情页
         if (res.is_promoter === 0) {
             wx.redirectTo({
