@@ -19,8 +19,6 @@ Page({
         page = this;
         // 保存参数
         this.data.options = options || {};
-        console.log('+++++++++++++')
-        console.log( this.data.options)
         // 二维码进来参数处理
     },
     login(userInfo) {

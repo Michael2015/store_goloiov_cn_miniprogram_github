@@ -53,10 +53,6 @@ Page({
                 } else {
                     //用户未授权的情况下
                     console.log('===========用户未授权下=========')
-                    console.log('==========share_id========='+options.share_id)
-                    console.log('===========share_user_id========='+options.s)
-                    console.log('===========share_partner_id========='+options.p)
-                    console.log('===========share_product_id========='+options.st)
                     app.globalData.token = '';
                     app.globalData.role = 0;
                     app.globalData.partner_invite_id = options.share_id || 0;

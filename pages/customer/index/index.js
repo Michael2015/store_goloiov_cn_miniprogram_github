@@ -364,7 +364,6 @@ Page({
         let share_user_id = app.globalData.shareInfo.share_user_id;
         let share_partner_id = app.globalData.shareInfo.share_partner_id;
         let share_product_id = app.globalData.shareInfo.share_product_id;
-        console.log(share_user_id+'__'+share_partner_id+'__'+share_product_id);
         wx.reLaunch({
             url: '/pages/login/index?type=share&share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id
         })
