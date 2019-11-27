@@ -196,6 +196,7 @@ view{
   font-size: 28rpx;
   background-color: #fff;
   padding: 0 24rpx 24rpx;
+  height:500rpx;
 }
 .detail .order-info .title{
   font-weight: 800;

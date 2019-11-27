@@ -381,7 +381,8 @@ Page({
                     if (that.data.first) {
                         that.data.detailTitle.checkJoinMask();
                         that.setData({
-                            first: false
+                            first: false,
+                            count_mask: false,
                         })
                         return
                     }

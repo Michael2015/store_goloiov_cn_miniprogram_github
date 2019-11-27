@@ -4,7 +4,7 @@
     </view>
     <view class="title">使用虚拟资产需要验证，<em>{{phone}}</em>为您的手机号，请输入手机短信验证码</view>
     <view class="input">
-        <input class="input" name="code" placeholder="请输入验证码" type="number"  bindinput="setCode"/>
+        <input class="input" value="{{value}}" name="code" placeholder="请输入验证码" type="number"  bindinput="setCode"/>
         <button bindtap="getCode">{{checkText}}</button>
     </view>
     <button class="submit" bindtap="submit"> 提 交 </button>

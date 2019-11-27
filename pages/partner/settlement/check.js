@@ -6,11 +6,23 @@ Page({
     sendingcode:false,
     checkText:'获取验证码',
     code:'',
-    phone:''
+    phone:'',
+    value:''
   },
 
   setCode(e) {
     let value = e.detail.value;
+    if(value.length > 4)
+    {
+      wx.showToast({
+        title: '请输入正确验证码',
+        icon: 'none'
+      });
+      this.setData({
+        value: this.data.code
+      })
+      return;
+    }
     this.setData({
         code: value
     })
