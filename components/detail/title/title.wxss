@@ -338,6 +338,7 @@ line-height:38rpx;
   width: 630rpx;
   height: 330rpx;
   text-align: center;
+  z-index:3
 }
 .join-box > view:nth-child(1){
   margin-top:20rpx;

@@ -89,7 +89,6 @@
 }
 .partner .col-1{
   width: 3.5em;
-  text-align: right;
   color: #666;
 }
 .partner .col-2{

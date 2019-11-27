@@ -243,6 +243,7 @@ view{
   justify-content: flex-end;
   align-items: center;
   background-color: #fff;
+  z-index:2;
 }
 .detail .action-bar .btn{
   font-size: 24rpx;

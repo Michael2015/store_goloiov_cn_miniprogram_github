@@ -9,42 +9,53 @@
   bottom:96rpx;
   overflow: hidden;
   padding:8%;
+  padding-top:2%;
 }
 .title{
-  font-size: 30rpx;
+  font-size: 35rpx;
   color:#373737;
   margin-top: 0rpx;
 }
 .title.price
 {
-  color:#ea2224;
   font-size:50rpx;
   font-weight:bold;
-  margin-top: 20rpx;
+  margin: 30rpx 0;
 }
 .wrap .radio label
 {
   float:left;
+  height:100%;
 }
 .wrap .radio label em
 {
+  float:right;
   color:#999;
 }
 .wrap .radio label image{
-  width:25rpx;
-  height:25rpx;
+  margin-top:30rpx;
+  width:40rpx;
+  height:40rpx;
+  margin-right:20rpx;
 }
 .wrap .radio radio
 {
-  float:right;
+  width:15%;
 }
 .wrap .radio .line{
-  display:block;
+  display:flex;
   width:100%;
-  height:90rpx;
-  line-height:50rpx;
+  height:100rpx;
+  line-height:100rpx;
   font-size:30rpx;
+  border-bottom:1rpx  solid #e6e6e6;
 }
+
+.wrap .radio .line .wd{
+  display:flex;
+  width:85%;
+}
+
 .wrap .clear{
   clear:both;
 }

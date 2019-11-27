@@ -128,6 +128,19 @@ Page({
       isDisabled = 1;
     } else if (!this.data.orderId && self.data.product_id && self.data.def_add && self.data.def_add.id) {
       //创建订单
+      //用积分支付的时候，需要短信验证
+      if(self.data.pay_type == 'yue' && !app.globalData.isCheckPhone)
+      {
+        isDisabled = 1;
+        this.setData({
+          disabled_loading:false,
+          disabled_loading:false,
+        });
+        wx.navigateTo({
+          url:'/pages/partner/settlement/check'
+        });
+        return;
+      }
       app.http.post('/api/order/createOrder', {
         product_id: self.data.product_id,
         address_id: self.data.def_add.id,
@@ -227,7 +240,6 @@ Page({
       });
     }
   },
-
   onLoad(e) {
     self = this;
     app.varStorage.del('isShareBack');
@@ -255,6 +267,8 @@ Page({
     {
       wx.navigateBack()
     }
+    //没有做虚拟验证
+    app.globalData.isCheckPhone = 0;
     //禁止返回首页
     wx.hideHomeButton();
   },

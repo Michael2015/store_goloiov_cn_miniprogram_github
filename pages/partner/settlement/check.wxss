@@ -1,0 +1,48 @@
+.wrap
+{
+    padding:8%;
+    font-size:30rpx;
+}
+.wrap .title
+{
+    margin-bottom:20rpx;
+}
+.wrap .title  em
+{
+    color:#e70002;
+}
+.wrap .input
+{
+    display:flex;
+    flex:1;
+    height:60rpx;
+    line-height:60rpx;
+    font-size:24rpx;
+}
+.wrap .input input{
+    border-bottom:1rpx solid #eee;
+}
+
+.wrap .input button
+{
+    height:60rpx;
+    line-height:60rpx;
+    background:#e70002;
+    font-size:24rpx;
+    color:#fff;
+    width:170rpx;
+}
+.wrap .submit
+{
+    margin-top:50rpx;
+    background:#e70002;
+    color:#fff;
+}
+.wrap .head-img
+{
+    text-align:center;
+}
+.wrap .head-img image
+{
+    width:350rpx;
+}

@@ -49,7 +49,8 @@
     "pages/partner/personal/admin/applyflag",
     "pages/partner/personal/admin/applylist",
     "pages/partner/personal/admin/applydetail",
-    "pages/partner/personal/admin/applyadopt"
+    "pages/partner/personal/admin/applyadopt",
+    "pages/partner/settlement/check"
   ],
   "tabBar": {
     "custom": true,

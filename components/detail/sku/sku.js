@@ -65,12 +65,18 @@ Component({
     add_pruduct_num() {
       if (this.data.is_newborn == true) {
         if (this.data.total_num + 1 > this.data.limit_num) {
+          this.setData({
+            total_num: this.data.limit_num
+          });
           wx.showToast({ title: `该活动每人限购${this.data.limit_num}件`, icon: 'none' })
           return
         }
       }
       //限制50单
-      if (this.data.total_num > 50) {
+      if (this.data.total_num + 1 > 50) {
+        this.setData({
+          total_num: 50
+        });
         wx.showToast({ title: `单次限购50件`, icon: 'none' });
         return;
       }
