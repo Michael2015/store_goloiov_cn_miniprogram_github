@@ -386,6 +386,9 @@ Page({
                         return
                     }
                     url = `/pages/partner/settlement/index?id=${product_id}&isnew=${!!is_newborn}&limit_num=${!!limit_num ? limit_num : 0}&price=${!!price ? price : 0.00}&total_num=${total_num}&unique=${unique}`;
+                    wx.navigateTo({
+                        url: url
+                    })
                 }
                 else {
                     let share_user_id = app.globalData.shareInfo.share_user_id;
@@ -397,10 +400,10 @@ Page({
                     else {
                         url = '/pages/login/index?share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id;
                     }
+                    wx.reLaunch({
+                        url: url
+                    })
                 }
-                wx.reLaunch({
-                    url: url
-                })
             }
         });
 

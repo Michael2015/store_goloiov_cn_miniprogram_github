@@ -24,6 +24,7 @@
     text-align: center;
     border:1rpx solid  #999;
     border-left:0;
+    box-sizing:border-box;
 }
 .setcount .reduce_pruduct_num{
     height: 60rpx;
@@ -32,6 +33,7 @@
     text-align: center;
     border:1rpx solid  #999; 
     border-right:0;
+        box-sizing:border-box;
 }
 .setcount .count_pruduct_num{
     flex: 1;

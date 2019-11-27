@@ -6,7 +6,7 @@ Page({
     sendingcode:false,
     checkText:'获取验证码',
     code:'',
-    phone:'13794888292'
+    phone:''
   },
 
   setCode(e) {
@@ -17,7 +17,7 @@ Page({
   },
   getCode()
   {
-      let  phone = this.data.phone;//app.globalData.userInfo.phone;
+      let  phone = this.data.phone;
       if (this.data.sendingcode) return
       if (!/^1[\d]{10}$/.test(phone)) {
           wx.showToast({
@@ -58,7 +58,6 @@ Page({
           this.data.sendingcode = false
       })
   },
-
   submit()
   {
     if(!this.data.code)
@@ -76,6 +75,12 @@ Page({
       app.globalData.isCheckPhone = 1;
       wx.navigateBack({delta:1});
     })
+  },
+  onLoad()
+  {
+    this.setData({
+      phone:app.globalData.userInfo.phone
+    });
   }
 
 })
