@@ -1,4 +1,11 @@
-
+.mask-pop{
+  position: fixed;
+  top:0;
+  width: 100%;
+  bottom: calc(108rpx + env(safe-area-inset-bottom));
+  z-index: 1;
+  background: rgba(0,0,0,0.6);
+}
 .mask{
     background: #fff;
     width: 92%;
@@ -10,37 +17,38 @@
     font-size:24rpx;
     box-sizing:content-box;
     z-index:2;
+    border-radius: 5% 5% 0 0;
 }
 .mask_box .setcount{
-    height: 60rpx;
+    height: 50rpx;
     display: flex;
     justify-content: space-between;
     margin-bottom:20rpx;
 }
 .setcount .add_pruduct_num{
-    height: 60rpx;
-    width: 60rpx;
-    line-height: 60rpx;
+    height: 50rpx;
+    width: 50rpx;
+    line-height: 50rpx;
     text-align: center;
     border:1rpx solid  #999;
     border-left:0;
     box-sizing:border-box;
 }
 .setcount .reduce_pruduct_num{
-    height: 60rpx;
-    width:  60rpx;
-    line-height: 60rpx;
+    height: 50rpx;
+    width:  50rpx;
+    line-height: 50rpx;
     text-align: center;
     border:1rpx solid  #999; 
     border-right:0;
         box-sizing:border-box;
 }
 .setcount .count_pruduct_num{
-    flex: 1;
+    width: 100rpx;
     text-align: center;
     color: #999;
-    line-height: 60rpx;
-    height:60rpx;
+    line-height: 50rpx;
+    height:50rpx;
     border:1rpx solid  #999;
     box-sizing:border-box;
 }
@@ -71,8 +79,8 @@
 .mask .close
 {
   position:absolute;
-  top:5rpx;
-  right:5rpx;
+  top:10rpx;
+  right:10rpx;
 }
 .mask .close image
 {
@@ -89,12 +97,13 @@
 .mask_box .setcount2 .btn.active
 {
   color:#e70002;
+  border: 1px solid #e70002;
 }
 .mask .head{
   display:flex;
 }
 .mask .head .left{
-  width:35%;
+  width:200rpx;
 }
 .mask .head .left image
 {
@@ -110,7 +119,11 @@
   color:#e70002;
   font-weight:bold;
 }
-
+.pt40{
+  padding-top: 20rpx;
+  margin-top: 40rpx;
+  border-top: 1px solid #eee;
+}
 .mask_box .clear
 {
   clear:both;

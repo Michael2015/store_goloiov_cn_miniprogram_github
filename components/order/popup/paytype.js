@@ -39,6 +39,11 @@ Component({
       let pay_type = e.detail.value;
       this.triggerEvent("myevent", { 'pay_type': pay_type});
     },
+    close(){
+      this.setData({
+        pay_type_show: false
+      })
+    }
   },
 
 })

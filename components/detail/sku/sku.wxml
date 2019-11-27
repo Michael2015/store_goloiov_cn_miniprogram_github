@@ -22,7 +22,7 @@
                 </view>
                 <view class="clear"></view>
             </block>
-
+            <view class="pt40">
             <view class="label">数量</view>
             <view class="setcount">
                 <view class="reduce_pruduct_num" bindtap='reduce_pruduct_num'>-</view>
@@ -30,5 +30,7 @@
                 <view class="add_pruduct_num" bindtap="add_pruduct_num">+</view>
                 <view class="empty"></view>
             </view>
+            </view>
         </view>
 </view>
+<view class="mask-pop" wx:if="{{isShow}}" catchtap='checkmask'></view>

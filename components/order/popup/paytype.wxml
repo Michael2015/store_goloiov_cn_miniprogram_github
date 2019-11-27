@@ -2,6 +2,7 @@
 <view wx:if="{{pay_type_show}}">
   <view class="wrap">
     <view class="title">确认付款</view>
+    <view class="close" bindtap="close"></view>
     <view class="title price">¥{{pay_price}}</view>
     <radio-group class="radio" bindchange="radioChange">
       <view wx:for="{{payType}}" wx:key="id" class="line">
@@ -15,3 +16,4 @@
     </radio-group>
   </view>
 </view>
+<view class="mask-pop" wx:if="{{pay_type_show}}" bindtap="close"></view>
