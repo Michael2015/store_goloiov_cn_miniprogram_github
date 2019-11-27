@@ -29,7 +29,7 @@ Page({
       this.data.sendingcode = true
       app.http.get('/api/server/sms/sendCode', {
           mobile: phone,
-          event: 'default'
+          event: 'virtual_property'
       }).then(res => {
           var all = 60 // 30秒
           this.setData({
