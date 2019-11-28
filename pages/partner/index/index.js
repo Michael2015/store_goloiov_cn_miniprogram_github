@@ -7,7 +7,7 @@ const defaultSwiperHeight = 200
 Page({
   data: {
     storelist: [],
-    alllist: [],
+    //alllist: [],
     isLoad: 0,
     page: 1,
     limit: 10,
@@ -15,7 +15,7 @@ Page({
     keyword: '',
     noviceShow: null,
     isAllowLoad: true,
-    isAllowLoad2: true,
+    //isAllowLoad2: true,
     coupon_id: 0,
     coupon_date: '',
     coupon_price: 0,
@@ -84,7 +84,8 @@ Page({
     let timeList2 = [];
     // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
     const apiUrl = this.data.selectClassId === -1 ? '/api/partner/home/storelist' : '/api/marketing/getCategoryProducts'
-    const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword } : { cate_id: this.data.selectClassId }
+    const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword } : { cate_id: this.data.selectClassId,keyword: this.data.keyword }
+    console.log(httpObj)
     app.http.post(apiUrl, httpObj).then(res => {
       if (this.data.selectClassId !== -1) {
         // let storelist = this.data.storelist.concat(res);
@@ -100,14 +101,20 @@ Page({
           timeList: timeList2,
         });
       } else if (this.data.selectClassId == -1) {
+        this.setData({
+          storelist:res
+        });
         if(this.data.isLoad ==1 ){
           wx.hideLoading();
           return
         }
+        /* 旧版逻辑目前统一用storelist
         let alllist = this.data.alllist.concat(res)
+        let alllist = res
         this.setData({
           alllist
         })
+        */
         if (res && res.length < this.data.limit) {
           this.setData({
             isLoad: 1
@@ -151,7 +158,7 @@ Page({
   },
   // 获取车联网专区的数据
   getTransverseCarData() {
-    app.http.post('/api/marketing/getCategoryProducts', { cate_id: this.data.transverseCar_cateId }).then(res => {
+    app.http.post('/api/marketing/getCategoryProducts', { cate_id: this.data.transverseCar_cateId,keyword: this.data.keyword }).then(res => {
       this.setData({ transverseCarList: res })
     })
   },
@@ -168,7 +175,7 @@ Page({
       this.storelist()
       return
     }
-    app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id }).then(res => {
+    app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id, keyword: this.data.keyword }).then(res => {
       this.setData({ storelist: res, isLoad: 1, isloading: false })
     })
   },
@@ -309,11 +316,11 @@ Page({
     })
   },
   setSearchText(e) {
+    //console.log(1111)
     let detail_val = e.detail.value.trim()
 
-    if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
-
-    this.data.isAllowLoad2 = false;
+    //if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
+    //this.data.isAllowLoad2 = false;
     if (detail_val != text) {
       text = detail_val
       this.setData({
@@ -325,7 +332,8 @@ Page({
       })
 
     }
-    this.data.isAllowLoad2 = true;
+   
+    //this.data.isAllowLoad2 = true;
   },
   clearText() {
     this.setData({
