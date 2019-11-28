@@ -8,7 +8,7 @@
       <view wx:for="{{payType}}" wx:key="id" class="line">
         <view class="wd">
                <label class="image"><image src="{{item.icon}}"></image></label>
-               <label>{{item.name}}<em wx:if="{{item.id == 'yue'}}">(积分{{now_money}})</em></label>
+               <label>{{item.name}}<em wx:if="{{item.id == 'yue'}}">(余额¥{{now_money}})</em></label>
         </view>
         <radio disabled="{{!can_use_jifen && item.id == 'yue' ? true : false}}" value="{{item.id}}"></radio>
         <view class="clear"></view>
