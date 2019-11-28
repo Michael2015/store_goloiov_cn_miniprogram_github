@@ -318,11 +318,11 @@ Page({
   setSearchText(e) {
     //console.log(1111)
     let detail_val = e.detail.value.trim()
-
+    console.log(detail_val)
     //if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
     //this.data.isAllowLoad2 = false;
-    if (detail_val != text) {
-      text = detail_val
+    if (detail_val != "") {
+      //text = detail_val
       this.setData({
         page: 1,
         storelist: [],
