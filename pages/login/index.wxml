@@ -19,6 +19,7 @@
         <view class="d border-bottom-global">用于获取您的订单数据</view>
         <view class="btn">
             <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="handleUserInfo" data-opentype='getUserInfo' class="btn-getuser">登录</button>
+            <button class="back" bindtap="goback">返回</button>
         </view>
         <view>
             <checkbox-group bindchange="checkboxChange">

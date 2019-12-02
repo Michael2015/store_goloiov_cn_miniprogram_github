@@ -277,6 +277,13 @@ Page({
     onShow()
     {
         wx.hideHomeButton();
+    },
+    //返回到客户端首页
+    goback()
+    {
+        wx.switchTab({
+            url: '/pages/customer/index/index'
+        })
     }
 })
 

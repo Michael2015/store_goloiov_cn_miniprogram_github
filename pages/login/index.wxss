@@ -68,9 +68,10 @@ view{
   
   .btn{
     margin-top: 36rpx;
+    display:flex;
   }
   .btn-getuser{
-    width: 65%;
+    width: 75%;
     background-color: #e91517;
     background: linear-gradient(to right, #ef5456, #e70002);
     font-size: 32rpx;
@@ -204,4 +205,14 @@ view{
   .agree checkbox{
     transform:scale(.6);
     vertical-align: middle;
+  }
+  .back{
+    background:#e6e6e6;
+    color:#000;
+    width:25%;
+    height:80rpx;
+    line-height:80rpx;
+    text-align:center;
+    font-size:32rpx;
+    border-radius:40rpx;
   }
