@@ -371,6 +371,7 @@ scroll-view{
   font-size: 20rpx;
   display: flex;
   text-align: center;
+  z-index:4;
 }
 .bar-item{
   padding: 0 35rpx;

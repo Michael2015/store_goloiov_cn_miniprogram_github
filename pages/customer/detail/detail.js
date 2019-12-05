@@ -167,7 +167,7 @@ Page({
             let attr_attr_arr = [];
             let attr_attr_name = [];
             let attr_price = res.price;//默认属性价格
-            let attr_product_image_url = res.slider_image;//默认属性商品图片
+            let attr_product_image_url = res.slider_image[0];//默认属性商品图片
             let unique = '';
             for(let i = 0; i < res.attr_attr_length;i++)
             {
