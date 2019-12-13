@@ -46,7 +46,7 @@ scroll-view{
   color:#666;
   flex: 1;
   text-align: left;
-  padding-left: 24rpx;
+  padding-left: 54rpx;
   padding-bottom: 10rpx;
 }
 .sales .lastmonthsale text{
@@ -54,7 +54,7 @@ scroll-view{
 }
 .sales .lastmonthsale span{
   font-size: 24rpx;
-  padding-right: 22rpx;
+  padding-right: 54rpx;
   float: right;
   color:#e70002;
 }
