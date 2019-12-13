@@ -38,6 +38,26 @@ scroll-view{
   font-size: 28rpx;
   color:#e70002;
 }
+.sales {
+  padding-top : 15rpx;
+}
+.sales .lastmonthsale{
+  font-size:20rpx;
+  color:#666;
+  flex: 1;
+  text-align: left;
+  padding-left: 24rpx;
+  padding-bottom: 10rpx;
+}
+.sales .lastmonthsale text{
+  font-size: 24rpx;
+}
+.sales .lastmonthsale span{
+  font-size: 24rpx;
+  padding-right: 22rpx;
+  float: right;
+  color:#e70002;
+}
 .search-wrap{
   margin: 24rpx;
   background: #f5f5f5;

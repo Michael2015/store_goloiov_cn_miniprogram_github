@@ -11,6 +11,8 @@ Page({
     avatar: '',
     name: '',
     list: [],
+    sales_total: '0.00',
+    update_level_sales_total: '0.00',
     all: 0,
     higher: null,
     default: '',
@@ -42,6 +44,14 @@ Page({
         // 没有上级 ，就是万车品
         this.setData({
           default: data.avatar
+        })
+      }
+    })
+    app.http.get('/api/partner/partner/getMyselfSales').then(data => {
+      if (data) {
+        this.setData({
+          sales_total: data.sale_total,
+          update_level_sales_total: data.update_level_sale_total,
         })
       }
     })

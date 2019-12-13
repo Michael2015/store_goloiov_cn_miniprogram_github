@@ -8,6 +8,10 @@
     <view class="name">{{name}}</view>
     <view class="sum"><text>{{all}}</text> 人</view>
   </view>
+  <view class="sales">
+      <view class="lastmonthsale"><text>计算管理津贴业绩：</text> <span>{{sales_total}}</span></view>
+      <view class="lastmonthsale"><text>计算级别晋升业绩: </text><span>{{update_level_sales_total}}</span></view>
+    </view>
   <view class="search-wrap">
     <image src="/assets/image/p-search.png" mode="widthFix" class="icon"></image>
     <input type="text" bindinput="oninput" placeholder="请输入合伙人昵称" placeholder-class="placeholder" />
