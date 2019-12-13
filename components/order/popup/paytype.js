@@ -25,7 +25,7 @@ Component({
    */
   data: {
     payType:[
-      {id:'yue', name:"积分支付",icon:"/assets/image/jifen.png"},
+      {id:'yue', name:"余额支付",icon:"/assets/image/jifen.png"},
       {id:'weixin', name:"微信支付",icon:"/assets/image/wxpay.png"},
       ]
   },
