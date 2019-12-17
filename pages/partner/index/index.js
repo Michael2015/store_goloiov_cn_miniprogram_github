@@ -321,7 +321,6 @@ Page({
     console.log(detail_val)
     //if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
     //this.data.isAllowLoad2 = false;
-  
     if (detail_val != this.data.keyword) {
       //text = detail_val
       this.setData({
