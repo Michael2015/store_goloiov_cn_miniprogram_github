@@ -10,4 +10,5 @@
             <view class="apply_flag ing">{{applyObj[item.status]}}</view>
         </view>
     </view>
+    <view class="no-more">没有更多数据</view>
 </view>

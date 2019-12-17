@@ -37,3 +37,11 @@ page{
 .bottom .ing{
     color: #fe0000;
 }
+.no-more {
+  text-align: center;
+  color: #aaa;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  visibility:visible;
+  margin-top: 20rpx;
+}
