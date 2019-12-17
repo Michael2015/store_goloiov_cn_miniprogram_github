@@ -88,7 +88,7 @@ Page({
     console.log(httpObj)
     app.http.post(apiUrl, httpObj).then(res => {
       if (this.data.selectClassId !== -1) {
-        // let storelist = this.data.storelist.concat(res);
+        //let storelist = this.data.storelist.concat(res);
         let storelist = res;
         //处理倒计时
         for (let key in storelist) {
@@ -102,7 +102,7 @@ Page({
         });
       } else if (this.data.selectClassId == -1) {
         this.setData({
-          storelist:res
+          storelist:this.data.storelist.concat(res)
         });
         if(this.data.isLoad ==1 ){
           wx.hideLoading();
@@ -321,7 +321,8 @@ Page({
     console.log(detail_val)
     //if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
     //this.data.isAllowLoad2 = false;
-    if (detail_val != "") {
+  
+    if (detail_val != this.data.keyword) {
       //text = detail_val
       this.setData({
         page: 1,
