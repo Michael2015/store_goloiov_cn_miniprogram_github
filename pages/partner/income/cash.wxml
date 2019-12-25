@@ -41,11 +41,14 @@
   <navigator url="cash-record" class="record">提现申请记录 >></navigator>
   <view class="rule">
     <view class="title">提现说明</view>
-    <view>1、每次提现不少于 <text class="light">10元</text><!-- ，平台会收取 <text class="light">1%</text> 提现手续费 --></view>
-    <view>2、每天可申请提现 <text class="light">3</text>次，每天提现不超过<text class="light">50,000</text>元 </view>
-    <view>3、平台会根据税法扣除相应个人所得税</view>
+    <view>1、每次提现不少于 <text class="light">10元；</text><!-- ，平台会收取 <text class="light">1%</text> 提现手续费 --></view>
+    <view>2、每天可申请提现 <text class="light">3</text>次，每天提现不超过<text class="light">5,000</text>元；</view>
+    <view>3、平台会根据税法扣除相应个人所得税；</view>
     <!-- <view>4、目前仅支持提现到本人微信钱包。</view> -->
+    <!--
     <view>4、目前仅支持提现到本人银行卡，预计1-3个工作日内到账</view>
-    <view>5、平台收益的90%支持提现和在万车品平台消费，10%仅可在万车品商城消费</view>
+    -->
+    <view>4、目前仅支持提现到微信零钱；</view>
+    <view>5、平台收益的80%支持提现和在万车品平台消费，20%仅可在万车品商城消费。</view>
   </view>
 </view>

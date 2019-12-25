@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab: 0, // 0 提现到银行卡， 1 提现到微信
+    tab: 1, // 0 提现到银行卡， 1 提现到微信
     all: '',
     value: '',
     bank_code: null,
@@ -19,15 +19,15 @@ Page({
     this.setData({
       tab: data.i
     })
-    if (this.data.tab === 1) {
+    if (this.data.tab === 0) {
       wx.showModal({
         title: '提示',
-        content: '暂不支持提现到微信',
+        content: '暂不支持提现到银行卡',
         showCancel: false,
         success:(res) => {
           if (res.confirm) {
             this.setData({
-              tab: 0
+              tab: 1
             })
           }
         }
@@ -91,7 +91,7 @@ Page({
   },
   submit() {
     const value = Number(this.data.value)
-    if (value != this.data.value || value <= 0 || value < 10 || value > 50000) {
+    if (value != this.data.value || value <= 0 || value < 10 || value > 5000) {
       wx.showToast({
         title: '请输入正确金额',
         icon: 'none',
@@ -109,7 +109,7 @@ Page({
       return
     }
 
-    if (this.tab === 0&&!this.data.bank_code) {
+    if (this.tab === 0 && !this.data.bank_code) {
       wx.showToast({
         title: '请添加银行卡',
         icon: 'none',
@@ -135,7 +135,7 @@ Page({
       // 跳转到提现记录页
       wx.showModal({
         title: '提示',
-        content: '申请提现成功，预计1-3个工作日内到账',
+        content: '申请提现成功，请查看微信钱包',
         showCancel: false,
         success:(res) => {
           wx.navigateTo({
