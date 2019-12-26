@@ -19,7 +19,7 @@ Page({
     this.setData({
       tab: data.i
     })
-    if (this.data.tab === 0) {
+    if (this.data.tab === 2) {
       wx.showModal({
         title: '提示',
         content: '暂不支持提现到银行卡',
@@ -57,6 +57,8 @@ Page({
   },
   getAll() {
     app.http.get('/api/partner/index/withdraw').then(data => {
+      console.log('==========')
+      console.log(data)
       if (data) {
         this.setData({
           all: data.withdraw_amount,
@@ -91,7 +93,7 @@ Page({
   },
   submit() {
     const value = Number(this.data.value)
-    if (value != this.data.value || value <= 0 || value < 10 || value > 5000) {
+    if (value != this.data.value || value <= 0 || value < 1 || value > 5000) {
       wx.showToast({
         title: '请输入正确金额',
         icon: 'none',
@@ -122,12 +124,6 @@ Page({
       amount: value,
       extract_type: ['bank', 'wx'][this.data.tab]
     }).then(data => {
-      console.log(data)
-      // wx.showToast({
-      //   title: data || '提现成功',
-      //   icon: 'none',
-      //   duration: 2000
-      // })
       this.setData({
         value: ''
       })
@@ -135,9 +131,10 @@ Page({
       // 跳转到提现记录页
       wx.showModal({
         title: '提示',
-        content: '申请提现成功，请查看微信钱包',
+        content: data.msg,
         showCancel: false,
         success:(res) => {
+          //跳转到提现记录
           wx.navigateTo({
             url: 'cash-record'
           })
