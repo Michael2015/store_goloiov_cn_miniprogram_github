@@ -1,5 +1,5 @@
 <!--pages/partner/personal/index.wxml-->
-<view>
+<view class="warp">
   <!-- /pages/partner/personal/partner/index -->
   <!-- /pages/partner/personal/data/index -->
 <view class="header" bindtap="to" data-url="/pages/partner/personal/data/index">
@@ -51,6 +51,14 @@
   <view class="nav" bindtap="SeeFlag" data-url="/pages/partner/personal/admin/index">
     <view class="icon"><image src="/assets/image/Slice2.png" mode="widthFix"></image></view>
     <view class="name">区域管理员</view>
+    <view class="right-text"></view>
+    <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
+  </view>
+</view>
+<view class="group">
+  <view class="nav" bindtap="SeeServerFlag" data-url="/pages/partner/personal/servervip/index">
+    <view class="icon"><image src="/assets/image/Slice2.png" mode="widthFix"></image></view>
+    <view class="name">VIP服务商</view>
     <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
@@ -111,5 +119,4 @@
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
 </view> -->
-
 </view>

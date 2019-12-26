@@ -50,7 +50,11 @@
     "pages/partner/personal/admin/applylist",
     "pages/partner/personal/admin/applydetail",
     "pages/partner/personal/admin/applyadopt",
-    "pages/partner/settlement/check"
+    "pages/partner/settlement/check",
+    "pages/partner/personal/servervip/index",
+    "pages/partner/personal/servervip/applylist",
+    "pages/partner/personal/servervip/applyflag",
+    "pages/partner/personal/servervip/applydetail"
   ],
   "tabBar": {
     "custom": true,

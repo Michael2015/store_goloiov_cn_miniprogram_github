@@ -35,6 +35,23 @@ Page({
       this.to(e)
     })
   },
+  SeeServerFlag(e) {
+    app.http.get('/api/partner/home/get_vip_server').then(res => {
+      //  后台查不到数据说明没有申请过
+      if(res == null){
+        // 不需要修改路径
+      }else if (res.status == 0) {
+        // 审核中
+        e.currentTarget.dataset.url = "/pages/partner/personal/servervip/applyflag"
+      } else if (res.status == 1) {
+        // 审核通过
+        e.currentTarget.dataset.url = `/pages/partner/personal/servervip/applydetail?id=${res.id}`
+      } else if (res.status == 2) {
+        // 拒绝通过不需要改路径
+      }
+      this.to(e)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
