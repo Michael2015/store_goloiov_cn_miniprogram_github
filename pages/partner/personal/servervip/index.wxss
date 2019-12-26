@@ -1,0 +1,129 @@
+/* pages/partner/personal/admin/index.wxss */
+page{
+    background: #F5F5F5;
+}
+.warp{
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+}
+.warp input {
+    height: 84rpx;
+    background-color: #ffffff;
+    border: 1rpx solid #f5f5f5;
+    font-size: 28rpx;
+    padding-left: 30rpx;
+}
+.warp .Apply_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1rpx solid #f5f5f5;
+    height: 84rpx;
+    background: #fff;
+    padding: 0 30rpx;
+}
+.warp .Apply_item .name{
+    font-size: 28rpx;
+    color: #333333;
+}
+.warp .Apply_item .show{
+    flex: 1;
+    font-size: 28rpx;
+    color: #333333;
+    padding-left:20rpx; 
+}
+.warp .Apply_item .right-icon{
+    width: 10rpx;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.right-icon image{
+    width: 100%;
+}
+textarea{
+    width: 100%;
+    background: #fff;
+    border: 1rpx solid #f5f5f5;
+    padding-left: 30rpx;
+    padding-top: 22rpx;
+    font-size: 28rpx;
+}
+.address-detail textarea{
+    height: 100rpx;
+}
+.shop-image {
+    padding-left: 30rpx;
+    background: #fff;
+    padding-top: 12rpx;
+    padding-bottom: 12rpx;
+    border: 1rpx solid #f5f5f5;
+}
+label{
+    font-size: 30rpx;
+    padding-top: 20rpx;
+    color: #333333;
+}
+.upUpoto {
+    padding-top: 20rpx;
+    padding-left: 15rpx;
+    display: flex;
+}
+.upUpoto .photo_title {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  color: #666;
+}
+
+.upUpoto .photo_title .min {
+  font-size: 20rpx;
+  color: #999;
+}
+.add_img {
+  width: 32rpx;
+  height: 32rpx;
+}
+.user_select_photo{
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.selectPhoto {
+  width: 100rpx;
+  height: 100rpx;
+  border: solid 1rpx #e4e4e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+    color: #c4c4c6;
+}
+.nav_bottom{
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    background: #fff;
+}
+.Apply_record{
+    text-align: center;
+    bottom: 122rpx;
+	font-size: 26rpx;
+	letter-spacing: 1rpx;
+    color: #0091ff;
+    padding-bottom: 20rpx;
+}
+.Apply_btn{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    background-color: #e31336;
+    color: #ffffff;
+    letter-spacing: 1rpx;
+    font-size: 30rpx;
+}

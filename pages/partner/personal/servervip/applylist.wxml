@@ -1,0 +1,13 @@
+<!-- pages/partner/personal/servervip/applyrecord.wxml -->
+<view class="record_warp">
+    <view class="record_item" wx:for="{{showList}}" bind:tap="checkitem" wx:key="{{index}}" data-id='{{item.id}}' >
+        <view class="top">
+            <view class="shop-name">{{item.shop_name}}</view>
+        </view>
+        <view class="bottom">
+            <view class="time">{{item.time}}</view>
+            <view class="apply_flag">{{applyStatus[item.status]}}</view>
+        </view>
+    </view>
+    <view class="no-more">没有更多数据</view>
+</view>

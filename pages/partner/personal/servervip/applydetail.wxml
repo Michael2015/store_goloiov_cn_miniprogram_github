@@ -1,0 +1,48 @@
+<!-- pages/partner/personal/admin/index.wxml -->
+<view class="warp">
+    <view class="item">
+        <view>审核状态</view>
+        <view class="red">{{applyStatus[showInfo.status]}}</view>
+    </view>
+    <view class="item">
+        <view class="pink">姓名</view>
+        <view>{{showInfo.name}}</view>
+    </view>
+    <view class="item">
+        <view class="pink">手机</view>
+        <view>{{showInfo.phone}}</view>
+    </view>
+    <view class="item">
+        <view>门店名称</view>
+        <view>{{showInfo.shop_name}}</view>
+    </view>
+    <view class="item">
+        <view>门店地址</view>
+        <view>{{showInfo.shop_name}}</view>
+    </view>
+    <view class="item">
+       {{showInfo.address}}
+    </view>
+    
+    <view class="shop-item">
+        <label>门店照片（1-5张）</label>
+        <view class="upUpoto">
+            <view class="photo_shop_view">
+                <image wx:for="{{showInfo.shop_imgs}}" bindtap='viewbigimg' data-license="{{item}}" wx:key="{{index}}" src="{{item}}" mode="aspectFit" class="user_select_photo"></image>
+            </view>
+        </view>
+    </view>
+    
+    <view class="shop-item">
+        <label>营业执照</label>
+        <view class="upUpoto">
+            <view class="photo_license_view">
+                <image wx:for="{{showInfo.license_imgs}}" bindtap='viewbigimg' data-license="{{item}}" wx:key="{{index}}" src="{{item}}" mode="aspectFit" class="user_select_photo"></image>
+            </view>
+        </view>
+    </view>
+    <view class="shop-item">
+        <label>申请原因</label>
+        <textarea>{{showInfo.apply_reason}}</textarea>
+    </view>
+</view>
