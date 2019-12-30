@@ -9,9 +9,13 @@
     </view>
     <view class="info">
       <view class="name">{{name}}
-        <text>{{partner_level}}</text>
+        <image src="/assets/image/vip-{{partner_level}}.png" mode="widthFix"></image>
       </view>
+      <view class="label">
+        <text wx:if="{{server_vip}}">VIP服务商</text>
+        <text wx:if="{{region_agent}}">区域管理员</text>
       <!-- <view class="num">伙伴{{num}}人</view> -->
+      </view>
     </view>
     <view class="right">
       <image src="/assets/image/right-white.png" mode="widthFix"></image>
@@ -57,7 +61,7 @@
 </view>
 <view class="group">
   <view class="nav" bindtap="SeeServerFlag" data-url="/pages/partner/personal/servervip/index">
-    <view class="icon"><image src="/assets/image/Slice2.png" mode="widthFix"></image></view>
+    <view class="icon"><image src="/assets/image/vip.png" mode="widthFix"></image></view>
     <view class="name">VIP服务商</view>
     <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>

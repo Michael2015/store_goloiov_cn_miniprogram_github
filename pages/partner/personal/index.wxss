@@ -1,12 +1,11 @@
 page{
   background: #f9f9f9;
   min-height: 100vh;
-  overflow-y: auto;
 }
 .warp{
     width: 100%;
     height: auto;
-    overflow-y: auto;
+    margin-bottom: 110rpx;
 }
 .header{
   background: #e70002;
@@ -60,13 +59,19 @@ page{
   font-size: 32rpx;
   /* font-weight: 800; */
 }
-.info .name text{
+.info image{
+  width: 48rpx;
+  height: 26rpx;
+}
+.info .label text{
   font-size: 24rpx;
   /* font-weight: 800; */
-  background: rgba(255, 255, 255, 0.2953);
+  /* background: rgba(255, 255, 255, 0.2953); */
   border-radius:8rpx;
   padding: 5rpx 20rpx;
-  color:#fff;
+  margin-right: 20rpx;
+  background:#fff;
+  color:#000;
 }
 .info .num{
   font-size: 24rpx;

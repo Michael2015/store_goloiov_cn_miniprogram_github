@@ -11,6 +11,8 @@ Page({
     avatar: '',
     num: 0,
     partner_level: '',
+    region_agent: false,
+    server_vip: false,
   },
   to: function (e) {
     const data = e.currentTarget.dataset
@@ -64,7 +66,9 @@ Page({
           name: this.cut(data.nickName),
           avatar: data.avatar || user.avatar,
           partner_level: data.partner_level_label,
-          partner_level_num: data.partner_level
+          partner_level_num: data.partner_level,
+          region_agent: data.region_agent,
+          server_vip: data.server_vip
         })
       }
       this.data.inited = true
