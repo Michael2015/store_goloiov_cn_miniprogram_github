@@ -20,8 +20,8 @@
         <view>门店地址</view>
         <view>{{showInfo.shop_name}}</view>
     </view>
-    <view class="item">
-       {{showInfo.address}}
+    <view class="shop-item">
+       <view class="detail">{{showInfo.address}}</view>
     </view>
     
     <view class="shop-item">
@@ -43,6 +43,6 @@
     </view>
     <view class="shop-item">
         <label>申请原因</label>
-        <textarea>{{showInfo.apply_reason}}</textarea>
+        <view class="detail">{{showInfo.apply_reason}}</view>
     </view>
 </view>

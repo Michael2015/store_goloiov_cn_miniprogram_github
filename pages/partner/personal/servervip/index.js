@@ -294,7 +294,7 @@ Page({
       name: name,
       shop_name: shopName,
       region:addressTitle,
-      address: '',
+      address: address,
       shop_imgs: imgShopList,
       license_imgs: imgLicenseList,
       reason:reason
