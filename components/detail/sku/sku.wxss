@@ -20,10 +20,8 @@
     border-radius: 5% 5% 0 0;
 }
 .mask_box .setcount{
-    height: 50rpx;
     display: flex;
     justify-content: space-between;
-    margin-bottom:20rpx;
 }
 .setcount .add_pruduct_num{
     height: 50rpx;
@@ -69,9 +67,9 @@
   border:1rpx solid #999;
   display:block;
   height:60rpx;
-  width:80rpx;
+  padding:0 20rpx;
   text-align:center;
-  line-height:59rpx;
+  line-height:60rpx;
   float:left;
   overflow:hidden;
   border-radius:8rpx;
@@ -92,12 +90,12 @@
   display:block;
 }
 .mask_box .setcount2 .btn{
-  margin-right:20rpx;
+  margin:0 20rpx 20rpx 0;
 }
 .mask_box .setcount2 .btn.active
 {
   color:#e70002;
-  border: 1px solid #e70002;
+  border-color:#e70002;
 }
 .mask .head{
   display:flex;
@@ -121,7 +119,7 @@
 }
 .pt40{
   padding-top: 20rpx;
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   border-top: 1px solid #eee;
 }
 .mask_box .clear
