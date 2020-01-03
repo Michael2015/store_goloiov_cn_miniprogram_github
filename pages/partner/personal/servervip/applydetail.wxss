@@ -4,7 +4,8 @@ page{
 }
 .detail-warp{
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    background:#fff;
 }
 .item{
     height: 84rpx;
