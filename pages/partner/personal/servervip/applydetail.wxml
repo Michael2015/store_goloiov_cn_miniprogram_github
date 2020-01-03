@@ -18,7 +18,7 @@
     </view>
     <view class="item">
         <view>门店地址</view>
-        <view>{{showInfo.shop_name}}</view>
+        <view>{{showInfo.region}}</view>
     </view>
     <view class="shop-item">
        <view class="detail">{{showInfo.address}}</view>
