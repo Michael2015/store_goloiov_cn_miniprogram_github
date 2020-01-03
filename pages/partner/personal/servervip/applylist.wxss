@@ -20,12 +20,12 @@ page{
 .top{
     display: flex;
     justify-content: space-between;
-    font-size: 30rpx;
+    font-size: 28rpx;
 }
 .bottom{
     display: flex;
     justify-content: space-between;
-    font-size: 24rpx;
+    font-size: 28rpx;
     color:#999999;
 }
 .shop-name{
@@ -41,7 +41,7 @@ page{
 .no-more {
   text-align: center;
   color: #aaa;
-  font-size: 24rpx;
+  font-size: 28rpx;
   box-sizing: border-box;
   visibility:visible;
   margin-top: 20rpx;

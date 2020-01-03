@@ -78,7 +78,7 @@ label{
 }
 
 .upUpoto .photo_title .min {
-  font-size: 20rpx;
+  font-size: 28rpx;
   color: #999;
 }
 .add_img {
@@ -110,7 +110,7 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
 .Apply_record{
     text-align: center;
     bottom: 122rpx;
-	font-size: 26rpx;
+	font-size: 28rpx;
 	letter-spacing: 1rpx;
     color: #0091ff;
     padding-bottom: 20rpx;
@@ -125,5 +125,5 @@ input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
     background-color: #e31336;
     color: #ffffff;
     letter-spacing: 1rpx;
-    font-size: 30rpx;
+    font-size: 28rpx;
 }

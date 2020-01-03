@@ -1,27 +1,28 @@
 <!-- pages/partner/personal/admin/index.wxml -->
-<view class="warp">
+<view class="detail-warp">
     <view class="item">
         <view>审核状态</view>
         <view class="red">{{applyStatus[showInfo.status]}}</view>
     </view>
     <view class="item">
-        <view class="pink">姓名</view>
-        <view>{{showInfo.name}}</view>
+        <view>姓名</view>
+        <view class="pink">{{showInfo.name}}</view>
     </view>
     <view class="item">
-        <view class="pink">手机</view>
-        <view>{{showInfo.phone}}</view>
+        <view>手机</view>
+        <view class="pink">{{showInfo.phone}}</view>
     </view>
     <view class="item">
         <view>门店名称</view>
-        <view>{{showInfo.shop_name}}</view>
+        <view class="pink">{{showInfo.shop_name}}</view>
     </view>
     <view class="item">
         <view>门店地址</view>
-        <view>{{showInfo.region}}</view>
+        <view class="pink">{{showInfo.region}}</view>
     </view>
-    <view class="shop-item">
-       <view class="detail">{{showInfo.address}}</view>
+    <view class="item">
+       <view>详细地址</view>
+       <view class="detail pink">{{showInfo.address}}</view>
     </view>
     
     <view class="shop-item">
@@ -43,6 +44,6 @@
     </view>
     <view class="shop-item">
         <label>申请原因</label>
-        <view class="detail">{{showInfo.apply_reason}}</view>
+        <view class="detail pink">{{showInfo.apply_reason}}</view>
     </view>
 </view>
