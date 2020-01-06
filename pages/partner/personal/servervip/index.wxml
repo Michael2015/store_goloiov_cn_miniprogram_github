@@ -1,7 +1,7 @@
 <!-- pages/partner/personal/admin/index.wxml -->
 <view class="warp">
     <input type="text" placeholder="姓名" bindinput="inputName" />
-    <input type="Number" placeholder="手机" bindinput="inputPhone" />
+    <input type="Number" placeholder="手机" bindinput="inputPhone" maxlength="11"/>
     <input type="text" placeholder="门店名称" bindinput="inputShopName" />
 
     <picker mode="region" value="{{areaList}}" bindchange="goAddAddress">
