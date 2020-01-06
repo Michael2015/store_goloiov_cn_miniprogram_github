@@ -50,11 +50,11 @@ Page({
   },
   selectShopPhoto() {
     var _this = this
-    if (this.data.imgShopList.length < 5) {
+    if (this.data.imgShopList.length <= 5) {
       wx.chooseImage({
         success: function (res) {
           var tempFilePaths = res.tempFilePaths
-          if (tempFilePaths.length < 5) {
+          if (tempFilePaths.length <= 5) {
             for (var key in tempFilePaths) {
               wx.uploadFile({
                 url: `${app.globalData.HOST}/api/customer/index/upload`,
@@ -185,11 +185,25 @@ Page({
     })
   },
   inputReason(e) {
+    if (e.detail.value.trim().length > 300) {
+      wx.showToast({
+        title: '申请原因字数不能超过300',
+        icon: 'none'
+      })
+      return
+    }
     this.setData({
       reason: e.detail.value
     })
   },
   inputAddress(e) {
+    if (e.detail.value.trim().length > 300) {
+      wx.showToast({
+        title: '详细地址不能超过300',
+        icon: 'none'
+      })
+      return
+    }
     this.setData({
       address: e.detail.value
     })
