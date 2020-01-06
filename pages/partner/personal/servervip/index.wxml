@@ -14,7 +14,7 @@
         </view> 
     </picker>
     <view class="address-detail">
-        <textarea  cols="30" rows="3" placeholder="详细地址" bindinput="inputAddress"></textarea>
+        <textarea  cols="30" rows="3" placeholder="详细地址（限制300字以内）" bindinput="inputAddress"></textarea>
     </view>
     <view class="shop-image">
         <label>门店照片（1-5张）</label>
@@ -39,7 +39,9 @@
             </view>
         </view>
     </view>
-    <textarea cols="30" rows="10" placeholder="申请原因" bindinput="inputReason"></textarea>
+    <view class="">
+        <textarea cols="30" rows="10" placeholder="申请原因（限制300字以内）" bindinput="inputReason"></textarea>
+    </view>
     <view class="nav_bottom">
         <view class="Apply_record" bindtap="goapplyList">申请记录</view>
         <view class="Apply_btn" bindtap="goApply">立即申请</view>

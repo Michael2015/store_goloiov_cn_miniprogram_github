@@ -43,7 +43,7 @@ page{
     width: 100%;
 }
 textarea{
-    width: 100%;
+    width: 96%;
     background: #fff;
     border: 1rpx solid #f5f5f5;
     padding-left: 30rpx;

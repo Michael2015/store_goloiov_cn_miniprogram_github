@@ -261,6 +261,13 @@ Page({
       })
       return
     }
+    if (address.trim().length > 300) {
+      wx.showToast({
+        title: '详细地址不能超过300',
+        icon: 'none'
+      })
+      return
+    }
     if (imgShopList.length == 0) {
       wx.showToast({
         title: '请上传门店照片',
@@ -285,6 +292,13 @@ Page({
     if (reason.trim().length == 0) {
       wx.showToast({
         title: '请输入申请原因',
+        icon: 'none'
+      })
+      return
+    }
+    if (reason.trim().length > 300) {
+      wx.showToast({
+        title: '申请原因字数不能超过300',
         icon: 'none'
       })
       return
