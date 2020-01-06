@@ -1,7 +1,7 @@
 <!-- pages/partner/personal/admin/index.wxml -->
 <view class="warp">
     <input type="text" placeholder="姓名" bindinput="inputName" />
-    <input type="Number" placeholder="手机" bindinput="inputPhone" maxlength="11"/>
+    <input type="number" placeholder="手机" bindinput="inputPhone" maxlength="11"/>
     <input type="text" placeholder="门店名称" bindinput="inputShopName" />
 
     <picker mode="region" value="{{areaList}}" bindchange="goAddAddress">
@@ -25,7 +25,7 @@
                     <image src="/assets/image/closeTip.png"></image>
                 </view>
             </view>
-            <view class="selectPhoto" bindtap="selectShopPhoto">
+            <view wx:if="{{imgShopList.length < 5}}" class="selectPhoto" bindtap="selectShopPhoto">
                 <image mode="widthFix" src='/assets/image/add.png' class="add_img"></image>
             </view>
         </view>

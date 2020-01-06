@@ -54,7 +54,8 @@ Page({
       wx.chooseImage({
         success: function (res) {
           var tempFilePaths = res.tempFilePaths
-          if (tempFilePaths.length <= 5) {
+          var total = _this.data.imgShopList.length + tempFilePaths.length
+          if ( total <= 5) {
             for (var key in tempFilePaths) {
               wx.uploadFile({
                 url: `${app.globalData.HOST}/api/customer/index/upload`,
