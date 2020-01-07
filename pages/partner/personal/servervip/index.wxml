@@ -13,7 +13,7 @@
             </view>
         </view> 
     </picker>
-    <view class="address-detail">
+    <view class="detail">
         <textarea  maxlength="-1" placeholder="详细地址（限制300字以内）" bindinput="inputAddress"></textarea>
     </view>
     <view class="shop-image">
@@ -45,7 +45,7 @@
             </view>
         </view>
     </view>
-    <view class="">
+    <view class="detail">
         <textarea maxlength="-1" placeholder="申请原因（限制300字以内）" bindinput="inputReason" cursor-spacing='100'></textarea>
     </view>
     <view class="nav_bottom">

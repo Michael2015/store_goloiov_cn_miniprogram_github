@@ -42,13 +42,12 @@ page{
 .right-icon image{
     width: 100%;
 }
-textarea{
-    width: 96%;
+.detail{
+    padding: 30rpx;
     background: #fff;
-    border: 1rpx solid #f5f5f5;
-    padding-left: 30rpx;
-    padding-right: 30rpx;
-    padding-top: 22rpx;
+}
+textarea{
+    width: 100%;
     font-size: 28rpx;
     cursor-spacing: 350rpx;
     maxlength: -1;
