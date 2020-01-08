@@ -99,7 +99,6 @@ label{
     width: 100rpx;
     height: 100rpx;
 }
-
 .selectPhoto {
   width: 100rpx;
   height: 100rpx;

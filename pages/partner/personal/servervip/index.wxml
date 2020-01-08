@@ -1,6 +1,6 @@
 <!-- pages/partner/personal/admin/index.wxml -->
 <view class="warp">
-    <input type="text" placeholder="姓名" bindinput="inputName" value="{{name}}" maxlength="5"/>
+    <input type="text" placeholder="姓名" bindinput="inputName" value="{{name}}" maxlength="5" />
     <input type="number" placeholder="手机" bindinput="inputPhone" maxlength="11" value="{{phone}}"/>
     <input type="text" placeholder="门店名称" bindinput="inputShopName" value="{{shopName}}" maxlength="20"/>
 

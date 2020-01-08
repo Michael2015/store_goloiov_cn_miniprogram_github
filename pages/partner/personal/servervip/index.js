@@ -169,40 +169,6 @@ Page({
       })
     }
   },
-  selectLicensePhotoBak() {
-    var _this = this
-    wx.chooseImage({
-      success: function (res) {
-        var tempFilePaths = res.tempFilePaths
-        if (tempFilePaths.length < 10) {
-          for (var key in tempFilePaths) {
-            wx.uploadFile({
-              url: `${app.globalData.HOST}/api/customer/index/upload`,
-              filePath: tempFilePaths[key],
-              name: 'b068931cc450442b63f5b3d276ea4297',
-              formData: {
-                token: app.globalData.token
-                //token: '32f592bf56c0fb6df6c07bf5babb315f'
-              },
-              success(res) {
-                res = JSON.parse(res.data);
-                let imgLicenseList = _this.data.imgLicenseList.concat(`${app.globalData.HOST}` + '/' + res.data.url);
-                _this.setData({
-                  imgLicenseList
-                })
-              },
-              fail: function () {
-                wx.showToast({
-                  title: '上传失败',
-                  icon: 'none'
-                })
-              }
-            })
-          }
-        }
-      }
-    }); 
-  },
   deleteLicenseImage: function (e) {
     var that = this;
     var images = that.data.imgLicenseList;
