@@ -11,6 +11,6 @@
       <view class="right"><text class="{{'status' + (item.status == 2 ||  item.status == 0 ? ' light' : '')}}">{{item.state}}</text></view>
     </view>
   </view>
-  <no-data wx:if="(list&&list.length===0) || loaded" list="{{list}}"></no-data>
+  <no-data wx:if="(list&&list.length===0) || loaded" isLoad="{{loaded}}" list="{{list}}"></no-data>
 </view>
 </scroll-view>
