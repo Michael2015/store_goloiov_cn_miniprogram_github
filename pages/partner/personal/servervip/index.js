@@ -1,5 +1,6 @@
 // pages/partner/personal/admin/index.js
 import areaList from '../../../../assets/js/area.min'
+var filter = require('../../../../assets/js/filter.js')
 let self;
 const app = getApp()
 Page({
@@ -121,10 +122,59 @@ Page({
   },
   selectLicensePhoto() {
     var _this = this
+    if (this.data.imgLicenseList.length <= 3) {
+      wx.chooseImage({
+        success: function (res) {
+          var tempFilePaths = res.tempFilePaths
+          var total = _this.data.imgLicenseList.length + tempFilePaths.length
+          if ( total <= 3) {
+            for (var key in tempFilePaths) {
+              wx.uploadFile({
+                url: `${app.globalData.HOST}/api/customer/index/upload`,
+                filePath: tempFilePaths[key],
+                name: 'b068931cc450442b63f5b3d276ea4297',
+                formData: {
+                  token: app.globalData.token
+                  //token: '32f592bf56c0fb6df6c07bf5babb315f'
+                },
+                success(res) {
+                  res = JSON.parse(res.data);
+                  let imgLicenseList = _this.data.imgLicenseList.concat(`${app.globalData.HOST}` + '/' + res.data.url);
+                  _this.setData({
+                    imgLicenseList
+                  })
+                },
+                fail: function () {
+                  wx.showToast({
+                    title: '上传失败',
+                    icon: 'none'
+                  })
+                }
+              })
+            }
+          }
+          else {
+            wx.showToast({
+              title: '最多上传3张图片',
+              icon: 'none'
+            })
+          }
+        }
+      })
+    }
+    else {
+      wx.showToast({
+        title: '最多上传3张图片',
+        icon: 'none'
+      })
+    }
+  },
+  selectLicensePhotoBak() {
+    var _this = this
     wx.chooseImage({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
-        if (tempFilePaths.length < 5) {
+        if (tempFilePaths.length < 10) {
           for (var key in tempFilePaths) {
             wx.uploadFile({
               url: `${app.globalData.HOST}/api/customer/index/upload`,
@@ -176,6 +226,7 @@ Page({
     })
 },
   inputName(e) {
+    e.detail.value = filter.filterEmoji(e.detail.value.trim())
     this.setData({
       name: e.detail.value
     })
@@ -186,6 +237,7 @@ Page({
     })
   },
   inputReason(e) {
+    e.detail.value = filter.filterEmoji(e.detail.value.trim())
     if (e.detail.value.trim().length > 300) {
       wx.showToast({
         title: '申请原因字数不能超过300',
@@ -198,6 +250,7 @@ Page({
     })
   },
   inputAddress(e) {
+    e.detail.value = filter.filterEmoji(e.detail.value.trim())
     if (e.detail.value.trim().length > 300) {
       wx.showToast({
         title: '详细地址不能超过300',
@@ -210,6 +263,7 @@ Page({
     })
   },
   inputShopName(e){
+    e.detail.value = filter.filterEmoji(e.detail.value.trim())
     this.setData({
       shopName: e.detail.value
     })
@@ -241,6 +295,7 @@ Page({
   },
   goApply() {
     const {name,phone,selectId,addressTitle,address,reason,imgShopList,imgLicenseList,shopName} = this.data
+  
     if (name.trim().length == 0) {
       wx.showToast({
         title: '请输入名字',

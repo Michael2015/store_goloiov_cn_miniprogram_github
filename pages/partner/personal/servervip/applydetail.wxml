@@ -35,7 +35,7 @@
     </view>
     
     <view class="shop-item">
-        <label>营业执照</label>
+        <label>营业执照（1-3张）</label>
         <view class="upUpoto">
             <view class="photo_license_view">
                 <image wx:for="{{showInfo.license_imgs}}" bindtap='viewbigimg' data-license="{{item}}" wx:key="{{index}}" src="{{item}}" mode="aspectFit" class="user_select_photo"></image>

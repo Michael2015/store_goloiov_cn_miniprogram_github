@@ -1,8 +1,8 @@
 <!-- pages/partner/personal/admin/index.wxml -->
 <view class="warp">
-    <input type="text" placeholder="姓名" bindinput="inputName" />
-    <input type="number" placeholder="手机" bindinput="inputPhone" maxlength="11"/>
-    <input type="text" placeholder="门店名称" bindinput="inputShopName" />
+    <input type="text" placeholder="姓名" bindinput="inputName" value="{{name}}" maxlength="5"/>
+    <input type="number" placeholder="手机" bindinput="inputPhone" maxlength="11" value="{{phone}}"/>
+    <input type="text" placeholder="门店名称" bindinput="inputShopName" value="{{shopName}}" maxlength="20"/>
 
     <picker mode="region" value="{{areaList}}" bindchange="goAddAddress">
         <view class="Apply_item">
@@ -14,7 +14,7 @@
         </view> 
     </picker>
     <view class="detail">
-        <textarea  maxlength="-1" placeholder="详细地址（限制300字以内）" bindinput="inputAddress"></textarea>
+        <textarea  maxlength="-1" placeholder="详细地址（限制300字以内）" bindinput="inputAddress" value="{{address}}"></textarea>
     </view>
     <view class="shop-image">
         <label>门店照片（1-5张）</label>
@@ -32,7 +32,7 @@
     </view>
     
     <view class="shop-image">
-        <label>营业执照</label>
+        <label>营业执照（1-3张）</label>
         <view class="upUpoto">
             <view class="photo_license_view" wx:for="{{imgLicenseList}}" wx:key="{{index}}" >
                 <image class="user_select_photo" bindtap='viewbigimg'   src="{{item}}" data-license="{{item}}" mode="aspectFit"></image>
@@ -40,13 +40,13 @@
                     <image src="/assets/image/closeTip.png"></image>
                 </view>
             </view>
-             <view class="selectPhoto" bindtap="selectLicensePhoto">
+             <view wx:if="{{imgLicenseList.length < 3}}" class="selectPhoto" bindtap="selectLicensePhoto">
                 <image mode="widthFix" src='/assets/image/add.png' class="add_img"></image>
             </view>
         </view>
     </view>
     <view class="detail">
-        <textarea maxlength="-1" placeholder="申请原因（限制300字以内）" bindinput="inputReason" cursor-spacing='100'></textarea>
+        <textarea maxlength="-1" placeholder="申请原因（限制300字以内）" bindinput="inputReason" cursor-spacing='100' value="{{reason}}"></textarea>
     </view>
     <view class="nav_bottom">
         <view class="Apply_record" bindtap="goapplyList">申请记录</view>
