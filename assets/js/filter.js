@@ -19,6 +19,7 @@ function checkEmoji (name) {
     return false;
 }
 
+
 module.exports =  {
     filterEmoji: filterEmoji,
     filterSpace: filterSpace,
