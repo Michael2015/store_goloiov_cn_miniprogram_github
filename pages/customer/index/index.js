@@ -376,7 +376,7 @@ Page({
     preventTouchMove() { },
     //获取爆款商品
     getBlast() {
-        app.http.post('/api/customer/mall/getProductList', {is_blast: 1}).then(res => {
+        app.http.get('/api/customer/mall/getProductList?is_blast=1').then(res => {
             this.setData({ blastProductList: res })
         })
     },

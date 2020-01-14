@@ -83,7 +83,7 @@ Page({
   },
   //获取爆款商品
   getBlast() {
-    app.http.post('/api/partner/home/storelist', {is_blast: 1}).then(res => {
+    app.http.get('/api/partner/home/storelist?is_blast=1').then(res => {
         this.setData({ blastProductList: res })
     })
   },
