@@ -78,7 +78,7 @@
                     <view class="Replace" wx:if="{{getProductList.length % 2 ===1}}"></view>
                 </view>
                 <no-data list="{{blastProductList}}" isLoad="{{isLoad}}" wx:if="(blastProductList&&blastProductList.length!==0) || isLoad"></no-data>
-                <view wx:if="{{blastProductList.length > 8}}" class="more">更多 >></view>
+                <view wx:if="{{blastProductList.length > 8}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
             </scroll-view>
         </view>
         <!-- blast product end !-->
@@ -140,7 +140,7 @@
                     </view>
                 </view>
                 <no-data list="{{storelist}}" isLoad="{{isLoad}}" wx:if="(storelist&&storelist.length!==0) || isLoad"></no-data>
-                <view wx:if="{{storelist.length > 50}}" class="more">更多 >> </view>
+                <view wx:if="{{storelist.length > 50}}" class="more" bindtap="goSearch" data-type="all_product">更多 >> </view>
                 <view style="height:50px"></view>
             </scroll-view>
         </view>

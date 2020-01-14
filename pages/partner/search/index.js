@@ -92,8 +92,18 @@ Page({
     this.data.isAllowLoad = false;
     let timeList2 = [];
     // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-    const apiUrl = this.data.selectClassId === -1 ? '/api/partner/home/storelist' : '/api/marketing/getCategoryProducts'
-    const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword,sort:{ field: this.data.sortField, value: this.data.sortDirection} } : { cate_id: this.data.selectClassId,keyword: this.data.keyword, sort:{ field: this.data.sortField, value: this.data.sortDirection} }
+    const apiUrl = '/api/partner/home/storelist'
+    const httpObj = {
+      page: this.data.page, 
+      limit: this.data.limit, 
+      keyword: this.data.keyword, 
+      order_field: this.data.sortField, 
+      order_sort: this.data.sortDirection, 
+      is_blast: this.data.productType == "all" ? 0:1,
+    }
+    if (this.data.selectClassId != -1) {
+      httpObj.cate_id = this.data.selectClassId
+    }
     console.log(httpObj)
     app.http.post(apiUrl, httpObj).then(res => {
       if (this.data.selectClassId !== -1) {

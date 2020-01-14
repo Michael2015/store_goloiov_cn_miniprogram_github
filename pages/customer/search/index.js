@@ -92,8 +92,18 @@ Page({
     })
     this.data.loading = true
     // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-    const apiUrl = this.data.selectClassId === -1 ? '/api/customer/mall/getProductList' : '/api/marketing/getCategoryProducts'
-    const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword,sort:{field: this.data.sortField, value: this.data.sortDirection} } : { cate_id: this.data.selectClassId, keyword: this.data.keyword, sort:{field: this.data.sortField, value: this.data.sortDirection} }
+    const apiUrl = '/api/customer/mall/getProductList'
+    const httpObj = { 
+      page: this.data.page, 
+      limit: this.data.limit, 
+      keyword: this.data.keyword, 
+      order_field: this.data.sortField, 
+      order_sort: this.data.sortDirection, 
+      is_blast: this.data.productType == "all" ? 0:1,
+    }
+    if (this.data.selectClassId != -1) {
+      httpObj.cate_id = this.data.selectClassId
+    }
     app.http.get(apiUrl, httpObj).then(res => {
         if (this.data.selectClassId !== -1) {
             // let getProductList = this.data.getProductList.concat(res)
