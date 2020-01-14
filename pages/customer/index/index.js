@@ -25,8 +25,6 @@ Page({
         heightCount: 0,   //统计监控交互的高度
         scrollTop: 0,    //监控滑动距离
         ReplacescrollTop: 0,    //监控滑动距离
-        transverseCar_cateId: 0,  //车联网专区的分类id
-        transverseCarList: [],    //车联网专区显示数据
         selectClassId: -1,         //标识选择id
         tabIndex: 0,       //目前切换到的首页tab下标
         contentSwiperHeight: defaultSwiperHeight,
@@ -34,6 +32,11 @@ Page({
         islogin: false,       //标识是否是登录状态
         isfirst: true,         //是否是第一次进入首页
         newObj: {},            //新人专区对象
+        showMoreBlast: false,  //是否需要展示更多爆款专区
+        blastProductList: [], //爆款专区商品
+        allProductList: [], //全部商品
+        keyword: "",
+        news_image: "", //新人专区背景图
     },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
@@ -201,7 +204,8 @@ Page({
     onLoad: function () {
         // console.log(app.globalData)
         this.setData({
-            islogin: !(app.globalData.token === '')
+            islogin: !(app.globalData.token === ''),
+            news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
         })
         self = this;
         this.getinfo()
@@ -222,6 +226,8 @@ Page({
             }
         })
         this.CalculationHeight()
+        this.getBlast()
+        this.getAll()
     },
     contact() {
         Contact.show(this.data.getPartnerInfo)
@@ -256,17 +262,6 @@ Page({
         //获取banner轮播广告
         this.getBanner();
         await this.getCategory()
-        //获取车联网专区数据
-        this.getTransverseCarData();
-        // setTimeout(() => {
-        //     wx.pageScrollTo({
-        //         scrollTop: this.data.ReplacescrollTop,
-        //         duration: 0,
-        //         success: function (res) {
-        //             console.log(res);
-        //         }
-        //     })
-        // }, 2000)
         //获取新人专区信息
         this.getNews()
     },
@@ -281,9 +276,7 @@ Page({
     },
     async getCategory() {
         const categoryList = await app.http.post('/api/marketing/getCategory', {})
-        let categoryList1 = categoryList.filter(function (item, index) {
-            return index != 0;
-        });
+        
         let transverseCar = categoryList.filter(function (item, index) {
             return index === 0
         })
@@ -291,13 +284,7 @@ Page({
             transverseCar_cateId: transverseCar[0].id
         })
         this.setData({
-            categoryList1: categoryList1,
-        })
-    },
-    // 获取车联网专区的数据
-    getTransverseCarData() {
-        app.http.post('/api/marketing/getCategoryProducts', { cate_id: this.data.transverseCar_cateId }).then(res => {
-            this.setData({ transverseCarList: res })
+            categoryList: categoryList,
         })
     },
     async CalculationHeight() {
@@ -386,5 +373,55 @@ Page({
         this.close()
     },
     //  禁用触摸穿透
-    preventTouchMove() { }
+    preventTouchMove() { },
+    //获取爆款商品
+    getBlast() {
+        app.http.post('/api/customer/mall/getProductList', {is_blast: 1}).then(res => {
+            this.setData({ blastProductList: res })
+        })
+    },
+    //获取全部商品
+    getAll() {
+        app.http.post('/api/customer/mall/getProductList', {}).then(res => {
+            this.setData({ allProductList: res })
+        })
+    },
+    goSearch(e) {
+        let selectTabType = e.currentTarget.dataset.type
+        let jumpUrl = "";
+        //点击分类tab跳转
+        if (selectTabType == "category"){
+            let selectTabId = e.currentTarget.dataset.id
+            let selectTabname = e.currentTarget.dataset.name
+        
+            let waitingTab = ["油卡充值", "VIP服务商"]
+            if (waitingTab.indexOf(selectTabname) >= 0) {
+                jumpUrl = "/pages/common/waiting/index?title="+selectTabname
+            } else {
+                jumpUrl = "/pages/customer/search/index?type=category&cate_id="+selectTabId+"&title="+selectTabname
+            }
+        }
+        //点击爆款商品图标跳转
+        else if (selectTabType == "blast_product") {
+            jumpUrl = "/pages/customer/search/index?type=is_blast&title=爆款专区"
+        }
+        //点击全部商品图标跳转
+        else if (selectTabType == "all_product") {
+            jumpUrl = "/pages/customer/search/index?type=all&title=全部商品"
+        }
+        console.log(jumpUrl)
+        wx.navigateTo({
+            url: jumpUrl
+        })
+    },
+    goInputSearch(e) {
+        let detail_val = e.detail.value.trim()
+        console.log(detail_val)
+        if (detail_val != "") {
+            wx.navigateTo({
+                url: "/pages/customer/search/index?type=search&keyword="+detail_val+"&title=全部商品"
+            })
+        }
+      },
+
 })
