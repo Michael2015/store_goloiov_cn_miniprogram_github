@@ -26,21 +26,20 @@ Page({
     countDownList: [],
     bannerList: [],
     isShowCategory: 0,//是否显示分类
+    categoryList: [],
     categoryList1: [],
-    categoryList2: [],
     fenXiangShow: false,  //分享是否显示
     heightCount: 0,   //统计监控交互的高度
     scrollTop: 0,    //监控滑动距离
     tabTime: '',
-    transverseCar_cateId: 0,  //车联网专区的分类id
-    transverseCarList: [],    //车联网专区显示数据
     selectClassId: -1,         //标识选择id
     tabIndex: 0,       //目前切换到的首页tab下标
     contentSwiperHeight: defaultSwiperHeight,
-    isloading: false,    //标识切换页是否处于加载状态
     islogin: false,       //标识是否是登录状态
     isfirst: true,        //是否是第一次进入首页
     newObj: {},            //新人专区对象
+    blastProductList: [], //爆款专区商品
+    news_image: "" //新人商品背景图
   },
   getShareImg() {
     sharePoster.createPoster({
@@ -66,9 +65,6 @@ Page({
     })
 
   },
-  tabPageChange(event) {
-    this.goList({ currentTarget: { dataset: { id: event.detail.currentItemId, index: event.detail.current } } })
-  },
   getinfo() {
     app.http.get('/api/partner/home/getinfo').then(res => {
       wx.setNavigationBarTitle({
@@ -77,6 +73,18 @@ Page({
       this.setData({
         getinfo: res
       })
+    })
+  },
+  nextPage() {
+    console.log('loaded' + this.data.isAllowLoad)
+    if (!this.data.isAllowLoad) { // 没有到最后一页
+        this.storelist()
+    }
+  },
+  //获取爆款商品
+  getBlast() {
+    app.http.post('/api/partner/home/storelist', {is_blast: 1}).then(res => {
+        this.setData({ blastProductList: res })
     })
   },
   storelist() {
@@ -108,13 +116,6 @@ Page({
           wx.hideLoading();
           return
         }
-        /* 旧版逻辑目前统一用storelist
-        let alllist = this.data.alllist.concat(res)
-        let alllist = res
-        this.setData({
-          alllist
-        })
-        */
         if (res && res.length < this.data.limit) {
           this.setData({
             isLoad: 1
@@ -132,6 +133,14 @@ Page({
   onReachBottom() {
     this.loadmore()
   },
+  loadmore() {
+    if (this.data.isLoad || !this.data.isAllowLoad) return
+    wx.showLoading({
+      title: '加载中',
+      mask: true,
+    })
+    this.storelist()
+  },
   //获取首页banner轮播图
   getBanner() {
     app.http.post('/api/marketing/getbanner', {}).then(res => {
@@ -143,40 +152,9 @@ Page({
   //获取首页分类
   async getCategory() {
     const categoryList = await app.http.post('/api/marketing/getCategory', {})
-    let categoryList1 = categoryList.filter(function (item, index) {
-      return index != 0;
-    });
-    let transverseCar = categoryList.filter(function (item, index) {
-      return index === 0
-    })
+      
     this.setData({
-      transverseCar_cateId: transverseCar[0].id
-    })
-    this.setData({
-      categoryList1: categoryList1,
-    })
-  },
-  // 获取车联网专区的数据
-  getTransverseCarData() {
-    app.http.post('/api/marketing/getCategoryProducts', { cate_id: this.data.transverseCar_cateId,keyword: this.data.keyword }).then(res => {
-      this.setData({ transverseCarList: res })
-    })
-  },
-  //跳转分类列表页面
-  goList(e) {
-    let cat_id = +e.currentTarget.dataset.id;
-    let tab_id = +e.currentTarget.dataset.index;
-    this.setData({
-      tabIndex: tab_id,
-      selectClassId: cat_id,
-      isloading: true
-    })
-    if (cat_id == -1) {
-      this.storelist()
-      return
-    }
-    app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id, keyword: this.data.keyword }).then(res => {
-      this.setData({ storelist: res, isLoad: 1, isloading: false })
+        categoryList: categoryList,
     })
   },
   timeFormat(param) {//小于10的格式化函数
@@ -223,9 +201,11 @@ Page({
   },
   onLoad() {
     this.setData({
-      islogin: !(app.globalData.token === '')
+      islogin: !(app.globalData.token === ''),
+      news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
     })
     this.getinfo()
+    this.getBlast()
     this.CalculationHeight()
     self = this;
     wx.getStorage({
@@ -280,12 +260,6 @@ Page({
       showModal: false,
     })
   },
-  //展开分类
-  showCategory() {
-    let isShowCategory = this.data.isShowCategory;
-    isShowCategory = isShowCategory ? false : true;
-    this.setData({ isShowCategory: isShowCategory });
-  },
   // 切换分享显示
   checkoutFenXiang() {
     this.setData({ fenXiangShow: !this.data.fenXiangShow })
@@ -314,43 +288,6 @@ Page({
         storelist: storelist,
       })
     })
-  },
-  setSearchText(e) {
-    //console.log(1111)
-    let detail_val = e.detail.value.trim()
-    console.log(detail_val)
-    //if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
-    //this.data.isAllowLoad2 = false;
-    if (detail_val != this.data.keyword) {
-      //text = detail_val
-      this.setData({
-        page: 1,
-        storelist: [],
-        keyword: detail_val, // 不搜索空串
-      }, () => {
-        this.storelist()
-      })
-
-    }
-   
-    //this.data.isAllowLoad2 = true;
-  },
-  clearText() {
-    this.setData({
-      page: 1,
-      storelist: [],
-      keyword: '', // 不搜索空串
-    }, () => {
-      this.storelist()
-    })
-  },
-  loadmore() {
-    if (this.data.isLoad || !this.data.isAllowLoad) return
-    wx.showLoading({
-      title: '加载中',
-      mask: true,
-    })
-    this.storelist()
   },
   async CalculationHeight() {
     let height = 0;
@@ -381,6 +318,7 @@ Page({
     }
     console.log(app.varStorage.get('isShareBack'))
     if (app.varStorage.get('isShareBack') === undefined) {
+      if (this.data.isLoad || !this.data.isAllowLoad) return
       wx.showLoading({
         title: '加载中',
       })
@@ -398,8 +336,6 @@ Page({
     this.getBanner();
     //获取分类
     await this.getCategory();
-    //获取车联网专区数据
-    this.getTransverseCarData();
     //获取新人专区信息
     this.getNews()
   },
@@ -457,5 +393,46 @@ Page({
     this.close()
   },
   //  禁用触摸穿透
-  preventTouchMove() { }
+  preventTouchMove() { },
+
+  goSearch(e) {
+    let selectTabType = e.currentTarget.dataset.type
+    let jumpUrl = "";
+    //点击分类tab跳转
+    if (selectTabType == "category"){
+        let selectTabId = e.currentTarget.dataset.id
+        let selectTabname = e.currentTarget.dataset.name
+    
+        let waitingTab = ["油卡充值", "VIP服务商"]
+        if (waitingTab.indexOf(selectTabname) >= 0) {
+            jumpUrl = "/pages/common/waiting/index?title="+selectTabname
+        } else {
+            jumpUrl = "/pages/partner/search/index?type=category&cate_id="+selectTabId+"&title="+selectTabname
+        }
+    }
+    //点击爆款商品图标跳转
+    else if (selectTabType == "blast_product") {
+        jumpUrl = "/pages/partner/search/index?type=is_blast&title=爆款专区"
+    }
+    //点击全部商品图标跳转
+    else if (selectTabType == "all_product") {
+        jumpUrl = "/pages/partner/search/index?type=all&title=全部商品"
+    }
+    console.log(jumpUrl)
+    wx.navigateTo({
+        url: jumpUrl
+    })
+  },
+  goInputSearch(e) {
+      //console.log(1111)
+      let detail_val = e.detail.value.trim()
+      console.log(detail_val)
+      //if (!this.data.isAllowLoad || !this.data.isAllowLoad2) return;
+      //this.data.isAllowLoad2 = false;
+      if (detail_val != "") {
+          wx.navigateTo({
+              url: "/pages/partner/search/index?type=search&keyword="+detail_val+"&title=全部商品"
+          })
+      }
+    },
 })
