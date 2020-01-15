@@ -77,7 +77,6 @@
                     </view>
                     <view class="Replace" wx:if="{{getProductList.length % 2 ===1}}"></view>
                 </view>
-                <no-data list="{{blastProductList}}" isLoad="{{blastProductList.length < 8}}" wx:if="{{blastProductList.length < 8}}"></no-data>
                 <view wx:if="{{blastProductList.length > 8}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
             </scroll-view>
         </view>
