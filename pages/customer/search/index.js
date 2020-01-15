@@ -7,7 +7,7 @@ Page({
   data: {
     sortTabList:[],
     sortTabList1:[],
-    productList:[],
+    ProductList:[],
     allList:[],
     loaded: false,
     page: 1,
@@ -28,7 +28,8 @@ Page({
     sortField: "sales", //默认的排序字段
     sortDirection: "asc", //默认的排序方式
     selectTabName: "销量",
-    hiddenTab: true
+    hiddenTab: true,
+    selectTabName: "销量"
   },
   onLoad(options) {
       this.setData({
@@ -52,31 +53,41 @@ Page({
     let selectTabId = e.currentTarget.dataset.id
     let sortStatus = e.currentTarget.dataset.status
     that.data.sortTabList.forEach(function(item, index){
-        let sortTabList1 = "";
-        if (index == selectTabId) {
-            sortTabList1 = that.data.sortTabList1.concat({
-                "isShow": true,
-                "title": item.title,
-                "attr": item.attr
-            })
+      let sortTabList1 = "";
+      if (index == selectTabId) {
+          sortTabList1 = that.data.sortTabList1.concat({
+              "isShow": true,
+              "title": item.title,
+              "attr": item.attr
+          });
+          if(index == 2 && that.data.hiddenTab)
+          {
+              that.setData({
+                hiddenTab:false
+              });
+          }
+          else
+          {
             that.setData({
-              selectTabName: item.title,
-              sortField: item.attr,
-              hiddenTab: false
-            })
-            //sortTabList1.concat()
-        } else {
-            sortTabList1 = that.data.sortTabList1.concat({
-                "isShow": false,
-                "title": item.title,
-                "attr": item.attr
-            })
-        }
-        //console.log(sortTabList1)
-        that.setData({
-            sortTabList:sortTabList1,
-            sortTabList1:sortTabList1
-        }) 
+              hiddenTab:true
+            });
+          }
+          
+          that.setData({
+            selectTabName: item.title,
+            sortField: item.attr,
+          })
+      } else {
+          sortTabList1 = that.data.sortTabList1.concat({
+              "isShow": false,
+              "title": item.title,
+              "attr": item.attr
+          })
+      }
+      that.setData({
+          sortTabList:sortTabList1,
+          sortTabList1:sortTabList1
+      }) 
     })
     that.setData({
         sortTabList1:[],
@@ -120,13 +131,13 @@ Page({
             this.setData({
                 allList
             })
-            if (res && res.length < size) {
-                this.setData({
-                    loaded: true
-                })
-            } else {
-                this.data.page++
-            }
+        }
+        if (res && res.length < size) {
+          this.setData({
+              loaded: true
+          })
+        } else {
+          this.data.page++
         }
         wx.hideLoading()
         this.data.loading = false
@@ -134,12 +145,12 @@ Page({
     wx.hideLoading();
   },
   goDetails(e) {
-    let storeList = this.data.selectClassId == -1 ? this.data.allList : this.data.productList
+    let storeList = this.data.selectClassId == -1 ? this.data.allList : this.data.ProductList
     console.log(storeList)
-    let productList = storeList.filter(ele => {
+    let ProductList = storeList.filter(ele => {
         return ele.id == e.currentTarget.id
     })
-    app.varStorage.set('storeDetail', productList[0])
+    app.varStorage.set('storeDetail', ProductList[0])
     // this.setData({
     //     ReplacescrollTop: this.data.scrollTop
     // })
@@ -202,7 +213,7 @@ Page({
       this.setData({
         page: 1,
         allList: [],
-        productList: [],
+        ProductList: [],
         keyword: detail_val, // 不搜索空串
         loaded: false,
       }, () => {
@@ -217,7 +228,7 @@ Page({
     this.setData({
       page: 1,
       allList: [],
-      productList: [],
+      ProductList: [],
       keyword: '', // 不搜索空串
       loaded: false,
     }, () => {
@@ -231,22 +242,53 @@ Page({
       sortTabList1:[],
       loaded: false,
       allList: [],
-      productList: []
+      ProductList: [],
     })
     this.goProductList()
-    //页面加载完处理tab
+  },
+
+  changeDirectionSort(e) {
+    let sortTabId = e.currentTarget.dataset.id;
     let that = this
-    setTimeout(function(){
+    that.data.sortTabList.forEach(function(item, index){
+      item.isShow = false
+      if(index == sortTabId){
+        item.isShow = true
+        let direction = "asc";
+        if (that.data.sortField == item.attr){
+          if (that.data.sortDirection == "asc"){
+            direction = "desc"
+          } else {
+            direction = "asc"
+          }
+        } 
+            
+        that.setData({
+          sortField: item.attr, 
+          sortDirection: direction, 
+        })
+      }
+      console.log(item)
+      let sortTabList1 = that.data.sortTabList1.concat(item);
       that.setData({
-        hiddenTab: true
-      })
-    }, 2000)
+        sortTabList:sortTabList1,
+        sortTabList1:sortTabList1
+      }) 
+    })
+    that.setData({
+      sortTabList1: [],
+      loaded: false,
+      allList: [],
+      ProductList: []
+    })
+
+    this.goProductList()
   },
   //初始化排序tab
   initSortTabs() {
     this.setData({
         sortTabList: [{
-                        "isShow": false,
+                        "isShow": true,
                         "title": "销量",
                         "attr": "sales"
                     },{

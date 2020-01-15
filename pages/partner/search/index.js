@@ -75,6 +75,7 @@ Page({
                 hiddenTab:true
               });
             }
+            
             that.setData({
               selectTabName: item.title,
               sortField: item.attr,
@@ -142,13 +143,13 @@ Page({
           alllist
         })
         */
-        if (res && res.length < this.data.limit) {
-          this.setData({
-            isLoad: 1
-          })
-        } else {
-          this.data.page++
-        }
+      }
+      if (res && res.length < this.data.limit) {
+        this.setData({
+          isLoad: 1
+        })
+      } else {
+        this.data.page++
       }
 
       this.data.isAllowLoad = true;
@@ -267,6 +268,43 @@ Page({
       storeList:[],
       hiddenTab: true
     })
+    this.storeList()
+  },
+  changeDirectionSort(e) {
+    let sortTabId = e.currentTarget.dataset.id;
+    let that = this
+    that.data.sortTabList.forEach(function(item, index){
+      item.isShow = false
+      if(index == sortTabId){
+        item.isShow = true
+        let direction = "asc";
+        if (that.data.sortField == item.attr){
+          if (that.data.sortDirection == "asc"){
+            direction = "desc"
+          } else {
+            direction = "asc"
+          }
+        } 
+            
+        that.setData({
+          sortField: item.attr, 
+          sortDirection: direction, 
+        })
+      }
+      console.log(item)
+      let sortTabList1 = that.data.sortTabList1.concat(item);
+      that.setData({
+        sortTabList:sortTabList1,
+        sortTabList1:sortTabList1
+      }) 
+    })
+    that.setData({
+      sortTabList1: [],
+      isloading: false,
+      storeList:[],
+      hiddenTab: true
+    })
+
     this.storeList()
   },
   //初始化排序tab

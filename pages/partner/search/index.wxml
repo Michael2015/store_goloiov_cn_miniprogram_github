@@ -11,7 +11,7 @@
     </view>
     <view class='sort-wrap'>
         <view class="switchTab">
-            <view class='sort-btn' wx:for="{{sortTabList}}" wx:key="{index}" data-id="{{index}}" bindtap="switchSortTab">
+            <view class='sort-btn' wx:for="{{sortTabList}}" wx:key="{index}" data-id="{{index}}"  bindtap="{{index != 2 ? 'changeDirectionSort' : 'switchSortTab'}}">
                 <text class="sort-label {{item.isShow? 'active':''}}">{{item.title}}</text>
                 <image wx:if="{{index === 2 && hiddenTab}}" src="/assets/image/down.png"></image>
                 <image wx:if="{{index === 2 && !hiddenTab}}" src="/assets/image/up.png"></image>
@@ -19,16 +19,16 @@
         </view>
     </view>
     <view class="tabLayer" hidden="{{hiddenTab}}">
-            <view class="sort-title {{sortDirection=='desc' ? 'active' : ''}}">
-                <text class="sort-name" bindtap="changeSort" data-direction="desc">{{selectTabName}}从高到低</text>
-                <image wx:if="{{sortDirection == 'desc'}}" src="/assets/image/select_sort_tab.png"></image>
-            </view>
-            <view class="sort-title {{sortDirection=='asc' ? 'active' : ''}}">
-                <text class="sort-name" bindtap="changeSort" data-direction="asc">{{selectTabName}}从低到高</text>
-                <image wx:if="{{sortDirection == 'asc'}}" src="/assets/image/select_sort_tab.png"></image>
-            </view>
-            <view class="mask"></view>
+        <view class="sort-title {{sortDirection=='desc' ? 'active' : ''}}">
+            <text class="sort-name" bindtap="changeSort" data-direction="desc">{{selectTabName}}从高到低</text>
+            <image wx:if="{{sortDirection == 'desc'}}" src="/assets/image/select_sort_tab.png"></image>
         </view>
+        <view class="sort-title {{sortDirection=='asc' ? 'active' : ''}}">
+            <text class="sort-name" bindtap="changeSort" data-direction="asc">{{selectTabName}}从低到高</text>
+            <image wx:if="{{sortDirection == 'asc'}}" src="/assets/image/select_sort_tab.png"></image>
+        </view>
+        <view class="mask"></view>
+    </view>
     <view class="countTop">
         <!-- product start !-->
         <view class="search_product">

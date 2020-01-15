@@ -1,14 +1,12 @@
 <!--index.wxml-->
 <view class="main">
     <view class="search_nav">
-        <view class="customer_search">
-            <view class="search_input">
-                <image mode="widthFix" src='/assets/image/index_search.png' class="search_icon"></image>
-                <input placeholder="搜索" placeholder-class="search_input_placeholder" type='text' confirm-type="search" bindconfirm="goInputSearch" value="{{keyword}}"/>
-                <!--
-                <image mode="widthFix" src='/assets/image/closeTip.png' class="{{keyword?'clear_icon show':'clear_icon hide'}}" bindtouchstart="clearText"></image>
-                -->
-            </view> 
+        <view class="search_input">
+            <image mode="widthFix" src='/assets/image/index_search.png' class="search_icon"></image>
+            <input placeholder="搜索" placeholder-class="search_input_placeholder" type='text' confirm-type="search" bindconfirm="goInputSearch" value="{{keyword}}"/>
+            <!--
+            <image mode="widthFix" src='/assets/image/closeTip.png' class="{{keyword?'clear_icon show':'clear_icon hide'}}" bindtouchstart="clearText"></image>
+            -->
         </view>
         <view class="login" bindtap="tologin" wx:if="{{!islogin}}">登录注册</view>
         <view class="login" bindtap="register" wx:if="{{islogin}}">成为会员</view>
@@ -144,7 +142,7 @@
                             </view>
                         </view>
                     </view>
-                    <no-data list="{{allProductList}}" isLoad="{{loaded}}" wx:if="{{allProductList.length===0}}"></no-data>
+                    <no-data list="{{allProductList}}" isLoad="{{loaded}}" wx:if="{{allProductList.length!==0}}"></no-data>
                     <view wx:if="{{allProductList.length > 50}}" class="more" bindtap="goSearch" data-type="all_product">更多 >> </view>
                     <view style="height:70px"></view>
                 </scroll-view>

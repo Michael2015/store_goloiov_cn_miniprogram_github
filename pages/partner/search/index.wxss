@@ -141,7 +141,6 @@ page {
 .commodity_showList{
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-around;
     padding: 0 19rpx;
 }
 .commodity_list {
