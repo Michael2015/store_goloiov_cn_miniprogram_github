@@ -55,7 +55,6 @@ Page({
   switchSortTab(e) {
     let that = this
     let selectTabId = e.currentTarget.dataset.id
-    let sortStatus = e.currentTarget.dataset.status
     that.data.sortTabList.forEach(function(item, index){
         let sortTabList1 = "";
         if (index == selectTabId) {
@@ -63,13 +62,23 @@ Page({
                 "isShow": true,
                 "title": item.title,
                 "attr": item.attr
-            })
+            });
+            if(index == 2 && that.data.hiddenTab)
+            {
+                that.setData({
+                  hiddenTab:false
+                });
+            }
+            else
+            {
+              that.setData({
+                hiddenTab:true
+              });
+            }
             that.setData({
               selectTabName: item.title,
               sortField: item.attr,
-              hiddenTab: false
             })
-            //sortTabList1.concat()
         } else {
             sortTabList1 = that.data.sortTabList1.concat({
                 "isShow": false,
@@ -77,7 +86,6 @@ Page({
                 "attr": item.attr
             })
         }
-        //console.log(sortTabList1)
         that.setData({
             sortTabList:sortTabList1,
             sortTabList1:sortTabList1
@@ -256,23 +264,16 @@ Page({
       sortDirection: sortTabDirection,
       sortTabList1:[],
       isloading: false,
-      storeList:[]
+      storeList:[],
+      hiddenTab: true
     })
     this.storeList()
-    //页面加载完处理tab
-    let that = this
-    setTimeout(function(){
-      that.setData({
-        hiddenTab: true
-      })
-    },2000)
-    
   },
   //初始化排序tab
   initSortTabs() {
     this.setData({
         sortTabList: [{
-                        "isShow": false,
+                        "isShow": true,
                         "title": "销量",
                         "attr": "sales"
                     },{

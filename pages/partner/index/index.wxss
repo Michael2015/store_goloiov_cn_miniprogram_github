@@ -7,7 +7,7 @@ page {
 }
 
 .search_nav {
-    height: 100rpx;
+    height: 98rpx;
     background: #F2F2F2;
 }
 
@@ -15,7 +15,7 @@ page {
   text-align:left;
 }
 .search_nav .search_input{
-  width: 60%;
+  width: 70%;
 }
 .search_input image{
   width: 30rpx;
@@ -24,22 +24,23 @@ page {
 
 .invite{
   position: absolute;
-  width: 30%;
-  right: 24rpx;
-  top:15rpx;
+  width: 22%;
+  right: 19rpx;
+  top:19rpx;
   font-size: 30rpx;
-  height: 60rpx;
+  height: 62rpx;
   color: #fff;
-  line-height: 60rpx;
-  padding: 0 30rpx 0 30rpx;
+  line-height: 62rpx;
+  padding:0;
+  margin:0;
   box-shadow: 0px 1rpx 2rpx 0px rgba(0, 0, 0, 0.5);
   border-radius: 4rpx;
   text-align: center;
   background:linear-gradient(167deg,rgba(254,19,25,1) 0%,rgba(255,143,146,1) 100%);
-  border-radius:11rpx;
+  border-radius:12rpx;
 }
 .banner{
-  margin-top: 100rpx;
+  margin-top: 90rpx;
   justify-content: center; 
   position: relative;
   padding: 2rpx 19rpx 2rpx 19rpx;
@@ -52,41 +53,43 @@ page {
 {
   width: 100%;
   height: 300rpx;
-  border-radius:11rpx;
+  border-top-left-radius:40rpx;
+  border-bottom-right-radius:40rpx;
+  border-top-right-radius:10rpx;
+  border-bottom-left-radius:10rpx;
 }
 
 .category{
-    margin: 10rpx;
-    width: 100%;
+    padding:19rpx;
     min-height: 300rpx;
     position: relative;
     display: flex;
     flex-wrap: wrap;
   }
   .categoryList{
-    width: 140rpx;
+    width: 25%;
     height: 140rpx;
-    margin: 20rpx;
+    margin-top:25rpx;
     diplay: inline-block;
     text-align:center;
     position: relative;
     justify-content:space-around;
   }
   .categoryList image{
-    width: 92rpx;
-    height: 92rpx;
+    width: 100rpx;
+    height: 100rpx;
   }
   .categoryList .name{
     text-align: center;
-    font-size: 24rpx;
-    width: 140rpx;
+    font-size: 28rpx;
+    width: 100%;
   }
   .blast_product {
-    margin: 2%;
+    margin: 19rpx;
   }
   .blast_product image{
     width:100%;
-    height:57px;
+    height:90rpx;
   }
   .blast_product .more{
     width:100%;
@@ -97,13 +100,17 @@ page {
     text-align: center;
     margin: 30rpx;
   }
-
+   .commodity_all_list
+   {
+     margin-top:19rpx;
+   }
   .all_product {
-    margin: 2%;
+    margin:19rpx;
+    margin-top:0;
   }
   .all_product image{
     width:100%;
-    height:57px;
+    height:90rpx;
   }
   .all_product .more{
     width:100%;
@@ -132,7 +139,6 @@ page {
 .commodity_showList{
   display: flex;
   flex-wrap: wrap;
-  justify-content:space-around;
 }
 .Replace{
   background: rgba(0, 0, 0, 0);
@@ -160,7 +166,7 @@ page {
   line-height: 40rpx;
 }
 .countTop{
-  padding-bottom: 20rpx;
+  padding-bottom: 96rpx;
 }
 
 .item-img{

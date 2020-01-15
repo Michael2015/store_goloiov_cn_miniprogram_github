@@ -141,7 +141,6 @@
                 </view>
                 <no-data list="{{storelist}}" isLoad="{{isLoad}}" wx:if="(storelist&&storelist.length!==0) || isLoad"></no-data>
                 <view wx:if="{{storelist.length > 50}}" class="more" bindtap="goSearch" data-type="all_product">更多 >> </view>
-                <view style="height:50px"></view>
             </scroll-view>
         </view>
         <!-- all product end !-->

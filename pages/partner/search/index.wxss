@@ -3,6 +3,7 @@
 
 page {
     width: 100%;
+    background:#f3f3f3;
 }
 .main{
   width: 100%;
@@ -13,15 +14,10 @@ page {
   width: 100%;
 }
 .search_nav {
-    height: 100rpx;
-    background: #F2F2F2;
+    height: 98rpx;
+    background: #fff;
+    width:100%;
 }
-
-.search_nav .partner_search{
-  margin: 5rpx;
-  width: 94%;
-}
-
 .search_input input {
   text-align:left;
 }
@@ -33,7 +29,7 @@ page {
     border-radius: 10px;
     background: #fff;
 }
-.partner_search image{
+.search_nav image{
   width: 30rpx;
   height: 31rpx;
 }
@@ -46,13 +42,9 @@ page {
 .sort-wrap{
   background-color:#fff;
   z-index: 2;
-  overflow: hidden;
-  display: flex;
   position:fixed;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 100rpx 19rpx 2rpx 19rpx;
-  width: 95%;
+  margin-top: 99rpx;
+  width: 100%;
 }
 .switchTab{
   width: 100%;
@@ -75,25 +67,30 @@ page {
 .sort-label{
   color: #848484;
 }
-.sort-label-show{
-  color: #333333;
+.sort-label.active
+{
+  color:#000;
 }
 
 .tabLayer{
   width: 100%;
-  height: auto;
+  top:180rpx;
+  height:100%;
+  position:fixed;
+  z-index:2;
 }
-.tabLayer .sort-show-title{
+.tabLayer .sort-title.active{
   font-size: 28rpx;
-  padding: 15rpx 20rpx 15rpx 5rpx;
+  padding: 19rpx;
   text-align: left;
-  color: #333333;
+  color:#000;
 }
 .tabLayer .sort-title{
   font-size: 28rpx;
-  padding: 15rpx 20rpx 15rpx 5rpx;
+  padding: 19rpx;
   text-align: left;
   color: #848484;
+  background:#fff;
 }
 .tabLayer .sort-name{
   margin-left: 50rpx;
@@ -103,7 +100,14 @@ page {
   height: 21rpx;
   float: right;
 }
-
+.tabLayer .mask
+{
+  display:block;
+  background:#000;
+  opacity:0.6;
+  width:100%;
+  height:100%;
+}
 .search_product{
     width: 100%;
 }
@@ -120,7 +124,6 @@ page {
     position: relative;
 }
 .countTop{
-    padding-bottom: 20rpx;
     padding-top: 190rpx;
   }
 .commodity_list .commodity_item .volume .bold{

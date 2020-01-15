@@ -1,7 +1,6 @@
 <!--index.wxml-->
 <view class="main">
     <view class="search_nav">
-        <view class="partner_search">
             <view class="search_input">
                 <image mode="widthFix" src='/assets/image/index_search.png' class="search_icon"></image>
                 <input placeholder="搜索" placeholder-class="search_input_placeholder" type='text' confirm-type="search" bindconfirm="setSearchText" value="{{keyword}}"/>
@@ -9,27 +8,27 @@
                 <image mode="widthFix" src='/assets/image/closeTip.png' class="{{keyword?'clear_icon show':'clear_icon hide'}}" bindtouchstart="clearText"></image>
                 -->
             </view> 
-        </view>
     </view>
     <view class='sort-wrap'>
         <view class="switchTab">
             <view class='sort-btn' wx:for="{{sortTabList}}" wx:key="{index}" data-id="{{index}}" bindtap="switchSortTab">
-                <text class="{{item.isShow ? 'sort-label-show':'sort-label'}}">{{item.title}}</text>
-                <image wx:if="{{item.isShow}}" src="/assets/image/down.png"></image>
-            </view>
-        </view>
-        <view class="tabLayer" hidden="{{hiddenTab}}">
-            <view class="{{sortDirection=='desc' ? 'sort-show-title' : 'sort-title'}}">
-                <text class="sort-name" bindtap="changeSort" data-direction="desc">{{selectTabName}}从高到低</text>
-                <image wx:if="{{sortDirection == 'desc'}}" src="/assets/image/select_sort_tab.png"></image>
-            </view>
-            <view class="{{sortDirection=='asc' ? 'sort-show-title' : 'sort-title'}}">
-                <text class="sort-name" bindtap="changeSort" data-direction="asc">{{selectTabName}}从低到高</text>
-                <image wx:if="{{sortDirection == 'asc'}}" src="/assets/image/select_sort_tab.png"></image>
+                <text class="sort-label {{item.isShow? 'active':''}}">{{item.title}}</text>
+                <image wx:if="{{index === 2 && hiddenTab}}" src="/assets/image/down.png"></image>
+                <image wx:if="{{index === 2 && !hiddenTab}}" src="/assets/image/up.png"></image>
             </view>
         </view>
     </view>
-    
+    <view class="tabLayer" hidden="{{hiddenTab}}">
+            <view class="sort-title {{sortDirection=='desc' ? 'active' : ''}}">
+                <text class="sort-name" bindtap="changeSort" data-direction="desc">{{selectTabName}}从高到低</text>
+                <image wx:if="{{sortDirection == 'desc'}}" src="/assets/image/select_sort_tab.png"></image>
+            </view>
+            <view class="sort-title {{sortDirection=='asc' ? 'active' : ''}}">
+                <text class="sort-name" bindtap="changeSort" data-direction="asc">{{selectTabName}}从低到高</text>
+                <image wx:if="{{sortDirection == 'asc'}}" src="/assets/image/select_sort_tab.png"></image>
+            </view>
+            <view class="mask"></view>
+        </view>
     <view class="countTop">
         <!-- product start !-->
         <view class="search_product">
@@ -71,7 +70,6 @@
                         <view class="Replace" wx:if="{{storeList.length % 2 ===1}}"></view>
                     </view>
                     <no-data list="{{storeList}}" isLoad="{{isLoad}}" wx:if="(storeList&&storeList.length!==0) || isLoad"></no-data>
-                    <view style="height:50px"></view>
                 </scroll-view>
         </view>
         <!-- product end !-->
