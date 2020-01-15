@@ -19,6 +19,7 @@ page {
 
 .search_nav .customer_search{
   margin: 5rpx;
+  width: 60%;
 }
 .headImg_call image.user_head {
     width: 100rpx;
@@ -98,10 +99,9 @@ page {
     position: relative;
 }
 .commodity_showList{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    padding: 0 19rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
 }
 .commodity_list {
     /* height: calc(100vh - 328rpx); */ 

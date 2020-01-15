@@ -35,6 +35,7 @@ page{
     color: #c4c4c6;
     height: auto;
     padding: 10rpx 10rpx;
+    word-wrap: break-word;
 }
 
 .shop-item label{

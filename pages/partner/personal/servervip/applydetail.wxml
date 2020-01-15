@@ -20,8 +20,8 @@
         <view>门店地址</view>
         <view class="pink">{{showInfo.region}}</view>
     </view>
-    <view class="item">
-       <view>详细地址</view>
+    <view class="shop-item">
+       <label>详细地址</label>
        <view class="detail pink">{{showInfo.address}}</view>
     </view>
     

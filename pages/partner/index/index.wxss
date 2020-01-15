@@ -133,8 +133,6 @@ page {
   display: flex;
   flex-wrap: wrap;
   justify-content:space-around;
-  padding: 0 19rpx;
-  /* align-items: center */
 }
 .Replace{
   background: rgba(0, 0, 0, 0);
