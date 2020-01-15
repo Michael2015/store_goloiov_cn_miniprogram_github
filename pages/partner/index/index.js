@@ -76,7 +76,6 @@ Page({
     })
   },
   nextPage() {
-    console.log('loaded' + this.data.isAllowLoad)
     if (!this.data.isAllowLoad) { // 没有到最后一页
         this.storelist()
     }
@@ -92,8 +91,7 @@ Page({
     let timeList2 = [];
     // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
     const apiUrl = '/api/partner/home/storelist'
-    const httpObj = { page: this.data.page, limit: this.data.limit, keyword: this.data.keyword }
-    console.log(httpObj)
+    const httpObj = {page: this.data.page, limit: this.data.limit, keyword: this.data.keyword }
     app.http.post(apiUrl, httpObj).then(res => {
       if (this.data.selectClassId !== -1) {
         //let storelist = this.data.storelist.concat(res);
@@ -116,7 +114,8 @@ Page({
           wx.hideLoading();
           return
         }
-        if (res && res.length < this.data.limit) {
+        //最多只能加载五页（20190115）
+        if ((res && res.length < this.data.limit) || this.data.page > 4) {
           this.setData({
             isLoad: 1
           })
@@ -124,7 +123,6 @@ Page({
           this.data.page++
         }
       }
-
       this.data.isAllowLoad = true;
       wx.hideLoading();
     })
@@ -418,7 +416,6 @@ Page({
     else if (selectTabType == "all_product") {
         jumpUrl = "/pages/partner/search/index?type=all&title=全部商品"
     }
-    console.log(jumpUrl)
     wx.navigateTo({
         url: jumpUrl
     })

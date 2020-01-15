@@ -85,7 +85,7 @@
         <!-- all product start !-->
         <view class="all_product">
             <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>
-            <scroll-view scroll-y class="commodity_all_list" bindscrolltolower="loadmore">
+            <scroll-view scroll-y class="commodity_all_list">
                 <view class="commodity_all_showList">
                     <view class="commodity_all_item" wx:for="{{storelist}}" wx:key="{{index}}" wx:if="{{index < 50}}">
                         <view style="padding:20rpx;background:#fff">
