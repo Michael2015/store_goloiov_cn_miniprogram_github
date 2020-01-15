@@ -453,7 +453,8 @@ text.coupon3
   width: 140rpx;
 }
 .blast_product {
-  margin: 2%;
+  margin: 19rpx;
+  margin-bottom:0;
 }
 .blast_product image{
   width:100%;
@@ -470,8 +471,8 @@ text.coupon3
 }
 
 .all_product {
-  margin:19rpx;
-  margin-top:0;
+  margin:0 19rpx;
+  padding-bottom:90rpx;
 }
 
 .all_product image{
