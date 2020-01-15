@@ -470,8 +470,10 @@ text.coupon3
 }
 
 .all_product {
-  margin: 2%;
+  margin:19rpx;
+  margin-top:0;
 }
+
 .all_product image{
   width:100%;
   height:57px;
@@ -492,7 +494,7 @@ text.coupon3
 .commodity_all_list .commodity_all_item {
   border-radius:11rpx;
   background:rgba(255,255,255,0);
-  margin-bottom: 19rpx;
+  margin-top: 19rpx;
 }
 .commodity_all_list  .commodity_all_item .showImg2{
   width: 40%;

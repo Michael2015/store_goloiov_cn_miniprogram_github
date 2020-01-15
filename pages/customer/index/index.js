@@ -6,12 +6,11 @@ const defaultSwiperHeight = 200
 Page({
     data: {
         userInfo: {},
-        alllist: [],
         getinfo: {},
         getnotice: [],
         getProductList: [],
         page: 1,
-        limit: 10,
+        limit: 2,
         getPartnerInfo: {},
         loading: false, // 加载中
         loaded: false, // 加载完毕
@@ -103,9 +102,9 @@ Page({
                     wx.hideLoading()
                     return
                 }
-                let alllist = this.data.alllist.concat(res)
+                let allProductList = this.data.allProductList.concat(res)
                 this.setData({
-                    alllist
+                    allProductList
                 })
                 if (res && res.length < size) {
                     this.setData({
@@ -227,7 +226,7 @@ Page({
         })
         this.CalculationHeight()
         this.getBlast()
-        this.getAll()
+        this.getProductList()
     },
     contact() {
         Contact.show(this.data.getPartnerInfo)
