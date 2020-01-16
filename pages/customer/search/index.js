@@ -8,7 +8,6 @@ Page({
     sortTabList:[],
     sortTabList1:[],
     ProductList:[],
-    allList:[],
     loaded: false,
     page: 1,
     limit: 10,
@@ -116,22 +115,15 @@ Page({
       httpObj.cate_id = this.data.selectClassId
     }
     app.http.get(apiUrl, httpObj).then(res => {
-        if (this.data.selectClassId !== -1) {
-            // let getProductList = this.data.getProductList.concat(res)
-            let ProductList = res
-            this.setData({
-                ProductList
-            })
-        } else if (this.data.selectClassId == -1) {
-            if (this.data.loaded) {
-                wx.hideLoading()
-                return
-            }
-            let allList = this.data.allList.concat(res)
-            this.setData({
-                allList
-            })
+        
+        if (this.data.loaded) {
+            wx.hideLoading()
+            return
         }
+        let ProductList = this.data.ProductList.concat(res)
+        this.setData({
+          ProductList
+        })
         if (res && res.length < size) {
           this.setData({
               loaded: true
@@ -145,7 +137,7 @@ Page({
     wx.hideLoading();
   },
   goDetails(e) {
-    let storeList = this.data.selectClassId == -1 ? this.data.allList : this.data.ProductList
+    let storeList = this.data.ProductList
     console.log(storeList)
     let ProductList = storeList.filter(ele => {
         return ele.id == e.currentTarget.id
@@ -212,7 +204,6 @@ Page({
       //text = detail_val
       this.setData({
         page: 1,
-        allList: [],
         ProductList: [],
         keyword: detail_val, // 不搜索空串
         loaded: false,
@@ -227,7 +218,6 @@ Page({
   clearText() {
     this.setData({
       page: 1,
-      allList: [],
       ProductList: [],
       keyword: '', // 不搜索空串
       loaded: false,
@@ -241,7 +231,7 @@ Page({
       sortDirection: sortTabDirection,
       sortTabList1:[],
       loaded: false,
-      allList: [],
+      page: 1,
       ProductList: [],
     })
     this.goProductList()
@@ -278,7 +268,7 @@ Page({
     that.setData({
       sortTabList1: [],
       loaded: false,
-      allList: [],
+      page: 1,
       ProductList: []
     })
 
