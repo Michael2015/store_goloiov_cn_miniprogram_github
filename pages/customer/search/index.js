@@ -233,6 +233,7 @@ Page({
       loaded: false,
       page: 1,
       ProductList: [],
+      hiddenTab: true,
     })
     this.goProductList()
   },
@@ -284,7 +285,7 @@ Page({
                     },{
                         "isShow": false,
                         "title": "人气",
-                        "attr": "browse" 
+                        "attr": "browse"
                     },{
                         "isShow": false,
                         "title": "价格",
