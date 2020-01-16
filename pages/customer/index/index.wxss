@@ -436,9 +436,9 @@ text.coupon3
   flex-wrap: wrap;
 }
 .categoryList{
-  width: 140rpx;
+  width: 25%;
   height: 140rpx;
-  margin: 20rpx;
+  margin-top:25rpx;
   diplay: inline-block;
   text-align:center;
   position: relative;
@@ -451,7 +451,7 @@ text.coupon3
 .categoryList .name{
   text-align: center;
   font-size: 24rpx;
-  width: 140rpx;
+  width: 100%;
 }
 .blast_product {
   padding: 19rpx;
