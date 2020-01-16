@@ -329,7 +329,6 @@ function analysisOptions(options, res) {
         if (res.is_promoter === 0) {
             // 客户进入
             if (res.last_partner_info.length == 0) {
-
                 // 是一个新用户 跳注册合伙人
                 // 直接进来注册合伙人 , 判断下 是不是客户，只有客户才来注册合伙人
                 wx.reLaunch({

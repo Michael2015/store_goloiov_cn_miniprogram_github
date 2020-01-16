@@ -43,7 +43,7 @@
         <!-- blast product start !-->
             <view class="blast_product">
                 <image src="/assets/image/blast_product.png" bindtap="goSearch" data-type="blast_product"></image>
-                <scroll-view scroll-y class="commodity_list">
+                <view  class="commodity_list">
                     <view wx:if="{{scrollTop >= heightCount}}" style="height:66rpx;width:100%"></view>
                     <view class="commodity_showList">
                         <view class="commodity_item" wx:for="{{blastProductList}}" wx:key="{{index}}" wx:if="{{index < 8}}">
@@ -81,7 +81,7 @@
                         <view class="Replace" wx:if="{{getProductList.length % 2 ===1}}"></view>
                     </view>
                     <view wx:if="{{blastProductList.length > 8}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
-                </scroll-view>
+                </view>
             </view>
         <!-- blast product end !-->
 
