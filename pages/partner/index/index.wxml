@@ -92,7 +92,7 @@
                             <view style="width:100%;height:100%;overflow: hidden; display:flex" catchtap="goDetails" id="{{item.id}}" >
                                 <view class="showImg2">
                                     <view class="all_new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
-                                    <image src="{{item.image}}" mode="widthFix" style="width:66px;height:66px;"></image>
+                                    <image src="{{item.image}}" mode="widthFix"></image>
                                     <view class="coupon">
                                         <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
                                         <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
