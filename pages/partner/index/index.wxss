@@ -40,7 +40,6 @@ page {
   border-radius:12rpx;
 }
 .banner{
-  margin-top: 90rpx;
   justify-content: center; 
   position: relative;
   padding: 2rpx 19rpx 2rpx 19rpx;
@@ -123,7 +122,8 @@ page {
     padding-top:19rpx;
   }
   .countTop {
-    background: #F2F2F2;
+     margin-top: 98rpx;
+     background: #F2F2F2;
   }
 .page_set {
   height: 70rpx;
