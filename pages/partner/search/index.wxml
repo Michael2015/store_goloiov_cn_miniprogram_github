@@ -32,7 +32,7 @@
     <view class="countTop">
         <!-- product start !-->
         <view class="search_product">
-            <scroll-view scroll-y class="commodity_list" bindscrolltolower="loadmore">
+            <scroll-view scroll-y class="commodity_list" bindscrolltolower="nextPage">
                     <view wx:if="{{scrollTop >= heightCount}}" style="height:66rpx;width:100%"></view>
                     <view class="commodity_showList">
                         <view class="commodity_item" wx:for="{{storeList}}" wx:key="{{index}}">

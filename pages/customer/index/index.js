@@ -82,6 +82,7 @@ Page({
     getProductList() {
         const size = this.data.limit; // 默认一页条数
         if (this.data.loading) return // 已经在加载中了
+        console.log('页数：' + this.data.page)
         wx.showLoading({
             title: '加载中',
         })
@@ -105,7 +106,7 @@ Page({
                 this.setData({
                     allProductList
                 })
-                if ((res && res.length < size ) || this.data.page > 4) {
+                if (res && res.length < size) {
                     this.setData({
                         loaded: true
                     })
@@ -194,6 +195,7 @@ Page({
         })
     },
     nextPage() {
+        console.log('loaded' + this.data.loaded)
         if (!this.data.loaded) { // 没有到最后一页
             this.getProductList()
         }

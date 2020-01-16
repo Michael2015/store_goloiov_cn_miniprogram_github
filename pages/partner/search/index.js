@@ -115,9 +115,11 @@ Page({
     }
     console.log(httpObj)
     app.http.post(apiUrl, httpObj).then(res => {
+      this.setData({
+        storeList:this.data.storeList.concat(res)
+      });
       if (this.data.selectClassId !== -1) {
-        //let storelist = this.data.storelist.concat(res);
-        let storeList = res;
+        let storeList = this.data.storeList
         //处理倒计时
         for (let key in storeList) {
           if (storeList[key].seckill.status == 1) {
@@ -125,26 +127,15 @@ Page({
           }
         }
         this.setData({
-          storeList,
           timeList: timeList2,
         });
-      } else if (this.data.selectClassId == -1) {
-        this.setData({
-          storeList:this.data.storeList.concat(res)
-        });
-        if(this.data.isLoad ==1 ){
-          wx.hideLoading();
-          return
-        }
-        /* 旧版逻辑目前统一用storelist
-        let alllist = this.data.alllist.concat(res)
-        let alllist = res
-        this.setData({
-          alllist
-        })
-        */
+      }
+      if(this.data.isLoad ==1 ){
+        wx.hideLoading();
+        return
       }
       if (res && res.length < this.data.limit) {
+        console.log("test");
         this.setData({
           isLoad: 1
         })
@@ -201,9 +192,9 @@ Page({
   },
   // 监控当前页面触底事件
   onReachBottom() {
-    this.loadmore()
+    this.nextPage()
   },
-  loadmore() {
+  nextPage() {
     if (this.data.isLoad || !this.data.isAllowLoad) return
     wx.showLoading({
       title: '加载中',
@@ -266,6 +257,7 @@ Page({
       sortTabList1:[],
       isloading: false,
       storeList:[],
+      page: 1,
       hiddenTab: true
     })
     this.storeList()
@@ -302,6 +294,7 @@ Page({
       sortTabList1: [],
       isloading: false,
       storeList:[],
+      page: 1,
       hiddenTab: true
     })
 
