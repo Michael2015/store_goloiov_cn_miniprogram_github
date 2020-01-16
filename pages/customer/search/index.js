@@ -243,6 +243,7 @@ Page({
       loaded: false,
       allList: [],
       ProductList: [],
+      hiddenTab: true,
     })
     this.goProductList()
   },

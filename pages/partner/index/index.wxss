@@ -98,7 +98,7 @@ page {
     color:#999999;
     font-family:PingFangSC-Regular,PingFang SC;
     text-align: center;
-    margin: 30rpx;
+    padding: 30rpx 0;
   }
    .commodity_all_list
    {
@@ -106,7 +106,6 @@ page {
    }
   .all_product {
     margin:19rpx;
-    margin-top:0;
   }
   .all_product image{
     width:100%;
@@ -119,13 +118,11 @@ page {
     color:#999999;
     font-family:PingFangSC-Regular,PingFang SC;
     text-align: center;
-    margin: 30rpx;
+    padding-top:19rpx;
   }
-
   .countTop {
     background: #F2F2F2;
   }
-
 .page_set {
   height: 70rpx;
   padding: 0 19rpx;

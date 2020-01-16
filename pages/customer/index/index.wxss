@@ -104,6 +104,7 @@ page {
     word-break: break-all;
     height: 75rpx;
     line-height: 40rpx;
+    text-align:justify;
 }
 
 .commodity_item .new{
@@ -427,7 +428,7 @@ text.coupon3
 }
 
 .category{
-  margin: 10rpx;
+  margin: 19rpx 0;
   width: 100%;
   min-height: 300rpx;
   position: relative;
@@ -453,12 +454,12 @@ text.coupon3
   width: 140rpx;
 }
 .blast_product {
-  margin: 19rpx;
-  margin-bottom:0;
+  padding: 19rpx;
+  padding-bottom:0;
 }
 .blast_product image{
   width:100%;
-  height:57px;
+  height:99rpx;
 }
 .blast_product .more{
   width:100%;
@@ -467,17 +468,18 @@ text.coupon3
   color:#999999;
   font-family:PingFangSC-Regular,PingFang SC;
   text-align: center;
-  margin: 30rpx;
+  padding-top:19rpx;
 }
 
 .all_product {
-  margin:0 19rpx;
-  padding-bottom:90rpx;
+  padding:19rpx;
+  padding-bottom:79rpx;
 }
 
 .all_product image{
   width:100%;
-  height:57px;
+  height:99rpx;
+  border-radius:16rpx;
 }
 .all_product .more{
   width:100%;
@@ -486,7 +488,7 @@ text.coupon3
   color:#999999;
   font-family:PingFangSC-Regular,PingFang SC;
   text-align: center;
-  margin: 30rpx;
+  padding: 30rpx 0;
 }
 
 .countTop {
@@ -506,6 +508,7 @@ text.coupon3
   font-size: 30rpx;
   text-align: left;
   width: 100%;
+  padding-left:19rpx;
 }
 .commodity_all_item .title_volume .volume
 {
@@ -514,8 +517,7 @@ text.coupon3
 .commodity_all_item .title_volume .volume .price{
   text-align: left;
   width: 100%;
-  margin-top: 20rpx;
-  margin-bottom: 10rpx;
+  margin-top: 45rpx;
   font-weight: bold;
 }
 .price .bold{

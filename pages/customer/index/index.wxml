@@ -95,7 +95,7 @@
                                 <view style="width:100%;height:100%;overflow: hidden; display:flex" catchtap="goDetails" id="{{item.id}}" >
                                     <view class="showImg2">
                                         <view class="all_new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
-                                        <image src="{{item.image}}" mode="widthFix" style="width:66px;height:66px;"></image>
+                                        <image src="{{item.image}}" mode="widthFix"></image>
                                         <view class="coupon">
                                             <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
                                             <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
@@ -141,8 +141,8 @@
                             </view>
                         </view>
                     </view>
-                    <no-data list="{{allProductList}}" isLoad="{{loaded}}" wx:if="{{allProductList.length!==0}}"></no-data>
-                    <view wx:if="{{allProductList.length > 50}}" class="more" bindtap="goSearch" data-type="all_product">更多 >> </view>
+                    <no-data list="{{allProductList}}" isLoad="{{loaded}}" wx:if="{{allProductList.length < 50}}"></no-data>
+                    <view wx:if="{{allProductList.length > 49}}" class="more" bindtap="goSearch" data-type="all_product">更多 >> </view>
                 </scroll-view>
             </view>
         <!-- all product end !-->
