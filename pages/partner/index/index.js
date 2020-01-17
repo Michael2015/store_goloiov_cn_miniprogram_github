@@ -137,7 +137,7 @@ Page({
       title: '加载中',
       mask: true,
     })
-    this.storelist()
+    this.storelist();
   },
   //获取首页banner轮播图
   getBanner() {

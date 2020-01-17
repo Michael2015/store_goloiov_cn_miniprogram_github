@@ -43,7 +43,7 @@ page {
   background-color:#fff;
   z-index: 2;
   position:fixed;
-  margin-top: 99rpx;
+  margin-top: 98rpx;
   width: 100%;
 }
 .switchTab{
