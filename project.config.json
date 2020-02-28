@@ -24,7 +24,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
-	"appid": "wxd8f1ec5798479c95",
+	"appid": "wxa21ef49bc86899d3",
+	"#": "wxd8f1ec5798479c95",
 	"projectname": "%E4%B8%87%E8%BD%A6%E5%93%81%E5%95%86%E5%9F%8E",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -257,6 +258,12 @@
 					"name": "pages/partner/search/index",
 					"pathName": "pages/partner/search/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的积分",
+					"pathName": "pages/partner/personal/golo_points/index",
 					"scene": null
 				}
 			]

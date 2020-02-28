@@ -1,0 +1,86 @@
+page {
+  background: #F9F9F9;
+}
+.head{
+    background:#e70002;
+    width:100%;
+    height:200rpx;
+    text-align:center;
+    position:relative;
+    box-sizing:border-box;
+    padding-top:50rpx;
+}
+.head .mid{
+    height:100rpx;
+    width:100%;
+    color:#fff;
+}
+.head .mid label{
+    display:block;
+    width:100%;
+    font-size:30rpx;
+    font-weight:bold;
+    height:60rpx;
+    line-height:60rpx;
+}
+.head .mid p{
+    display:block;
+    width:100%;
+    font-size:24rpx;
+    height:40rpx;
+    line-height:40rpx;
+}
+.content{
+    width:80%;
+    text-align:center;
+    margin:0 auto;
+}
+.content legend{
+    height:100rpx;
+    font-size:35rpx;
+    width:100%;
+    line-height:100rpx;
+    display:block;
+}
+.content .text-content{
+    height:80rpx;
+    border-top:1rpx solid #999;
+    margin-top:10rpx;
+    padding:10rpx 0;
+}
+.content .text-content .left{
+    width:60%;
+    text-align:left;
+    float:left;
+}
+.content .text-content .left p{
+    display:block;
+    width:100%;
+    height:40rpx;
+    line-height:40rpx;
+}
+.content .text-content .left p.small{
+    font-size:24rpx;
+}
+.content .text-content .right{
+    line-height:80rpx;
+    text-align:right;
+    font-size:40rpx;
+    color:#e70002;
+}
+.content .text-content .right.sub{
+    color:#7FFF00;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

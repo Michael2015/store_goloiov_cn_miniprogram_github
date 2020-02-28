@@ -57,7 +57,8 @@
     "pages/partner/personal/servervip/applydetail",
     "pages/customer/search/index",
     "pages/partner/search/index",
-    "pages/common/waiting/index"
+    "pages/common/waiting/index",
+    "pages/partner/personal/golo_points/index"
   ],
   "tabBar": {
     "custom": true,

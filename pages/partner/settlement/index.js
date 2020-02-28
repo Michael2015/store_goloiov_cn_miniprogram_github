@@ -19,6 +19,7 @@ Page({
     pay_type:'',//默认支付方式
     pay_type_show:false,
     now_money:0.00,//我的积分余额
+    golo_points:0
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -53,6 +54,8 @@ Page({
       {
         can_use_jifen = false;
       }
+
+      pay_price = pay_price - res.golo_points;
       //计算优惠后的价格
       this.setData({
         price: res,
@@ -62,6 +65,7 @@ Page({
         coupon_total2,
         now_money:res.now_money,
         can_use_jifen,
+        golo_points: parseFloat(res.golo_points).toFixed(2),
       });
      
       wx.hideLoading()
