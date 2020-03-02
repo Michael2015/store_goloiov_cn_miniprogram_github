@@ -19,7 +19,8 @@ Page({
     pay_type:'',//默认支付方式
     pay_type_show:false,
     now_money:0.00,//我的积分余额
-    golo_points:0
+    golo_points:0,
+    used_golo_points:0,
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -152,6 +153,7 @@ Page({
         total_num: self.data.total_num,
         unique:self.data.unique,
         paytype:self.data.pay_type,
+        used_golo_points:self.data.used_golo_points,
       }).then(res => {
         this.pay(res.order_id, formId,self.data.pay_type)
         wx.hideLoading()
@@ -288,5 +290,26 @@ Page({
   },
   onShow() {
     this.getAddressList();
-  }
+  },
+  showWindows()
+  {
+    wx.showModal({
+      title: '帮助提示',
+      content: '在golo APP开车1公里获得1积分',
+      showCancel:false,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  doGoloPoints(e)
+  {
+    this.data.used_golo_points = this.data.used_golo_points == 1 ? 0 : 1;
+  },
+
+
 })

@@ -32,7 +32,10 @@
                 <view class="number">
                     <view class="title">商品单价：¥ {{price.price}}元</view>
                     <view class="title">优惠金额：¥ {{coupon_total}}元</view>
-                    <view class="title title2">积分抵扣：¥<em>{{golo_points}}</em>元</view>
+                    <view class="title title2">积分抵扣：¥ {{golo_points}}元        
+                        <image src="/assets/image/question.png" mode="widthFix" bindtap="showWindows"></image>
+                        <checkbox class="checkbox" name="used_golo_points" bindtap="doGoloPoints"/>
+                    </view>
                     <view class="title title2">实付金额：¥<em>{{pay_price}}</em>元</view>
                     <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
                 </view>
