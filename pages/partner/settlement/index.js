@@ -55,8 +55,8 @@ Page({
       {
         can_use_jifen = false;
       }
-
-      pay_price = pay_price - res.golo_points;
+      let golo_points = res.golo_points || 0;
+      pay_price = pay_price - golo_points;
       //计算优惠后的价格
       this.setData({
         price: res,
@@ -66,7 +66,7 @@ Page({
         coupon_total2,
         now_money:res.now_money,
         can_use_jifen,
-        golo_points: parseFloat(res.golo_points).toFixed(2),
+        golo_points: parseFloat(golo_points).toFixed(2),
       });
      
       wx.hideLoading()
