@@ -21,6 +21,7 @@ Page({
     now_money:0.00,//我的积分余额
     golo_points:0,
     used_golo_points:0,
+    radio_check:false,
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -310,6 +311,10 @@ Page({
   {
     this.data.used_golo_points = this.data.used_golo_points == 1 ? 0 : 1;
   },
-
+  //切换单选图标
+  radio_check(){
+    this.data.radio_check = !this.data.radio_check;
+    this.setData({radio_check:this.data.radio_check});
+  }
 
 })
