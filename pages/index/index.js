@@ -35,7 +35,8 @@ Page({
                 this.data.options.s = arr[0]// 推荐人
                 this.data.options.p = arr[1]// 店铺 或者 合伙人id
                 this.data.options.st = arr[2]// 商品id
-                this.data.options.type = arr[3] || 'share'
+                this.data.options.type = arr[3] || 'share'  //invite//share
+                this.data.options.source = arr[4] || 'native'  //用户入口  native  自然流量用户  golotech  golo汽修大事邀请用户
                 this.data.options.share_id = arr[0]// 推荐人
             }
         }
@@ -60,12 +61,15 @@ Page({
                     app.globalData.shareInfo.share_partner_id = options.p || 0;// 店铺 或者 合伙人id
                     app.globalData.shareInfo.share_product_id = options.st || 0;// 商品id
                     app.globalData.shareInfo.type = options.type || ''; // 分享类型
+                    app.globalData.shareInfo.source = options.source || ''; // 分享类型
+
                     if (options.type === 'invite') {
                         // let partner_invite_id = app.globalData.partner_invite_id;
                         let share_user_id = app.globalData.partner_invite_id || app.globalData.shareInfo.share_user_id;
+                        let source = app.globalData.shareInfo.source;
                         // 邀请合伙人
                         wx.redirectTo({
-                            url: '/pages/partner/personal/partner/invite?share_id=' + share_user_id,
+                            url: '/pages/partner/personal/partner/invite?share_id=' + share_user_id+'&source='+ source,
                         });
                     } else if (options.type === 'share') {
                         // 分享进来的

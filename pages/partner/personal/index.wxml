@@ -33,6 +33,7 @@
     <text>我的伙伴</text>
   </view>
 </view>
+<!--
 <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/golo_points/index">
     <view class="icon"><image src="/assets/image/jifen2.png" mode="widthFix"></image></view>
@@ -41,6 +42,7 @@
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
   </view>
 </view>
+-->
 <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/poster/index">
     <view class="icon"><image src="/assets/image/Slice1.png" mode="widthFix"></image></view>

@@ -28,7 +28,8 @@ Page({
                 userInfo.code = res.code
                 app.http.post('/routine/Login', {
                     info: userInfo,
-                    share_partner_id: getPartner(page.data.options)
+                    share_partner_id: getPartner(page.data.options),
+                    source:page.data.options.source,
                 }).then(res => {
                     wx.hideLoading()
                     // 保存用户信息
@@ -39,10 +40,6 @@ Page({
                     if (res.is_promoter === 0) {
                         // 用户是客户
                         app.globalData.role = 0
-                        // wx.switchTab({
-                        //   url: '/pages/customer/index/index'
-                        //   // url: '/pages/partner/index/index'
-                        // })
                     } else if (res.is_promoter === 1) {
                         // 用户是合伙人
                         app.globalData.role = 1

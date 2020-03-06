@@ -35,6 +35,7 @@
                     <view class="title title2">实付金额<text class="right">¥{{pay_price}}</text></view>
                     <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
                 </view>
+                <!--
                 <view class="number">
                     <view class="title title2 title3">
                         <image class="one" src="/assets/image/jifen.png" mode="widthFix"></image>
@@ -44,6 +45,7 @@
                         <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check" mode="widthFix" class="right"></image>
                     </view>
                 </view>
+                -->
             </view>
             <view class="leaveMsg">
                 <input placeholder="留言内容/备注 （ 选填 ）最多100字符" placeholder-class="search_input_placeholder" bindinput="{{is_show_action?'setMark':''}}" value="{{mark}}" maxlength="100" />

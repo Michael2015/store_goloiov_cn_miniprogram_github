@@ -8,6 +8,7 @@ Page({
   data: {
     ok: false, // 判断页面时候有问题
     shareId: '',
+    source:'',
     data: {}
   },
 
@@ -33,7 +34,8 @@ Page({
       })
     }
     if (options && options.share_id) {
-      this.data.shareId = options.share_id
+      this.data.shareId = options.share_id;
+      this.data.source = options.source;
       app.http.get('/api/partner/index/invite', { share_id: options.share_id }).then(data => {
         if (data) {
           this.setData({
@@ -49,7 +51,7 @@ Page({
   join() {
     if (this.data.ok) {
       if (!app.globalData.token) {
-        wx.reLaunch({ url: '/pages/login/index?type=invite&share_id=' + this.data.shareId });
+        wx.reLaunch({ url: '/pages/login/index?type=invite&share_id=' + this.data.shareId + "&source="+this.data.source });
         return;
       }
       app.http.get('/api/partner/index/join', { spid: this.data.shareId }).then(data => {
