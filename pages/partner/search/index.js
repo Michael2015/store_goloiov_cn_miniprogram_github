@@ -29,7 +29,7 @@ Page({
     noviceShow: null,
     islogin: false,       //标识是否是登录状态
     selectTabName: "销量",
-    hiddenTab: true
+    hiddenTab: true,
   },
   onLoad(options) {
       this.setData({
@@ -41,11 +41,13 @@ Page({
       this.setData({
         islogin: !(app.globalData.token === '')
       })
-      
       this.changeBarTitle()
       this.initSortTabs()
-      this.storeList()
-      this.CalculationHeight()
+      this.CalculationHeight();
+      
+  },
+  onReady(){
+    this.storeList();
   },
   changeBarTitle(){
     wx.setNavigationBarTitle({
@@ -113,7 +115,6 @@ Page({
     if (this.data.selectClassId != -1) {
       httpObj.cate_id = this.data.selectClassId
     }
-    console.log(httpObj)
     app.http.post(apiUrl, httpObj).then(res => {
       this.setData({
         storeList:this.data.storeList.concat(res)
@@ -142,7 +143,6 @@ Page({
       } else {
         this.data.page++
       }
-
       this.data.isAllowLoad = true;
       wx.hideLoading();
     })
@@ -245,8 +245,6 @@ Page({
       this.storeList()
     })
   },
-  //返回显示
-  onShow() {},
   onUnload() {
     wx.hideLoading()
   },

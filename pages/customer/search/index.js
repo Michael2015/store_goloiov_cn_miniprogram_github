@@ -39,8 +39,10 @@ Page({
       })
       this.changeBarTitle()
       this.initSortTabs()
-      this.goProductList()
       this.CalculationHeight()
+  },
+  onReady(){
+    this.goProductList()
   },
   changeBarTitle(){
     wx.setNavigationBarTitle({

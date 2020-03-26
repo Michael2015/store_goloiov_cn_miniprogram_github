@@ -1,0 +1,68 @@
+/* components/no-data/index.wxss */
+.no-data {
+  color:#999;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 20rpx 0;
+  position: relative;
+}
+.no-data .no-data-image{
+  margin: auto;
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+}
+.no-data text{
+  display: block;
+  margin-top: 50rpx;
+}
+.commodity_list .commodity_item .volume .bold{
+  font-size: 24rpx;
+  font-weight:bold;
+  color: #FF5500;
+  float: left;
+}
+.commodity_list .commodity_item .volume .small{
+    color: #999;
+    float:right;
+    bottom: 0;
+  }
+.commodity_showList{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 19rpx;
+}
+.commodity_list {
+    /* height: calc(100vh - 328rpx); */ 
+    margin-top: 0rpx
+}
+
+.commodity_list .commodity_item .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    word-break: break-all;
+    height:70rpx;
+    line-height: 70rpx;
+}
+.commodity_list .commodity_item text{
+  margin:0
+}
+.commodity_list .commodity_item image{
+  width: 100%;
+  height: 37px;
+}
+.commodity_list .commodity_item{
+  width: 50%;
+display: flex;
+flex-direction: column;
+box-sizing: border-box;
+margin-top: 19rpx;
+position: relative;
+overflow: hidden;
+cursor: pointer;
+
+}

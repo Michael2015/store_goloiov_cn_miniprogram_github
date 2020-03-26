@@ -68,8 +68,7 @@
                     </view>
                     <view class="Replace" wx:if="{{ProductList.length % 2 ===1}}"></view>
                 </view>
-                <no-data list="{{ProductList}}" isLoad="{{loaded}}" wx:if="(ProductList&&ProductList.length!==0)||loaded"></no-data>
-                <view style="height:70px"></view>
+                <no-data-search list="{{ProductList}}" isLoad="{{loaded}}" wx:if="(ProductList&&ProductList.length!==0)||loaded"></no-data-search>
             </scroll-view>
         </view>
         <!-- product end !-->

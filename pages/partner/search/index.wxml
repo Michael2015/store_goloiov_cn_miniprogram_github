@@ -51,13 +51,6 @@
                                     <view class="title_volume">
                                         <view class="title">
                                             <text>{{item.store_name}}</text>
-                                            <!--
-                                                <text bindtap="show_modal" data-id="{{item.coupon.data.id}}" data-pid="{{item.id}}" wx:if="{{item.coupon.status}}">
-                                                <text  class="coupon3"> 马上领券/立减{{item.coupon.data.price}}元 </text>
-                                                </text>
-                                                <text wx:if="{{item.seckill.status == 1}}" class="coupon3"> 限时秒杀/立减{{item.seckill.data.save_money}}元 </text>
-                                                <text wx:if="{{item.seckill.status == -1}}" class="coupon3"> {{item.seckill.msg}}/{{item.seckill.data.title}} </text>
-                                            -->
                                         </view>
                                         <view class="volume">  
                                             <block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}"><em  class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text></em></block> 
@@ -69,7 +62,7 @@
                         </view>
                         <view class="Replace" wx:if="{{storeList.length % 2 ===1}}"></view>
                     </view>
-                    <no-data list="{{storeList}}" isLoad="{{isLoad}}" wx:if="(storeList&&storeList.length!==0) || isLoad"></no-data>
+                    <no-data-search list="{{storeList}}" isLoad="{{isLoad}}" wx:if="(storeList&&storeList.length!==0) || isLoad"></no-data-search>
                 </scroll-view>
         </view>
         <!-- product end !-->

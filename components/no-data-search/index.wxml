@@ -1,0 +1,81 @@
+<!--components/no-data/index.wxml-->
+<view class="no-data" wx:if="{{list.length > 0 && isLoad == 0}}">正在玩命加载中...</view>
+<view class="no-data" wx:elif="{{list.length > 0 && isLoad == 1}}">这已经是我的底线了</view>
+<view class="no-data" wx:else>
+       <view  class="commodity_list">
+            <view class="commodity_showList">
+                <view class="commodity_item">
+                    <view style="padding:20rpx;background:#fff">
+                        <view style="width:100%;height:100%;overflow: hidden;">
+                            <view class="showImg">
+                                <image src="https://wcp.szyrwl.com/public/uploads/common/loading.png" mode="widthFix"></image>
+                            </view>
+                            <view class="title_volume">
+                                    <view class="title">
+                                        <text>商品加载中...</text>
+                                    </view>
+                                    <view class="volume">  
+                                        <block><em class="bold"><text>￥999.99</text></em></block> 
+                                        <small class="small">销量 9999</small>
+                                    </view>    
+                            </view>            
+                        </view>
+                    </view>    
+                </view>
+                  <view class="commodity_item">
+                    <view style="padding:20rpx;background:#fff">
+                        <view style="width:100%;height:100%;overflow: hidden;">
+                            <view class="showImg">
+                                <image src="https://wcp.szyrwl.com/public/uploads/common/loading.png" mode="widthFix"></image>
+                            </view>
+                            <view class="title_volume">
+                                    <view class="title">
+                                        <text>商品加载中...</text>
+                                    </view>
+                                    <view class="volume">  
+                                        <block><em class="bold"><text>￥999.99</text></em></block> 
+                                        <small class="small">销量 9999</small>
+                                    </view>    
+                            </view>            
+                        </view>
+                    </view>    
+                </view>
+                  <view class="commodity_item">
+                    <view style="padding:20rpx;background:#fff">
+                        <view style="width:100%;height:100%;overflow: hidden;">
+                            <view class="showImg">
+                                <image src="https://wcp.szyrwl.com/public/uploads/common/loading.png" mode="widthFix"></image>
+                            </view>
+                            <view class="title_volume">
+                                    <view class="title">
+                                        <text>商品加载中...</text>
+                                    </view>
+                                    <view class="volume">  
+                                        <block><em class="bold"><text>￥999.99</text></em></block> 
+                                        <small class="small">销量 9999</small>
+                                    </view>    
+                            </view>            
+                        </view>
+                    </view>    
+                </view>
+                  <view class="commodity_item">
+                    <view style="padding:20rpx;background:#fff">
+                        <view style="width:100%;height:100%;overflow: hidden;">
+                            <view class="showImg">
+                                <image src="https://wcp.szyrwl.com/public/uploads/common/loading.png" mode="widthFix"></image>
+                            </view>
+                            <view class="title_volume">
+                                    <view class="title">
+                                        <text>商品加载中...</text>
+                                    </view>
+                                    <view class="volume">  
+                                        <block><em class="bold"><text>￥999.99</text></em></block> 
+                                        <small class="small">销量 9999</small>
+                                    </view>    
+                            </view>            
+                        </view>
+                    </view>    
+                </view>
+            </view>
+        </view>
+</view>
