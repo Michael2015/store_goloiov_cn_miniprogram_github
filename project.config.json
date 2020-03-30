@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
-	"appid": "wxd8f1ec5798479c95",
+	"appid": "wxa21ef49bc86899d3",
 	"#": "wxd8f1ec5798479c95wxa21ef49bc86899d3",
 	"projectname": "%E4%B8%87%E8%BD%A6%E5%93%81%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -243,7 +243,7 @@
 					"id": 26,
 					"name": "支付页",
 					"pathName": "pages/partner/settlement/index",
-					"query": "token=6fe1e9112fc458415fe7126ce2a8f253&id=2&unique=0&total_num=2",
+					"query": "token= 7822582cfafe76674744f320cecc6ad1&id=2&unique=0&total_num=2",
 					"scene": null
 				},
 				{

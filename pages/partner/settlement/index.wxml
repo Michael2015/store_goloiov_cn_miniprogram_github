@@ -35,17 +35,16 @@
                     <view class="title title2">实付金额<text class="right">¥{{pay_price}}</text></view>
                     <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
                 </view>
-                <!--
+                
                 <view class="number">
                     <view class="title title2 title3">
                         <image class="one" src="/assets/image/jifen.png" mode="widthFix"></image>
-                        <text decode="{{true}}">  可用200积分抵用{{golo_points}}元&nbsp;&nbsp;</text>
+                        <text decode="{{true}}">  可用{{golo_points}}积分抵用{{golo_points_money}}元&nbsp;&nbsp;</text>
                         <image src="/assets/image/question.png" mode="widthFix" bindtap="showWindows"></image>
                         <image wx:if="{{!radio_check}}" src="/assets/image/radio.png" bindtap="radio_check" mode="widthFix" class="right"></image>
                         <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check" mode="widthFix" class="right"></image>
                     </view>
                 </view>
-                -->
             </view>
             <view class="leaveMsg">
                 <input placeholder="留言内容/备注 （ 选填 ）最多100字符" placeholder-class="search_input_placeholder" bindinput="{{is_show_action?'setMark':''}}" value="{{mark}}" maxlength="100" />

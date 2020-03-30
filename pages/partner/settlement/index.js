@@ -20,8 +20,10 @@ Page({
     pay_type_show:false,
     now_money:0.00,//我的积分余额
     golo_points:0,
+    golo_points_money:0.00,
     used_golo_points:0,
     radio_check:false,
+    pay_price_temp:0.00,
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
@@ -56,18 +58,21 @@ Page({
       {
         can_use_jifen = false;
       }
-      let golo_points = res.golo_points || 0;
-      pay_price = pay_price - golo_points;
+    
+      let golo_points_money = res.golo_intergal.golo_points_money || 0;
+      let golo_points = res.golo_intergal.golo_points || 0;
       //计算优惠后的价格
       this.setData({
         price: res,
         pay_price: parseFloat(pay_price).toFixed(2),
+        pay_price_temp: parseFloat(pay_price).toFixed(2),
         coupon_total: parseFloat(coupon_total2).toFixed(2),
         info: app.varStorage.get('storeDetail'),
         coupon_total2,
         now_money:res.now_money,
         can_use_jifen,
-        golo_points: parseFloat(golo_points).toFixed(2),
+        golo_points_money: parseFloat(golo_points_money).toFixed(2),
+        golo_points: golo_points,
       });
      
       wx.hideLoading()
@@ -307,14 +312,21 @@ Page({
       }
     })
   },
-  doGoloPoints(e)
-  {
-    this.data.used_golo_points = this.data.used_golo_points == 1 ? 0 : 1;
-  },
   //切换单选图标
   radio_check(){
-    this.data.radio_check = !this.data.radio_check;
-    this.setData({radio_check:this.data.radio_check});
+    if(this.data.golo_points > 0)
+    {
+      let radio_check = !this.data.radio_check;
+      let used_golo_points = !this.data.used_golo_points;
+      let pay_price = this.data.pay_price_temp;
+      if(used_golo_points)
+      {
+        pay_price = pay_price - this.data.golo_points_money;
+        pay_price = parseFloat(pay_price).toFixed(2); 
+      }
+     this.setData({radio_check:radio_check,used_golo_points:used_golo_points,pay_price:pay_price});
+    }
+    
   }
 
 })
