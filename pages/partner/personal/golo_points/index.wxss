@@ -80,7 +80,14 @@ page {
 .content .text-content .right.sub{
     color:#7FFF00;
 }
-
+.no-more {
+  text-align: center;
+  color: #aaa;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  visibility:visible;
+  margin-top: 20rpx;
+}
 
 
 

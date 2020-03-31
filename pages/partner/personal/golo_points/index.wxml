@@ -3,13 +3,25 @@
     <view class="head">
         <view class="mid">
             <view class="title">当前积分：</view>
-            <label>1600个</label>
+            <label>{{useable_integral}}个</label>
             <p>在GoloAPP上每开车1公里获得1积分</p>
         </view>
     </view>
     <view class="content">
         <legend>积分收支明细</legend>
         <block>
+            <view class='text-content' wx:for="{{list}}" wx:key="index">
+                <view class="left">
+                    <p>{{item.type==1?"行驶奖励":item.type==2?"商城消费":"兑换CC"}}</p>
+                    <p class="small">{{item.createTime}}</p>
+                </view>
+                <view class="right {{item.type==1?'add':'sub'}}">{{item.type==1?'+':'-'}}{{item.integral}}</view>
+            </view>
+            <view class="no-more">没有更多数据</view>
+        </block>
+        <!--no-data isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}" /!-->
+    </view>
+        <!--block>
             <view class='text-content'>
                 <view class="left">
                     <p>积分收项目名称</p>
@@ -31,6 +43,6 @@
                 </view>
                 <view class="right add">+50</view>
             </view> 
-        </block>
-    </view>
+        </block!-->
+    
 </view>

@@ -17,7 +17,7 @@ App({
     })
   },
   http: {
-    request(url, method, data) {
+    request(url, method, data, isAll=false) {
       wx.showNavigationBarLoading()
       return new Promise((resolve, reject) => {
         url = `${app.globalData.HOST}${url}`
@@ -36,7 +36,11 @@ App({
             } = res;
             if (data.code === 200) {
               wx.hideNavigationBarLoading()
-              resolve(data.data)
+              if(isAll){
+                resolve(data)
+              }else{
+                resolve(data.data)
+              }
             } 
             else if(data.code === 403)
             {
@@ -72,8 +76,8 @@ App({
         wx.request(sendData)
       })
     },
-    get(url, data = {}) {
-      return this.request(url, "GET", data)
+    get(url, data = {}, isAll=false) {
+      return this.request(url, "GET", data, isAll)
     },
     post(url, data = {}) {
       return this.request(url, "POST", data)
