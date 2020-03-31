@@ -21,28 +21,5 @@
         </block>
         <!--no-data isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}" /!-->
     </view>
-        <!--block>
-            <view class='text-content'>
-                <view class="left">
-                    <p>积分收项目名称</p>
-                    <p class="small">2019-02-02 10:02:21</p>
-                </view>
-                <view class="right add">+50</view>
-            </view> 
-             <view class='text-content'>
-                <view class="left">
-                    <p>积分收项目名称</p>
-                    <p class="small">2019-02-02 10:02:21</p>
-                </view>
-                <view class="right sub">-50</view>
-            </view> 
-             <view class='text-content'>
-                <view class="left">
-                    <p>积分收项目名称</p>
-                    <p class="small">2019-02-02 10:02:21</p>
-                </view>
-                <view class="right add">+50</view>
-            </view> 
-        </block!-->
     
 </view>
