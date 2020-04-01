@@ -3,8 +3,12 @@ page{
   min-height: 100vh;
 }
 .view{
-    width:90%;
+    width:100%;
     margin:0 auto;
+}
+.view-integral{
+  width:90%;
+  margin:0 auto;
 }
 .head{
     background:#e70002;
