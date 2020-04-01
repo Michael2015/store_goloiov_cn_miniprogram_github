@@ -23,7 +23,6 @@ Page({
         page: this.data.page,
         limit: size
       }).then(data => {
-        console.log(data)
         if (data) {
           this.data.list.push(...data.data)
           this.setData({
