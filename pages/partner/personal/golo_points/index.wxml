@@ -1,23 +1,24 @@
-<!--index.wxml-->
-<view class="view">
-    <view class="head">
-        <view class="mid">
-            <view class="title">当前积分：</view>
-            <label>{{useable_integral}}个</label>
-            <p>在GoloAPP上每开车1公里获得1积分</p>
-        </view>
-    </view>
-    <view class="content">
-        <legend>积分收支明细</legend>
-        <block>
-            <view class='text-content' wx:for="{{list}}" wx:key="index">
-                <view class="left">
-                    <p>{{item.type==1?"行驶奖励":item.type==2?"商城消费":"兑换CC"}}</p>
-                    <p class="small">{{item.createTime}}</p>
-                </view>
-                <view class="right {{item.type==1?'add':'sub'}}">{{item.type==1?'+':'-'}}{{item.integral}}</view>
+<view class='view'>
+    <scroll-view scroll-y="auto" bindscrolltolower="load" lower-threshold="20">
+        <view class="head">
+            <view class="mid">
+                <view class="title">当前积分：</view>
+                <label>{{useable_integral}}个</label>
+                <p>在GoloAPP上每开车1公里获得1积分</p>
             </view>
-        </block>
-        <no-data-no-goods isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}"></no-data-no-goods>
-    </view>
+        </view>
+        <view class="content">
+            <legend>积分收支明细</legend>
+                <view class="wrap">
+                    <view class="text-content" wx:for="{{list}}" wx:key="index" >
+                        <view class="left">
+                            <p>{{item.type==1?"行驶奖励":item.type==2?"商城消费":"兑换CC"}}</p>
+                            <p class="small">{{item.createTime}}</p>
+                        </view>
+                        <view class="right {{item.type==1?'add':'sub'}}">{{item.type==1?'+':'-'}}{{item.integral}}</view>
+                    </view>
+                    <no-data-no-goods isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}"></no-data-no-goods>
+                </view>
+        </view>
+    </scroll-view>
 </view>
