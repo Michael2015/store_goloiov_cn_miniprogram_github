@@ -96,7 +96,8 @@
     ]
   },
   "usingComponents": {
-    "no-data": "components/no-data/index"
+    "no-data": "components/no-data/index",
+    "no-data-no-goods": "components/no-data-no-goods/index"
   },
   "networkTimeout": {
     "uploadFile": 600000,
