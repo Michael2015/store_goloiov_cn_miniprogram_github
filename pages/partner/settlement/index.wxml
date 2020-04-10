@@ -36,7 +36,7 @@
                     <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
                 </view>
                 
-                <view class="number">
+                <view class="number" wx-if="{{!orderId}}">
                     <view class="title title2 title3">
                         <image class="one" src="/assets/image/jifen.png" mode="widthFix"></image>
                         <text decode="{{true}}">  可用{{golo_points}}积分抵用{{golo_points_money}}元&nbsp;&nbsp;</text>

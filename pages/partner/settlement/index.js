@@ -30,6 +30,7 @@ Page({
       product_id,
       order_id: this.data.orderId,
       unique:this.data.unique,
+      total_num:this.data.total_num,
     }).then(res => {
       let pay_price = res.price;
       //优惠券合伙秒杀//优惠券
