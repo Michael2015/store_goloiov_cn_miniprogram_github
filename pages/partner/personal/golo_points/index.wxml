@@ -13,10 +13,10 @@
                     <view class="wrap">
                         <view class="text-content" wx:for="{{list}}" wx:key="index" >
                             <view class="left">
-                                <p>{{item.type==1?"行驶奖励":item.type==2?"商城消费":"兑换CC"}}</p>
+                                <p>{{item.title}}</p>
                                 <p class="small">{{item.createTime}}</p>
                             </view>
-                            <view class="right {{item.type==1?'add':'sub'}}">{{item.type==1?'+':'-'}}{{item.integral}}</view>
+                            <view class="right {{(item.type==1 || item.type==4)?'add':'sub'}}">{{(item.type==1 || item==4)?'+':'-'}}{{item.integral}}</view>
                         </view>
                         <no-data-no-goods isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}"></no-data-no-goods>
                     </view>
