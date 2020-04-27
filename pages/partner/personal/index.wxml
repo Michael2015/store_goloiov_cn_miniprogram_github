@@ -33,6 +33,10 @@
     <text>我的伙伴</text>
   </view>
 </view>
+
+<view class="contribution" bindtap="to" data-url="/pages/partner/personal/contribution/index">
+    <image src="/assets/image/contribution.png" mode="widthFix"></image>
+</view>
 <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/golo_points/index">
     <view class="icon"><image src="/assets/image/jifen2.png" mode="widthFix"></image></view>
