@@ -273,6 +273,20 @@
 					"pathName": "pages/partner/personal/data/index",
 					"query": "token= 7822582cfafe76674744f320cecc6ad1&id=2&unique=0&total_num=2",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的贡献值",
+					"pathName": "pages/partner/personal/contribution/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "贡献值详情",
+					"pathName": "pages/partner/personal/contribution/detail",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
