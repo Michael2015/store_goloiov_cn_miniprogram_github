@@ -266,6 +266,13 @@
 					"pathName": "pages/partner/personal/golo_points/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 30,
+					"name": "pages/partner/personal/data/index",
+					"pathName": "pages/partner/personal/data/index",
+					"query": "token= 7822582cfafe76674744f320cecc6ad1&id=2&unique=0&total_num=2",
+					"scene": null
 				}
 			]
 		}
