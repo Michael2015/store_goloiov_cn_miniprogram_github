@@ -58,7 +58,9 @@
     "pages/customer/search/index",
     "pages/partner/search/index",
     "pages/common/waiting/index",
-    "pages/partner/personal/golo_points/index"
+    "pages/partner/personal/golo_points/index",
+    "pages/partner/personal/contribution/detail",
+    "pages/partner/personal/contribution/index"
   ],
   "tabBar": {
     "custom": true,

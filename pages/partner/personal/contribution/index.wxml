@@ -1,0 +1,67 @@
+<view class='view'>
+    <view class="view-contribution">
+        <view class="self-info">
+            <image src="/assets/image/contribution_header.png" mode="aspectFill"></image>
+            <view class="self-info-content">
+                <view class="head">
+                    <view class="left">
+                        <view class="nickname">{{userInfo.nickname}}</view>
+                        <view class="level">
+                            <view class="vip">V{{userInfo.partner_level}}</view>
+                            <image src="/assets/image/contribution_vip.png"></image>
+                        </view>
+                    </view>
+                    <view class="right" bindtap="goDetail">贡献值详情 <image src="/assets/image/white_right.png"></image></view>
+                </view>
+                <view class="growth-value">
+                    成长值: {{userInfo.growth_value[0]}}/{{userInfo.growth_value[1]}}
+                </view>
+                <view class="cur-level">
+                    <p>当前等级: V{{userInfo.partner_level}}</p> 
+                </view>
+            </view>
+        </view>
+        <view class="contribution-info">
+            <legend>我的贡献值</legend>
+            <view class="self-contribution-info">
+                <image src="/assets/image/my_contribution.png" mode="aspectFill"></image>
+                <view class="self-contribution-content">
+                    <view class="total">
+                        <p class="title">累计贡献值</p>
+                        <p class="value">{{contibutionInfo.total}}</p>
+                    </view>
+                    <view class="others">
+                        <view class="myself">
+                            <p class="value">{{contibutionInfo.self_total}}</p>
+                            <p class="title">个人累计贡献值</p>
+                        </view>
+                        <view class="team">
+                            <p class="value">{{contibutionInfo.team_total}}</p>
+                            <p class="title">团队累计贡献值</p>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        
+        <view class="content">
+            <legend>贡献值任务</legend>
+            <view class="text-content" wx:for="{{list}}" wx:key="index" >
+                <view class="left">
+                    <image src="/assets/image/c_{{item.name}}.png"></image>
+                    <view class="info">
+                        <view class="title">{{item.title}} <image src="/assets/image/contribution_money.png"></image> <span class="red">{{item.is_ratio ? " 订单金额 *" + item.value + "%" : " +" + item.value}}</span></view>
+                        <p class="small">{{item.title_text}}</p>
+                    </view>
+                </view>
+                <view class="right">
+                    <p>{{item.total}}</p>
+                    <p class="small">累计获得</p>  
+                </view>
+            </view>
+            <no-data-no-goods isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}"></no-data-no-goods>
+        </view>
+    </view>
+   
+</view>
+

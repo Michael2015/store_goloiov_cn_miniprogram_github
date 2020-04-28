@@ -1,0 +1,23 @@
+<view class='view'>
+    <scroll-view scroll-y="auto" bindscrolltolower="load" lower-threshold="20">
+        <view class="view-contribution">
+            <view class="content">
+                <view class="title">
+                    <legend>累计贡献值</legend>
+                    <image src="/assets/image/contribution_money.png"></image>
+                </view>
+                <view class="wrap">
+                    <view class="text-content" wx:for="{{list}}" wx:key="index" >
+                        <view class="left">
+                            <p>{{item.title}}</p>
+                            <p class="small">{{item.create_time}}</p>
+                        </view>
+                        <view class="right add">+{{item.amount}}</view>
+                    </view>
+                    <no-data-no-goods isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}"></no-data-no-goods>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>
+
