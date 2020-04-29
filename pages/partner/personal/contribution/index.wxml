@@ -62,6 +62,5 @@
             <no-data-no-goods isLoad="{{loaded}}" wx:if="{{list&&list.length===0 || loaded}}" list="{{list}}"></no-data-no-goods>
         </view>
     </view>
-   
 </view>
 
