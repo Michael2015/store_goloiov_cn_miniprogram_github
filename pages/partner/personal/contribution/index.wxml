@@ -43,7 +43,6 @@
                 </view>
             </view>
         </view>
-        
         <view class="content">
             <legend>贡献值任务</legend>
             <view class="text-content" wx:for="{{list}}" wx:key="index" >
