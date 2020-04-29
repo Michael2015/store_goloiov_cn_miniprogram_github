@@ -11,7 +11,7 @@ page{
   margin:0 auto;
 }
 .content .title{
-    padding: 15rpx 0rpx 15rpx 0rpx;
+    padding: 15rpx 0rpx 15rpx 5rpx;
     display:flex;
 }
 legend{

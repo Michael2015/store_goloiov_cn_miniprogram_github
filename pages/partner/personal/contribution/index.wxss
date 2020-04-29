@@ -18,7 +18,6 @@ page{
     font-size:28rpx;
     line-height:270rpx;
     display:block;
-    background:#fff;
     margin-top:30rpx;
     display: flex;
     flex-direction: row;
@@ -32,8 +31,9 @@ page{
     display: block;
     position: absolute;
     height: 100%;
-    color: #FFFFFF;
-    padding-left:30rpx;
+    width: 100%;
+    font-weight:400;
+    color: #C0C0C0;
 }
 .self-info-content .head{
     height: 50rpx;
@@ -42,6 +42,7 @@ page{
     display:flex;
     font-size:40rpx;
     margin-top:46rpx;
+    padding-left:30rpx;
 }
 .self-info-content .head .left{
     height: 50rpx;
@@ -54,7 +55,6 @@ page{
     height: 50rpx;
     line-height:50rpx;
     display:block;
-    color:#FFFFFF;
     font-size:28rpx;
 }
 .self-info-content .head .right image{
@@ -62,34 +62,46 @@ page{
     width: 24rpx;
 }
 .self-info-content .head .left  .nickname{
-    width: 60%;
+    width: 240rpx;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
     color:#F6B18C;
+    font-weight:500;
 }
 .self-info-content .head .left .level{
-    width:30%;
-    color:#fff;
+    width:106rpx;
     display:flex;
+    font-size:28rpx;
+    margin-left:37rpx;
+}
+.self-info-content .head .left .level image{
+    width:106rpx;
 }
 .self-info-content .head .left .level .vip-image{
     width:100%;
     height:100%;
 }
 .self-info-content .head .left .level .vip-image image{
-    width:100%;
+    width: 100%;
     height:100%;
 }
 .self-info-content .head .left .level .vip{
    position:absolute;
    padding-left:20rpx;
+   color:#333333;
+   font-weight:500;
+}
+.self-info-content .head .right image{
+   width:24rpx;
+   height:24rpx;
 }
 .self-info-content .growth-value{
     width: 100%;
     height: 42rpx;
     line-height:42rpx;
     margin-top:40rpx;
+    padding-left:30rpx;
 }
 .self-info-content .cur-level{
     width: 100%;
@@ -97,6 +109,7 @@ page{
     line-height:42rpx;
     display:flex;
     margin-top:10rpx;
+    padding-left:30rpx;
 }
 .contribution-info{
     text-align: center;
@@ -109,7 +122,6 @@ page{
     font-size:28rpx;
     line-height:354rpx;
     display:flex;
-    background:#fff;
     text-align: center;
     margin-top: 10rpx;
 }

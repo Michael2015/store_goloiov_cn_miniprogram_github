@@ -14,10 +14,10 @@
                     <view class="right" bindtap="goDetail">贡献值详情 <image src="/assets/image/white_right.png"></image></view>
                 </view>
                 <view class="growth-value">
-                    成长值: {{userInfo.growth_value[0]}}/{{userInfo.growth_value[1]}}
+                    成长值 {{userInfo.growth_value[0]}}/{{userInfo.growth_value[1]}}
                 </view>
                 <view class="cur-level">
-                    <p>当前等级: V{{userInfo.partner_level}}</p> 
+                    <p>当前等级 V{{userInfo.partner_level}}</p> 
                 </view>
             </view>
         </view>
