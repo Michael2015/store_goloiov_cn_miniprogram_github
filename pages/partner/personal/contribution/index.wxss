@@ -47,7 +47,6 @@ page{
 .self-info-content .head .left{
     height: 50rpx;
     line-height:50rpx;
-    width:70%;
     float:left;
     display:flex;
 }
@@ -56,6 +55,7 @@ page{
     line-height:50rpx;
     display:block;
     font-size:28rpx;
+    margin-left:100rpx;
 }
 .self-info-content .head .right image{
     height: 24rpx;
