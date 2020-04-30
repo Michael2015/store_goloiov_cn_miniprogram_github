@@ -114,11 +114,11 @@ page{
 }
 .self-info-content .label{
    color:#909090;
-   font-weight:400rpx;
+   font-weight:400;
 }
 .self-info-content .value{
    color:#B8B8B8;
-   font-weight:500rpx;
+   font-weight:500;
    margin-left:10rpx;
 }
 .contribution-info{
