@@ -71,7 +71,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "合伙人详情",
 					"pathName": "pages/partner/detail/detail",
 					"query": "",
