@@ -16,9 +16,12 @@
             <swiper indicator-dots="true"  autoplay="true" interval="5000" duration="500">
                 <block wx:for="{{bannerList}}" wx:key="{{index}}">
                     <swiper-item>
-                        <navigator  url="{{item.url}}">
+                        <navigator wx:if="{{item.url_type == 1}}" url="{{item.url}}">
                             <image src="{{item.pic}}" class="slide-image" mode="aspectFill" />
                         </navigator>
+                        <block wx:if="{{item.url_type == 2}}">
+                            <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill"  bindtap="goOutMiniProgram" />
+                        </block>
                     </swiper-item>
                 </block>
             </swiper>

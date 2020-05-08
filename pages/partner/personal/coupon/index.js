@@ -29,11 +29,17 @@ Page({
   },
   goDetails(e)
   {
-    let product_id = e.currentTarget.id;
-    wx.navigateTo({
-      url: '/pages/partner/detail/detail?id=' + product_id
-    })
-
+    let product_ids = e.currentTarget.id;
+    if(product_ids.indexOf(",") != -1){
+      wx.navigateTo({
+        url: '/pages/partner/index/index'
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '/pages/partner/detail/detail?id=' + product_ids
+      })
+    }
   }
 
 })

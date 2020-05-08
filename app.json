@@ -116,5 +116,8 @@
     "navigationBarTitleText": "万车品商城",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": [
+    "wx1e90ffc23ecb6807"
+  ]
 }

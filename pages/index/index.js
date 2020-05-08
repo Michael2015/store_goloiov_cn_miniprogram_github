@@ -62,7 +62,6 @@ Page({
                     app.globalData.shareInfo.share_product_id = options.st || 0;// 商品id
                     app.globalData.shareInfo.type = options.type || ''; // 分享类型
                     app.globalData.shareInfo.source = options.source || ''; // 分享类型
-
                     if (options.type === 'invite') {
                         // let partner_invite_id = app.globalData.partner_invite_id;
                         let share_user_id = app.globalData.partner_invite_id || app.globalData.shareInfo.share_user_id;

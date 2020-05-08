@@ -385,6 +385,16 @@ Page({
             this.setData({ allProductList: res })
         })
     },
+     //跳转到外部小程序
+    goOutMiniProgram()
+    {
+        let url = e.currentTarget.dataset.url;
+        wx.navigateToMiniProgram({
+        appId: 'wx1e90ffc23ecb6807',
+        path: url,
+        envVersion: 'release',// 打开正式版
+        })
+    },
     goSearch(e) {
         let selectTabType = e.currentTarget.dataset.type
         let jumpUrl = "";
