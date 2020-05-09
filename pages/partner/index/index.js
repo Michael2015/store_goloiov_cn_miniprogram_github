@@ -114,8 +114,8 @@ Page({
           wx.hideLoading();
           return
         }
-        //最多只能加载五页（20190115）
-        if ((res && res.length < this.data.limit) || this.data.page > 4) {
+        //无限加载页数
+        if ((res && res.length < this.data.limit)) {
           this.setData({
             isLoad: 1
           })
