@@ -38,7 +38,7 @@ Page({
       //区分是否有优惠券以及是否从现有订单进来支付页
       if (res.discount.status == 1 && this.data.is_show_action == 0) {
         //如果是从重新支付订单进来，则不需要再减掉优惠价格
-        coupon_total2 = 0;
+        coupon_total2 = res.discount.data.total;
         pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       } else if (res.discount.status == 1 && this.data.is_show_action == 1) {
         coupon_total2 = res.discount.data.total || res.discount.data.save_money;
