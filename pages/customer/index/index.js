@@ -13,7 +13,7 @@ Page({
         limit: 10,
         getPartnerInfo: {},
         loading: false, // 加载中
-        loaded: false, // 加载完毕
+        isLoad: 0, // 加载完毕
         showModal: false,//是否显示模态框
         coupon_id: 0,
         coupon_date: '',
@@ -33,7 +33,7 @@ Page({
         newObj: {},            //新人专区对象
         showMoreBlast: false,  //是否需要展示更多爆款专区
         blastProductList: [], //爆款专区商品
-        allProductList: [], //全部商品
+        storelist: [], //全部商品
         keyword: "",
         news_image: "", //新人专区背景图
     },
@@ -98,17 +98,17 @@ Page({
                     getProductList
                 })
             } else if (this.data.selectClassId == -1) {
-                if (this.data.loaded) {
+                if (this.data.isLoad) {
                     wx.hideLoading()
                     return
                 }
-                let allProductList = this.data.allProductList.concat(res)
+                let storelist = this.data.storelist.concat(res)
                 this.setData({
-                    allProductList
+                    storelist
                 })
                 if (res && res.length < size) {
                     this.setData({
-                        loaded: true
+                        isLoad: 1
                     })
                 } else {
                     this.data.page++
@@ -195,8 +195,7 @@ Page({
         })
     },
     nextPage() {
-        console.log('loaded' + this.data.loaded)
-        if (!this.data.loaded) { // 没有到最后一页
+        if (!this.data.isLoad) { // 没有到最后一页
             this.getProductList()
         }
     },
@@ -252,8 +251,7 @@ Page({
             this.setData({
                 // getProductList: [],
                 // page: 1,
-                loading: false,
-                // loaded: false   
+                loading: false, 
             })
             this.getProductList()
         }
@@ -318,7 +316,7 @@ Page({
             return
         }
         app.http.post('/api/customer/mall/getProductList', { cate_id: cat_id }).then(res => {
-            this.setData({ getProductList: res, loaded: true, isloading: false })
+            this.setData({ getProductList: res, isLoad: 1, isloading: false })
         })
     },
     touchMove() {
@@ -382,7 +380,7 @@ Page({
     //获取全部商品
     getAll() {
         app.http.post('/api/customer/mall/getProductList', {}).then(res => {
-            this.setData({ allProductList: res })
+            this.setData({ storelist: res })
         })
     },
      //跳转到外部小程序

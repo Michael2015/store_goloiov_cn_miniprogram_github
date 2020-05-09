@@ -24,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
-	"appid": "wxa21ef49bc86899d3",
+	"appid": "wxd8f1ec5798479c95",
 	"#": "wxd8f1ec5798479c95wxa21ef49bc86899d3",
 	"projectname": "%E4%B8%87%E8%BD%A6%E5%93%81%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -82,7 +82,7 @@
 					"id": 3,
 					"name": "客户商品详情页",
 					"pathName": "pages/customer/detail/detail",
-					"query": "token=6fe1e9112fc458415fe7126ce2a8f253&type=share&share_user_id=2&share_partner_id=2&share_product_id=1",
+					"query": "type=share&s=0&p=0&st=20",
 					"scene": null
 				},
 				{

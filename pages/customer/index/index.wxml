@@ -93,7 +93,7 @@
                 <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>
                 <scroll-view scroll-y class="commodity_all_list" bindscrolltolower="nextPage">
                     <view class="commodity_all_showList">
-                        <view class="commodity_all_item" wx:for="{{allProductList}}" wx:key="{{index}}">
+                        <view class="commodity_all_item" wx:for="{{storelist}}" wx:key="{{index}}">
                             <view style="padding:20rpx;background:#fff">
                                 <view style="width:100%;height:100%;overflow: hidden; display:flex" catchtap="goDetails" id="{{item.id}}" >
                                     <view class="showImg2">
@@ -144,8 +144,7 @@
                             </view>
                         </view>
                     </view>
-                    <no-data list="{{allProductList}}" isLoad="{{loaded}}" wx:if="{{allProductList.length < 50}}"></no-data>
-                    <view wx:if="{{allProductList.length > 49}}" class="more" bindtap="goSearch" data-type="all_product">更多 >> </view>
+                    <no-data list="{{storelist}}" isLoad="{{isLoad}}"></no-data>
                 </scroll-view>
             </view>
         <!-- all product end !-->
