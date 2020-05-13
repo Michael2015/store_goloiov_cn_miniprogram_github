@@ -226,6 +226,7 @@ Page({
       //text = detail_val
       this.setData({
         page: 1,
+        isLoad:0,
         storeList: [],
         keyword: detail_val, // 不搜索空串
       }, () => {
@@ -256,7 +257,8 @@ Page({
       isloading: false,
       storeList:[],
       page: 1,
-      hiddenTab: true
+      hiddenTab: true,
+      isLoad:0,
     })
     this.storeList()
   },
@@ -281,7 +283,6 @@ Page({
           sortDirection: direction, 
         })
       }
-      console.log(item)
       let sortTabList1 = that.data.sortTabList1.concat(item);
       that.setData({
         sortTabList:sortTabList1,
@@ -293,7 +294,8 @@ Page({
       isloading: false,
       storeList:[],
       page: 1,
-      hiddenTab: true
+      hiddenTab: true,
+      isLoad:0,
     })
 
     this.storeList()
