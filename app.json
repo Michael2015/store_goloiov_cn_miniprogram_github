@@ -4,6 +4,7 @@
     "pages/login/index",
     "pages/partner/index/index",
     "pages/common/order/order",
+    "pages/common/goout/index",
     "pages/common/order/detail",
     "pages/partner/detail/detail",
     "pages/partner/personal/index",

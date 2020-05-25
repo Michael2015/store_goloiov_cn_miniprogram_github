@@ -22,6 +22,12 @@
                         <block wx:if="{{item.url_type == 2}}">
                             <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill"  bindtap="goOutMiniProgram" />
                         </block>
+                        <block wx:if="{{item.url_type == 2}}">
+                            <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill"  bindtap="goOutMiniProgram" />
+                        </block>
+                         <block wx:if="{{item.url_type == 3}}">
+                            <web-view src="{{item.url}}"></web-view>
+                        </block>
                     </swiper-item>
                 </block>
             </swiper>
@@ -31,7 +37,7 @@
         <!-- category start !-->
         <view class="category">
             <view class="categoryList" wx:for="{{categoryList}}" wx:key="{index}" >
-                <view class="categoryList_item" bindtap="goSearch" data-type="category"  data-id="{{item.id}}" data-name="{{item.cate_name}}">
+                <view class="categoryList_item" bindtap="goSearch" data-url="{{item.url}}"  data-type="category"  data-id="{{item.id}}" data-name="{{item.cate_name}}">
                     <image src="{{item.pic}}"></image>
                     <view class="name">{{item.cate_name}}</view>
                 </view>

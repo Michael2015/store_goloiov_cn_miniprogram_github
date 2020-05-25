@@ -166,14 +166,14 @@
 					"id": 15,
 					"name": "pages/customer/detail/detail",
 					"pathName": "pages/customer/detail/detail",
-					"query": "id=2",
+					"query": "id=196",
 					"scene": null
 				},
 				{
 					"id": 16,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
-					"query": "type=share&s=231&p=231&st=1",
+					"query": "type=share&s=0&p=0&st=192",
 					"scene": null
 				},
 				{
@@ -286,6 +286,13 @@
 					"name": "贡献值详情",
 					"pathName": "pages/partner/personal/contribution/detail",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": 33,
+					"name": "pages/customer/search/index?type=category&cate_id=18&title=",
+					"pathName": "pages/customer/search/index",
+					"query": "type=category&cate_id=18&title=&source=hema",
 					"scene": null
 				}
 			]

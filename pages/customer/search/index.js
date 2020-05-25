@@ -28,7 +28,8 @@ Page({
     sortDirection: "asc", //默认的排序方式
     selectTabName: "销量",
     hiddenTab: true,
-    selectTabName: "销量"
+    selectTabName: "销量",
+    options:{}
   },
   onLoad(options) {
       this.setData({
@@ -36,6 +37,7 @@ Page({
           productType: options.type == "is_blast" ? "is_blast" : "all",
           keyword: options.type == "search" ? options.keyword : "",
           navBarTitle: options.title,
+          options:options,
       })
       this.changeBarTitle()
       this.initSortTabs()
@@ -148,9 +150,18 @@ Page({
     // this.setData({
     //     ReplacescrollTop: this.data.scrollTop
     // })
-    wx.navigateTo({
+    if(this.options.source == 'hema')
+    {
+       wx.navigateTo({
+        url: '/pages/customer/detail/detail?id=' + e.currentTarget.id+'&type=hema'
+    })
+    }
+    else{
+        wx.navigateTo({
         url: '/pages/customer/detail/detail?id=' + e.currentTarget.id
     })
+    }
+
   },
   // 初始化内容swiper高度
   initContentSwiperHeight() {
@@ -188,7 +199,6 @@ Page({
     this.nextPage()
   },
   nextPage() {
-    console.log('loaded' + this.data.loaded)
     if (!this.data.loaded) { // 没有到最后一页
         this.goProductList()
     }

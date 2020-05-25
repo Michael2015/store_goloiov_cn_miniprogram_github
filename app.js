@@ -104,7 +104,7 @@ App({
   globalData: {
     userInfo: {},
     partnerInfo: {},
-    token: '' || '92f862c626264fdf7ec87b7b1b80c917',
+    token: '',
     //token: "b81eb331547538053441176f6df4d096",
     // role: 用户角色 0客户 1合伙人
     role: null,   

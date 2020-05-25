@@ -392,8 +392,8 @@ Page({
                     })
                 }
                 else {
-                    let share_user_id = app.globalData.shareInfo.share_user_id;
-                    let share_partner_id = app.globalData.shareInfo.share_partner_id;
+                    let share_user_id = app.globalData.shareInfo.share_user_id || 0;
+                    let share_partner_id = app.globalData.shareInfo.share_partner_id || 0;
                     let share_product_id = app.globalData.shareInfo.share_product_id || product_id;
                     if (that.data.share_type) {
                         url = '/pages/login/index?type=share&share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id;

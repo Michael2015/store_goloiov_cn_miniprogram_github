@@ -407,15 +407,20 @@ Page({
     let jumpUrl = "";
     //点击分类tab跳转
     if (selectTabType == "category"){
+         let url = e.currentTarget.dataset.url;
+            if(url)
+            {
+                jumpUrl = "/pages/common/goout/index?url="+url
+            }else{
         let selectTabId = e.currentTarget.dataset.id
         let selectTabname = e.currentTarget.dataset.name
-    
         let waitingTab = ["油卡充值", "VIP服务商"]
         if (waitingTab.indexOf(selectTabname) >= 0) {
             jumpUrl = "/pages/common/waiting/index?title="+selectTabname
         } else {
             jumpUrl = "/pages/partner/search/index?type=category&cate_id="+selectTabId+"&title="+selectTabname
         }
+      }
     }
     //点击爆款商品图标跳转
     else if (selectTabType == "blast_product") {
