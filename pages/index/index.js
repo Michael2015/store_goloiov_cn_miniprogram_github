@@ -75,7 +75,16 @@ Page({
                         wx.redirectTo({
                             url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
                         });
-                    } else {
+                    } 
+                    else if(options.type === 'hema')
+                    {
+                        //发现河马        
+                        wx.redirectTo({
+                            url: '/pages/customer/search/index?type=category&cate_id=18&title=&source=hema',
+                        });
+                    }
+
+                    else {
                         wx.switchTab({
                             url: '/pages/customer/index/index'
                         });
@@ -354,7 +363,15 @@ function analysisOptions(options, res) {
                 url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         }
-    } else {
+    } 
+else if(options.type === 'hema')
+{
+ //发现河马        
+ wx.redirectTo({
+    url: '/pages/partner/search/index?type=category&cate_id=18&title=',
+ });
+}
+    else {
         if (res.is_promoter === 0) {
             // 客户进入
             if (!res.last_partner_info) {

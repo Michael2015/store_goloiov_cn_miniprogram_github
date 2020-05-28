@@ -147,10 +147,7 @@ Page({
         return ele.id == e.currentTarget.id
     })
     app.varStorage.set('storeDetail', ProductList[0])
-    // this.setData({
-    //     ReplacescrollTop: this.data.scrollTop
-    // })
-    if(this.options.source == 'hema')
+    if(this.options.source)
     {
        wx.navigateTo({
         url: '/pages/customer/detail/detail?id=' + e.currentTarget.id+'&type=hema'
