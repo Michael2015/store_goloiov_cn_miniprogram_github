@@ -22,9 +22,6 @@
                         <block wx:if="{{item.url_type == 2}}">
                             <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill"  bindtap="goOutMiniProgram" />
                         </block>
-                        <block wx:if="{{item.url_type == 2}}">
-                            <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill"  bindtap="goOutMiniProgram" />
-                        </block>
                          <block wx:if="{{item.url_type == 3}}">
                             <web-view src="{{item.url}}"></web-view>
                         </block>

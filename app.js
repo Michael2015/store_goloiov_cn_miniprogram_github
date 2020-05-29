@@ -108,8 +108,8 @@ App({
     //token: "b81eb331547538053441176f6df4d096",
     // role: 用户角色 0客户 1合伙人
     role: null,   
-    HOST: 'https://wcp.szyrwl.com',
-    //HOST: 'https://storemp.golodata.com',
+    //HOST: 'https://wcp.szyrwl.com',
+    HOST: 'https://storemp.golodata.com',
     shareInfo: {},
     tabInst: []
   }
