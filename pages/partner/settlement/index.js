@@ -19,19 +19,26 @@ Page({
     pay_type:'',//默认支付方式
     pay_type_show:false,
     now_money:0.00,//我的积分余额
+    golo_points:0,
+    golo_points_money:0.00,
+    used_golo_points:0,
+    radio_check:false,
+    pay_price_temp:0.00,
   },
   price(product_id) {
     app.http.post('/api/partner/store/price', {
       product_id,
       order_id: this.data.orderId,
       unique:this.data.unique,
+      total_num:this.data.total_num,
     }).then(res => {
       let pay_price = res.price;
       //优惠券合伙秒杀//优惠券
       let coupon_total2 = 0.00;
       //区分是否有优惠券以及是否从现有订单进来支付页
       if (res.discount.status == 1 && this.data.is_show_action == 0) {
-        coupon_total2 = res.discount.data.total || res.discount.data.save_money;
+        //如果是从重新支付订单进来，则不需要再减掉优惠价格
+        coupon_total2 = res.discount.data.total;
         pay_price = res.discount.data.price ? res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
       } else if (res.discount.status == 1 && this.data.is_show_action == 1) {
         coupon_total2 = res.discount.data.total || res.discount.data.save_money;
@@ -53,15 +60,21 @@ Page({
       {
         can_use_jifen = false;
       }
+    
+      let golo_points_money = res.golo_intergal.golo_points_money || 0;
+      let golo_points = res.golo_intergal.golo_points || 0;
       //计算优惠后的价格
       this.setData({
         price: res,
         pay_price: parseFloat(pay_price).toFixed(2),
+        pay_price_temp: parseFloat(pay_price).toFixed(2),
         coupon_total: parseFloat(coupon_total2).toFixed(2),
         info: app.varStorage.get('storeDetail'),
         coupon_total2,
         now_money:res.now_money,
         can_use_jifen,
+        golo_points_money: parseFloat(golo_points_money).toFixed(2),
+        golo_points: golo_points,
       });
      
       wx.hideLoading()
@@ -148,6 +161,7 @@ Page({
         total_num: self.data.total_num,
         unique:self.data.unique,
         paytype:self.data.pay_type,
+        used_golo_points:self.data.used_golo_points,
       }).then(res => {
         this.pay(res.order_id, formId,self.data.pay_type)
         wx.hideLoading()
@@ -284,5 +298,37 @@ Page({
   },
   onShow() {
     this.getAddressList();
+  },
+  showWindows()
+  {
+    wx.showModal({
+      title: '帮助提示',
+      content: '在golo APP开车1公里获得1积分',
+      showCancel:false,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  //切换单选图标
+  radio_check(){
+    if(this.data.golo_points > 0)
+    {
+      let radio_check = !this.data.radio_check;
+      let used_golo_points = !this.data.used_golo_points;
+      let pay_price = this.data.pay_price_temp;
+      if(used_golo_points)
+      {
+        pay_price = pay_price - this.data.golo_points_money;
+        pay_price = parseFloat(pay_price).toFixed(2); 
+      }
+     this.setData({radio_check:radio_check,used_golo_points:used_golo_points,pay_price:pay_price});
+    }
+    
   }
+
 })

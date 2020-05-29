@@ -178,3 +178,7 @@ page{
   position: relative;
   top:3px;
 }
+.contribution image{
+  height:200px;
+  width:100%;
+}

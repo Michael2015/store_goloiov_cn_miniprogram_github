@@ -1,11 +1,12 @@
 // pages/partner/personal/admin/applydetails.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    audit_image: "" //背景图
   },
   goapplyList(){
     wx.navigateTo({
@@ -17,7 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      audit_image: app.globalData.HOST + "/public/wechat_assets/audit.gif"
+    })
   },
 
   /**

@@ -84,8 +84,6 @@
                         <view class="no-more {{!commentRecordMore? 'no-more-show': ''}}">没有更多评论数据</view>
                     </view>
                 </swiper-item>
-
-
             </swiper>
         </view>
     </scroll-view>

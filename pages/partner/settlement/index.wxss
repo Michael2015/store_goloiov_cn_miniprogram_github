@@ -69,10 +69,8 @@ page {
 .commodity {
     width: 702rpx;
     min-height: 264rpx;
-    background-color: #ffffff;
     border-radius: 10px;
     margin: 0 auto;
-    padding: 24rpx;
     box-sizing: border-box;
 }
 
@@ -81,6 +79,7 @@ page {
     justify-content: space-between;
     padding-bottom: 32rpx;
     border-bottom: 1rpx solid #e4e4e4;
+    background-color: #ffffff;
 }
 
 .commodity_info .commodity_name,
@@ -117,26 +116,54 @@ page {
 }
 
 .number {
-    padding-top: 19rpx;
     box-sizing: border-box;
     font-size: 29rpx;
-    color: #999999;
+    color: #555;
     display: block;
     align-items: center;
     justify-content: flex-start;
+    margin-bottom:20rpx;
+    background-color: #ffffff;
 }
 
 .number view.title {
     margin-right: 43rpx;
     width: 100%;
     padding: 10rpx 0;
+    position:relative; 
+}
+.number view.title text.right{
+    float:right;
+}
+.number view.title3{
+    padding-left:40rpx;
+}
+.number view.title image.one{
+    left:0;
 }
 .number view.title em{
 text-decoration: underline;
 color: #e70002;
 font-weight:bold;
+margin-right:10rpx;
 }
-
+.number view.title image{
+    width:32rpx;
+    height:32rpx;
+    position:absolute;
+    top:15rpx;
+}
+.number view.title image.right{
+    right:40rpx;
+}
+.number view.title checkbox{
+    float:right;
+    margin-right:40rpx;
+}
+checkbox .wx-checkbox-input
+{
+    radius-border:50%;
+}
 .van-stepper__minus,
 .van-stepper__plus {
     width: 48rpx !important;
@@ -158,7 +185,6 @@ font-weight:bold;
     display: flex;
     justify-content: flex-start;
     box-sizing: border-box;
-    margin-top: 24rpx;
 }
 
 .leaveMsg input {

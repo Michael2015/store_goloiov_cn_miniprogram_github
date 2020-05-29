@@ -34,15 +34,17 @@
   </view>
 </view>
 
-  <!-- 
-  <view class="group">
-   <view class="nav" bindtap="to" data-url="/pages/partner/personal/wallet/index">
-    <view class="icon"><image src="/assets/image/wallet.png" mode="widthFix"></image></view>
-    <view class="name">我的钱包</view>
-    <view class="right-text">可提现金额  <text>365.00</text> 元</view>
+<!--view class="contribution" bindtap="to" data-url="/pages/partner/personal/contribution/index">
+    <image src="/assets/image/contribution.png" mode="widthFix"></image>
+</view!-->
+<view class="group">
+  <view class="nav" bindtap="to" data-url="/pages/partner/personal/golo_points/index">
+    <view class="icon"><image src="/assets/image/jifen2.png" mode="widthFix"></image></view>
+    <view class="name">我的积分</view>
+    <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>
-  </view> 
-  -->
+  </view>
+</view>
 <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/poster/index">
     <view class="icon"><image src="/assets/image/Slice1.png" mode="widthFix"></image></view>

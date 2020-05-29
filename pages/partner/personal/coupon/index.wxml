@@ -2,9 +2,14 @@
     <view class="item stamp stamp01"  wx:for="{{couponList}}" wx:key="{{index}}"  catchtap="{{item.status === 0 || item.status === -1? 'goDetails' : ''}}"  id="{{item.with_products}}" data-status="{{item.status}}">
         <!-- 左侧 -->
         <view class="float-li t1">
-            <view class="coupon-left">
+            <view class="coupon-left" wx:if="{{item.coupon_type == 1}}">
                 <view class="t t1">￥</view>
                 <view class="t t2">{{item.coupon_price}}</view>
+                <view class="t t3"></view>
+            </view>
+            <view class="coupon-left" wx:else>
+                <view class="t t2">{{item.coupon_price}}折</view>
+                <view class="t t2"></view>
                 <view class="t t3"></view>
             </view>
         </view>

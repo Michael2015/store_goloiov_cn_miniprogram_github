@@ -166,7 +166,7 @@ Page({
             //sku默认初始值
             let attr_attr_arr = [];
             let attr_attr_name = [];
-            let attr_price = res.price;//默认属性价格
+            let attr_price = res.vip_price;//默认属性价格
             let attr_product_image_url = res.slider_image[0];//默认属性商品图片
             let unique = '';
             for(let i = 0; i < res.attr_attr_length;i++)
@@ -392,8 +392,8 @@ Page({
                     })
                 }
                 else {
-                    let share_user_id = app.globalData.shareInfo.share_user_id;
-                    let share_partner_id = app.globalData.shareInfo.share_partner_id;
+                    let share_user_id = app.globalData.shareInfo.share_user_id || 0;
+                    let share_partner_id = app.globalData.shareInfo.share_partner_id || 0;
                     let share_product_id = app.globalData.shareInfo.share_product_id || product_id;
                     if (that.data.share_type) {
                         url = '/pages/login/index?type=share&share_user_id=' + share_user_id + '&share_partner_id=' + share_partner_id + '&share_product_id=' + share_product_id;

@@ -4,6 +4,7 @@
     "pages/login/index",
     "pages/partner/index/index",
     "pages/common/order/order",
+    "pages/common/goout/index",
     "pages/common/order/detail",
     "pages/partner/detail/detail",
     "pages/partner/personal/index",
@@ -54,7 +55,13 @@
     "pages/partner/personal/servervip/index",
     "pages/partner/personal/servervip/applylist",
     "pages/partner/personal/servervip/applyflag",
-    "pages/partner/personal/servervip/applydetail"
+    "pages/partner/personal/servervip/applydetail",
+    "pages/customer/search/index",
+    "pages/partner/search/index",
+    "pages/common/waiting/index",
+    "pages/partner/personal/golo_points/index",
+    "pages/partner/personal/contribution/detail",
+    "pages/partner/personal/contribution/index"
   ],
   "tabBar": {
     "custom": true,
@@ -92,7 +99,8 @@
     ]
   },
   "usingComponents": {
-    "no-data": "components/no-data/index"
+    "no-data": "components/no-data/index",
+    "no-data-no-goods": "components/no-data-no-goods/index"
   },
   "networkTimeout": {
     "uploadFile": 600000,
@@ -109,5 +117,8 @@
     "navigationBarTitleText": "万车品商城",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": [
+    "wx1e90ffc23ecb6807"
+  ]
 }

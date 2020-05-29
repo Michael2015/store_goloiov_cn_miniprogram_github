@@ -6,7 +6,6 @@ const defaultSwiperHeight = 200
 Page({
     data: {
         userInfo: {},
-        alllist: [],
         getinfo: {},
         getnotice: [],
         getProductList: [],
@@ -14,7 +13,7 @@ Page({
         limit: 10,
         getPartnerInfo: {},
         loading: false, // 加载中
-        loaded: false, // 加载完毕
+        isLoad: 0, // 加载完毕
         showModal: false,//是否显示模态框
         coupon_id: 0,
         coupon_date: '',
@@ -25,8 +24,6 @@ Page({
         heightCount: 0,   //统计监控交互的高度
         scrollTop: 0,    //监控滑动距离
         ReplacescrollTop: 0,    //监控滑动距离
-        transverseCar_cateId: 0,  //车联网专区的分类id
-        transverseCarList: [],    //车联网专区显示数据
         selectClassId: -1,         //标识选择id
         tabIndex: 0,       //目前切换到的首页tab下标
         contentSwiperHeight: defaultSwiperHeight,
@@ -34,6 +31,11 @@ Page({
         islogin: false,       //标识是否是登录状态
         isfirst: true,         //是否是第一次进入首页
         newObj: {},            //新人专区对象
+        showMoreBlast: false,  //是否需要展示更多爆款专区
+        blastProductList: [], //爆款专区商品
+        storelist: [], //全部商品
+        keyword: "",
+        news_image: "", //新人专区背景图
     },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
@@ -86,8 +88,8 @@ Page({
         })
         this.data.loading = true
         // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-        const apiUrl = this.data.selectClassId === -1 ? '/api/customer/mall/getProductList' : '/api/marketing/getCategoryProducts'
-        const httpObj = this.data.selectClassId === -1 ? { page: this.data.page, limit: this.data.limit } : { cate_id: this.data.selectClassId }
+        const apiUrl = '/api/customer/mall/getProductList'
+        const httpObj = { page: this.data.page, limit: this.data.limit }
         app.http.get(apiUrl, httpObj).then(res => {
             if (this.data.selectClassId !== -1) {
                 // let getProductList = this.data.getProductList.concat(res)
@@ -96,17 +98,17 @@ Page({
                     getProductList
                 })
             } else if (this.data.selectClassId == -1) {
-                if (this.data.loaded) {
+                if (this.data.isLoad) {
                     wx.hideLoading()
                     return
                 }
-                let alllist = this.data.alllist.concat(res)
+                let storelist = this.data.storelist.concat(res)
                 this.setData({
-                    alllist
+                    storelist
                 })
                 if (res && res.length < size) {
                     this.setData({
-                        loaded: true
+                        isLoad: 1
                     })
                 } else {
                     this.data.page++
@@ -193,15 +195,15 @@ Page({
         })
     },
     nextPage() {
-        console.log('loaded' + this.data.loaded)
-        if (!this.data.loaded) { // 没有到最后一页
+        if (!this.data.isLoad) { // 没有到最后一页
             this.getProductList()
         }
     },
     onLoad: function () {
         // console.log(app.globalData)
         this.setData({
-            islogin: !(app.globalData.token === '')
+            islogin: !(app.globalData.token === ''),
+            news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
         })
         self = this;
         this.getinfo()
@@ -222,6 +224,8 @@ Page({
             }
         })
         this.CalculationHeight()
+        this.getBlast()
+        this.getProductList()
     },
     contact() {
         Contact.show(this.data.getPartnerInfo)
@@ -247,8 +251,7 @@ Page({
             this.setData({
                 // getProductList: [],
                 // page: 1,
-                loading: false,
-                // loaded: false   
+                loading: false, 
             })
             this.getProductList()
         }
@@ -256,17 +259,6 @@ Page({
         //获取banner轮播广告
         this.getBanner();
         await this.getCategory()
-        //获取车联网专区数据
-        this.getTransverseCarData();
-        // setTimeout(() => {
-        //     wx.pageScrollTo({
-        //         scrollTop: this.data.ReplacescrollTop,
-        //         duration: 0,
-        //         success: function (res) {
-        //             console.log(res);
-        //         }
-        //     })
-        // }, 2000)
         //获取新人专区信息
         this.getNews()
     },
@@ -281,9 +273,7 @@ Page({
     },
     async getCategory() {
         const categoryList = await app.http.post('/api/marketing/getCategory', {})
-        let categoryList1 = categoryList.filter(function (item, index) {
-            return index != 0;
-        });
+        
         let transverseCar = categoryList.filter(function (item, index) {
             return index === 0
         })
@@ -291,13 +281,7 @@ Page({
             transverseCar_cateId: transverseCar[0].id
         })
         this.setData({
-            categoryList1: categoryList1,
-        })
-    },
-    // 获取车联网专区的数据
-    getTransverseCarData() {
-        app.http.post('/api/marketing/getCategoryProducts', { cate_id: this.data.transverseCar_cateId }).then(res => {
-            this.setData({ transverseCarList: res })
+            categoryList: categoryList,
         })
     },
     async CalculationHeight() {
@@ -331,8 +315,8 @@ Page({
             this.getProductList()
             return
         }
-        app.http.post('/api/marketing/getCategoryProducts', { cate_id: cat_id }).then(res => {
-            this.setData({ getProductList: res, loaded: true, isloading: false })
+        app.http.post('/api/customer/mall/getProductList', { cate_id: cat_id }).then(res => {
+            this.setData({ getProductList: res, isLoad: 1, isloading: false })
         })
     },
     touchMove() {
@@ -386,5 +370,71 @@ Page({
         this.close()
     },
     //  禁用触摸穿透
-    preventTouchMove() { }
+    preventTouchMove() { },
+    //获取爆款商品
+    getBlast() {
+        app.http.get('/api/customer/mall/getProductList?is_blast=1').then(res => {
+            this.setData({ blastProductList: res })
+        })
+    },
+    //获取全部商品
+    getAll() {
+        app.http.post('/api/customer/mall/getProductList', {}).then(res => {
+            this.setData({ storelist: res })
+        })
+    },
+     //跳转到外部小程序
+    goOutMiniProgram()
+    {
+        let url = e.currentTarget.dataset.url;
+        wx.navigateToMiniProgram({
+        appId: 'wx1e90ffc23ecb6807',
+        path: url,
+        envVersion: 'release',// 打开正式版
+        })
+    },
+    goSearch(e) {
+        let selectTabType = e.currentTarget.dataset.type
+        let jumpUrl = "";
+        //点击分类tab跳转
+        if (selectTabType == "category"){
+            let url = e.currentTarget.dataset.url;
+            if(url)
+            {
+                jumpUrl = "/pages/common/goout/index?url="+url
+            }
+            else{
+            let selectTabId = e.currentTarget.dataset.id
+            let selectTabname = e.currentTarget.dataset.name
+            let waitingTab = ["油卡充值", "VIP服务商"]
+            if (waitingTab.indexOf(selectTabname) >= 0) {
+                jumpUrl = "/pages/common/waiting/index?title="+selectTabname
+            } else {
+                jumpUrl = "/pages/customer/search/index?type=category&cate_id="+selectTabId+"&title="+selectTabname
+            }
+            }
+        }
+        //点击爆款商品图标跳转
+        else if (selectTabType == "blast_product") {
+            jumpUrl = "/pages/customer/search/index?type=is_blast&title=爆款专区"
+        }
+        //点击全部商品图标跳转
+        else if (selectTabType == "all_product") {
+            jumpUrl = "/pages/customer/search/index?type=all&title=全部商品"
+        }
+        console.log(jumpUrl)
+        wx.navigateTo({
+            url: jumpUrl
+        })
+    },
+    goInputSearch(e) {
+        let detail_val = e.detail.value.trim()
+        console.log(detail_val)
+        if (detail_val != "") {
+            wx.navigateTo({
+                url: "/pages/customer/search/index?type=search&keyword="+detail_val+"&title=全部商品"
+            })
+        }
+      },
+
 })

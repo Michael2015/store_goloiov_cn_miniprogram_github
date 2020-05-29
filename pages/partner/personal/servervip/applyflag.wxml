@@ -1,7 +1,7 @@
 <!-- pages/partner/personal/servervip/applydetails.wxml -->
 <view class="warp">
     <view class="main">
-        <image class="" src="/assets/image/audit.gif" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+        <image class="" src="{{audit_image}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
         <view class="title">
             <view class="p">我们已收到您的VIP服务商申请表，</view>
             <view class='p'>我们将会尽快与您联系，请保存电话畅通。</view>

@@ -30,14 +30,23 @@
                     </view>
                 </view>
                 <view class="number">
-                    <view class="title">商品单价：¥ {{price.price}}元</view>
-                    <view class="title">优惠金额：¥ {{coupon_total}}元</view>
-                    <view class="title title2">实付金额：¥<em>{{pay_price}}</em>元</view>
+                    <view class="title">商品单价<text class="right">¥{{price.price}}</text></view>
+                    <view class="title">优惠金额<text class="right">¥{{coupon_total}}</text></view>
+                    <view class="title title2">实付金额<text class="right">¥{{pay_price}}</text></view>
                     <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
+                </view>
+                
+                <view class="number" wx-if="{{!orderId}}">
+                    <view class="title title2 title3">
+                        <image class="one" src="/assets/image/jifen.png" mode="widthFix"></image>
+                        <text decode="{{true}}">  可用{{golo_points}}积分抵用{{golo_points_money}}元&nbsp;&nbsp;</text>
+                        <image src="/assets/image/question.png" mode="widthFix" bindtap="showWindows"></image>
+                        <image wx:if="{{!radio_check}}" src="/assets/image/radio.png" bindtap="radio_check" mode="widthFix" class="right"></image>
+                        <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check" mode="widthFix" class="right"></image>
+                    </view>
                 </view>
             </view>
             <view class="leaveMsg">
-                <image src="/assets/image/msg.png" mode="widthFix"></image>
                 <input placeholder="留言内容/备注 （ 选填 ）最多100字符" placeholder-class="search_input_placeholder" bindinput="{{is_show_action?'setMark':''}}" value="{{mark}}" maxlength="100" />
             </view>
             <view style="height:100rpx"></view>

@@ -1,0 +1,6 @@
+<view class="warp">
+    <view class="main">
+        <image class="" src="/assets/image/waiting.png" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+        <view class="tips">开发中，敬请期待！</view>
+    </view>
+</view>

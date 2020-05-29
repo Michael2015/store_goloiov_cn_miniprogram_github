@@ -1,0 +1,105 @@
+page{
+  background: #f9f9f9;
+  min-height: 100vh;
+}
+.view{
+    width:100%;
+    margin:0 auto;
+}
+.view-integral{
+  width:90%;
+  margin:0 auto;
+}
+.head{
+    background:#e70002;
+    width:100%;
+    height:300rpx;
+    text-align:center;
+    position:relative;
+    box-sizing:border-box;
+    padding-top:75rpx;
+    border-radius:20rpx;
+}
+.head .mid{
+    height:150rpx;
+    width:100%;
+    color:#fff;
+}
+.head .mid label{
+    display:block;
+    width:100%;
+    font-size:40rpx;
+    font-weight:bold;
+    height:110rpx;
+    line-height:110rpx;
+}
+.head .mid .title{
+    position:absolute;
+    top:20rpx;
+    left:20rpx;
+}
+.head .mid p{
+    display:block;
+    width:100%;
+    font-size:24rpx;
+    height:40rpx;
+    line-height:40rpx;
+}
+.content{
+    text-align:center;
+    margin:0 auto;
+}
+.content legend{
+    height:100rpx;
+    font-size:30rpx;
+    line-height:100rpx;
+    display:block;
+}
+.text-content{
+    height:80rpx;
+    border-top:1rpx solid #e6e6e6;
+    margin-top:10rpx;
+    padding:10rpx 0;
+}
+.text-content .left{
+    width:60%;
+    text-align:left;
+    float:left;
+}
+.text-content .left p{
+    display:block;
+    width:100%;
+    height:40rpx;
+    line-height:40rpx;
+}
+.text-content .left p.small{
+    font-size:24rpx;
+}
+.text-content .right{
+    line-height:80rpx;
+    text-align:right;
+    font-size:40rpx;
+    color:#e70002;
+}
+.text-content .right.sub{
+    color:#7FFF00;
+}
+
+scroll-view{
+  height: 100vh;
+  box-sizing: border-box;
+}
+.post-list
+{
+  padding:0 2% 2% 2%;
+}
+
+.no-more {
+  text-align: center;
+  color: #aaa;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  visibility:visible;
+  margin-top: 20rpx;
+}
+
