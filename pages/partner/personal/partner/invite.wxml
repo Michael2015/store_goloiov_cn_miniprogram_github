@@ -1,5 +1,5 @@
 <!--pages/partner/personal/partner/invite.wxml-->
-<view class="wrap">
+<view class="wrap" hidden="1">
   <view class="content">
     <view class="avatar">
       <image src="{{data.avatar}}" mode="widthFix"></image>
