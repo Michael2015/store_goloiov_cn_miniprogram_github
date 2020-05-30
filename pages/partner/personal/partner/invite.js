@@ -18,6 +18,11 @@ Page({
   onLoad: function (options) {
     var timer = null
     if (this.check()) {
+      wx.switchTab({
+        url: '/pages/partner/index/index'
+      })
+      return;
+      /*
       wx.showModal({
         title: '提示',
         showCancel: false,
@@ -32,6 +37,7 @@ Page({
           }
         }
       })
+      */
     }
     if (options && options.share_id) {
       this.data.shareId = options.share_id;
@@ -41,7 +47,8 @@ Page({
           this.setData({
             data
           })
-          this.data.ok = true
+          this.data.ok = true;
+          this.join();
         }
       })
     }
