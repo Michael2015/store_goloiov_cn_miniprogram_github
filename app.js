@@ -1,4 +1,4 @@
-let app
+﻿ let app
 App({
   onLaunch(options) {
     app = this
