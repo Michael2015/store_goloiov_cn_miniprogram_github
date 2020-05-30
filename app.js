@@ -104,8 +104,8 @@ App({
   globalData: {
     userInfo: {},
     partnerInfo: {},
-    token: '',
-    //token: "b81eb331547538053441176f6df4d096",
+    token: '' || '7822582cfafe76674744f320cecc6ad1',
+    //token: "7822582cfafe76674744f320cecc6ad1",
     // role: 用户角色 0客户 1合伙人
     role: null,   
     //HOST: 'https://wcp.szyrwl.com',

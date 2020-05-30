@@ -1,6 +1,50 @@
 view{
     box-sizing: border-box;
   }
+  .posi{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    height: 640rpx;
+    transform: translate(0,-50%);
+  }
+  .loginImg{
+    text-align: center;
+  }
+  .loginImg image{
+width: 300rpx;
+height: 300rpx;
+}
+.title,.title_sec{
+  text-align: center;
+}
+.title{
+  font-size: 30rpx;
+  line-height: 60rpx;
+  color: black;
+  font-weight: bold;
+}
+.title_sec{
+  font-size: 24rpx;
+  color: gray;
+  line-height: 53rpx;
+}
+.loginBtn1{
+  text-align: center;
+   margin-top:28rpx;
+}
+.loginBtn{
+  display: flex;
+  justify-content: center;
+  margin-top:85rpx;
+}
+.loginBtn button{
+  margin: 0 20rpx;
+}
+.no_login{
+  background: gray;
+}
   .index{
   }
   .mask{
@@ -21,7 +65,7 @@ view{
     padding: 0 38rpx;
     text-align: left;
     width: 100%;
-    min-height: 630rpx;
+    height: 100%;
     box-sizing: border-box;
     color:#333;
   }
@@ -67,7 +111,7 @@ view{
   }
   
   .btn{
-    margin-top: 36rpx;
+    margin-top: 85rpx;
     display:flex;
   }
   .btn-getuser{

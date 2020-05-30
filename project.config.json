@@ -6,12 +6,13 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": true,
 		"coverView": true,
+		"autoAudits": true,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
 		"uglifyFileName": true,
@@ -23,8 +24,8 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"enhance": true,
-		"useCompilerModule": false
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
@@ -297,6 +298,13 @@
 					"name": "pages/customer/search/index?type=category&cate_id=18&title=",
 					"pathName": "pages/customer/search/index",
 					"query": "type=category&cate_id=18&title=&source=hema",
+					"scene": null
+				},
+				{
+					"id": 34,
+					"name": "pages/partner/personal/partner/invite",
+					"pathName": "pages/partner/personal/partner/invite",
+					"query": "share_id=2",
 					"scene": null
 				}
 			]

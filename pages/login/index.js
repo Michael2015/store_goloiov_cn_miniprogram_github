@@ -2,6 +2,7 @@ const app = getApp()
 let page
 Page({
     data: {
+        isPhoneBtn:false,
         showAuth: true,
         options: null,
         showAuthPhone: false,
@@ -21,6 +22,11 @@ Page({
         this.data.options = options || {};
         // 二维码进来参数处理
     },
+  goPhoneBtn(){
+    this.setData({
+      isPhoneBtn:true
+    })
+  },
     login(userInfo) {
         wx.showLoading()
         wx.login({

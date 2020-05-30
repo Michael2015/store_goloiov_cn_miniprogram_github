@@ -1,27 +1,16 @@
 <view class="index">
     <view class="popup" wx:if="{{showAuth}}">
-        <view class="t border-bottom-global">微信登录</view>
-        <view class="t-sub">万车品需要您的</view>
-        <view class="i">
-            <view>
-                <view>
-                    <image mode="widthFix" src="/assets/image/wx-name.png"></image>
-                    <view>微信名称</view>
-                </view>
-            </view>
-            <view>
-                <view>
-                    <image mode="widthFix" src="/assets/image/wx-head.png"></image>
-                    <view>微信头像</view>
-                </view>
-            </view>
-        </view>
-        <view class="d border-bottom-global">用于获取您的订单数据</view>
-        <view class="btn">
-            <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="handleUserInfo" data-opentype='getUserInfo' class="btn-getuser">登录</button>
-            <button class="back" bindtap="goback">返回</button>
-        </view>
-        <view>
+    <view class="posi">
+      <view class="loginImg">
+        <image mode="widthFix" src="/assets/image/logo.jpg"></image>
+        <view class="title">万车品商城</view>
+        <view class="title_sec">一站式优享车生活平台</view>
+      </view>
+      <view class='loginBtn'>
+      <button  type="default" size="mini" class="no_login" bindtap="goback">暂不登录</button>
+      <button  type="primary" size="mini" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="handleUserInfo" data-opentype='getUserInfo'>立即登录</button>
+      </view>
+      <view class='loginBtn1'>
             <checkbox-group bindchange="checkboxChange">
                 <view class="checkbox agree">
                     <checkbox value="{{1}}" checked="{{argee}}" />
@@ -29,21 +18,18 @@
                 </view>
             </checkbox-group>
         </view>
+        </view>
     </view>
     <view class="popup popup-wx-phone" wx:if="{{showAuthPhone}}">
-        <view class="t border-bottom-global">微信登录</view>
-        <view class="t-sub">万车品需要您的</view>
-        <view class="i">
-            <view>
-                <view>
-                    <image mode="widthFix" src="/assets/image/wx-phone.png"></image>
-                    <view>手机号码</view>
-                </view>
-            </view>
-        </view>
-        <view class="d border-bottom-global">用于获取您的订单数据</view>
+       <view class="posi">
+       <view class="loginImg">
+        <image mode="widthFix" src="/assets/image/logo.jpg"></image>
+        <view class="title">万车品商城</view>
+        <view class="title_sec">一站式优享车生活平台</view>
+      </view>
         <view class="btn">
-            <button open-type="getPhoneNumber" lang="zh_CN" bindgetphonenumber="handlePhoneNumber" class="btn-getuser">验证</button>
+            <button open-type="getPhoneNumber" lang="zh_CN" bindgetphonenumber="handlePhoneNumber" type="primary" size="mini">微信手机号快捷登录</button>
+        </view>
         </view>
     </view>
     <view class="popup-submit-phone" wx:if="{{showBindPhone}}">
