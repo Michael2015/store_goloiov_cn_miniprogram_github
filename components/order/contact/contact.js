@@ -10,7 +10,8 @@ Component({
   },
   data: {
     supplierName: '',
-    supplierTel: ''
+    supplierPhone: '',
+    supplierAddr:'',
   },
   attached() {
     this.getInfo()
@@ -22,7 +23,8 @@ Component({
       app.http.get('/api/supplier/getinfo', {product_id: productId}).then(res => {
         this.setData({
           supplierName: res.supplier_name,
-          supplierTel: res.contact_number
+          supplierAddr: res.contact_number,
+          supplierPhone: res.phone,
         })
         wx.hideLoading()
       }).catch((e) => {

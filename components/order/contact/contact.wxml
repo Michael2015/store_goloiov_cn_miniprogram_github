@@ -5,11 +5,11 @@
             <view class="title">供应商</view>
             <view class="name">{{supplierName}}</view>
             <view class="tel">
-                <view class="col-1">联系电话: </view>
-                <view class="col-2" data-phone="{{supplierTel}}" bindtap="call">{{supplierTel}}</view>
+                <view class="col-2" data-phone="{{supplierAddr}}" bindtap="call">{{supplierAddr}}</view>
             </view>
         </view>
         <view class="partner">
+           <!--
             <view class="row">
                 <view class="col-1">合伙人</view>
                 <view class="col-2">{{partner.nickname}}</view>
@@ -17,11 +17,12 @@
                     <view class="btn" bindtap="copy">复制</view>
                 </view>
             </view>
+            -->
             <view class="row">
                 <view class="col-1">手机</view>
-                <view class="col-2">{{partner.phone}}</view>
+                <view class="col-2">{{supplierPhone}}</view>
                 <view class="col-3">
-                    <view class="btn" bindtap="call" data-phone="{{partner.phone}}">拨打</view>
+                    <view class="btn" bindtap="call" data-phone="{{supplierPhone}}">拨打</view>
                 </view>
             </view>
         </view>
