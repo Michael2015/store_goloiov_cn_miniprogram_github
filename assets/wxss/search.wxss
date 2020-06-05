@@ -93,7 +93,7 @@
 }
 
 .commodity_list .commodity_item .title_volume {
-    height: 120rpx;
+    height: 180rpx;
     /* width: 519rpx; */
     margin-top: 19rpx;
     /* float: left; */

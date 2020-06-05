@@ -1,196 +1,242 @@
 <!--index.wxml-->
 <view class="view">
-    <view class="search_nav">
-        <view class="search_input">
-            <image mode="widthFix" src='/assets/image/index_search.png' class="search_icon"></image>
-            <input placeholder="搜索" placeholder-class="search_input_placeholder" type='text' confirm-type="search" bindconfirm="goInputSearch" value="{{keyword}}"/>
-            <!--
+  <view class="search_nav">
+    <view class="search_input">
+      <image mode="widthFix" src='/assets/image/index_search.png' class="search_icon"></image>
+      <input placeholder="搜索" placeholder-class="search_input_placeholder" type='text' confirm-type="search" bindconfirm="goInputSearch" value="{{keyword}}" />
+      <!--
             <image mode="widthFix" src='/assets/image/closeTip.png' class="{{keyword?'clear_icon show':'clear_icon hide'}}" bindtouchstart="clearText"></image>
             -->
-        </view> 
-        <button class="invite" open-type="share" wx:if="{{islogin}}">邀请会员</button>
     </view>
-    <view class="countTop">
-        <!-- banner start !-->
-        <view class='banner'>
-            <swiper indicator-dots="true"  autoplay="true" interval="5000" duration="500">
-                <block wx:for="{{bannerList}}" wx:key="{{index}}">
-                    <swiper-item>
-                        <navigator wx:if="{{item.url_type == 1}}" url="{{item.url}}">
-                            <image src="{{item.pic}}" class="slide-image" mode="aspectFill" />
-                        </navigator>
-                        <block wx:if="{{item.url_type == 2}}">
-                            <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill"  bindtap="goOutMiniProgram" />
-                        </block>
-                         <block wx:if="{{item.url_type == 3}}">
-                            <web-view src="{{item.url}}"></web-view>
-                        </block>
-                    </swiper-item>
-                </block>
-            </swiper>
-        </view>
-        <!-- banner end !-->
+    <button class="invite" open-type="share" wx:if="{{islogin}}">邀请会员</button>
+  </view>
+  <view class="countTop">
+    <!-- banner start !-->
+    <view class='banner'>
+      <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
+        <block wx:for="{{bannerList}}" wx:key="{{index}}">
+          <swiper-item>
+            <navigator wx:if="{{item.url_type == 1}}" url="{{item.url}}">
+              <image src="{{item.pic}}" class="slide-image" mode="aspectFill" />
+            </navigator>
+            <block wx:if="{{item.url_type == 2}}">
+              <image src="{{item.pic}}" data-url="{{item.url}}" class="slide-image" mode="aspectFill" bindtap="goOutMiniProgram" />
+            </block>
+            <block wx:if="{{item.url_type == 3}}">
+              <web-view src="{{item.url}}"></web-view>
+            </block>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <!-- banner end !-->
 
-        <!-- category start !-->
-        <view class="category">
-            <view class="categoryList" wx:for="{{categoryList}}" wx:key="{index}" >
-                <view class="categoryList_item" bindtap="goSearch" data-url="{{item.url}}"  data-type="category"  data-id="{{item.id}}" data-name="{{item.cate_name}}">
-                    <image src="{{item.pic}}"></image>
-                    <view class="name">{{item.cate_name}}</view>
+    <!-- category start !-->
+    <view class="category">
+      <view class="categoryList" wx:for="{{categoryList}}" wx:key="{index}">
+        <view class="categoryList_item" bindtap="goSearch" data-url="{{item.url}}" data-type="category" data-id="{{item.id}}" data-name="{{item.cate_name}}">
+          <image src="{{item.pic}}"></image>
+          <view class="name">{{item.cate_name}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- category end !-->
+
+    <!--车仆玻璃上（单品-->
+<view class="chepu">
+  <image src="/assets/image/carBu.png" mode='aspectFit'></image>
+  <view class="chepu_posi">车仆玻璃上（单品）</view>
+</view>
+
+ <!--广告-->
+     <view class="ad">
+<view class="path1">
+<view class="ad1">广告1</view>
+<view class="path3">
+<view class="ad2">广告2</view>
+<view class="path4">
+<view class="ad3">广告3</view>
+<view class="ad4">广告4</view>
+</view>
+</view>
+</view>
+<view class="path2">
+<view class="ad5">广告5</view>
+<view class="ad6">广告6</view>
+</view>
+</view>
+
+    <!-- blast product start !-->
+    <view class="blast_product">
+     <!--  <image src="/assets/image/blast_product.png" bindtap="goSearch" data-type="blast_product"></image>-->
+     <view class="rexiao"><image src="/assets/image/rexiao.png"></image></view>
+      <view class="commodity_list">
+        <view wx:if="{{scrollTop >= heightCount}}" style="height:66rpx;width:100%"></view>
+        <view class="commodity_showList">
+          <view class="commodity_item" wx:for="{{blastProductList}}" wx:key="{{index}}" wx:if="{{index < 8}}">
+            <view class="new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
+            <view class="item_content" >
+              <view style="width:100%;height:100%;overflow: hidden;" catchtap="goDetails" id="{{item.id}}">
+                <view class="showImg">
+                  <image src="{{item.image}}" mode="widthFix"></image>
+                  <view class="coupon">
+                    <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
+                    <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
+                    <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
+                  </view>
+                  <!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
                 </view>
-            </view>
-        </view>
-        <!-- category end !-->
-
-        <!-- blast product start !-->
-        <view class="blast_product">
-            <image src="/assets/image/blast_product.png" bindtap="goSearch" data-type="blast_product"></image>
-            <view class="commodity_list">
-                <view wx:if="{{scrollTop >= heightCount}}" style="height:66rpx;width:100%"></view>
-                <view class="commodity_showList">
-                    <view class="commodity_item" wx:for="{{blastProductList}}" wx:key="{{index}}" wx:if="{{index < 8}}">
-                        <view class="new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
-                        <view style="padding:20rpx;background:#fff">
-                            <view style="width:100%;height:100%;overflow: hidden;" catchtap="goDetails" id="{{item.id}}" >
-                                <view class="showImg">
-                                    <image src="{{item.image}}" mode="widthFix"></image>
-                                    <view class="coupon">
-                                        <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
-                                        <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
-                                        <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
-                                    </view>
-                                    <!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
-                                </view>
-                                <view class="title_volume">
-                                    <view class="title">
-                                        <text>{{item.store_name}}</text>
-                                        <!--
+                <view class="title_volume">
+                  <view class="title">
+                    <text>{{item.store_name}}</text>
+                    <!--
                                             <text bindtap="show_modal" data-id="{{item.coupon.data.id}}" data-pid="{{item.id}}" wx:if="{{item.coupon.status}}">
                                             <text  class="coupon3"> 马上领券/立减{{item.coupon.data.price}}元 </text>
                                             </text>
                                             <text wx:if="{{item.seckill.status == 1}}" class="coupon3"> 限时秒杀/立减{{item.seckill.data.save_money}}元 </text>
                                             <text wx:if="{{item.seckill.status == -1}}" class="coupon3"> {{item.seckill.msg}}/{{item.seckill.data.title}} </text>
                                         -->
-                                    </view>
-                                    <view class="volume">  
-                                        <block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}"><em  class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text></em></block> 
-                                        <block wx:if="{{item.seckill.status == 1}}"><em class="bold"><text class="Supporting">￥</text>{{divisionMoney.division(item.seckill.data.price)[0]}}<text class="Supporting">.{{divisionMoney.division(item.seckill.data.price)[1]}}</text></em> <em class="text-u">￥{{item.price}}</em></block>  <small class="small">销量 {{item.sales>999?'999+':item.sales}} </small>
-                                    </view>
-                                </view>
-                            </view>
-                        </view>
-                    </view>
-                    <view class="Replace" wx:if="{{getProductList.length % 2 ===1}}"></view>
+                  </view>
+                  <view class="volume">
+                    <block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}">
+                      <em class="bold">
+                        <text class="Supporting">￥</text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}
+                        <text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text>
+                      </em>
+                    </block>
+                    <block wx:if="{{item.seckill.status == 1}}">
+                      <em class="bold">
+                        <text class="Supporting">￥</text>{{divisionMoney.division(item.seckill.data.price)[0]}}
+                        <text class="Supporting">.{{divisionMoney.division(item.seckill.data.price)[1]}}</text>
+                      </em>
+                      <em class="text-u">￥{{item.price}}</em>
+                    </block>
+                    <view class="pre_price">{{item.ot_price}}</view>
+               
+                  </view>
+                  <view class="saleMount">
+                  <text>销量 {{item.sales>999?'999+':item.sales}}</text>
+                  <text class="buy">购买</text>
+                  </view>
                 </view>
-                <view wx:if="{{blastProductList.length > 8}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
+              </view>
             </view>
+          </view>
+          <view class="Replace" wx:if="{{getProductList.length % 2 ===1}}"></view>
         </view>
-        <!-- blast product end !-->
+        <view wx:if="{{blastProductList.length > 8}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
+      </view>
+    </view>
+    <!-- blast product end !-->
 
-        <!-- all product start !-->
-        <view class="all_product">
-            <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>
-            <scroll-view scroll-y class="commodity_all_list">
-                <view class="commodity_all_showList">
-                    <view class="commodity_all_item" wx:for="{{storelist}}" wx:key="{{index}}">
-                        <view style="padding:20rpx;background:#fff">
-                            <view style="width:100%;height:100%;overflow: hidden; display:flex" catchtap="goDetails" id="{{item.id}}" >
-                                <view class="showImg2">
-                                    <view class="all_new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
-                                    <image src="{{item.image}}" mode="widthFix"></image>
-                                    <view class="coupon">
-                                        <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
-                                        <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
-                                        <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
-                                    </view>
-                                    <!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
-                                </view>
-                                <view class="title_volume">
-                                    <view class="title">
-                                        <text>{{item.store_name}}</text>
-                                        <!--
+    <!-- all product start !-->
+    <view class="all_product">
+     <!-- <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>-->
+     <!--插入广告-->
+     <view class="all_product_ad">插入广告</view>
+      <scroll-view scroll-y class="commodity_all_list">
+        <view class="commodity_all_showList">
+          <view class="commodity_all_item" wx:for="{{storelist}}" wx:key="{{index}}" >
+            <view style="background:#fff;height:100%;overflow:hidden;box-sizing:border-box">
+              <view class="storeList_wrap" catchtap="goDetails" id="{{item.id}}">
+                <view class="showImg2">
+                  <view class="all_new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
+                  <image src="{{item.image}}" mode="widthFix"></image>
+                 <!-- <view class="coupon">
+                    <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
+                    <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
+                    <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
+                  </view>-->
+                  <!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
+                </view>
+                <view class="title_volume">
+                  <view class="title">
+                    <text>{{item.store_name}}</text>
+                    <!--
                                             <text bindtap="show_modal" data-id="{{item.coupon.data.id}}" data-pid="{{item.id}}" wx:if="{{item.coupon.status}}">
                                             <text  class="coupon3"> 马上领券/立减{{item.coupon.data.price}}元 </text>
                                             </text>
                                             <text wx:if="{{item.seckill.status == 1}}" class="coupon3"> 限时秒杀/立减{{item.seckill.data.save_money}}元 </text>
                                             <text wx:if="{{item.seckill.status == -1}}" class="coupon3"> {{item.seckill.msg}}/{{item.seckill.data.title}} </text>
                                         -->
-                                    </view>
-                                    <view class="volume">  
-                                        <view class="price">
-                                            <block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}">
-                                                <em  class="bold">
-                                                    <text class="Supporting">￥</text>
-                                                    <text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}</text>
-                                                    <text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text> 
-                                                </em>
-                                            </block> 
-                                            <block wx:if="{{item.seckill.status == 1}}">
-                                                <em class="bold">
-                                                    <text class="Supporting">￥</text>
-                                                    <text>{{divisionMoney.division(item.seckill.data.price)[0]}}</text>
-                                                    <text class="Supporting">.{{divisionMoney.division(item.seckill.data.price)[1]}}</text>
-                                                </em> 
-                                                <em class="text-u">￥{{item.price}}</em>
-                                            </block> 
-                                        </view>
-                                        <view class="sales">
-                                            <small class="small">销量 {{item.sales>999?'999+':item.sales}} </small>
-                                        </view>
-                                    </view>
-                                </view>
-                            </view>
-                        </view>
+                  </view>
+                  <view class="volume">
+                    <view class="price">
+                      <block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}">
+                        <em class="bold">
+                          <text class="Supporting">￥</text>
+                          <text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}</text>
+                          <text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text>
+                        </em>
+                      </block>
+                      <block wx:if="{{item.seckill.status == 1}}">
+                        <em class="bold">
+                          <text class="Supporting">￥</text>
+                          <text>{{divisionMoney.division(item.seckill.data.price)[0]}}</text>
+                          <text class="Supporting">.{{divisionMoney.division(item.seckill.data.price)[1]}}</text>
+                        </em>
+                        <em class="text-u">￥{{item.price}}</em>
+                      </block>
+                      <view class="pre_price">{{item.ot_price}}</view>
+                    </view>
+                  </view>
+                   <view class="sales">
+                     <text> 销量 {{item.sales>999?'999+':item.sales}}</text>
+                      <text class="buy">购买</text>
                     </view>
                 </view>
-                <no-data list="{{storelist}}" isLoad="{{isLoad}}"></no-data>
-            </scroll-view>
-        </view>
-        <!-- all product end !-->
-
-        <view class="modal-mask"  catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-        <view class="fenxiang-mask" wx:if="{{fenXiangShow}}">
-            <view class="select">
-                <view class="select-top">
-                    <view class="top-item">
-                        <button class="item-botton" bindtap="checkoutFenXiang" open-type="share">
-                            <image src="/assets/image/weChatFriend.png" mode="widthFix" class="fenXiang-img"></image>
-                            <view class="botton-title">微信好友</view>
-                        </button>
-                    </view>
-                    <view class="top-item">
-                        <button class="item-botton" bindtap="getShareImg">
-                            <image src="/assets/image/pengyouquan.png" mode="widthFix" class="fenXiang-img"></image>
-                            <view class="botton-title">朋友圈</view>
-                        </button>
-                    </view>
-                </view>
-                <view class="select-bottom">
-                    <button class="exit" bindtap="checkoutFenXiang">×</button>
-                </view>
+              </view>
             </view>
+          </view>
         </view>
-        <view class="novice" wx:if="{{islogin && isfirst && newObj.id}}" catchtouchmove="preventTouchMove">
-            <!-- wx:if="{{islogin&&isfirst}}" -->
-            <view class="news_box">
-                <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
-                <image class="new_bg" src="{{news_image}}" mode="widthFix"/>
-                <view class="new_msg">
-                    <view class="discount_name">{{newObj.store_name}}</view>
-                    <view class="discount">新人专享爆款抢购<text>{{newObj.price}}元</text>包邮！</view>
-                    <view class="discount_time">{{newObj.valid_time}}小时内购买有效</view>
-                </view>
-                <view class="gobaybtn" bindtap='goBay'></view>
-            </view>
-        </view>
+        <no-data list="{{storelist}}" isLoad="{{isLoad}}" goMore='1'></no-data>
+      </scroll-view>
     </view>
+    <!-- all product end !-->
+
+    <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <view class="fenxiang-mask" wx:if="{{fenXiangShow}}">
+      <view class="select">
+        <view class="select-top">
+          <view class="top-item">
+            <button class="item-botton" bindtap="checkoutFenXiang" open-type="share">
+              <image src="/assets/image/weChatFriend.png" mode="widthFix" class="fenXiang-img"></image>
+              <view class="botton-title">微信好友</view>
+            </button>
+          </view>
+          <view class="top-item">
+            <button class="item-botton" bindtap="getShareImg">
+              <image src="/assets/image/pengyouquan.png" mode="widthFix" class="fenXiang-img"></image>
+              <view class="botton-title">朋友圈</view>
+            </button>
+          </view>
+        </view>
+        <view class="select-bottom">
+          <button class="exit" bindtap="checkoutFenXiang">×</button>
+        </view>
+      </view>
+    </view>
+    <view class="novice" wx:if="{{islogin && isfirst && newObj.id}}" catchtouchmove="preventTouchMove">
+      <!-- wx:if="{{islogin&&isfirst}}" -->
+      <view class="news_box">
+        <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
+        <image class="new_bg" src="{{news_image}}" mode="widthFix" />
+        <view class="new_msg">
+          <view class="discount_name">{{newObj.store_name}}</view>
+          <view class="discount">新人专享爆款抢购
+            <text>{{newObj.price}}元</text>包邮！</view>
+          <view class="discount_time">{{newObj.valid_time}}小时内购买有效</view>
+        </view>
+        <view class="gobaybtn" bindtap='goBay'></view>
+      </view>
+    </view>
+  </view>
 </view>
 
 <wxs module="divisionMoney">
-    var division = function(money) {
-        var mpMoney = money.split('.');
-        return mpMoney;
-    }
-    module.exports.division = division;
+  var division = function(money) {
+    var mpMoney = money.split('.');
+    return mpMoney;
+  }
+  module.exports.division = division;
 </wxs>
-

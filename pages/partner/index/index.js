@@ -10,7 +10,7 @@ Page({
     //alllist: [],
     isLoad: 0,
     page: 1,
-    limit: 10,
+    limit: 6,
     getinfo: {},
     keyword: '',
     noviceShow: null,
@@ -129,7 +129,7 @@ Page({
   },
   // 监控当前页面触底事件
   onReachBottom() {
-    this.loadmore()
+   // this.loadmore()
   },
   loadmore() {
     if (this.data.isLoad || !this.data.isAllowLoad) return
@@ -321,10 +321,10 @@ Page({
         title: '加载中',
       })
       this.setData({
-        // page: 1,
-        // storelist: [],
+         page: 1,
+         storelist: [],
         keyword: '', // 不搜索空串
-        // isLoad: 0,
+         isLoad: 0,
       })
       this.storelist();
     } else {
