@@ -34,6 +34,7 @@ function putCache(url, res) {
   })
 }
 let downFile = (url) => new Promise((resolve, reject) => {
+  console.log('查看url',url);
   getCache(url, cacheRes => {
     if (cacheRes) {
       console.log('命中cache')
@@ -50,7 +51,8 @@ let downFile = (url) => new Promise((resolve, reject) => {
             putCache(url, res)
             resolve(res)
           },
-          fail() {
+          fail(res) {
+            console.log('55行')
             reject(res.tempFilePath)
           }
         })
@@ -128,6 +130,7 @@ Component({
         })
         //}, 4000)
       }).catch(res => {
+
         wx.showToast({
           title: '请稍后重试',
           icon: 'none'
