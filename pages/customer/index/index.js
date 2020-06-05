@@ -10,7 +10,7 @@ Page({
         getnotice: [],
         getProductList: [],
         page: 1,
-        limit: 10,
+        limit: 6,
         getPartnerInfo: {},
         loading: false, // 加载中
         isLoad: 0, // 加载完毕
@@ -52,7 +52,7 @@ Page({
         })
     },
     onReachBottom() {
-        this.nextPage()
+       // this.nextPage()
     },
     tabPageChange(event) {
         this.goList({ currentTarget: { dataset: { id: event.detail.currentItemId, index: event.detail.current } } })
@@ -249,11 +249,13 @@ Page({
         if (!this.data.loading) {
             // 重置数据
             this.setData({
-                // getProductList: [],
-                // page: 1,
+              storelist: [],
+                 page: 1,
                 loading: false, 
+            },()=>{
+              this.getProductList()
             })
-            this.getProductList()
+            
         }
 
         //获取banner轮播广告

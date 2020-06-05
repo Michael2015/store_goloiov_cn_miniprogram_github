@@ -8,6 +8,10 @@ Component({
       type: Array,
       value: []
     },
+    goMore:{
+      type: Number,
+      value: 0
+    },
     isLoad:{
        type: Number,
       value: ''
