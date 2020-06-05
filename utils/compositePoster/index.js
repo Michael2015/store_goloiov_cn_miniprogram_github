@@ -117,9 +117,10 @@ Component({
               })
             },
             fail(res) {
-              wx.hideLoading()
+              wx.hideLoading();
+              console.log('==== 二维码生成失败 ====',res)
               wx.showToast({
-                title: '请稍后重试',
+                title: '错误！请稍后重试',
                 icon: 'none'
               })
             }
@@ -131,13 +132,7 @@ Component({
           title: '请稍后重试',
           icon: 'none'
         })
-        console.log('==== 二维码生成失败 ====')
-        console.log(res)
-        wx.showModal({
-          title: '提示',
-          content: res,
-          showCancel: false
-        })
+        console.log('==== 二维码生成失败 ====',res)
       })
     },
     hide() {
