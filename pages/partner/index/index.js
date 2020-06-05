@@ -6,6 +6,7 @@ let self;
 const defaultSwiperHeight = 200
 Page({
   data: {
+    adArr: [],
     storelist: [],
     //alllist: [],
     isLoad: 0,
@@ -130,6 +131,9 @@ Page({
   // 监控当前页面触底事件
   onReachBottom() {
    // this.loadmore()
+   this.setData({
+     adArr: [...this.data.adArr,{size:6,showMore:true}]
+   })
   },
   loadmore() {
     if (this.data.isLoad || !this.data.isAllowLoad) return
@@ -317,16 +321,16 @@ Page({
     console.log(app.varStorage.get('isShareBack'))
     if (app.varStorage.get('isShareBack') === undefined) {
       if (this.data.isLoad || !this.data.isAllowLoad) return
+     
       wx.showLoading({
         title: '加载中',
       })
-      this.setData({
-         page: 1,
-         storelist: [],
-        keyword: '', // 不搜索空串
-         isLoad: 0,
-      })
       this.storelist();
+      this.setData({
+        adArr: [...this.data.adArr, { size: 6, showMore: true }],
+      })
+     
+     
     } else {
       app.varStorage.del('isShareBack')
     }
