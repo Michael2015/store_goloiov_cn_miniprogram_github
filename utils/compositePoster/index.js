@@ -50,7 +50,7 @@ let downFile = (url) => new Promise((resolve, reject) => {
             putCache(url, res)
             resolve(res)
           },
-          fail() {
+          fail(res) {
             reject(res.tempFilePath)
           }
         })
