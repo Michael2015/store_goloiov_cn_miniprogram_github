@@ -14,7 +14,7 @@
     <!-- banner start !-->
     <view class='banner'>
       <swiper indicator-dots="true" autoplay="true" interval="5000" duration="500">
-        <block wx:for="{{bannerList}}" wx:key="{{index}}">
+        <block wx:for="{{bannerList}}" wx:key="index">
           <swiper-item>
             <navigator wx:if="{{item.url_type == 1}}" url="{{item.url}}">
               <image src="{{item.pic}}" class="slide-image" mode="aspectFill" />
@@ -33,7 +33,7 @@
 
     <!-- category start !-->
     <view class="category">
-      <view class="categoryList" wx:for="{{categoryList}}" wx:key="{index}">
+      <view class="categoryList" wx:for="{{categoryList}}" wx:key="index">
         <view class="categoryList_item" bindtap="goSearch" data-url="{{item.url}}" data-type="category" data-id="{{item.id}}" data-name="{{item.cate_name}}">
           <image src="{{item.pic}}"></image>
           <view class="name">{{item.cate_name}}</view>
@@ -73,7 +73,7 @@
       <view class="commodity_list">
         <view wx:if="{{scrollTop >= heightCount}}" style="height:66rpx;width:100%"></view>
         <view class="commodity_showList">
-          <view class="commodity_item" wx:for="{{blastProductList}}" wx:key="{{index}}" wx:if="{{index < 8}}">
+          <view class="commodity_item" wx:for="{{blastProductList}}" wx:key="index" wx:if="{{index < 8}}">
             <view class="new" wx:if="{{!!item.newbornzone.is_newborn}}">新人专享</view>
             <view class="item_content" >
               <view style="width:100%;height:100%;overflow: hidden;" catchtap="goDetails" id="{{item.id}}">
@@ -130,13 +130,13 @@
     <!-- blast product end !-->
 
     <!-- all product start !-->
-    <view class="all_product">
+    <view class="all_product" wx:for='{{adArr}}' wx:key='index'>
      <!-- <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>-->
      <!--插入广告-->
      <view class="all_product_ad">插入广告</view>
       <scroll-view scroll-y class="commodity_all_list">
         <view class="commodity_all_showList">
-          <view class="commodity_all_item" wx:for="{{storelist}}" wx:key="{{index}}" >
+          <view class="commodity_all_item" wx:for="{{sliceArr.sliceFunc(storelist,item.size)}}" wx:key="index" >
             <view style="background:#fff;height:100%;overflow:hidden;box-sizing:border-box">
               <view class="storeList_wrap" catchtap="goDetails" id="{{item.id}}">
                 <view class="showImg2">
@@ -189,7 +189,7 @@
             </view>
           </view>
         </view>
-        <no-data list="{{storelist}}" isLoad="{{isLoad}}" goMore='1'></no-data>
+        <no-data list="{{storelist}}" isLoad="{{isLoad}}" goMore='1' wx:if='{{item.showMore}}'></no-data>
       </scroll-view>
     </view>
     <!-- all product end !-->
@@ -239,4 +239,13 @@
     return mpMoney;
   }
   module.exports.division = division;
+</wxs>
+
+<wxs module="sliceArr">
+var sliceFunc = function(arr,n){
+  var brr=arr.slice(0,n);
+  return brr;
+}
+module.exports.sliceFunc=sliceFunc;
+
 </wxs>
