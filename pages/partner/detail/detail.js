@@ -186,7 +186,6 @@ Page({
                     arr.push('../../../assets/image/star_y.png');
                     this.data.commentRecordList[key]['imgs'] = arr;
                 }
-
             }
             this.setData({
                 commentRecordList: this.data.commentRecordList

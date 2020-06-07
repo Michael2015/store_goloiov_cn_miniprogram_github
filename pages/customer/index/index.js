@@ -1,10 +1,13 @@
 import Contact from '../../../utils/contactUser/contactUser'
 const app = getApp()
-let self;
+let self, adPage = 0;
 // 低版本ios scroll-view 初始化时必须充满一屏才能滚动，给个默认高度就能满一屏
 const defaultSwiperHeight = 200
 Page({
     data: {
+      chePu: [],
+      circleUrl: '',
+      adArr: [],
         userInfo: {},
         getinfo: {},
         getnotice: [],
@@ -53,10 +56,89 @@ Page({
     },
     onReachBottom() {
        // this.nextPage()
+      this.getAdList();
     },
     tabPageChange(event) {
         this.goList({ currentTarget: { dataset: { id: event.detail.currentItemId, index: event.detail.current } } })
     },
+  toGo(e) {
+    if (e.target.dataset.adinfo) {
+      let { kind, url, appid } = e.target.dataset.adinfo;
+      console.log(kind, url, appid)
+
+      switch (kind) {
+        case 1:
+        case 2:
+        case 3:
+          wx.navigateTo({
+            url
+          })
+          break;
+        case 4:
+
+          wx.navigateToMiniProgram({
+            appId: appid,
+            path: url,
+            success(res) {
+              // 打开成功
+              console.log(res)
+            }
+          })
+          break;
+        case 5:
+          wx.navigateTo({
+            url: "/pages/common/goout/index?url=" + url,
+          })
+          break;
+        default: break;
+      }
+    }
+
+  },
+  toMore(e) {
+    console.log(e.target.dataset)
+    let kind = e.target.dataset.kind, url = e.target.dataset.tourl, appId = e.target.dataset.appid;
+    switch (kind) {
+      case 1:
+      case 2:
+      case 3:
+        wx.navigateTo({
+          url
+        })
+        break;
+      case 4:
+        wx.navigateToMiniProgram({
+          appId,
+          path: url,
+          success(res) {
+            // 打开成功
+            //  console.log(res)
+          }
+        })
+        break;
+      case 5:
+        wx.navigateTo({
+          url: "/pages/common/goout/index?url=" + url,
+        })
+        break;
+      default: break;
+    }
+
+  },
+  async getAdList() {
+    const ad = await app.http.post('/api/Marketing/getAdv', { type: 3, token: 'bdf092d1fe87c269b768d77f833a1018', page: ++adPage });
+    if (ad.length) {
+      this.setData({
+        adArr: [...this.data.adArr, ...ad.map(item => {
+          return {
+            adListInfo: item,
+            showMore: item.product.length >= 6 ? true : false,
+            size: 6
+          }
+        })],
+      })
+    }
+  },
     getnotice() {
         app.http.get('/api/customer/mall/getnotice').then(res => {
             this.setData({
@@ -199,9 +281,58 @@ Page({
             this.getProductList()
         }
     },
-    onLoad: function () {
+  toGo(e) {
+    if (e.target.dataset.adinfo) {
+      let { kind, url, appid } = e.target.dataset.adinfo;
+      console.log(kind, url, appid)
+
+      switch (kind) {
+        case 1:
+        case 2:
+        case 3:
+          wx.navigateTo({
+            url
+          })
+          break;
+        case 4:
+
+          wx.navigateToMiniProgram({
+            appId: appid,
+            path: url,
+            success(res) {
+              // 打开成功
+              console.log(res)
+            }
+          })
+          break;
+        case 5:
+          wx.navigateTo({
+            url: "/pages/common/goout/index?url=" + url,
+          })
+          break;
+        default: break;
+      }
+    }
+
+  },
+  onLoad: async function () {
         // console.log(app.globalData)
+      //广告部分
+      const chePu = await app.http.post('/api/Marketing/getAdv', { type: 2});
+
+      //列表部分
+      const ad = await app.http.post('/api/Marketing/getAdv', { type: 3, page: ++adPage });
+
+
         this.setData({
+          chePu,
+          adArr: ad.map(item => {
+            return {
+              adListInfo: item,
+              showMore: item.product.length >= 6 ? true : false,
+              size: 6
+            }
+          }),
             islogin: !(app.globalData.token === ''),
             news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
         })
@@ -257,9 +388,10 @@ Page({
             })
             
         }
-
+      //this.getAdList();
         //获取banner轮播广告
         this.getBanner();
+    
         await this.getCategory()
         //获取新人专区信息
         this.getNews()
@@ -274,15 +406,14 @@ Page({
         }
     },
     async getCategory() {
-        const categoryList = await app.http.post('/api/marketing/getCategory', {})
-        
+     //   const categoryList = await app.http.post('/api/marketing/getCategory', {})
+      const categoryList = await app.http.post('/api/Marketing/getAdv', { type: 1 }) 
         let transverseCar = categoryList.filter(function (item, index) {
             return index === 0
         })
+       
         this.setData({
-            transverseCar_cateId: transverseCar[0].id
-        })
-        this.setData({
+          transverseCar_cateId: transverseCar[0].id,
             categoryList: categoryList,
         })
     },
@@ -397,13 +528,30 @@ Page({
     },
     goSearch(e) {
         let selectTabType = e.currentTarget.dataset.type
+     // console.log('csacsacsac', selectTabType);
+      let kind = e.currentTarget.dataset.kind, appId = e.currentTarget.dataset.appid;
         let jumpUrl = "";
         //点击分类tab跳转
         if (selectTabType == "category"){
             let url = e.currentTarget.dataset.url;
             if(url)
             {
-                jumpUrl = "/pages/common/goout/index?url="+url
+              if (kind === 1 || kind === 2 || kind === 3) {
+                jumpUrl = url
+              }
+              else if (kind === 4) {
+                wx.navigateToMiniProgram({
+                  appId,
+                  path: url,
+                  success(res) {
+                    // 打开成功
+                    //  console.log(res)
+                  }
+                })
+              }
+              else {
+                jumpUrl = "/pages/common/goout/index?url=" + url
+              }
             }
             else{
             let selectTabId = e.currentTarget.dataset.id
@@ -424,10 +572,12 @@ Page({
         else if (selectTabType == "all_product") {
             jumpUrl = "/pages/customer/search/index?type=all&title=全部商品"
         }
-        console.log(jumpUrl)
+      
+      if (kind !== 4) {
         wx.navigateTo({
-            url: jumpUrl
+          url: jumpUrl
         })
+      }
     },
     goInputSearch(e) {
         let detail_val = e.detail.value.trim()
