@@ -85,10 +85,10 @@ page {
   .chepu{
     text-align: center;
     position: relative;
-    margin: 20rpx 0;
+    margin: 20rpx 19rpx;
   }
   .chepu image{
-    width: 702rpx;
+    width: 100%;
     height: 146rpx;
   }
   .chepu_posi{
@@ -111,6 +111,10 @@ display: flex;
 flex-direction: column;
 padding: 19rpx;
 box-sizing: border-box;
+}
+.ad image{
+  width: 100%;
+  height: 100%;
 }
 .path1{
 width: 100%;
@@ -143,7 +147,6 @@ width: 50%;
 height: 100%;
 }
 .ad1{
-background: gray;
 margin-right: 8rpx;
 }
 .path3{
@@ -153,7 +156,6 @@ box-sizing: border-box;
 flex-direction: column;
 }
 .ad2{
-background: purple;
 margin-bottom: 8rpx;
 }
 .path4{
@@ -162,19 +164,15 @@ display: flex;
 box-sizing: border-box;
 }
 .ad3{
-background: green;
 margin-right: 8rpx;
 }
 .ad4{
-background: pink;
 margin-left: 8rpx;
 }
 .ad5{
-background: pink;
 margin-right: 8rpx;
 }
 .ad6{
-background: yellow;
 margin-left: 8rpx;
 }
   .blast_product .rexiao{
@@ -274,6 +272,7 @@ margin-left: 8rpx;
 }
 .countTop{
   padding-bottom: 96rpx;
+  background: #f3f3f3;
 }
 
 .item-img{
@@ -708,7 +707,10 @@ button{
 }
 .all_product_ad{
   height: 146rpx;
-  background: pink;
+}
+.all_product_ad image{
+  width: 100%;
+  height: 100%;
 }
 .showImg2 .all_new{
   background: #FF0000;

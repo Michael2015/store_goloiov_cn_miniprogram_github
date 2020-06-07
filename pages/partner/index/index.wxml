@@ -34,35 +34,52 @@
     <!-- category start !-->
     <view class="category">
       <view class="categoryList" wx:for="{{categoryList}}" wx:key="index">
-        <view class="categoryList_item" bindtap="goSearch" data-url="{{item.url}}" data-type="category" data-id="{{item.id}}" data-name="{{item.cate_name}}">
-          <image src="{{item.pic}}"></image>
+        <view class="categoryList_item" bindtap="goSearch" data-url="{{item.url}}" data-type="category" data-id="{{item.id}}" data-name="{{item.cate_name}}" data-kind='{{item.kind}}' data-appid='{{item.appid}}'>
+          <image src="{{item.icon}}"></image>
           <view class="name">{{item.cate_name}}</view>
         </view>
       </view>
     </view>
     <!-- category end !-->
 
-    <!--车仆玻璃上（单品-->
+<!--广告-->
 <view class="chepu">
-  <image src="/assets/image/carBu.png" mode='aspectFit'></image>
-  <view class="chepu_posi">车仆玻璃上（单品）</view>
+<!--顶部-->
+  <image src="{{getAd.adPosi(chePu,1).icon}}"  data-adinfo='{{getAd.adPosi(chePu,1)}}' bindtap='toGo'  ></image>
 </view>
 
- <!--广告-->
      <view class="ad">
 <view class="path1">
-<view class="ad1">广告1</view>
+<view class="ad1">
+ <!--左上-->
+  <image src="{{getAd.adPosi(chePu,2).icon}}"  data-adinfo='{{getAd.adPosi(chePu,2)}}' bindtap='toGo'  ></image>
+</view>
 <view class="path3">
-<view class="ad2">广告2</view>
+<view class="ad2">
+<!--右上-->
+  <image src="{{getAd.adPosi(chePu,4).icon}}"  data-adinfo='{{getAd.adPosi(chePu,4)}}' bindtap='toGo'   ></image>
+</view>
 <view class="path4">
-<view class="ad3">广告3</view>
-<view class="ad4">广告4</view>
+<view class="ad3">
+<!--右左-->
+  <image src="{{getAd.adPosi(chePu,5).icon}}"  data-adinfo='{{getAd.adPosi(chePu,5)}}' bindtap='toGo'  ></image>
+</view>
+<view class="ad4">
+<!--右右-->
+  <image src="{{getAd.adPosi(chePu,6).icon}}"  data-adinfo='{{getAd.adPosi(chePu,6)}}' bindtap='toGo'  ></image>
 </view>
 </view>
+</view> 
 </view>
 <view class="path2">
-<view class="ad5">广告5</view>
-<view class="ad6">广告6</view>
+<view class="ad5">
+<!--左下-->
+  <image src="{{getAd.adPosi(chePu,3).icon}}"  data-adinfo='{{getAd.adPosi(chePu,3)}}' bindtap='toGo'  ></image>
+</view>
+<view class="ad6">
+<!--右下-->
+  <image src="{{getAd.adPosi(chePu,7).icon}}"  data-adinfo='{{getAd.adPosi(chePu,7)}}' bindtap='toGo'   ></image>
+</view>
 </view>
 </view>
 
@@ -124,19 +141,21 @@
           </view>
           <view class="Replace" wx:if="{{getProductList.length % 2 ===1}}"></view>
         </view>
-        <view wx:if="{{blastProductList.length > 8}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
+        <view wx:if="{{blastProductList.length > 6}}" class="more" bindtap="goSearch" data-type="blast_product">更多 >></view>
       </view>
     </view>
     <!-- blast product end !-->
 
     <!-- all product start !-->
-    <view class="all_product" wx:for='{{adArr}}' wx:key='index'>
+    <view class="all_product" wx:for='{{adArr}}' wx:key='indexName' wx:for-item="itemName" wx:for-index="indexName">
      <!-- <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>-->
      <!--插入广告-->
-     <view class="all_product_ad">插入广告</view>
+     <view class="all_product_ad">
+      <image src="{{itemName.adListInfo.icon}}"  data-kind='{{itemName.adListInfo.kind}}' bindtap='toGo'></image>
+     </view>
       <scroll-view scroll-y class="commodity_all_list">
         <view class="commodity_all_showList">
-          <view class="commodity_all_item" wx:for="{{sliceArr.sliceFunc(storelist,item.size)}}" wx:key="index" >
+          <view class="commodity_all_item" wx:for="{{sliceArr.sliceFunc(itemName.adListInfo.product,itemName.size)}}" wx:key="index" >
             <view style="background:#fff;height:100%;overflow:hidden;box-sizing:border-box">
               <view class="storeList_wrap" catchtap="goDetails" id="{{item.id}}">
                 <view class="showImg2">
@@ -189,7 +208,8 @@
             </view>
           </view>
         </view>
-        <no-data list="{{storelist}}" isLoad="{{isLoad}}" goMore='1' wx:if='{{item.showMore}}'></no-data>
+        <no-data  goMore='1' wx:if='{{itemName.showMore}}' data-kind='{{itemName.adListInfo.kind}}' bindtap='toMore' data-tourl='{{itemName.adListInfo.url}}' data-appid='{{itemName.adListInfo.appid}}'></no-data>
+       
       </scroll-view>
     </view>
     <!-- all product end !-->
@@ -248,4 +268,14 @@ var sliceFunc = function(arr,n){
 }
 module.exports.sliceFunc=sliceFunc;
 
+</wxs>
+
+<wxs module="getAd">
+var adPosi = function(arr,n){
+ var crr=arr.filter(function(item){
+ return item.position===n
+ })
+  return crr[0];
+}
+module.exports.adPosi=adPosi;
 </wxs>
