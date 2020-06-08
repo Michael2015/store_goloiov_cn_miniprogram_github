@@ -126,7 +126,7 @@ Page({
 
   },
   async getAdList() {
-    const ad = await app.http.post('/api/Marketing/getAdv', { type: 3, token: 'bdf092d1fe87c269b768d77f833a1018', page: ++adPage });
+    const ad = await app.http.post('/api/Marketing/getAdv', { type: 3,  page: ++adPage });
     if (ad.length) {
       this.setData({
         adArr: [...this.data.adArr, ...ad.map(item => {
