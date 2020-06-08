@@ -672,8 +672,8 @@ font-weight:400;
   justify-content:space-around;
 }
 .categoryList image{
-  width: 92rpx;
-  height: 92rpx;
+  width: 87rpx;
+  height: 87rpx;
 }
 .categoryList .name{
   text-align: center;

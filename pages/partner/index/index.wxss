@@ -74,8 +74,8 @@ page {
     justify-content:space-around;
   }
   .categoryList image{
-    width: 100rpx;
-    height: 100rpx;
+    width: 87rpx;
+    height: 87rpx;
   }
   .categoryList .name{
     text-align: center;
