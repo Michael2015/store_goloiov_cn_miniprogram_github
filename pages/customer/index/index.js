@@ -126,7 +126,11 @@ Page({
 
   },
   async getAdList() {
+    wx.showLoading({
+      title: '加载中',
+    })
     const ad = await app.http.post('/api/Marketing/getAdv', { type: 3,  page: ++adPage });
+    wx.hideLoading();
     if (ad.length) {
       this.setData({
         adArr: [...this.data.adArr, ...ad.map(item => {
@@ -371,6 +375,10 @@ Page({
         this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 0
+      })
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
             this.getTabBar().setData({
@@ -383,8 +391,11 @@ Page({
               storelist: [],
                  page: 1,
                 loading: false, 
+
             },()=>{
-              this.getProductList()
+              adPage=0;
+              this.getProductList();
+              this.getAdList();
             })
             
         }

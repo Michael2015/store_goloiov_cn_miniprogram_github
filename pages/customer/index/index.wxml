@@ -155,7 +155,7 @@
     <view class="all_product" wx:for='{{adArr}}' wx:key='indexName' wx:for-item="itemName" wx:for-index="indexName">
      <!-- <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>-->
       <view class="all_product_ad">
-      <image src="{{itemName.adListInfo.icon}}"  data-kind='{{itemName.adListInfo.kind}}' bindtap='toGo'></image>
+      <image src="{{itemName.adListInfo.icon}}"  data-adinfo='{{itemName.adListInfo}}' bindtap='toGo'></image>
      </view>
       <scroll-view scroll-y class="commodity_all_list" bindscrolltolower="nextPage">
         <view class="commodity_all_showList">

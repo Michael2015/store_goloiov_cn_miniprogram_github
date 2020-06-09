@@ -132,6 +132,7 @@ Page({
   },
   // 监控当前页面触底事件
   onReachBottom() {
+    console.log('触底',this.data)
     this.getAdList();
    // this.loadmore()
  /*  this.setData({
@@ -236,8 +237,14 @@ Page({
     
   },
   async getAdList(){
+    wx.showLoading({
+      title: '加载中',
+    })
     const ad = await app.http.post('/api/Marketing/getAdv', { type: 3,page:++adPage });
+    console.log('请求数据',ad)
+    wx.hideLoading();
     if(ad.length){
+      
     this.setData({
       adArr: [...this.data.adArr, ...ad.map(item => {
         return {
@@ -246,6 +253,8 @@ Page({
           size: 6
         }
       })],
+    },()=>{
+      console.log('获取数据', this.data.adArr);
     })}
   },
  async onLoad() {
@@ -408,7 +417,10 @@ Page({
     this.setData({ scrollTop: event.detail.scrollTop })
   },
   onShow: async function () {
-   
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration:0
+    })
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -422,8 +434,18 @@ Page({
       wx.showLoading({
         title: '加载中',
       })
-      this.storelist();
-     // this.getAdList();
+      
+      this.setData({
+        adArr: [],
+        storelist:[],
+        page:1,
+        loading:false
+      },()=>{
+        adPage=0;
+        this.getAdList();
+        this.storelist();
+      })
+     
      /* this.setData({
         adArr: [...this.data.adArr, { size: 6, showMore: true }],
       })*/
