@@ -1,4 +1,4 @@
-﻿ let app
+ let app
 App({
   onLaunch(options) {
     app = this
@@ -101,6 +101,15 @@ App({
       delete this[name]
     }
   },
+  pageToTop:{
+    //n为0是客户端，1是合伙端
+    set(n,bol){
+      app.globalData.toPageTop[n?'partner':'custom']=bol;
+    },
+    get(n){
+      return app.globalData.toPageTop[n ? 'partner' : 'custom'];
+    }
+  },
   globalData: {
     userInfo: {},
     partnerInfo: {},
@@ -109,8 +118,12 @@ App({
     // role: 用户角色 0客户 1合伙人
     role: null,   
     HOST: 'https://wcp.wanchepin.com',
-    //HOST: 'https://storemp.golodata.com',
+   // HOST: 'https://storemp.golodata.com',
     shareInfo: {},
-    tabInst: []
+    tabInst: [],
+    toPageTop:{
+      custom:true,
+      partner:true
+    }
   }
 })
