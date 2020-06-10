@@ -117,8 +117,7 @@
                   <view class="volume">
                     <block wx:if="{{item.seckill.status == 0 || item.seckill.status == -1}}">
                       <em class="bold">
-                        <text class="Supporting">￥</text>{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}
-                        <text class="Supporting">.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text>
+                        <text class="Supporting">￥{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[0]}}.{{divisionMoney.division(item.newbornzone.is_newborn?item.newbornzone.price:item.price)[1]}}</text>
                       </em>
                     </block>
                     <block wx:if="{{item.seckill.status == 1}}">
