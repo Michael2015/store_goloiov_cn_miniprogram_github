@@ -151,7 +151,7 @@
      <!-- <image src="/assets/image/all_product.png" bindtap="goSearch" data-type="all_product"></image>-->
      <!--插入广告-->
      <view class="all_product_ad">
-      <image src="{{itemName.adListInfo.icon}}"  data-adinfo='{{itemName.adListInfo}}' bindtap='toGo'></image>
+      <image src="{{itemName.adListInfo.icon}}"  data-adinfo='{{itemName.adListInfo}}' bindtap='toMore'></image>
      </view>
       <scroll-view scroll-y class="commodity_all_list">
         <view class="commodity_all_showList">
@@ -208,7 +208,7 @@
             </view>
           </view>
         </view>
-        <no-data  goMore='1' wx:if='{{itemName.showMore}}' data-kind='{{itemName.adListInfo.kind}}' bindtap='toMore' data-tourl='{{itemName.adListInfo.url}}' data-appid='{{itemName.adListInfo.appid}}'></no-data>
+        <no-data  goMore='1' wx:if='{{itemName.showMore}}' data-adinfo='{{itemName.adListInfo}}' bindtap='toMore'></no-data>
        
       </scroll-view>
     </view>

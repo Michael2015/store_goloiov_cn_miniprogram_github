@@ -207,8 +207,9 @@ Page({
     setTimeout(this.countDown, 1000);
   },
   toMore(e){
+    app.pageToTop.set(1, false);
     console.log(e.target.dataset)
-    let kind = e.target.dataset.kind, url = e.target.dataset.tourl, appId = e.target.dataset.appid;
+    let { kind, url, appId } = e.target.dataset.adinfo;
     switch (kind) {
       case 1:
       case 2:
@@ -296,6 +297,7 @@ Page({
     })
   },
   goDetails(e) {
+    app.pageToTop.set(1, false);
     let storelistItem = this.data.storelist.filter(ele => {
       return ele.id == e.currentTarget.id
     })
@@ -363,6 +365,7 @@ Page({
     })
   },
   toGo(e){
+    app.pageToTop.set(1, false);
     if (e.target.dataset.adinfo){
       let { kind, url, appid } = e.target.dataset.adinfo;
       console.log(kind, url, appid)
@@ -417,10 +420,12 @@ Page({
     this.setData({ scrollTop: event.detail.scrollTop })
   },
   onShow: async function () {
-    wx.pageScrollTo({
-      scrollTop: 0,
-      duration:0
-    })
+    if (app.pageToTop.get(1)) {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 0
+      })
+    }
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -430,21 +435,23 @@ Page({
     console.log(app.varStorage.get('isShareBack'))
     if (app.varStorage.get('isShareBack') === undefined) {
       if (this.data.isLoad || !this.data.isAllowLoad) return
+      if (app.pageToTop.get(1)) {
+        wx.showLoading({
+          title: '加载中',
+        })
+
+        this.setData({
+          adArr: [],
+          storelist: [],
+          page: 1,
+          loading: false
+        }, () => {
+          adPage = 0;
+          this.getAdList();
+          this.storelist();
+        })
+      }
      
-      wx.showLoading({
-        title: '加载中',
-      })
-      
-      this.setData({
-        adArr: [],
-        storelist:[],
-        page:1,
-        loading:false
-      },()=>{
-        adPage=0;
-        this.getAdList();
-        this.storelist();
-      })
      
      /* this.setData({
         adArr: [...this.data.adArr, { size: 6, showMore: true }],
@@ -460,6 +467,7 @@ Page({
     await this.getCategory();
     //获取新人专区信息
     this.getNews()
+    app.pageToTop.set(1, true);
   },
   getNews() {
     if (this.data.islogin && this.data.isfirst) {
