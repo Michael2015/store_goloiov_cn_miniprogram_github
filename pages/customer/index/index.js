@@ -62,9 +62,10 @@ Page({
         this.goList({ currentTarget: { dataset: { id: event.detail.currentItemId, index: event.detail.current } } })
     },
   toGo(e) {
+    app.pageToTop.set(0, false);
     if (e.target.dataset.adinfo) {
       let { kind, url, appid } = e.target.dataset.adinfo;
-      console.log(kind, url, appid)
+   //   console.log(kind, url, appid)
 
       switch (kind) {
         case 1:
@@ -81,7 +82,7 @@ Page({
             path: url,
             success(res) {
               // 打开成功
-              console.log(res)
+            //  console.log(res)
             }
           })
           break;
@@ -96,8 +97,9 @@ Page({
 
   },
   toMore(e) {
-    console.log(e.target.dataset)
-    let kind = e.target.dataset.kind, url = e.target.dataset.tourl, appId = e.target.dataset.appid;
+  //  console.log(e.target.dataset)
+    app.pageToTop.set(0, false);
+    let { kind, url, appId } = e.target.dataset.adinfo;
     switch (kind) {
       case 1:
       case 2:
@@ -168,7 +170,7 @@ Page({
     getProductList() {
         const size = this.data.limit; // 默认一页条数
         if (this.data.loading) return // 已经在加载中了
-        console.log('页数：' + this.data.page)
+     //   console.log('页数：' + this.data.page)
         wx.showLoading({
             title: '加载中',
         })
@@ -269,6 +271,7 @@ Page({
         });
     },
     goDetails(e) {
+      app.pageToTop.set(0, false);
         let getProductList = this.data.getProductList.filter(ele => {
             return ele.id == e.currentTarget.id
         })
@@ -285,40 +288,8 @@ Page({
             this.getProductList()
         }
     },
-  toGo(e) {
-    if (e.target.dataset.adinfo) {
-      let { kind, url, appid } = e.target.dataset.adinfo;
-      console.log(kind, url, appid)
 
-      switch (kind) {
-        case 1:
-        case 2:
-        case 3:
-          wx.navigateTo({
-            url
-          })
-          break;
-        case 4:
-
-          wx.navigateToMiniProgram({
-            appId: appid,
-            path: url,
-            success(res) {
-              // 打开成功
-              console.log(res)
-            }
-          })
-          break;
-        case 5:
-          wx.navigateTo({
-            url: "/pages/common/goout/index?url=" + url,
-          })
-          break;
-        default: break;
-      }
-    }
-
-  },
+ 
   onLoad: async function () {
         // console.log(app.globalData)
       //广告部分
@@ -375,17 +346,21 @@ Page({
         this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
-      wx.pageScrollTo({
-        scrollTop: 0,
-        duration: 0
-      })
+      
+      if (app.pageToTop.get(0)){
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
+      }
+      
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
             this.getTabBar().setData({
                 selected: 0
             })
         }
-        if (!this.data.loading) {
+      if (!this.data.loading && app.pageToTop.get(0)) {
             // 重置数据
             this.setData({
               storelist: [],
@@ -406,6 +381,7 @@ Page({
         await this.getCategory()
         //获取新人专区信息
         this.getNews()
+      app.pageToTop.set(0, true);
     },
     getNews() {
         if (this.data.islogin && this.data.isfirst) {
@@ -592,7 +568,7 @@ Page({
     },
     goInputSearch(e) {
         let detail_val = e.detail.value.trim()
-        console.log(detail_val)
+      //  console.log(detail_val)
         if (detail_val != "") {
             wx.navigateTo({
                 url: "/pages/customer/search/index?type=search&keyword="+detail_val+"&title=全部商品"
