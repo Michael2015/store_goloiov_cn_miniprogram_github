@@ -193,8 +193,7 @@ margin-left: 8rpx;
     height: 53rpx;
   }
   .blast_product {
-    padding: 19rpx;
-    padding-bottom:0;
+    padding: 19rpx 19rpx 0;
   }
 
   .blast_product .more{
@@ -204,7 +203,7 @@ margin-left: 8rpx;
     color:#999999;
     font-family:PingFangSC-Regular,PingFang SC;
     text-align: center;
-    padding-top:19rpx;
+    padding:19rpx 0;
   }
    .commodity_all_list
    {

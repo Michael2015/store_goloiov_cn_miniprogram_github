@@ -479,7 +479,7 @@ Page({
     }
   },
   onPageScroll: function (res) {
-    this.setData({ scrollTop: res.scrollTop })
+   // this.setData({ scrollTop: res.scrollTop })
   },
   onShareAppMessage: function () {
     console.log(app.globalData.userInfo.uid)

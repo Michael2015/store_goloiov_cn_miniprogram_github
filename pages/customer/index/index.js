@@ -343,7 +343,7 @@ Page({
         }
     },
     onPageScroll: function (res) {
-        this.setData({ scrollTop: res.scrollTop })
+       // this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
       

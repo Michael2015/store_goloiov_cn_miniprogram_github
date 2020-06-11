@@ -682,8 +682,8 @@ font-weight:400;
   width: 100%;
 }
 .blast_product {
-  padding: 19rpx;
-  padding-bottom:0;
+  padding: 19rpx 19rpx 0;
+  
 }
 .blast_product image{
   width:100%;
@@ -696,7 +696,7 @@ font-weight:400;
   color:#999999;
   font-family:PingFangSC-Regular,PingFang SC;
   text-align: center;
-  padding-top:19rpx;
+  padding:19rpx 0;
 }
 
 .all_product {
