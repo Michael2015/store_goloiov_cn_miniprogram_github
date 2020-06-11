@@ -1,16 +1,19 @@
 import Contact from '../../../utils/contactUser/contactUser'
 const app = getApp()
-let self;
+let self, adPage = 0;
 // 低版本ios scroll-view 初始化时必须充满一屏才能滚动，给个默认高度就能满一屏
 const defaultSwiperHeight = 200
 Page({
     data: {
+      chePu: [],
+      circleUrl: '',
+      adArr: [],
         userInfo: {},
         getinfo: {},
         getnotice: [],
         getProductList: [],
         page: 1,
-        limit: 10,
+        limit: 6,
         getPartnerInfo: {},
         loading: false, // 加载中
         isLoad: 0, // 加载完毕
@@ -52,11 +55,96 @@ Page({
         })
     },
     onReachBottom() {
-        this.nextPage()
+       // this.nextPage()
+      this.getAdList();
     },
     tabPageChange(event) {
         this.goList({ currentTarget: { dataset: { id: event.detail.currentItemId, index: event.detail.current } } })
     },
+  toGo(e) {
+    app.pageToTop.set(0, false);
+    if (e.target.dataset.adinfo) {
+      let { kind, url, appid } = e.target.dataset.adinfo;
+   //   console.log(kind, url, appid)
+
+      switch (kind) {
+        case 1:
+        case 2:
+        case 3:
+          wx.navigateTo({
+            url
+          })
+          break;
+        case 4:
+
+          wx.navigateToMiniProgram({
+            appId: appid,
+            path: url,
+            success(res) {
+              // 打开成功
+            //  console.log(res)
+            }
+          })
+          break;
+        case 5:
+          wx.navigateTo({
+            url: "/pages/common/goout/index?url=" + url,
+          })
+          break;
+        default: break;
+      }
+    }
+
+  },
+  toMore(e) {
+  //  console.log(e.target.dataset)
+    app.pageToTop.set(0, false);
+    let { kind, url, appId } = e.target.dataset.adinfo;
+    switch (kind) {
+      case 1:
+      case 2:
+      case 3:
+        wx.navigateTo({
+          url
+        })
+        break;
+      case 4:
+        wx.navigateToMiniProgram({
+          appId,
+          path: url,
+          success(res) {
+            // 打开成功
+            //  console.log(res)
+          }
+        })
+        break;
+      case 5:
+        wx.navigateTo({
+          url: "/pages/common/goout/index?url=" + url,
+        })
+        break;
+      default: break;
+    }
+
+  },
+  async getAdList() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    const ad = await app.http.post('/api/Marketing/getAdv', { type: 3,  page: ++adPage });
+    wx.hideLoading();
+    if (ad.length) {
+      this.setData({
+        adArr: [...this.data.adArr, ...ad.map(item => {
+          return {
+            adListInfo: item,
+            showMore: item.product.length >= 6 ? true : false,
+            size: 6
+          }
+        })],
+      })
+    }
+  },
     getnotice() {
         app.http.get('/api/customer/mall/getnotice').then(res => {
             this.setData({
@@ -82,7 +170,7 @@ Page({
     getProductList() {
         const size = this.data.limit; // 默认一页条数
         if (this.data.loading) return // 已经在加载中了
-        console.log('页数：' + this.data.page)
+     //   console.log('页数：' + this.data.page)
         wx.showLoading({
             title: '加载中',
         })
@@ -183,6 +271,7 @@ Page({
         });
     },
     goDetails(e) {
+      app.pageToTop.set(0, false);
         let getProductList = this.data.getProductList.filter(ele => {
             return ele.id == e.currentTarget.id
         })
@@ -199,9 +288,26 @@ Page({
             this.getProductList()
         }
     },
-    onLoad: function () {
+
+ 
+  onLoad: async function () {
         // console.log(app.globalData)
+      //广告部分
+      const chePu = await app.http.post('/api/Marketing/getAdv', { type: 2});
+
+      //列表部分
+      const ad = await app.http.post('/api/Marketing/getAdv', { type: 3, page: ++adPage });
+
+
         this.setData({
+          chePu,
+          adArr: ad.map(item => {
+            return {
+              adListInfo: item,
+              showMore: item.product.length >= 6 ? true : false,
+              size: 6
+            }
+          }),
             islogin: !(app.globalData.token === ''),
             news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
         })
@@ -237,30 +343,45 @@ Page({
         }
     },
     onPageScroll: function (res) {
-        this.setData({ scrollTop: res.scrollTop })
+       // this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
+      
+      if (app.pageToTop.get(0)){
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
+      }
+      
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
             this.getTabBar().setData({
                 selected: 0
             })
         }
-        if (!this.data.loading) {
+      if (!this.data.loading && app.pageToTop.get(0)) {
             // 重置数据
             this.setData({
-                // getProductList: [],
-                // page: 1,
+              storelist: [],
+                 page: 1,
                 loading: false, 
-            })
-            this.getProductList()
-        }
 
+            },()=>{
+              adPage=0;
+              this.getProductList();
+              this.getAdList();
+            })
+            
+        }
+      //this.getAdList();
         //获取banner轮播广告
         this.getBanner();
+    
         await this.getCategory()
         //获取新人专区信息
         this.getNews()
+      app.pageToTop.set(0, true);
     },
     getNews() {
         if (this.data.islogin && this.data.isfirst) {
@@ -272,15 +393,14 @@ Page({
         }
     },
     async getCategory() {
-        const categoryList = await app.http.post('/api/marketing/getCategory', {})
-        
+     //   const categoryList = await app.http.post('/api/marketing/getCategory', {})
+      const categoryList = await app.http.post('/api/Marketing/getAdv', { type: 1 }) 
         let transverseCar = categoryList.filter(function (item, index) {
             return index === 0
         })
+       
         this.setData({
-            transverseCar_cateId: transverseCar[0].id
-        })
-        this.setData({
+          transverseCar_cateId: transverseCar[0].id,
             categoryList: categoryList,
         })
     },
@@ -395,13 +515,30 @@ Page({
     },
     goSearch(e) {
         let selectTabType = e.currentTarget.dataset.type
+     // console.log('csacsacsac', selectTabType);
+      let kind = e.currentTarget.dataset.kind, appId = e.currentTarget.dataset.appid;
         let jumpUrl = "";
         //点击分类tab跳转
         if (selectTabType == "category"){
             let url = e.currentTarget.dataset.url;
             if(url)
             {
-                jumpUrl = "/pages/common/goout/index?url="+url
+              if (kind === 1 || kind === 2 || kind === 3) {
+                jumpUrl = url
+              }
+              else if (kind === 4) {
+                wx.navigateToMiniProgram({
+                  appId,
+                  path: url,
+                  success(res) {
+                    // 打开成功
+                    //  console.log(res)
+                  }
+                })
+              }
+              else {
+                jumpUrl = "/pages/common/goout/index?url=" + url
+              }
             }
             else{
             let selectTabId = e.currentTarget.dataset.id
@@ -422,14 +559,16 @@ Page({
         else if (selectTabType == "all_product") {
             jumpUrl = "/pages/customer/search/index?type=all&title=全部商品"
         }
-        console.log(jumpUrl)
+      
+      if (kind !== 4) {
         wx.navigateTo({
-            url: jumpUrl
+          url: jumpUrl
         })
+      }
     },
     goInputSearch(e) {
         let detail_val = e.detail.value.trim()
-        console.log(detail_val)
+      //  console.log(detail_val)
         if (detail_val != "") {
             wx.navigateTo({
                 url: "/pages/customer/search/index?type=search&keyword="+detail_val+"&title=全部商品"

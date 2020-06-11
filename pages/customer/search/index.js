@@ -1,6 +1,6 @@
 
 const app = getApp()
-var self;
+var self, Type = '', apiUrl = '', Cate_Id = '';
 //低版本ios scroll-view 初始化时必须充满一屏才能滚动，给个默认高度就能满一屏
 const defaultSwiperHeight = 200
 Page({
@@ -32,6 +32,10 @@ Page({
     options:{}
   },
   onLoad(options) {
+    if (options.type === 'other') {
+      Type = 'other';
+      Cate_Id = options.cate_id;
+    }
       this.setData({
           selectClassId: options.type == "category" ? options.cate_id : -1,
           productType: options.type == "is_blast" ? "is_blast" : "all",
@@ -105,9 +109,17 @@ Page({
         title: '加载中',
     })
     this.data.loading = true
+    
     // 针对用户进来选择了分类以及没有选择分类时下拉触发所要请求接口不同的处理
-    const apiUrl = '/api/customer/mall/getProductList'
+
+    if (Type === 'other') {
+      apiUrl = '/api/Marketing/getAdvProducts'
+    }
+    else {
+      apiUrl = '/api/customer/mall/getProductList'
+    }
     const httpObj = { 
+      cate_id: Cate_Id,
       page: this.data.page, 
       limit: this.data.limit, 
       keyword: this.data.keyword, 
@@ -147,6 +159,7 @@ Page({
         return ele.id == e.currentTarget.id
     })
     app.varStorage.set('storeDetail', ProductList[0])
+    
     if(this.options.source)
     {
        wx.navigateTo({

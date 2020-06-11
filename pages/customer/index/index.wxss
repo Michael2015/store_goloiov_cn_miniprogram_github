@@ -6,12 +6,50 @@ page {
   width: 100%;
   height: 100%;
 }
+.commodity_all_showList{
+  display: flex;
+flex-wrap: wrap;
+margin-top: 19rpx;
+}
+.commodity_all_list .commodity_all_item {
+  margin-bottom: 19rpx;
+  padding-bottom: 16rpx;
+  width: 32%;
+  height: 415rpx;
+ overflow: hidden;
+margin-right: 2%;
+   border-radius:11rpx;
+  background:white !important;
+}
+.commodity_all_list .commodity_all_item:nth-child(3n){
+  margin-right:0;
+}
+.storeList_wrap{
+  width:100%;
+  height:100%;
+   display:flex;
+   flex-direction:column;
+   background: white;
+}
+.commodity_all_list  .commodity_all_item .showImg2{
+  width:100%;
+  height: 220rpx;
+  text-align: center;
+}
+
 
 .search_nav {
     height: 98rpx;
     background: #F2F2F2;
 }
-
+.all_product_ad{
+  height: 146rpx;
+}
+.all_product .all_product_ad image{
+  
+  width: 100%;
+  height: 100%;
+}
 .search_input input {
   text-align:left;
 }
@@ -82,8 +120,14 @@ page {
     right: 0;
     bottom: 0;
 }
-.title_volume{
+.commodity_list .commodity_showList .commodity_item .title_volume{
     position: relative;
+    height: 170rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+
 }
 .commodity_showList{
   display: flex;
@@ -94,7 +138,7 @@ page {
     margin-top: 0rpx
 }
 
-.title_volume .title {
+.commodity_item .item_content .title_volume .title {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -102,11 +146,27 @@ page {
     -webkit-box-orient: vertical;
     word-wrap: break-word;
     word-break: break-all;
-    height: 75rpx;
+    height: 80rpx;
     line-height: 40rpx;
     text-align:justify;
 }
-
+.storeList_wrap .title_volume .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align:justify;
+    font-size: 24rpx;
+  line-height: 30rpx;
+  height: 90rpx;
+}
+.commodity_all_item .storeList_wrap .title_volume{
+  flex: 1;
+  overflow: hidden;
+}
 .commodity_item .new{
   position: absolute;
   background: #FF0000;
@@ -177,11 +237,16 @@ text.coupon3
   text-align: center;
   border: 1rpx solid #999;
 }
-
+.item_content{
+ padding:20rpx;
+ background:#fff;
+ min-height: 512rpx;
+}
 .Replace{
     background: rgba(0, 0, 0, 0);
     width: 50%;
 }
+
 .Free-sheet{
     position: absolute;
     right: 9.5rpx;
@@ -192,12 +257,23 @@ text.coupon3
     padding: 10rpx;
     border-radius: 0 0 0 15rpx;
 }
+.commodity_list .commodity_item .item_content .volume {
+  font-size: 24rpx;
+  color: #999;
+  background: white;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 40rpx;
+  line-height: 40rpx;
+}
 
 .commodity_list .commodity_item .volume .bold{
-  font-size: 24rpx;
-  font-weight:bold;
-  color: #FF5500;
-  float: left;
+font-size: 24rpx;
+height:36rpx;
+line-height: 36rpx;
+color:rgba(231,55,42,1);
+font-family:PingFangSC-Regular,PingFang SC;
 }
 
 .commodity_list .commodity_item .volume .bold .Supporting
@@ -315,11 +391,137 @@ text.coupon3
   display: flex;
   box-shadow:0px 2rpx 0px 0px rgba(0,0,0,0.05),0px 2rpx 0px 0px rgba(0,0,0,0.05);
 }
+.chepu{
+    text-align: center;
+    position: relative;
+    height: 146rpx;
+    margin: 19rpx 19rpx 0;
+  }
+  .chepu image{
+    width:100%;
+    height: 100%;
+  }
+  .chepu_posi{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    width: 100%;
+height: 60rpx;
+font-size:40rpx;
+font-family:SourceHanSansCN-Bold,SourceHanSansCN;
+font-weight:bold;
+color:rgba(255,255,255,1);
+line-height:60rpx;
+  }
+
+.ad{
+width: 100%;
+height: 602rpx;
+display: flex;
+flex-direction: column;
+padding:16rpx 19rpx 0;
+box-sizing: border-box;
+}
+.ad image{
+  width: 100%;
+  height: 100%;
+}
+.path1{
+width: 100%;
+height: 430rpx;
+margin-bottom: 8rpx;
+display: flex;
+box-sizing: border-box;
+}
+.path2{
+width: 100%;
+height: 120rpx;
+margin-top: 8rpx;
+display: flex;
+box-sizing: border-box;
+}
+.ad1,.path3{
+width: 50%;
+height: 430rpx;
+}
+.ad2,.path4{
+width: 100%;
+height: 218rpx;
+}
+.ad3,.ad4{
+width: 50%;
+height: 100%;
+}
+.ad5,.ad6{
+width: 50%;
+height: 100%;
+}
+.ad1{
+margin-right: 8rpx;
+}
+.path3{
+margin-left: 8rpx;
+display: flex;
+box-sizing: border-box;
+flex-direction: column;
+}
+.ad2{
+margin-bottom: 8rpx;
+}
+.path4{
+margin-top: 8rpx;
+display: flex;
+box-sizing: border-box;
+}
+.ad3{
+margin-right: 8rpx;
+}
+.ad4{
+margin-left: 8rpx;
+}
+.ad5{
+margin-right: 8rpx;
+}
+.ad6{
+margin-left: 8rpx;
+}
+
 .countTop{
   margin-top: 98rpx;
   padding-bottom: 20rpx;
+  background: white;
 }
 
+.commodity_list .commodity_item .volume .pre_price{
+  margin-left: 10rpx;
+ color: #848484;
+  text-decoration: line-through;
+  font-size: 24rpx;
+width: 124rpx;
+overflow: hidden;
+white-space: nowrap;
+height:36rpx;
+line-height: 36rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+  box-sizing: border-box;
+}
+ .blast_product .rexiao{
+    clear: both;
+    height: 131rpx;
+    text-align: center;
+    line-height: 131px;
+    position: relative;
+    
+  }
+   .blast_product .rexiao image{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 255rpx;
+    height: 53rpx;
+  }
 .showImg{
   position: relativel;
   /* border-bottom: 1rpx solid #e6e6e6; */
@@ -411,7 +613,33 @@ text.coupon3
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.saleMount{
+font-size:20rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(132,132,132,1);
+line-height:40rpx;
+background: white;
+position: relative;
+height: 40rpx;
 
+}
+.buy{
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translate(0,-50%);
+  width:80rpx;
+height:38rpx;
+line-height: 38rpx;
+background:rgba(231,55,42,1);
+border-radius:2px;
+color: white;
+text-align: center;
+font-size:22rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+}
 .discount_time {
   font-size: 32rpx;
   color: #ff9f0e;
@@ -436,7 +664,7 @@ text.coupon3
   flex-wrap: wrap;
 }
 .categoryList{
-  width: 25%;
+  width: 20%;
   height: 140rpx;
   margin-top:25rpx;
   diplay: inline-block;
@@ -445,8 +673,8 @@ text.coupon3
   justify-content:space-around;
 }
 .categoryList image{
-  width: 92rpx;
-  height: 92rpx;
+  width: 87rpx;
+  height: 87rpx;
 }
 .categoryList .name{
   text-align: center;
@@ -454,8 +682,8 @@ text.coupon3
   width: 100%;
 }
 .blast_product {
-  padding: 19rpx;
-  padding-bottom:0;
+  padding: 19rpx 19rpx 0;
+  
 }
 .blast_product image{
   width:100%;
@@ -468,12 +696,12 @@ text.coupon3
   color:#999999;
   font-family:PingFangSC-Regular,PingFang SC;
   text-align: center;
-  padding-top:19rpx;
+  padding:19rpx 0;
 }
 
 .all_product {
   padding:19rpx;
-  padding-bottom:79rpx;
+
 }
 
 .all_product image{
@@ -492,23 +720,19 @@ text.coupon3
 }
 
 .countTop {
-  background: #F2F2F2;
-}
-.commodity_all_list .commodity_all_item {
-  border-radius:11rpx;
-  background:rgba(255,255,255,0);
-  margin-top: 19rpx;
-}
-.commodity_all_list  .commodity_all_item .showImg2{
-  width: 40%;
-  height: 100%;
+  background: #f3f3f3;
+ padding-bottom: 96rpx;
 }
 
-.commodity_all_list  .commodity_all_item .title_volume{
+.commodity_all_list  .commodity_all_item .showImg2{
+  width: 100%;
+  height: 224rpx;
+}
+
+.commodity_all_list  .commodity_all_item  .title_volume{
   font-size: 30rpx;
   text-align: left;
   width: 100%;
-  padding-left:19rpx;
 }
 .commodity_all_item .title_volume .volume
 {
@@ -517,21 +741,89 @@ text.coupon3
 .commodity_all_item .title_volume .volume .price{
   text-align: left;
   width: 100%;
-  margin-top: 45rpx;
+  margin-top: -11rpx;
+  font-size: 20rpx;
+  background: white;
+}
+.commodity_all_list  .commodity_all_item .title_volume{
+  font-size: 30rpx;
+  text-align: left;
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 8rpx 14rpx 0;
+}
+.commodity_all_item .title_volume .volume
+{
+  font-size: 24rpx;
+}
+.commodity_all_item .title_volume .volume .price{
+  width: 100%;
   font-weight: bold;
+  display: flex;
+  margin-top: 20rpx;
+}
+.buy{
+  position: absolute;
+  top:50%;
+  right: 0;
+  transform: translate(0,-50%);
+  width:80rpx;
+height:38rpx;
+line-height: 38rpx;
+background:rgba(231,55,42,1);
+box-shadow:0px 2px 7px 0px rgba(0,0,0,0.06);
+border-radius:2px;
+color: white;
+text-align: center;
+font-size:22rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+text-shadow:0px 2px 7px rgba(0,0,0,0.06);
+}
+.showImg2{
+  text-align: center;
+}
+.showImg2 image{
+  width: 224rpx;
+  height: 224rpx;
 }
 .price .bold{
+  font-weight: normal;
   margin: 0;
-  color: #FF5500;
+   font-size: 20rpx;
+height:32rpx;
+line-height: 32rpx;
+color:rgba(231,55,42,1);
+font-family:PingFangSC-Regular,PingFang SC;
 }
 .price .bold .Supporting {
-    font-size: 24rpx;
+  font-size: 20rpx;
+}
+.price .pre_price{
+  margin-left: 10rpx;
+ color: #848484;
+  text-decoration: line-through;
+  font-size: 20rpx;
+white-space: nowrap;
+height:32rpx;
+line-height: 32rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+  box-sizing: border-box;
+  font-weight: normal;
 }
 
-.commodity_all_item .title_volume .volume .sales{
-  text-align: left;
+.commodity_all_item .title_volume .sales{
+  position: relative;
   width: 100%;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
-  text-align: right;
+  font-size:18rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(132,132,132,1);
+line-height:28rpx;
+text-shadow:0rpx 1rpx 4rpx rgba(0,0,0,0.06);
+text-align: left;
 }

@@ -1,16 +1,19 @@
 import sharePoster from '../../../utils/sharePoster/sharePoster.js'
 const app = getApp()
-let text = '';
+let text = '', adPage=0;
 let self;
 // 低版本ios scroll-view 初始化时必须充满一屏才能滚动，给个默认高度就能满一屏
 const defaultSwiperHeight = 200
 Page({
   data: {
+    chePu:[],
+    circleUrl:'',
+    adArr: [],
     storelist: [],
     //alllist: [],
     isLoad: 0,
     page: 1,
-    limit: 10,
+    limit: 6,
     getinfo: {},
     keyword: '',
     noviceShow: null,
@@ -129,7 +132,12 @@ Page({
   },
   // 监控当前页面触底事件
   onReachBottom() {
-    this.loadmore()
+    console.log('触底',this.data)
+    this.getAdList();
+   // this.loadmore()
+ /*  this.setData({
+     adArr: [...this.data.adArr,{size:6,showMore:true}]
+   })*/
   },
   loadmore() {
     if (this.data.isLoad || !this.data.isAllowLoad) return
@@ -149,8 +157,9 @@ Page({
   },
   //获取首页分类
   async getCategory() {
-    const categoryList = await app.http.post('/api/marketing/getCategory', {})
-      
+ //   const categoryList8 = await app.http.post('/api/marketing/getCategory', {})
+   // console.log(categoryList8)
+    const categoryList = await app.http.post('/api/Marketing/getAdv', { type: 1 })
     this.setData({
         categoryList: categoryList,
     })
@@ -197,8 +206,75 @@ Page({
     this.setData({ countDownList: countDownArr });
     setTimeout(this.countDown, 1000);
   },
-  onLoad() {
+  toMore(e){
+    app.pageToTop.set(1, false);
+    console.log(e.target.dataset)
+    let { kind, url, appId } = e.target.dataset.adinfo;
+    switch (kind) {
+      case 1:
+      case 2:
+      case 3:
+        wx.navigateTo({
+          url
+        })
+        break;
+      case 4:
+        wx.navigateToMiniProgram({
+          appId,
+          path: url,
+          success(res) {
+            // 打开成功
+          //  console.log(res)
+          }
+        })
+        break;
+        case 5:
+        wx.navigateTo({
+          url: "/pages/common/goout/index?url=" + url,
+        })
+        break;
+      default: break;
+    }
+    
+  },
+  async getAdList(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    const ad = await app.http.post('/api/Marketing/getAdv', { type: 3,page:++adPage });
+    console.log('请求数据',ad)
+    wx.hideLoading();
+    if(ad.length){
+      
     this.setData({
+      adArr: [...this.data.adArr, ...ad.map(item => {
+        return {
+          adListInfo: item,
+          showMore: item.product.length >= 6 ? true : false,
+          size: 6
+        }
+      })],
+    },()=>{
+      console.log('获取数据', this.data.adArr);
+    })}
+  },
+ async onLoad() {
+
+//广告部分
+   const chePu = await app.http.post('/api/Marketing/getAdv', { type: 2});
+   
+//列表部分
+   const ad = await app.http.post('/api/Marketing/getAdv', { type: 3, page: ++adPage });
+
+    this.setData({
+      chePu,
+      adArr: ad.map(item => {
+        return {
+          adListInfo: item,
+          showMore: item.product.length >= 6 ? true : false,
+          size: 6
+        }
+      }),
       islogin: !(app.globalData.token === ''),
       news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
     })
@@ -221,6 +297,7 @@ Page({
     })
   },
   goDetails(e) {
+    app.pageToTop.set(1, false);
     let storelistItem = this.data.storelist.filter(ele => {
       return ele.id == e.currentTarget.id
     })
@@ -287,6 +364,41 @@ Page({
       })
     })
   },
+  toGo(e){
+    app.pageToTop.set(1, false);
+    if (e.target.dataset.adinfo){
+      let { kind, url, appid } = e.target.dataset.adinfo;
+      console.log(kind, url, appid)
+      
+      switch (kind) {
+        case 1:
+        case 2:
+        case 3:
+          wx.navigateTo({
+            url
+          })
+          break;
+        case 4:
+
+          wx.navigateToMiniProgram({
+            appId: appid,
+            path: url,
+            success(res) {
+              // 打开成功
+              console.log(res)
+            }
+          })
+          break;
+        case 5:
+          wx.navigateTo({
+            url: "/pages/common/goout/index?url=" + url,
+          })
+          break;
+        default: break;
+      }
+    }
+    
+  },
   async CalculationHeight() {
     let height = 0;
     let query = wx.createSelectorQuery()
@@ -308,6 +420,12 @@ Page({
     this.setData({ scrollTop: event.detail.scrollTop })
   },
   onShow: async function () {
+    if (app.pageToTop.get(1)) {
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 0
+      })
+    }
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -317,16 +435,29 @@ Page({
     console.log(app.varStorage.get('isShareBack'))
     if (app.varStorage.get('isShareBack') === undefined) {
       if (this.data.isLoad || !this.data.isAllowLoad) return
-      wx.showLoading({
-        title: '加载中',
-      })
-      this.setData({
-        // page: 1,
-        // storelist: [],
-        keyword: '', // 不搜索空串
-        // isLoad: 0,
-      })
-      this.storelist();
+      if (app.pageToTop.get(1)) {
+        wx.showLoading({
+          title: '加载中',
+        })
+
+        this.setData({
+          adArr: [],
+          storelist: [],
+          page: 1,
+          loading: false
+        }, () => {
+          adPage = 0;
+          this.getAdList();
+          this.storelist();
+        })
+      }
+     
+     
+     /* this.setData({
+        adArr: [...this.data.adArr, { size: 6, showMore: true }],
+      })*/
+     
+     
     } else {
       app.varStorage.del('isShareBack')
     }
@@ -336,6 +467,7 @@ Page({
     await this.getCategory();
     //获取新人专区信息
     this.getNews()
+    app.pageToTop.set(1, true);
   },
   getNews() {
     if (this.data.islogin && this.data.isfirst) {
@@ -347,7 +479,7 @@ Page({
     }
   },
   onPageScroll: function (res) {
-    this.setData({ scrollTop: res.scrollTop })
+   // this.setData({ scrollTop: res.scrollTop })
   },
   onShareAppMessage: function () {
     console.log(app.globalData.userInfo.uid)
@@ -404,13 +536,30 @@ Page({
   },
   goSearch(e) {
     let selectTabType = e.currentTarget.dataset.type
+    let kind = e.currentTarget.dataset.kind, appId = e.currentTarget.dataset.appid;
     let jumpUrl = "";
     //点击分类tab跳转
     if (selectTabType == "category"){
          let url = e.currentTarget.dataset.url;
             if(url)
             {
-                jumpUrl = "/pages/common/goout/index?url="+url
+              if (kind === 1 || kind === 2 || kind === 3){
+                jumpUrl = url
+              }
+              else if(kind===4){
+                wx.navigateToMiniProgram({
+                  appId,
+                  path: url,
+                  success(res) {
+                    // 打开成功
+                  //  console.log(res)
+                  }
+                })
+              }
+              else{
+                jumpUrl = "/pages/common/goout/index?url=" + url
+              }
+                
             }else{
         let selectTabId = e.currentTarget.dataset.id
         let selectTabname = e.currentTarget.dataset.name
@@ -430,9 +579,11 @@ Page({
     else if (selectTabType == "all_product") {
         jumpUrl = "/pages/partner/search/index?type=all&title=全部商品"
     }
+    if (kind !==4){
     wx.navigateTo({
         url: jumpUrl
     })
+    }
   },
   goInputSearch(e) {
       //console.log(1111)
