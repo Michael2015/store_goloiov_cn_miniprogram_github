@@ -14,6 +14,7 @@ Page({
     isLoad: 0,
     page: 1,
     limit: 6,
+    newPersonShow:false,
     getinfo: {},
     keyword: '',
     noviceShow: null,
@@ -40,9 +41,14 @@ Page({
     contentSwiperHeight: defaultSwiperHeight,
     islogin: false,       //标识是否是登录状态
     isfirst: true,        //是否是第一次进入首页
-    newObj: {},            //新人专区对象
+    newObj: [],            //新人专区对象
     blastProductList: [], //爆款专区商品
     news_image: "" //新人商品背景图
+  },
+  newPersonOpen(){
+    wx.navigateTo({
+      url: this.data.newObj[0].jump_url,
+    })
   },
   getShareImg() {
     sharePoster.createPoster({
@@ -130,6 +136,7 @@ Page({
       wx.hideLoading();
     })
   },
+
   // 监控当前页面触底事件
   onReachBottom() {
     console.log('触底',this.data)
@@ -275,7 +282,6 @@ Page({
           size: 6
         }
       }),
-      islogin: !(app.globalData.token === ''),
       news_image: app.globalData.HOST + "/public/wechat_assets/news.png"
     })
     this.getinfo()
@@ -461,19 +467,43 @@ Page({
     } else {
       app.varStorage.del('isShareBack')
     }
+   
     //获取banner轮播广告
     this.getBanner();
     //获取分类
     await this.getCategory();
     //获取新人专区信息
-    this.getNews()
+    this.setData({
+      islogin:app.globalData.token ? true : false
+    },()=>{
+      var time=new Date().getTime();
+      if (!wx.getStorageSync(app.globalData.token+'isShowNewPerson')){
+        this.getNews()
+      }else{
+        this.setData({
+          isfirst: wx.getStorageSync('remainTime') - time >= 0?false:true
+        },()=>{
+          if (wx.getStorageSync('remainTime') - time < 0) {
+            this.getNews()
+          }
+        })
+         
+        
+      }
+     
+    });
+    
     app.pageToTop.set(1, true);
   },
   getNews() {
-    if (this.data.islogin && this.data.isfirst) {
+   // console.log("是否触发", this.data.islogin, this.data.isfirst, app.globalData.token);
+    if (app.globalData.token && this.data.isfirst) {
       app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
+        wx.setStorageSync(app.globalData.token + 'isShowNewPerson', true)
+        wx.setStorageSync('remainTime', new Date().getTime() + 24 * 60 * 60 * 1000);
+      //  console.log(res)
         this.setData({
-          newObj: res[0]
+          newObj: res
         })
       })
     }
@@ -535,6 +565,7 @@ Page({
    })
   },
   goSearch(e) {
+    app.pageToTop.set(1, false);
     let selectTabType = e.currentTarget.dataset.type
     let kind = e.currentTarget.dataset.kind, appId = e.currentTarget.dataset.appid;
     let jumpUrl = "";

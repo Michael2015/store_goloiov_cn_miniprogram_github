@@ -218,18 +218,11 @@
   </view>
   <contact-user id="contact-view"></contact-user>
   <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-  <view class="novice" catchtouchmove="preventTouchMove" wx:if="{{islogin && isfirst && newObj.id}}">
+  <view class="novice" catchtouchmove="preventTouchMove" wx:if="{{ isfirst && newObj.length}}">
     <!-- wx:if="{{islogin&&isfirst}}" -->
     <view class="news_box">
       <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
-      <image class="new_bg" src="{{news_image}}" mode="widthFix" />
-      <view class="new_msg">
-        <view class="discount_name">{{newObj.store_name}}</view>
-        <view class="discount">新人专享爆款抢购
-          <text>{{newObj.price}}元</text>包邮！</view>
-        <view class="discount_time">{{newObj.valid_time}}小时内购买有效</view>
-      </view>
-      <view class="gobaybtn" bindtap='goBay'></view>
+      <image class="new_bg" src="{{newObj[0].img_url}}" mode="widthFix"  bindtap='newPersonOpen'/>
     </view>
   </view>
 </view>

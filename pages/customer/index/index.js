@@ -380,17 +380,38 @@ Page({
     
         await this.getCategory()
         //获取新人专区信息
+      var time = new Date().getTime();
+      if (!wx.getStorageSync('customShowNewPerson')) {
         this.getNews()
+      } else {
+        this.setData({
+          isfirst: wx.getStorageSync('customRemainTime') - time >= 0 ? false : true
+        }, () => {
+          if (wx.getStorageSync('customRemainTime') - time < 0) {
+            this.getNews()
+          }
+        })
+
+
+      }
       app.pageToTop.set(0, true);
     },
+  newPersonOpen() {
+    wx.navigateTo({
+      url: this.data.newObj[0].jump_url,
+    })
+  },
     getNews() {
-        if (this.data.islogin && this.data.isfirst) {
-            app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
-                this.setData({
-                    newObj: res[0]
-                })
-            })
-        }
+      if (this.data.isfirst) {
+        app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
+          wx.setStorageSync("customShowNewPerson", true)
+          wx.setStorageSync('customRemainTime', new Date().getTime() + 24 * 60 * 60 * 1000);
+          //  console.log(res)
+          this.setData({
+            newObj: res
+          })
+        })
+      }
     },
     async getCategory() {
      //   const categoryList = await app.http.post('/api/marketing/getCategory', {})
@@ -514,6 +535,7 @@ Page({
         })
     },
     goSearch(e) {
+      app.pageToTop.set(0, false);
         let selectTabType = e.currentTarget.dataset.type
      // console.log('csacsacsac', selectTabType);
       let kind = e.currentTarget.dataset.kind, appId = e.currentTarget.dataset.appid;
