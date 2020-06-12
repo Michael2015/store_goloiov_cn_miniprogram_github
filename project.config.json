@@ -29,7 +29,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.3",
-	"appid": "wxd8f1ec5798479c95",
+	"appid": "wxa21ef49bc86899d3",
 	"#": "wxd8f1ec5798479c95wxa21ef49bc86899d3",
 	"projectname": "%E4%B8%87%E8%BD%A6%E5%93%81%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -80,14 +80,14 @@
 					"id": 2,
 					"name": "合伙人详情",
 					"pathName": "pages/partner/detail/detail",
-					"query": "id=137",
+					"query": "id=202&token=7822582cfafe76674744f320cecc6ad1",
 					"scene": null
 				},
 				{
 					"id": 3,
 					"name": "客户商品详情页",
 					"pathName": "pages/customer/detail/detail",
-					"query": "type=share&s=0&p=0&st=20",
+					"query": "id=202",
 					"scene": null
 				},
 				{
