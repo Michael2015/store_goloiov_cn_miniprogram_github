@@ -41,11 +41,13 @@
                                 <view style="width:100%;height:100%;overflow: hidden;" catchtap="goDetails" id="{{item.id}}" >
                                     <view class="showImg">
                                         <image src="{{item.image}}" mode="widthFix"></image>
+                                        <!--
                                         <view class="coupon">
                                             <text wx:if="{{item.coupon.status == 1}}" class="coupon3">马上领券</text>
                                             <text wx:if="{{item.seckill.status == 1}}" class="coupon3">限时秒杀</text>
                                             <text wx:if="{{item.seckill.status == -1}}" class="coupon3">即将秒杀</text>
                                         </view>
+                                        -->
                                         <!-- <view class="Free-sheet" wx:if="{{item.is_platoon === 1}}" >免单</view> -->
                                     </view>
                                     <view class="title_volume">
