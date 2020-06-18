@@ -1,0 +1,60 @@
+<view class='redpack' hidden="{{allLoad||!canOpen}}">
+  <view class="top_bg">
+    <image src='http://img.wanchepin.com/public/wap/tech/5.png' bindload="imgLoad"></image>
+    <view class="money">0.97
+      <text>元</text>
+    </view>
+    <image src="http://img.wanchepin.com/public/wap/tech/1.png" class="tixian" bindload="imgLoad"     bindtap='tixian'></image>
+  </view>
+  <view class="friend">
+    <image src='http://img.wanchepin.com/public/wap/tech/2.png' bindload="imgLoad"></image>
+    <button class="share" open-type="share"></button>
+    <view class="progress">
+      <view class="pro" style="width:{{format.formatFriend(friend,'has').length*20}}%">
+        <view class="pro_inner"></view>
+      </view>
+    </view>
+    <view class="remain" wx:if="{{format.formatFriend(friend,'has').length!==5}}">
+      已成功邀请
+      <text>{{format.formatFriend(friend,'has').length}}</text>位好友，还需要邀请
+      <text>{{5-format.formatFriend(friend,'has').length}}</text>位好友
+    </view>
+    <view class="remain" wx:else>恭喜你！获得所有红包奖励</view>
+    <view class="friend_num">
+      <view wx:for='{{friend}}' wx:key="index" class="item">
+        <view class="img" style="border-color:{{item.has?'#da251c':'lightgray'}}">
+          <image src="{{item.avatar}}" wx:if='{{item.has}}'/>
+        </view>
+        <text wx:if='{{item.has}}'>{{format.formatName(item.nickname)}}</text>
+        <text wx:else style="color:lightgray">---</text>
+      </view>
+    </view>
+    <view class="keepon" wx:if="{{format.formatFriend(friend,'has').length!==5}}">
+      <text>加油！继续努力呀！！</text>
+    </view>
+  </view>
+  <view class="footer">
+  <view>
+  <image src="http://img.wanchepin.com/public/wap/tech/3.png" bindload="imgLoad" mode="widthFix"></image>
+  <view class="go_buy" bindtap='go_buy'></view>
+  <view class="go_wan" bindtap='go_wan'></view>
+  </view>
+<view>
+  <image src="http://img.wanchepin.com/public/wap/tech/4.png" bindload="imgLoad" mode="widthFix"></image>
+</view>
+  </view>
+</view>
+<wxs module="format">
+var formatFriend = function(arr,key){
+return arr.filter(function(item){
+return item[key]})
+}
+
+var formatName=function(str){
+return str.length<=3?str:str.substring(0,3)+'..'
+}
+module.exports={
+formatFriend:formatFriend,
+formatName:formatName
+};
+</wxs>
