@@ -1,0 +1,78 @@
+<!--新增车辆-->
+<template name="addcars">
+  <view wx:for="{{list}}" wx:key="index" class="list">
+    <text>{{item.title}}</text>
+    <text>{{item.value||'上传行驶证后自动显示'}}</text>
+  </view>
+</template>
+
+<!--编辑车辆信息-->
+<template name="cardetail">
+  <view wx:for="{{list}}" wx:key="index" class="list">
+    <text>{{item.title}}</text>
+    <input wx:if="{{item.name!=='drivetime'}}" placeholder="{{item.name==='mileage'?'单位 (万公里)':'请输入'}}" value="{{item.value}}" data-ind="{{index}}" bindblur="blur"></input>
+    <picker wx:else mode="date" value="{{item.value}}" bindchange="bindDateChange">
+    {{item.value}}
+  </picker>
+  </view>
+</template>
+
+
+<!--车辆列表-->
+<template name="carlist">
+  <view class="list" wx:for="{{list}}" wx:key="index">
+    <view class="left">
+      <view>
+        <text class="nofirst">{{format.carNumFirstFormat(item.hphm)}}</text>
+        <text>{{format.carNumLastFormat(item.hphm)}}</text>
+      </view>
+      <view>{{item.brand_label}}</view>
+    </view>
+    <view class="right">
+      <view bindtap='toXuanze' data-id="{{item.id}}">
+        <image src="/assets/image/xuanze.png" data-id="{{item.id}}"></image>
+        <text data-id="{{item.id}}">选择</text>
+      </view>
+      <view bindtap='toDetail' data-id="{{item.id}}">
+        <image src="/assets/image/bianji.png"  data-id="{{item.id}}"></image>
+        <text  data-id="{{item.id}}">编辑</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--诊断报告-->
+<template name="report">
+  <view class="list" wx:for="{{list}}" wx:key="index">
+    <view class="one">
+      <view>
+        <text>golo</text>
+      </view>
+    </view>
+    <view class="two">
+      <view>{{item.title}}</view>
+      <view>{{item.time}}</view>
+    </view>
+  </view>
+</template>
+
+<!--卖车报价编辑-->
+<template name="salepriceedit">
+  <view wx:for="{{list}}" wx:key="index" class="list">
+    <text>{{item.title}}</text>
+    <text>{{item.value}}</text>
+  </view>
+</template>
+
+<wxs module="format">
+var carNumFirstFormat = function(str){
+return str.substring(0,2);
+};
+var carNumLastFormat = function(str){
+return str.substring(2);
+};
+module.exports = {
+  carNumFirstFormat : carNumFirstFormat,
+  carNumLastFormat:carNumLastFormat
+}
+</wxs>

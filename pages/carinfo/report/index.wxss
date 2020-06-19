@@ -1,0 +1,55 @@
+.list {
+  height: 145rpx;
+  border-bottom: 2rpx solid rgba(221, 221, 221, 1);
+  display: flex;
+  line-height: 145rpx;
+}
+
+.one {
+  width: 140rpx;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  line-height: 140rpx;
+}
+
+.one view {
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(29, 140, 122, 1);
+  border-radius: 4px;
+  text-align: center;
+  line-height: 80rpx;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.one view text {
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+}
+
+.two {
+  flex: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 30rpx 0;
+}
+
+.two view {
+line-height: 43rpx;
+}
+.two view:nth-child(1){
+color:rgba(51,51,51,1);
+ font-size:30rpx;
+ font-weight:500;
+}
+.two view:nth-child(2){
+  font-size:24rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(51,51,51,1);
+
+}

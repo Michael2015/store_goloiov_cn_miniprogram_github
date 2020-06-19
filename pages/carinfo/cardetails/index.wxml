@@ -1,0 +1,10 @@
+<import src="../listTemplate.wxml"/>
+<view class="index">
+<template is="cardetail" data="{{list}}"/>
+<view>
+<button class="btn" catchtap="save">保存</button>
+</view>
+<view>
+<button class="btn del" catchtap="del">删除</button>
+</view>
+</view>

@@ -1,0 +1,19 @@
+.carvalue{
+  margin: 26rpx 26rpx 0;
+  height: 340rpx;
+  background-color:rgba(228, 0, 6, 0.698);
+  position: relative;
+}
+.title{
+  padding: 0.5em 0 0 0.5em;
+  color: white;
+}
+.carvalue text{
+font-size: 80rpx;
+color: white;
+font-weight: bolder;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%,-50%);
+}

@@ -17,6 +17,7 @@ Page({
         argee: true,
     },
     onLoad(options) {
+      console.log("options:", options);
         page = this;
         // 保存参数
         this.data.options = options || {};

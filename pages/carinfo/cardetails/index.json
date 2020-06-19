@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+  },
+  "navigationBarTitleText": "编辑车辆信息",
+  "navigationBarBackgroundColor":"#E40006",
+  "navigationBarTextStyle":"white"
+}

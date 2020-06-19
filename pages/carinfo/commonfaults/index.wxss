@@ -1,0 +1,24 @@
+.title{
+  padding: 50rpx 0;
+}
+.title::before{
+  content: "";
+  display: inline-block;
+  width: 4rpx;
+  height: 1em;
+  background: #FF6633;
+  vertical-align: middle;
+  margin-top: -8rpx;
+  margin: 0 30rpx 0 50rpx;
+}
+.time{
+  margin: 0 30rpx;
+  border-bottom: 2rpx solid #b4bbc5;
+  padding:0 0 40rpx 40rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.time text{
+  color:#FF6633;
+  margin: 0 20rpx;
+}

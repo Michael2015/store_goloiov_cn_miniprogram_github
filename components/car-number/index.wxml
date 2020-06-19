@@ -1,0 +1,16 @@
+<view class="container" catchtap='cha'>
+	 <!-- 省 -->
+	 <view class="provinces" hidden='{{hidden1}}'>
+	 		<view class="pro_li lf" wx:for="{{item1}}" wx:key="index" catchtap='sheng' data-sh="{{item}}">{{item}}</view>
+			<view class="pro_close lf" catchtap='d2'>关闭</view>	
+	 </view>
+	 <!-- 号码	 -->
+	 <view class="keyNums" hidden='{{hidden2}}'>
+	 		<view class="pro_li lf" wx:for="{{item2}}" wx:key="index" catchtap='other' data-ot="{{item}}">{{item}}</view>
+			<view class="bot">
+			<view class="pro_del lf" catchtap='clear'>清空</view>
+				<view class="pro_d lf" catchtap='del'>删除</view>
+        	<view class="pro_ok lf" catchtap='ok'>完成</view>
+			</view>	
+	 </view> 
+</view>

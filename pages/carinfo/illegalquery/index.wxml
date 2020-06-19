@@ -1,0 +1,16 @@
+<view class="index">
+  <view class="address">
+    深圳市所所所所所所所错所错所错所错所错所错所擦奥奥奥奥奥奥无无无大大
+  </view>
+  <view class="main">机动车违反禁止停车标志指示</view>
+  <view class="main line">罚款<text>￥200</text>扣分<text>6</text></view>
+  <view class="result">
+  <text>违章城市返回值</text>
+  <text>2020-12-21 06:56:20</text>
+  </view>
+  <text class="hasDone">已处理</text>
+</view>
+<view class="icon">
+  <image src="/assets/image/Slice2.png"></image>
+  <view>恭喜 无违章</view>
+  </view>
