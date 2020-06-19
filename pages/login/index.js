@@ -328,7 +328,14 @@ function analysisOptions(options, res) {
                 url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         }
-    } else {
+    } 
+    //x431
+    else if (options.type === 'x431') {
+        wx.redirectTo({
+            url: '/pages/firstindex/index',
+        })
+    }
+    else {
         if (res.is_promoter === 0) {
             // 客户进入
             if (res.last_partner_info.length == 0) {

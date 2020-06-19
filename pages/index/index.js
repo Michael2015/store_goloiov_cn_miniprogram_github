@@ -68,16 +68,23 @@ Page({
                         let source = app.globalData.shareInfo.source;
                         // 邀请合伙人
                         wx.redirectTo({
-                            url: '/pages/partner/personal/partner/invite?share_id=' + share_user_id+'&source='+ source,
+                            url: '/pages/partner/personal/partner/invite?share_id=' + share_user_id + '&source=' + source,
                         });
                     } else if (options.type === 'share') {
                         // 分享进来的
                         wx.redirectTo({
                             url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
                         });
-                    } 
-                    else if(options.type === 'hema')
-                    {
+                    }
+                    //x431
+                    else if (options.type === 'x431') {
+                        // 分享进来的
+                        wx.redirectTo({
+                            url: '/pages/firstindex/index'
+                        });
+                    }
+                    //河马
+                    else if (options.type === 'hema') {
                         //发现河马        
                         wx.redirectTo({
                             url: '/pages/customer/search/index?type=category&cate_id=18&title=&source=hema',
@@ -363,14 +370,21 @@ function analysisOptions(options, res) {
                 url: '/pages/partner/detail/detail?id=' + app.globalData.shareInfo.share_product_id + '&type=share'
             })
         }
-    } 
-else if(options.type === 'hema')
-{
- //发现河马        
- wx.redirectTo({
-    url: '/pages/partner/search/index?type=category&cate_id=18&title=',
- });
-}
+    }
+    else if (options.type === 'hema') {
+        //发现河马        
+        wx.redirectTo({
+            url: '/pages/partner/search/index?type=category&cate_id=18&title=',
+        });
+    }
+
+    //x431
+    else if (options.type === 'x431') {
+        // 分享进来的
+        wx.redirectTo({
+            url: '/pages/firstindex/index'
+        });
+    }
     else {
         if (res.is_promoter === 0) {
             // 客户进入
