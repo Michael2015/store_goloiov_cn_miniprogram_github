@@ -1,0 +1,30 @@
+.index{
+  margin: 26rpx 26rpx 0;
+  height: 340rpx;
+  background-color:rgba(228, 0, 6, 0.698);
+  color: white;
+  padding: 20rpx 20rpx 0 20rpx;
+  display: flex;
+  flex-direction: column;
+
+}
+.head{
+  height: 44rpx;
+  line-height: 44rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.distance{
+  height: 60rpx;
+  line-height: 60rpx;
+
+}
+.money{
+  font-weight: bolder;
+  flex: 1;
+  line-height: 216rpx;
+}
+.money text:nth-of-type(1){
+  font-size: 80rpx;
+}
+

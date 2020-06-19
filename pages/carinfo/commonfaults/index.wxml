@@ -1,0 +1,10 @@
+<view class="title">
+  本车型每日平均维修次数
+</view>
+<view class="time">
+<text>3</text>次
+</view>
+<view class="title">
+  本车常见故障排行榜
+</view>
+<view class="time"></view>

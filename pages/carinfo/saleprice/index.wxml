@@ -1,0 +1,11 @@
+<view class="index">
+<view class="head">
+<text>大众汽车牌SVW7416BL</text>
+<text bindtap="edit">编辑</text>
+</view>
+<view class="distance">2w公里 / 2016-03-29</view>
+<view class="money">
+<text>11</text>
+<text>万元</text>
+</view>
+</view>

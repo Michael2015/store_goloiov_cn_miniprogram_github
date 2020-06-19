@@ -1,0 +1,12 @@
+<import src="../listTemplate.wxml"/>
+<view class="wrap">
+<view class="head">
+<image src="{{imgUrl}}" bindtap="chooseImg"></image>
+</view>
+<template is="addcars" data="{{list}}"/>
+<view class="list last">
+<text>行驶里程</text>
+<input placeholder="单位（万公里）" value="{{mileage}}" type="number" bindblur="inputblur"></input>
+</view>
+<button class="btn" catchtap="submit">确认提交</button>
+</view>
