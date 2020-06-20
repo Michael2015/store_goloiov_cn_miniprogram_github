@@ -57,6 +57,8 @@ Page({
         value: item.name === "brand_label" ? (carInfo["brand_label"] + " / " + carInfo["hpzl"]) : carInfo[item.name]
       }
     })
+    InputVal = carInfo.sale_price||'';
+    CanSub = carInfo.sale_price?true:false;
     this.setData({
       carInfo: wx.getStorageSync("carInfo"),
       list

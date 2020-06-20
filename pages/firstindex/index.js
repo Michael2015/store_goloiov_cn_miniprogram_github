@@ -68,7 +68,8 @@ Page({
           routeName = 'carvalue';
           break;
         case 4:
-          if (this.data.carinfo.sale_price){
+        //  console.log(this.data.carinfo.carInfo.sale_price)
+          if (this.data.carinfo.carInfo.sale_price){
           routeName = 'saleprice';
           }
           else{
