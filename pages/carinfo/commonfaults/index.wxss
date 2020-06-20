@@ -1,24 +1,47 @@
-.title{
-  padding: 50rpx 0;
+.index {
+  height: 100vh;
+  background: url("https://wcp.wanchepin.com/public/wap/x431/car_bg.png") no-repeat center;
+  background-size: cover;
+  overflow: auto;
 }
-.title::before{
-  content: "";
-  display: inline-block;
-  width: 4rpx;
-  height: 1em;
-  background: #FF6633;
-  vertical-align: middle;
-  margin-top: -8rpx;
-  margin: 0 30rpx 0 50rpx;
+
+.inner {
+  height: 196rpx;
+  margin: 24rpx;
+  background: url("https://wcp.wanchepin.com/public/wap/x431/common_fault_rank.png") no-repeat center;
+  background-size: cover;
+  text-align: center;
 }
-.time{
-  margin: 0 30rpx;
-  border-bottom: 2rpx solid #b4bbc5;
-  padding:0 0 40rpx 40rpx;
-  font-size: 36rpx;
+.inner text{
+  font-size:30rpx;
+font-family:PingFangSC-Medium,PingFang SC;
+font-weight:500;
+color:rgba(113,46,46,1);
+line-height: 196rpx;
+padding-right: 4rpx;
+
+}
+
+.item{
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  margin: 24rpx;
+  border-radius: 10rpx;
+  align-items: center;
+  padding: 0 5%;
+  font-size: 28rpx;
+
+}
+.item text:nth-of-type(1){
+  width: 10%;
   font-weight: bold;
 }
-.time text{
-  color:#FF6633;
-  margin: 0 20rpx;
+.item text:nth-of-type(2){
+  box-sizing: border-box;
+  flex:1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

@@ -1,4 +1,9 @@
 <view class="carvalue">
-<view class="title">估值范围： （万元）</view>
-<text>10.7</text>
+<view class="title">估值范围：（万元)</view>
+<view class="val">
+<image src="https://wcp.wanchepin.com/public/wap/x431/car_value_circle.png" class="bg"></image>
+<view class="inner">
+{{price}}
+</view>
+</view>
 </view>

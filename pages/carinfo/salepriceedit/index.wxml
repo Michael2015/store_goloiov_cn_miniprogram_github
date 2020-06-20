@@ -1,5 +1,5 @@
 <import src="../listTemplate.wxml"/>
 <view class="index">
 <template is="salepriceedit" data="{{list}}"/>
-<button class="btn">保存</button>
+<button class="btn" catchtap="sub">保存</button>
 </view>

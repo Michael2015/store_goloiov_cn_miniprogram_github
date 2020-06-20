@@ -1,11 +1,27 @@
 <view class="index">
-<view class="head">
-<text>大众汽车牌SVW7416BL</text>
-<text bindtap="edit">编辑</text>
-</view>
-<view class="distance">2w公里 / 2016-03-29</view>
-<view class="money">
-<text>11</text>
-<text>万元</text>
-</view>
+  <view class="wrap">
+    <image class="con1" src="/assets/image/conne.png"></image>
+    <image class="con2" src="/assets/image/conne.png"></image>
+    <view class="first">
+      <view class="first1">
+        <view>{{carInfo.brand_label}}</view>
+        <view catchtap="edit">
+         <image src="/assets/image/bianji2.png"></image>
+          <text>编辑</text>
+        </view>
+      </view>
+      <view class="first2">
+      <text>{{carInfo.mileage}}w公里</text>
+      <text>|</text>
+      <text>{{carInfo.drivetime}}</text>
+      </view>
+    </view>
+    <view class="second">
+    <view class="second1">卖车报价</view>
+    <view class="second2">
+    <text>{{carInfo.sale_price}}</text>
+    <text>万元</text>
+    </view>
+    </view>
+  </view>
 </view>

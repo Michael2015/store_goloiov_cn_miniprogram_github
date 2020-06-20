@@ -20,7 +20,9 @@ color: #666666;
 .list text:nth-of-type(2){
   color:#333333;
 }
-
+.list input{
+  text-align: right;
+}
 .btn {
 width:556rpx;
 height:92rpx;

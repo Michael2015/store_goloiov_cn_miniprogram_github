@@ -1,17 +1,69 @@
-// pages/carinfo/salepriceedit/index.js
+const app = getApp();
+let InputVal = '', CanSub = false;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{ title: '品牌车型', value: "粤B123456" }, { title: '公里数', value: "粤B123456" }, { title: '购车时间', value: "粤B123456" }, { title: '卖车报价', value: "粤B123456" }]
+    carInfo: '',
+    list: [{ title: '品牌车型', name: "brand_label", value: "" }, { title: '万公里数', name: "mileage", value: "" }, { title: '购车时间', name: "drivetime", value: "" }, { title: '卖车报价', value: "", name: "sale_price" }]
   },
-
+  sub() {
+    if (!InputVal) {
+      wx.showToast({
+        title: '请填写卖车报价',
+        icon: "none"
+      })
+    }
+    else if (CanSub) {
+      wx.showLoading({
+        title: '正在保存',
+      });
+      app.http.post("/api/diag/editCarInfo",{
+        sale_price: InputVal,
+        id: this.data.carInfo.id
+      }).then(res => {
+        wx.hideLoading();
+        console.log(res);
+        wx.reLaunch({
+          url: '/pages/carinfo/saleprice/index',
+        })
+      })
+    }
+  },
+  blur(e) {
+    let val = e.detail.value;
+    InputVal = val;
+    if (isNaN(val)) {
+      wx.showToast({
+        title: '卖车报价必须为数字',
+        icon: "none"
+      })
+      CanSub = false;
+    }
+    else {
+      CanSub = true;
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let carInfo = wx.getStorageSync("carInfo"), list = this.data.list.map(item => {
+      return {
+        ...item,
+        value: item.name === "brand_label" ? (carInfo["brand_label"] + " / " + carInfo["hpzl"]) : carInfo[item.name]
+      }
+    })
+    this.setData({
+      carInfo: wx.getStorageSync("carInfo"),
+      list
+    }, () => {
+      wx.removeStorageSync("carInfo");
+    })
+
 
   },
 

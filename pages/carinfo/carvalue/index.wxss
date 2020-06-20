@@ -1,19 +1,43 @@
 .carvalue{
-  margin: 26rpx 26rpx 0;
-  height: 340rpx;
-  background-color:rgba(228, 0, 6, 0.698);
-  position: relative;
+  height: 100vh;
+  background: url("https://wcp.wanchepin.com/public/wap/x431/car_bg.png") no-repeat center;
+  background-size: cover;
+  overflow: hidden;
 }
 .title{
-  padding: 0.5em 0 0 0.5em;
-  color: white;
+  margin-top: 193rpx;
+  height: 103rpx;
+  line-height: 103rpx;
+  text-align: center;
+  font-size:42rpx;
+font-family:PingFangSC-Medium,PingFang SC;
+font-weight:500;
+color:rgba(113,46,46,1);
 }
-.carvalue text{
-font-size: 80rpx;
-color: white;
-font-weight: bolder;
+.val{
+  width: 548rpx;
+  height: 549rpx;
+  margin: 60rpx auto;
+  position: relative;
+}
+.bg{
+  width: 100%;
+  height: 100%;
+}
+.inner{
+  width:319rpx;
+height:319rpx;
+background:rgba(255,255,255,0.13);
+box-shadow:0px 5px 18px 0px rgba(145,9,9,0.26);
 position: absolute;
 left: 50%;
 top: 50%;
 transform: translate(-50%,-50%);
+border-radius: 50%;
+font-size:100rpx;
+font-family:BarlowSemiCondensed-SemiBold,BarlowSemiCondensed;
+font-weight:600;
+color:rgba(113,46,46,1);
+text-align: center;
+line-height: 319rpx;
 }

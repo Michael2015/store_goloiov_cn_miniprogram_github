@@ -1,16 +1,36 @@
-// pages/carinfo/report/index.js
+const app=getApp(); 
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{ title: '汽车基础检测报告', time: '03-25 18:55' }, { title: '汽车基础检测报告', time: '03-25 18:55' }]
+    list: []
+  },
+  toUrl(e){
+    console.log(e)
+   let jumpUrl = "/pages/common/goout/index?url=" + e.currentTarget.dataset.url;
+    console.log(jumpUrl);
+    wx.navigateTo({
+      url: jumpUrl,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    });
+    app.http.post("/api/diag/getDiagReport").then(res => {
+
+      console.log(res);
+      this.setData({
+        list: res
+      }, () => {
+        wx.hideLoading();
+      });
+    })
 
   },
 
@@ -25,9 +45,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.setNavigationBarTitle({
-      title: '粤B123456'
-    })
 
   },
 

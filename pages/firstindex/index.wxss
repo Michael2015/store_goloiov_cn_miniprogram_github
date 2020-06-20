@@ -11,33 +11,77 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 40rpx 0 20rpx;
+  padding: 0 40rpx;
   font-size: 32rpx;
 }
+.head text:nth-of-type(1){
+  font-size:30rpx;
+font-family:PingFangSC-Medium,PingFang SC;
+font-weight:500;
+color:rgba(51,51,51,1);
+}
 .head text:nth-of-type(2){
-  color: blue;
+  font-size:25rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(102,102,102,1);
+}
+.no_car{
+  margin: 0 12rpx 0 15rpx;
+  height: 218rpx;
+}
+.no_car image{
+  width: 100%;
+  height: 100%;
 }
 .carinfo{
-  margin: 0 20rpx;
+  margin: 0 10rpx 0 16rpx;
   display: flex;
-  height: 156rpx;
-  background: rgba(242, 242, 242, 1);
+  height: 218rpx;
+  background:url("https://wcp.wanchepin.com/public/wap/x431/index_car_bg.png") no-repeat center center;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+  padding-left: 17%;
+  justify-content: space-between;
 }
 .left,.right{
   width: 50%;
   height: 100%;
+  box-sizing: border-box;
 }
 .left{
-    padding: 28rpx 20rpx;
+    padding: 40rpx 20rpx;
+font-size:36rpx;
+font-family:PingFangSC-Medium,PingFang SC;
+font-weight:500;
+color:rgba(113,46,46,1);
+white-space: nowrap;
 
 }
 .left view{
-  line-height: 50rpx;
+  line-height: 70rpx;
+}
+.left_one text:nth-of-type(1){
+  margin-right: 10rpx;
+}
+.left_two{
+  font-size:30rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(113,46,46,1);
 }
 .right{
-   text-align: right;
-   line-height: 156rpx;
-   padding-right: 20rpx;
+   text-align: center;
+ width:183rpx;
+height:68rpx;
+line-height: 68rpx;
+background:rgba(113,46,46,1);
+border-radius:34rpx;
+font-size:30rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(255,255,255,1);
+margin: 36rpx 40rpx 0 0;
 }
 .import{
   margin: 20rpx;
@@ -46,16 +90,10 @@
   box-sizing: border-box;
 }
 .import view image{
-  width: 94rpx;
-  height: 86rpx;
-  vertical-align: middle;
-  margin-right: 20rpx;
+  width: 100%;
 }
 .import view{
   width: 49%;
-  height: 124rpx;
-  line-height: 124rpx;
-  background: pink;
   margin-bottom: 2%;
   text-align: center;
 }

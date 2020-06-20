@@ -1,72 +1,89 @@
 <view class="bannerPic">
-<image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592476581289&di=d99d2edb25df1b88755fca1ee83b97a0&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn14%2F99%2Fw1499h1000%2F20180419%2Fe46a-fzihnep9348479.jpg"/>
+  <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592476581289&di=d99d2edb25df1b88755fca1ee83b97a0&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn14%2F99%2Fw1499h1000%2F20180419%2Fe46a-fzihnep9348479.jpg" />
 </view>
 <view class="head">
-<text>我的爱车</text>
-<text bindtap="toAddcar">新增车辆</text>
+  <text>我的爱车</text>
+  <text bindtap="toAddcar">新增车辆 ></text>
 </view>
-<view class="carinfo">
-<view class="left">
-<view>粤B 123456</view>
-<view>丰田牌TV7120GL</view>
+<view class="carinfo" wx:if="{{carinfo.is_band_car}}">
+  <view class="left">
+    <view class="left_one">
+      <text>{{format.carNumFirstFormat(carinfo.carInfo.hphm)}}</text>
+      <text>{{format.carNumLastFormat(carinfo.carInfo.hphm)}}</text>
+    </view>
+    <view class="left_two">{{carinfo.carInfo.brand_label}}</view>
+  </view>
+  <view class="right" bindtap="toCarlist">切换车辆</view>
 </view>
-<view class="right" bindtap="toCarlist">切换车辆</view>
+<view wx:else class="no_car">
+  <image src="https://wcp.wanchepin.com/public/wap/x431/no_car.png" bindtap="toAddCar"></image>
 </view>
-
 <!--入口-->
 <view class="import">
   <view wx:for="{{importArr}}" wx:key="index" data-innertype="{{item.inner_id}}" bindtap="navigate">
-  <image src="{{getAd.adPosi(chePu,1).icon}}" data-innertype="{{item.inner_id}}"></image>
-  <text data-innertype="{{item.inner_id}}">{{item.name}}</text>
+    <image src="{{item.src}}"  mode="widthFix"></image>
   </view>
 </view>
 
-  <!--广告-->
+<!--广告-->
 <view class="chepu">
-<!--顶部-->
-  <image src="{{getAd.adPosi(chePu,1).icon}}"  data-adinfo='{{getAd.adPosi(chePu,1)}}' bindtap='toGo'  ></image>
+  <!--顶部-->
+  <image src="{{getAd.adPosi(chePu,1).icon}}" data-adinfo='{{getAd.adPosi(chePu,1)}}' bindtap='toGo'></image>
 </view>
-     <view class="ad">
-<view class="path1">
-<view class="ad1">
- <!--左上-->
-  <image src="{{getAd.adPosi(chePu,2).icon}}"  data-adinfo='{{getAd.adPosi(chePu,2)}}' bindtap='toGo'  ></image>
-</view>
-<view class="path3">
-<view class="ad2">
-<!--右上-->
-  <image src="{{getAd.adPosi(chePu,4).icon}}"  data-adinfo='{{getAd.adPosi(chePu,4)}}' bindtap='toGo'   ></image>
-</view>
-<view class="path4">
-<view class="ad3">
-<!--右左-->
-  <image src="{{getAd.adPosi(chePu,5).icon}}"  data-adinfo='{{getAd.adPosi(chePu,5)}}' bindtap='toGo'  ></image>
-</view>
-<view class="ad4">
-<!--右右-->
-  <image src="{{getAd.adPosi(chePu,6).icon}}"  data-adinfo='{{getAd.adPosi(chePu,6)}}' bindtap='toGo'  ></image>
-</view>
-</view>
-</view>
-</view>
-<view class="path2">
-<view class="ad5">
-<!--左下-->
-  <image src="{{getAd.adPosi(chePu,3).icon}}"  data-adinfo='{{getAd.adPosi(chePu,3)}}' bindtap='toGo'  ></image>
-</view>
-<view class="ad6">
-<!--右下-->
-  <image src="{{getAd.adPosi(chePu,7).icon}}"  data-adinfo='{{getAd.adPosi(chePu,7)}}' bindtap='toGo'   ></image>
-</view>
-</view>
+<view class="ad">
+  <view class="path1">
+    <view class="ad1">
+      <!--左上-->
+      <image src="{{getAd.adPosi(chePu,2).icon}}" data-adinfo='{{getAd.adPosi(chePu,2)}}' bindtap='toGo'></image>
+    </view>
+    <view class="path3">
+      <view class="ad2">
+        <!--右上-->
+        <image src="{{getAd.adPosi(chePu,4).icon}}" data-adinfo='{{getAd.adPosi(chePu,4)}}' bindtap='toGo'></image>
+      </view>
+      <view class="path4">
+        <view class="ad3">
+          <!--右左-->
+          <image src="{{getAd.adPosi(chePu,5).icon}}" data-adinfo='{{getAd.adPosi(chePu,5)}}' bindtap='toGo'></image>
+        </view>
+        <view class="ad4">
+          <!--右右-->
+          <image src="{{getAd.adPosi(chePu,6).icon}}" data-adinfo='{{getAd.adPosi(chePu,6)}}' bindtap='toGo'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="path2">
+    <view class="ad5">
+      <!--左下-->
+      <image src="{{getAd.adPosi(chePu,3).icon}}" data-adinfo='{{getAd.adPosi(chePu,3)}}' bindtap='toGo'></image>
+    </view>
+    <view class="ad6">
+      <!--右下-->
+      <image src="{{getAd.adPosi(chePu,7).icon}}" data-adinfo='{{getAd.adPosi(chePu,7)}}' bindtap='toGo'></image>
+    </view>
+  </view>
 </view>
 
 <wxs module="getAd">
-var adPosi = function(arr,n){
- var crr=arr.filter(function(item){
- return item.position===n
- })
-  return crr[0];
-}
-module.exports.adPosi=adPosi;
+  var adPosi = function(arr, n) {
+    var crr = arr.filter(function(item) {
+      return item.position === n
+    })
+    return crr[0];
+  }
+  module.exports.adPosi = adPosi;
+</wxs>
+
+<wxs module="format">
+  var carNumFirstFormat = function(str) {
+    return str.substring(0, 2);
+  };
+  var carNumLastFormat = function(str) {
+    return str.substring(2);
+  };
+  module.exports = {
+    carNumFirstFormat: carNumFirstFormat,
+    carNumLastFormat: carNumLastFormat
+  }
 </wxs>

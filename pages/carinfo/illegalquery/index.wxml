@@ -1,16 +1,40 @@
-<view class="index">
+<view  class="wrap">
+<view wx:if="{{list.length}}">
+<view class="index" wx:for="{{list}}" wx:key="index">
   <view class="address">
-    深圳市所所所所所所所错所错所错所错所错所错所擦奥奥奥奥奥奥无无无大大
+    {{item.area}}
   </view>
-  <view class="main">机动车违反禁止停车标志指示</view>
-  <view class="main line">罚款<text>￥200</text>扣分<text>6</text></view>
-  <view class="result">
-  <text>违章城市返回值</text>
-  <text>2020-12-21 06:56:20</text>
+  <view class="main">
+    <image src="/assets/image/wei.png"></image>
+    <text>{{item.act}}</text>
   </view>
-  <text class="hasDone">已处理</text>
+  <view class="main1">
+    <view>
+      <image src="/assets/image/address.png"></image>
+      <text>{{item.wzcity}}</text>
+    </view>
+    <view>{{item.date}}</view>
+  </view>
+  <view class="disposal">
+    <view class="disposal1">
+      <view class="title">罚款</view>
+      <view class="val">¥{{item.money}}</view>
+    </view>
+    <view class="disposal2">
+    <view class="title">扣分</view>
+      <view class="val">{{item.fen}}</view>  
+    </view>
+   
+      <view class="disposal3">
+        <text class="dis_chu" wx:if="{{!Number(item.handled)}}">未处理</text>
+        <text class="has_chu" wx:else>已处理</text>
+      </view>
+    
+  </view>
 </view>
-<view class="icon">
-  <image src="/assets/image/Slice2.png"></image>
-  <view>恭喜 无违章</view>
-  </view>
+</view>
+<view wx:else class="no">
+<image src="https://wcp.wanchepin.com/public/wap/x431/like.png"></image>
+<view>恭喜！无违章</view>
+</view>
+</view>

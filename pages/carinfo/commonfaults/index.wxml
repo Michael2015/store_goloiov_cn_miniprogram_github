@@ -1,10 +1,11 @@
-<view class="title">
-  本车型每日平均维修次数
+<view class="index">
+  <view class="inner">
+    <text>本车常见故障排行榜</text>
+  </view>
+  <view class="list">
+    <view class="item" wx:for="{{list}}" wx:key="index">
+      <text>{{item.ranking}}</text>
+      <text>{{item.faultDescription}}</text>
+    </view>
+  </view>
 </view>
-<view class="time">
-<text>3</text>次
-</view>
-<view class="title">
-  本车常见故障排行榜
-</view>
-<view class="time"></view>

@@ -1,17 +1,27 @@
-// pages/carinfo/carvalue/index.js
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    price:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中',
+    });
+    app.http.post("/api/diag/getCarValue").then(res => {
+      wx.hideLoading();
+      console.log(res);
+    this.setData({
+      price: res.sale_price
+    })
+    })
 
   },
 
