@@ -1,3 +1,18 @@
+.none {
+display: flex;
+flex-direction: column;
+text-align: center;
+color: gray;
+width: 50%;
+position: absolute;
+top: 45%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+.none image{
+  width: 100%;
+  margin-bottom: 20rpx;
+}
 .index{
   height: 100vh;
   overflow: auto;
@@ -203,6 +218,10 @@
     font-size: 24rpx;
     color: #666666;
     background: url(https://m.chaboshi.cn/wap/image/detailsAccident1.svg) 0 35rpx no-repeat;
+    background-size: 24rpx 28rpx;
+}
+.wrap .troubleshootList .t-li.detailsAccidentImg{
+    background: url(https://m.chaboshi.cn/wap/image/detailsAccident2.svg) 0 35rpx no-repeat;
     background-size: 24rpx 28rpx;
 }
 .wrap .troubleshootList:after{

@@ -1,2 +1,2 @@
 <import src="../listTemplate.wxml"/>
-<template is="maintenance" data="{{list}}"/>
+<template is="maintenance" data="{{diag_report,car}}"/>
