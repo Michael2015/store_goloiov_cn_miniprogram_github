@@ -376,6 +376,13 @@
 					"pathName": "pages/firstindex/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/carinfo/showimage/showimage",
+					"pathName": "pages/carinfo/showimage/showimage",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

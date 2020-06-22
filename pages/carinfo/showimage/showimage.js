@@ -1,37 +1,18 @@
-const app=getApp(); 
+// pages/carinfo/showimage/showimage.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:""
+
   },
-  toUrl(e){
-    console.log(e)
-    let jumpUrl = "/pages/carinfo/showimage/showimage?url=" + e.currentTarget.dataset.url;
-    console.log(jumpUrl);
-    wx.navigateTo({
-      url: jumpUrl,
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中',
-    });
-    app.http.post("/api/diag/getDiagReport").then(res => {
-
-      console.log(res);
-      this.setData({
-        list: res
-      }, () => {
-        wx.hideLoading();
-      });
-    })
-
+console.log(options);
   },
 
   /**

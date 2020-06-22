@@ -71,7 +71,8 @@
     "pages/carinfo/salepriceedit/index",
     "pages/carinfo/illegalquery/index",
     "pages/carinfo/commonfaults/index",
-    "pages/firstindex/index"
+    "pages/firstindex/index",
+    "pages/carinfo/showimage/showimage"
   ],
   "tabBar": {
     "custom": true,
