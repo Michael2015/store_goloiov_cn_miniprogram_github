@@ -11,7 +11,7 @@ Page({
     var id = e.target.dataset.id;
     wx.showModal({
       title: '提示',
-      content: '您确定要选择该车辆为默认车辆吗？',
+      content: '您要选择该车辆为默认吗？',
       success(res) {
         if (res.confirm) {
           app.http.post("/api/diag/editCarInfo", {

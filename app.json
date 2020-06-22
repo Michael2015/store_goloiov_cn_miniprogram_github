@@ -72,7 +72,8 @@
     "pages/carinfo/illegalquery/index",
     "pages/carinfo/commonfaults/index",
     "pages/firstindex/index",
-    "pages/carinfo/showimage/showimage"
+    "pages/carinfo/showimage/showimage",
+    "pages/carinfo/maintenance/index"
   ],
   "tabBar": {
     "custom": true,
