@@ -151,15 +151,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
-    //维保链接
-    const getMaintenanceReport = await app.http.post('/api/diag/getMaintenanceReport');
     //广告部分
     const chePu = await app.http.post('/api/Marketing/getAdv', {
       type: 2
     });
     this.setData({
-      chePu,
-      weibao: getMaintenanceReport.diag_report_url
+      chePu
     })
 
   },
