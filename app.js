@@ -127,7 +127,8 @@ App({
   globalData: {
     userInfo: {},
     partnerInfo: {},
-    token: '' || '92f862c626264fdf7ec87b7b1b80c917',
+    token:"",
+   // token: '' || '92f862c626264fdf7ec87b7b1b80c917',
     //token: "7822582cfafe76674744f320cecc6ad1",
     // role: 用户角色 0客户 1合伙人
     role: null,   

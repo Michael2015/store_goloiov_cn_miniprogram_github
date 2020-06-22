@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showShadow: false,
     weibao:'',
     carinfo:'',
     importArr: [{
@@ -34,6 +35,14 @@ Page({
         src: "https://wcp.wanchepin.com/public/wap/x431/common_fault.png"
     }],
     chePu: []
+  },
+  toLogin(){
+    var token = app.globalData.token;
+    if (!token){
+      wx.navigateTo({
+        url: "/pages/login/index?type=x431",
+      })
+    }
   },
   toAddCar(){
     wx.navigateTo({
@@ -151,12 +160,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+    
     //广告部分
     const chePu = await app.http.post('/api/Marketing/getAdv', {
       type: 2
     });
     this.setData({
-      chePu
+      chePu,
+      showShadow: app.globalData.token?true:false
     })
 
   },
