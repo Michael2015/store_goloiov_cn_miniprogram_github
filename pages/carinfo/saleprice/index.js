@@ -9,20 +9,15 @@ Page({
   },
 edit(){
   wx.setStorageSync("carInfo", this.data.carInfo);
-  app.backToIndex.set("carinfo_salepriceedit", true);
   wx.navigateTo({
-    url: "/pages/carinfo/salepriceedit/index",
+    url: "/pages/carinfo/salepriceedit/index?no_back=1",
   })
 },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.http.post("/api/diag/getMyCar").then(res=>{
-     this.setData({
-       carInfo: res.carInfo
-     })
-    })
+  
   },
 
   /**
@@ -36,7 +31,12 @@ edit(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    app.http.post("/api/diag/getMyCar").then(res => {
+      console.log("看着", res.carInfo.sale_price)
+      this.setData({
+        carInfo: res.carInfo
+      })
+    })
   },
 
   /**

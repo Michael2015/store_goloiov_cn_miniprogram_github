@@ -1,11 +1,13 @@
 const app = getApp();
-let InputVal = "", ImgSuccess = false, SubmitInfo="";
+let InputVal = "",
+  ImgSuccess = false,
+  SubmitInfo = "";
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    mileage:'',
+    mileage: '',
     list: [{
       title: "车牌号码",
       value: '',
@@ -30,64 +32,61 @@ Page({
     hid: true,
     imgUrl : 'https://wcp.wanchepin.com/public/wap/website/carid.png'
   },
-  listInit(){
-    var arr=this.data.list;
-    var brr=arr.map(item=>{
+  listInit() {
+    var arr = this.data.list;
+    var brr = arr.map(item => {
       return {
         ...item,
-        value:""
+        value: ""
       }
     });
     ImgSuccess = false;
-    SubmitInfo ="";
-    InputVal="";
+    SubmitInfo = "";
+    InputVal = "";
     this.setData({
-      list:brr,
+      list: brr,
       imgUrl : 'https://wcp.wanchepin.com/public/wap/website/carid.png',
-      mileage:''
+      mileage: ''
     })
   },
-  inputblur(e){
+  inputblur(e) {
     InputVal = e.detail.value;
   },
   submit() {
-    if (!ImgSuccess){
+    if (!ImgSuccess) {
       wx.showToast({
         title: '请上传行驶证照片',
         icon: "none",
         duration: 2000
       })
-    }
-   else if (InputVal===""){
+    } else if (InputVal === "") {
       wx.showToast({
         title: '请输入行驶里程',
         icon: "none",
         duration: 2000
       })
-    }
-    else if (isNaN(InputVal)) {
+    } else if (isNaN(InputVal)) {
       wx.showToast({
         title: '行驶里程必须为数字',
         icon: "none",
         duration: 2000
       })
-    }
-    else{
-      app.http.post("/api/diag/saveCarInfo",{
+    } else {
+      app.http.post("/api/diag/saveCarInfo", {
         ...SubmitInfo,
         mileage: InputVal
-      }).then(res=>{
+      }).then(res => {
         wx.showToast({
           title: '保存成功'
         })
-        setTimeout(()=>{
-          app.backToIndex.set("carinfo_addcars",false);//这里设置一个标识，跳转到列表页后如果再点返回，正常情况下是回到添加车辆页//面，这里就可以跳过这一步直接回到首页
+        setTimeout(() => {
+          app.backToIndex.set("carinfo_addcars", false); //这里设置一个标识，跳转到列表页后如果再点返回，正常情况下是回到添加车辆页//面，这里就可以跳过这一步直接回到首页
           wx.navigateTo({
             url: '/pages/carinfo/carlist/index',
           })
-        },1500)
+        }, 1500)
       })
-     // console.log(InputVal, SubmitInfo);
+      // console.log(InputVal, SubmitInfo);
     }
   },
   chooseImg() {
@@ -120,40 +119,54 @@ Page({
             wx.showLoading({
               title: '正在识别中',
             });
-             app.http.post("/api/diag/driverLicenseScan", {
+            app.http.post("/api/diag/driverLicenseScan", {
               imgurl: imgUrl 
             }).then(r => {
-              
+              console.log(r);
               wx.hideLoading();
-             
+
               if (!r.length) {
                 _this.listInit();
                 wx.showModal({
                   title: '提示',
                   content: '识别失败，请重新上传！'
                 })
-              }
-              else{
-                ImgSuccess = true;
-                SubmitInfo = r[0];
-                let obj = r[0],
-                  objKeys = Object.keys(r[0]),
-                  arr1 = _this.data.list;
-                let crr = arr1.map((item, ind) => {
-                  return {
-                    ...item,
-                    value: item.name === "hpzl" ? (obj["brand_label"]+" / "+ obj[item.name]):obj[item.name]
+              } else {
+                var f = true;
+                for (var i in r[0]) {
+                  if (!r[0][i] && i !== "mileage") {
+                    wx.showModal({
+                      title: '提示',
+                      content: '识别失败，请重新上传！'
+                    })
+                    _this.listInit();
+                    f = false;
+                    break;
                   }
-                })
-                _this.setData({
-                  list: crr
-                })
+                }
+
+                if (f) {
+                  ImgSuccess = true;
+                  SubmitInfo = r[0];
+                  let obj = r[0],
+                    objKeys = Object.keys(r[0]),
+                    arr1 = _this.data.list;
+                  let crr = arr1.map((item, ind) => {
+                    return {
+                      ...item,
+                      value: item.name === "hpzl" ? (obj["brand_label"] + " / " + obj[item.name]) : obj[item.name]
+                    }
+                  })
+                  _this.setData({
+                    list: crr
+                  })
+                }
               }
             })
           },
             fail:   function (e)  {  
             wx.hideLoading();
-              _this.listInit();          
+            _this.listInit();          
             wx.showToast({                    
               title:   '上传失败',
                icon:   'none'                  
@@ -181,7 +194,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (!app.backToIndex.get("carinfo_addcars")){
+    if (!app.backToIndex.get("carinfo_addcars")) {
       wx.navigateBack({
         delta: getCurrentPages().length
       })

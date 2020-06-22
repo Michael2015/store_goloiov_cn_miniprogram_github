@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "NoData": "/components/no-data-center/index"
+  },
   "navigationBarTitleText": "车辆列表",
   "navigationBarBackgroundColor": "#E40006",
   "navigationBarTextStyle": "white"

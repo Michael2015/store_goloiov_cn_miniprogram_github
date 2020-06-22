@@ -41,15 +41,11 @@
       </view>
     </view>
   </view>
-  <view wx:else class="none">
-    <image src="/assets/image/kong.png" mode="widthFix"></image>
-    <text>暂无数据</text>
-  </view>
 </template>
 
 <!--诊断报告-->
 <template name="report">
-  <view class="index" wx:if="{{list}}">
+  <view class="index" hidden="{{!list}}">
     <view class="has" wx:if="{{list.length}}">
       <view class="list" wx:for="{{list}}" wx:key="index" data-url="{{item.jump_url}}" bindtap="toUrl">
         <view class="one">
@@ -63,10 +59,7 @@
         </view>
       </view>
     </view>
-    <view wx:else class="none">
-    <image src="/assets/image/kong.png" mode="widthFix"></image>
-    <text>暂无数据</text>
-  </view>
+    <NoData list="{{list}}" text="暂无数据"/>
   </view>
 </template>
 
@@ -245,7 +238,7 @@
   <view wx:for="{{list}}" wx:key="index" class="list">
     <text>{{item.title}}</text>
     <text wx:if="{{item.name!=='sale_price'}}">{{item.value}}</text>
-    <input wx:else placeholder="(单位：万元)" bindblur="blur" value="{{item.value}}"></input>
+    <input wx:else placeholder="(单位：万元)" bindblur="blur" value="{{item.value||''}}" bindinput="input"></input>
   </view>
 </template>
 

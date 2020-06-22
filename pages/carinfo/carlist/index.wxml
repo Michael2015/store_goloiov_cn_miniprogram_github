@@ -1,4 +1,5 @@
 <import src="../listTemplate.wxml"/>
 <view hidden="{{!list}}">
   <template is="carlist" data="{{list}}"/>
+  <NoData list="{{list}}" text="暂无数据"/>
 </view>
