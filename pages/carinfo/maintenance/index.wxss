@@ -1,0 +1,356 @@
+.index{
+  height: 100vh;
+  overflow: auto;
+  position: relative;
+  background:url('https://m.chaboshi.cn/wap/image/certificationImg.png') 0 0 no-repeat;
+  background-size:100% 100%;
+}
+.wrap
+{
+  padding:0 4% 50rpx 4%;
+}
+.wrap .head{
+  height:120rpx;
+  line-height:120rpx;
+  font-size: 35rpx;
+  color: #25252A;
+  font-weight:bold;
+  border-bottom:2rpx solid #EBEBED;
+}
+.wrap .detailsVin{
+  height:100rpx;
+  line-height:100rpx;
+  color: #60554f;
+  font-size:24rpx;
+  display:flex;
+}
+.wrap .detailsVin label {
+    width:46%;
+    float: left;
+    background: url(http://m.chaboshi.cn/wap/image/detailsVin.svg) 0 center no-repeat;
+    background-size:24rpx;
+    padding-left:6%;
+}
+.wrap .detailsVin label:last-child{
+   background: url(http://m.chaboshi.cn/wap/image/detailsTime.svg) 0 center no-repeat;
+   background-size:24rpx;
+}
+.wrap .content{
+  background:url(http://m.chaboshi.cn/wap/image/certificationImg.png) repeat-y;
+  background-size:100%;
+  box-shadow: 0 6rpx 48rpx 0 rgba(117,117,117,0.12);
+  border-radius: 16rpx;
+  height:auto;
+  padding:50rpx 0;
+}
+.wrap  .reportNewTit{
+    color: #25252A;
+    font-weight: bold;
+    position: relative;
+    height: 35rpx;
+    line-height: 35rpx;
+    border-left:6rpx solid #FF8C1F;
+    font-size:35rpx;
+    padding-left:4%;
+}
+.wrap  .reportNewTit2{
+  margin-top:50rpx;
+}
+.wrap  .reportNewTit .ratingTxt{
+  color: #6B6B70;
+  font-weight: normal;
+  float: right;
+  padding-right:4%;
+  font-size:24rpx;
+}
+.wrap  .reportNewTit .ratingTxt2{
+  padding-right:0%;
+}
+.wrap .content .ratingNenw{
+  padding:50rpx 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom:1rpx solid #E6E6E6;
+}
+.wrap .content .ratingNenw>view{
+  width:33.3%;
+  text-align:center;
+}
+
+.wrap .content .ratingNenw>view p{
+  width:100%;
+  text-align:center;
+  color: #FF6127;
+  font-weight: bold;
+  font-size:24rpx;
+  display:block;
+  padding-bottom:20rpx;
+}
+.wrap .content .ratingNenw>view p span{
+  font-size:55rpx;
+}
+.wrap .content .ratingNenw>view p.dt{
+  color: #67676E;
+  font-weight: normal;
+}
+.wrap .content .ratingNenw>view p.lv{
+  color: #9999AD;
+  font-weight: bold;
+}
+.wrap .content .ratingList .li{
+  padding:0 20rpx;
+  font-size: 28rpx;
+  color: #25252A;
+  background: url(https://m.chaboshi.cn/wap/maintenanceReport/img/reportV12.png) 96% 0 no-repeat;
+  background-size: 24rpx;
+  height:24rpx;
+  line-height:24rpx;
+  margin-top:60rpx;
+}
+.wrap .content .ratingList .li.red{
+  background: url(https://m.chaboshi.cn/wap/maintenanceReport/img/reportV2.png) 96% 0 no-repeat;
+  background-size: 24rpx;
+}
+.wrap .content .ratingList .li label{
+  float:right;
+  padding-right:8%;
+}
+.wrap .content .ratingList .li label.red{
+  color:#FF541F;
+}
+.wrap .content .ratingList .li image{
+  width:24rpx;
+  height:24rpx;
+  margin-right:5%;
+  margin-top:5rpx;
+}
+
+.wrap .content .reportNewPrompt{
+    width: 90%;
+    text-align: center;
+    margin-left:5%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size:28rpx;
+    color: #999A9F;
+    background: #F2F2F2;
+    border-radius: 50rpx;
+    display:block;
+    margin-top:50rpx;
+}
+.wrap .detailsListCar{
+  margin-top:30rpx;
+}
+.wrap .detailsListCar .lis-li{
+  margin-top:20rpx;
+  position:relative;
+  font-size:28rpx;
+  color:#25252A;
+  display:flex
+}
+
+.wrap .detailsListCar .lis-li .hh{
+  height:60rpx;
+  line-height:60rpx;
+  margin-right:2%;
+  width:28%;
+}
+.wrap .detailsListCar .lis-li .cc{
+  display:block;
+  height:30prx!important;
+  line-height:30rpx;
+  width:70%;
+
+}
+.wrap .detailsListCar .lis-li .cc text{
+  border-bottom:1rpx dashed #e6e6e6;
+  display:block;
+}
+.wrap .detailsListCar .lis-li .ee{
+  position:absolute;
+  height:60rpx;
+  line-height:60rpx;
+  right:0;
+  font-size:24rpx;
+  background-color: #fff;
+  padding-left:10rpx;
+  color:#2c241f;
+}
+.wrap .troubleshootNumImg{
+  display:block;
+  height:30prx;
+  width:30rpx;
+  float:left;
+  background: url(http://m.chaboshi.cn/wap/maintenanceReport/img/reportV14.png) 0 3rpx no-repeat;
+  background-size: 30rpx;
+}
+
+.wrap .troubleshootNumImg2{
+  float:left;
+  font-size:28rpx;
+  color:#FF541F;
+  display:block;
+}
+.wrap .troubleshootList,.wrap .detailsMaintenance{
+  margin-top:30rpx;
+}
+.wrap .troubleshootList .t-li{
+    padding-top: 30rpx;
+    float: left;
+    width: 20%;
+    padding-left: 30rpx;
+    font-size: 24rpx;
+    color: #666666;
+    background: url(https://m.chaboshi.cn/wap/image/detailsAccident1.svg) 0 35rpx no-repeat;
+    background-size: 24rpx 28rpx;
+}
+.wrap .troubleshootList:after{
+  content: '';
+        height: 0;
+        line-height: 0;
+        display: block;
+        visibility: hidden;
+        clear: both;
+}
+
+.wrap .troubleshootTxt{
+    margin: 4% 0;
+    padding: 30rpx;
+    background: #F8FAFC;
+    line-height: 30rpx;
+    border-radius: 16rpx;
+}
+.wrap .troubleshootTxt .troubleshootBox{
+    display: block;
+    width: 100%;
+    margin-bottom:50rpx;
+}
+.wrap .troubleshootTxt .troubleshootBox i{
+    display: inline-block;
+    margin-right: 20rpx;
+    width: 24rpx;
+    height: 24rpx;
+    background: url(https://m.chaboshi.cn/wap/image/detailsImg09.png) 0 center no-repeat;
+    background-size: 24rpx;
+}
+.wrap .troubleshootTxt .troubleshootBox span{
+  background: #E3ECFB;
+    border-radius: 10rpx;
+    padding: 10rpx 16rpx;
+    font-size:28rpx;
+    color: #1C64E4;
+    margin-right:20rpx;
+}
+.wrap .troubleshootTxt .troubleshootBox label{
+  float: right;
+  font-size: 28rpx;
+  color: #999;
+}
+.wrap .troubleshootTxt>p{
+  font-size:24rpx;
+  line-height:50rpx;
+}
+.wrap .troubleshootTxt>p strong{
+  font-weight:normal;
+  color:#ff541f;
+}
+.wrap .detailsMaintenance .mt-li
+{
+    font-size: 24rpx;
+    color: #60554f;
+    overflow: hidden;
+    border-bottom: 1px solid #e6e6e6;
+    display:flex;
+    height:80rpx;
+    line-height:80rpx;
+}
+
+.wrap .detailsMaintenance .mt-li view{
+  width:33.3%;
+  text-align:center;
+}
+.wrap .detailsMaintenance .mt-li view:last-child{
+  color:#5a60d3;
+  text-align:right;
+}
+
+.wrap .detailsMaintenance2 .mt-li view:last-child{
+  color:#60554f;
+  text-align:right;
+}
+
+.wrap .detailsMaintenance .mt-li view:first-child{
+  text-align:left;
+}
+
+.wrap .detailsMileage{
+  display:flex;
+}
+
+.wrap .detailsMileage .detailsMileageBox{
+  width:33.3%;
+  text-align:center;
+  margin-top:50rpx;
+}
+
+.wrap .detailsMileage .detailsMileageBox p{
+  width:100%;
+  display:block;
+  line-height:50rpx;
+  background:#fff;
+  color:#2c241f;
+}
+.wrap .detailsMileage .detailsMileageBox p:last-child{
+  color:#666B70;
+  font-size:24rpx;
+}
+
+.wrap .detailsMileage .detailsMileageBox p image{
+  width:70rpx;
+  height:70rpx;
+}
+.terms{
+    font-size: 28rpx;
+    color: #333;
+    text-align: center;
+    height: 80rpx;
+    line-height:80rpx;
+    background-color: #e6e6e6;
+    margin-bottom:50rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

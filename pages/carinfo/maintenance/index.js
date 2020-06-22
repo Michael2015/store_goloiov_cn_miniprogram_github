@@ -1,4 +1,4 @@
-const app=getApp();
+const app=getApp(); 
 Page({
 
   /**
@@ -7,42 +7,12 @@ Page({
   data: {
     list: []
   },
-  toXuanze(e){
-    var id = e.target.dataset.id;
-    wx.showModal({
-      title: '提示',
-      content: '您要选择该车辆为默认吗？',
-      success(res) {
-        if (res.confirm) {
-          app.http.post("/api/diag/editCarInfo", {
-            is_default: 1,
-            id
-          }).then(res => {
-            wx.showToast({
-              title: '设置成功'
-            })
-            setTimeout(() => {
-              wx.reLaunch({
-                url: "/pages/firstindex/index",
-              })
-            }, 1700)
-
-          })
-        } else if (res.cancel) {
-
-        }
-      }
-    })
-
-
-    
-    
-  },
-  toDetail(e){
-   // console.log(e)
-    var id =e.target.dataset.id;
+  toUrl(e){
+    console.log(e)
+   let jumpUrl = "/pages/common/goout/index?url=" + e.currentTarget.dataset.url;
+    console.log(jumpUrl);
     wx.navigateTo({
-      url: "/pages/carinfo/cardetails/index?id="+id,
+      url: jumpUrl,
     })
   },
   /**
@@ -52,15 +22,16 @@ Page({
     wx.showLoading({
       title: '加载中',
     });
-    app.http.post("/api/diag/getCarList").then(res=>{
-     // console.log(res.carInfo)
-     
+    app.http.post("/api/diag/getDiagReport").then(res => {
+
+      console.log(res);
       this.setData({
-        list: res.carInfo
-      },()=>{
+        list: res
+      }, () => {
         wx.hideLoading();
-      })
+      });
     })
+
   },
 
   /**

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -374,6 +374,20 @@
 					"id": -1,
 					"name": "pages/firstindex/index",
 					"pathName": "pages/firstindex/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 45,
+					"name": "x431二维码",
+					"pathName": "pages/index/index",
+					"query": "scene=12,0,0,x431",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/carinfo/maintenance/index",
+					"pathName": "pages/carinfo/maintenance/index",
 					"query": "",
 					"scene": null
 				}

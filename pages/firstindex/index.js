@@ -63,6 +63,7 @@ Page({
           routeName = 'report';
           break;
         case 2:
+          routeName = 'maintenance';
           break;
         case 3:
           routeName = 'carvalue';
