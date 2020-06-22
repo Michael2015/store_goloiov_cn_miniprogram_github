@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-list:[]
+list:""
   },
 
   /**
@@ -16,14 +16,11 @@ list:[]
       title: '加载中',
     });
     app.http.post("/api/diag/getBreakRule").then(res => {
-      wx.hideLoading();
-     // console.log(res);
-      this.setData({
-        list:res
-      })
-
+        wx.hideLoading();
+        this.setData({
+          list: res
+        })
     })
-
   },
 
   /**

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: ""
   },
   toXuanze(e){
     var id = e.target.dataset.id;
@@ -25,7 +25,7 @@ Page({
               wx.reLaunch({
                 url: "/pages/firstindex/index",
               })
-            }, 1700)
+            }, 1600)
 
           })
         } else if (res.cancel) {
@@ -40,6 +40,7 @@ Page({
   },
   toDetail(e){
    // console.log(e)
+    app.backToIndex.set("carinfo_cardetails", true);
     var id =e.target.dataset.id;
     wx.navigateTo({
       url: "/pages/carinfo/cardetails/index?id="+id,
@@ -49,17 +50,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   // console.log(getCurrentPages());
     wx.showLoading({
       title: '加载中',
     });
     app.http.post("/api/diag/getCarList").then(res=>{
      // console.log(res.carInfo)
-     
-      this.setData({
-        list: res.carInfo
-      },()=>{
-        wx.hideLoading();
-      })
+       this.setData({
+         list: res.carInfo
+       }, () => {
+         wx.hideLoading();
+       })
     })
   },
 

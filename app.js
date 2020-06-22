@@ -110,6 +110,20 @@ App({
       return app.globalData.toPageTop[n ? 'partner' : 'custom'];
     }
   },
+  backToIndex:{
+    set(key,bol){
+      app.globalData.isFirstIndex[key]= bol;
+    },
+    get(key){
+      return app.globalData.isFirstIndex[key];
+    },
+    allBack(){
+      let obj = app.globalData.isFirstIndex;
+      for(var key in obj){
+        obj[key]=true;
+      }
+    }
+  },
   globalData: {
     userInfo: {},
     partnerInfo: {},
@@ -124,6 +138,10 @@ App({
     toPageTop:{
       custom:true,
       partner:true
+    },
+    isFirstIndex:{
+      "carinfo_addcars":true,
+      "carinfo_cardetails":true
     }
   }
 })

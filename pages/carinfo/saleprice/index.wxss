@@ -1,5 +1,7 @@
+
 .index{
   height: 100vh;
+  position: relative;
   background: url("https://wcp.wanchepin.com/public/wap/x431/car_bg.png") no-repeat center;
   background-size: cover;
   overflow: hidden;
@@ -14,6 +16,7 @@
   height: 81rpx;
    position: absolute;
 top: 225rpx;
+z-index: 10;
 }
 .con1{
  left: 32rpx;
@@ -75,6 +78,14 @@ height: 350rpx;
 background: white;
 border-radius: 10rpx;
 overflow: hidden;
+position: relative;
+}
+.no_price{
+height: 100%;
+line-height: 350rpx;
+text-align: center;
+font-size:30rpx;
+color:rgba(113,46,46,1);
 }
 .second1{
 height:42rpx;

@@ -69,12 +69,7 @@ Page({
           break;
         case 4:
         //  console.log(this.data.carinfo.carInfo.sale_price)
-          if (this.data.carinfo.carInfo.sale_price){
           routeName = 'saleprice';
-          }
-          else{
-            routeName = 'salepriceedit';  
-          }
           break;
         case 5:
           routeName = 'illegalquery';
@@ -174,6 +169,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: async function() {
+    app.backToIndex.allBack();//设置标识为已回到首页
     const firstIndex = await app.http.post('/api/diag/getMyCar');
     console.log("请求", firstIndex);
     CarNum = firstIndex.is_band_car;
