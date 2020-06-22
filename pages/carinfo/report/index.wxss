@@ -4,21 +4,7 @@
   overflow: auto;
   position: relative;
 }
-.none{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  color: gray;
-  width: 50%;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-.none image{
-  width: 100%;
-  margin-bottom: 20rpx;
-}
+
 .list {
   height: 145rpx;
   border-bottom: 2rpx solid rgba(221, 221, 221, 1);

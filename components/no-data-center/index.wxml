@@ -1,0 +1,6 @@
+<view class="tem_wrap" wx:if="{{!list.length}}">
+<view class="none">
+    <image src="/assets/image/kong.png" mode="widthFix"></image>
+    <text>{{text}}</text>
+  </view>
+</view>

@@ -1,2 +1,3 @@
 <import src="../listTemplate.wxml"/>
 <template is="report" data="{{list}}"/>
+<NoData list="{{list}}" text="暂无数据"/>
