@@ -9,7 +9,7 @@ Page({
   },
 edit(){
   wx.setStorageSync("carInfo", this.data.carInfo);
-  app.backToIndex.set("carinfo_cardetails", true);
+  app.backToIndex.set("carinfo_salepriceedit", true);
   wx.navigateTo({
     url: "/pages/carinfo/salepriceedit/index",
   })
