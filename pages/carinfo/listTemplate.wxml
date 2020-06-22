@@ -59,7 +59,7 @@
         </view>
       </view>
     </view>
-    
+    <NoData list="{{list}}" text="暂无数据"/>
   </view>
 </template>
 
