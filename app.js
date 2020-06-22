@@ -141,7 +141,8 @@ App({
     },
     isFirstIndex:{
       "carinfo_addcars":true,
-      "carinfo_cardetails":true
+      "carinfo_cardetails":true,
+      "carinfo_salepriceedit":true
     }
   }
 })

@@ -25,7 +25,7 @@ Page({
               wx.reLaunch({
                 url: "/pages/firstindex/index",
               })
-            }, 1600)
+            }, 1500)
 
           })
         } else if (res.cancel) {
