@@ -92,10 +92,11 @@ Page({
           title: '保存成功'
         })
         setTimeout(() => {
-          wx.reLaunch({
+          app.backToIndex.set("carinfo_cardetails", false);
+          wx.navigateTo({
             url: '/pages/carinfo/carlist/index',
           })
-        }, 1700)
+        }, 1500)
       })
     }
 
@@ -114,10 +115,11 @@ Page({
               title: '删除成功'
             })
             setTimeout(() => {
-              wx.reLaunch({
+              app.backToIndex.set("carinfo_cardetails", false);
+              wx.navigateTo({
                 url: '/pages/carinfo/carlist/index',
               })
-            }, 1700)
+            }, 1500)
 
           })
         } else if (res.cancel) {
@@ -132,7 +134,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log(options);
+  
     var id = options.id;
     Id = id;
     app.http.post("/api/diag/getCarList", {
@@ -168,7 +170,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (!app.backToIndex.get("carinfo_cardetails")){
+      wx.navigateBack({
+        delta: getCurrentPages().length
+      })
+    } 
   },
 
   /**

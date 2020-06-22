@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list:""
   },
   toUrl(e){
     console.log(e)

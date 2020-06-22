@@ -26,9 +26,15 @@ Page({
       }).then(res => {
         wx.hideLoading();
         console.log(res);
-        wx.reLaunch({
+        app.backToIndex.set("carinfo_salepriceedit", false);
+        wx.showToast({
+          title: '保存成功',
+        })
+      setTimeout(()=>{
+        wx.navigateTo({
           url: '/pages/carinfo/saleprice/index',
         })
+      },1500)
       })
     }
   },
@@ -80,7 +86,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(getCurrentPages());
+    if (!app.backToIndex.get("carinfo_salepriceedit")) {
+      wx.navigateBack({
+        delta: getCurrentPages().length
+      })
+    } 
   },
 
   /**

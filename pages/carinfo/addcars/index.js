@@ -81,10 +81,11 @@ Page({
           title: '保存成功'
         })
         setTimeout(()=>{
-          wx.reLaunch({
+          app.backToIndex.set("carinfo_addcars",false);//这里设置一个标识，跳转到列表页后如果再点返回，正常情况下是回到添加车辆页//面，这里就可以跳过这一步直接回到首页
+          wx.navigateTo({
             url: '/pages/carinfo/carlist/index',
           })
-        },1700)
+        },1500)
       })
      // console.log(InputVal, SubmitInfo);
     }
@@ -180,7 +181,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (!app.backToIndex.get("carinfo_addcars")){
+      wx.navigateBack({
+        delta: getCurrentPages().length
+      })
+    }
   },
 
   /**

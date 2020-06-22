@@ -1,4 +1,4 @@
-<view  class="wrap">
+<view  class="wrap" hidden="{{!list}}">
 <view wx:if="{{list.length}}">
 <view class="index" wx:for="{{list}}" wx:key="index">
   <view class="address">
