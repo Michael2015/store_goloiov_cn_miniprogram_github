@@ -1,9 +1,8 @@
 .index{
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow: auto;
 }
 .index image{
   width: 100%;
-  height: 100%;
 }
