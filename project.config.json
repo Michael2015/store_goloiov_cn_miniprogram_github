@@ -378,11 +378,6 @@
 					"scene": null
 				},
 				{
-<<<<<<< HEAD
-					"id": -1,
-					"name": "pages/carinfo/showimage/showimage",
-					"pathName": "pages/carinfo/showimage/showimage",
-=======
 					"id": 45,
 					"name": "x431二维码",
 					"pathName": "pages/index/index",
@@ -393,7 +388,6 @@
 					"id": 46,
 					"name": "pages/carinfo/maintenance/index",
 					"pathName": "pages/carinfo/maintenance/index",
->>>>>>> 28ffbbbf2a18b27c3e71eb72d81f39613239bad4
 					"query": "",
 					"scene": null
 				}
