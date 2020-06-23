@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bannerImg:'',
     showShadow: false,
     weibao:'',
     carinfo:'',
@@ -35,6 +36,12 @@ Page({
         src: "https://wcp.wanchepin.com/public/wap/x431/common_fault.png"
     }],
     chePu: []
+  },
+  bannerurl(e){
+var url=e.currentTarget.dataset.url;
+wx.navigateTo({
+  url: url,
+})
   },
   toLogin(){
     var token = app.globalData.token;
@@ -160,14 +167,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
-    
+    const bannerImg = await app.http.post('/api/diag/getCarBanner');
+    console.log(bannerImg);
     //广告部分
     const chePu = await app.http.post('/api/Marketing/getAdv', {
       type: 2
     });
     this.setData({
       chePu,
-      showShadow: app.globalData.token?true:false
+      showShadow: app.globalData.token?true:false,
+      bannerImg: bannerImg[0]
     })
 
   },
