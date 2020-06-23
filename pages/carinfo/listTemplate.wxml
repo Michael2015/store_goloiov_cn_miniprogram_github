@@ -1,289 +1,300 @@
 <!--新增车辆-->
 <template name="addcars">
-  <view wx:for="{{list}}" wx:key="index" class="list">
-    <text>{{item.title}}</text>
-    <text>{{item.value||'上传行驶证后自动显示'}}</text>
-  </view>
+	<view wx:for="{{list}}" wx:key="index" class="list">
+		<text>{{item.title}}</text>
+		<text>{{item.value||'上传行驶证后自动显示'}}</text>
+	</view>
 </template>
 
 <!--编辑车辆信息-->
 <template name="cardetail">
-  <view wx:for="{{list}}" wx:key="index" class="list">
-    <text>{{item.title}}</text>
-    <input wx:if="{{item.name!=='drivetime'}}" placeholder="{{item.name==='mileage'?'单位 (万公里)':'请输入'}}"
-      value="{{item.value}}" data-ind="{{index}}" bindblur="blur"></input>
-    <picker wx:else mode="date" value="{{item.value}}" bindchange="bindDateChange">
-      {{item.value}}
-    </picker>
-  </view>
+	<view wx:for="{{list}}" wx:key="index" class="list">
+		<text>{{item.title}}</text>
+		<input wx:if="{{item.name!=='drivetime'}}" placeholder="{{item.name==='mileage'?'单位 (公里)':'请输入'}}" value="{{item.value}}" data-ind="{{index}}" bindblur="blur"></input>
+		<picker wx:else mode="date" value="{{item.value}}" bindchange="bindDateChange">
+			{{item.value}}
+		</picker>
+	</view>
 </template>
 
 
 <!--车辆列表-->
 <template name="carlist">
-  <view wx:if="{{list.length}}">
-    <view class="list" wx:for="{{list}}" wx:key="index">
-      <view class="left">
-        <view>
-          <text class="nofirst">{{format.carNumFirstFormat(item.hphm)}}</text>
-          <text>{{format.carNumLastFormat(item.hphm)}}</text>
-        </view>
-        <view>{{item.brand_label}}</view>
-      </view>
-      <view class="right">
-        <view bindtap='toXuanze' data-id="{{item.id}}">
-          <image src="/assets/image/xuanze.png" data-id="{{item.id}}"></image>
-          <text data-id="{{item.id}}">选择</text>
-        </view>
-        <view bindtap='toDetail' data-id="{{item.id}}">
-          <image src="/assets/image/bianji.png" data-id="{{item.id}}"></image>
-          <text data-id="{{item.id}}">编辑</text>
-        </view>
-      </view>
-    </view>
-  </view>
+	<view wx:if="{{list.length}}">
+		<view class="list" wx:for="{{list}}" wx:key="index">
+			<view class="left">
+				<view>
+					<text class="nofirst">{{format.carNumFirstFormat(item.hphm)}}</text>
+					<text>{{format.carNumLastFormat(item.hphm)}}</text>
+				</view>
+				<view>{{item.brand_label}}</view>
+			</view>
+			<view class="right">
+				<view bindtap='toXuanze' data-id="{{item.id}}">
+					<image src="/assets/image/xuanze.png" data-id="{{item.id}}"></image>
+					<text data-id="{{item.id}}">选择</text>
+				</view>
+				<view bindtap='toDetail' data-id="{{item.id}}">
+					<image src="/assets/image/bianji.png" data-id="{{item.id}}"></image>
+					<text data-id="{{item.id}}">编辑</text>
+				</view>
+			</view>
+		</view>
+	</view>
 </template>
 
 <!--诊断报告-->
 <template name="report">
-  <view class="index" hidden="{{!list}}">
-    <view class="has" wx:if="{{list.length}}">
-      <view class="list" wx:for="{{list}}" wx:key="index" data-url="{{item.jump_url}}" bindtap="toUrl">
-        <view class="one">
-          <view>
-            <text>golo</text>
-          </view>
-        </view>
-        <view class="two">
-          <view>汽车基础检测报告</view>
-          <view>{{item.update_time}}</view>
-        </view>
-      </view>
-    </view>
-    <NoData list="{{list}}" text="暂无数据" />
-  </view>
+	<view class="index" hidden="{{!list}}">
+		<view class="has" wx:if="{{list.length}}">
+			<view class="list" wx:for="{{list}}" wx:key="index" data-url="{{item.jump_url}}" bindtap="toUrl">
+				<view class="one">
+					<view>
+						<text>golo</text>
+					</view>
+				</view>
+				<view class="two">
+					<view>汽车基础检测报告</view>
+					<view>{{item.update_time}}</view>
+				</view>
+			</view>
+		</view>
+		<NoData list="{{list}}" text="暂无数据" />
+	</view>
 </template>
 
 <!--维保报告-->
 <template name="maintenance">
-  <view class="index">
-    <view class="has" wx:if="{{diag_report}}">
-      <view class="wrap">
-        <view class="head">
-          <legend>{{diag_report.brand}}</legend>
-        </view>
-        <view class="detailsVin">
-          <label>{{diag_report.vin}}</label>
-          <label>{{diag_report.makeReportDate}}</label>
-        </view>
-        <view class="content">
-          <view class="reportNewTit">历史车况综合评级<label class="ratingTxt">评级说明</label></view>
-          <view class="ratingNenw">
-            <view>
-              <p><span><text decode="{{true}}" space="{{true}}">&nbsp;{{diag_report.reportClass}}&nbsp;</text></span>级
-              </p>
-              <p class="dt">事故火烧水泡</p>
-              <p class="lv">S<text decode="{{true}}" space="{{true}}">&nbsp;M&nbsp;</text>R</p>
-            </view>
-            <view>
-              <p><span>{{format.toFix(diag_report.scoreCarCondition)}}</span></p>
-              <p class="dt">整车车况评分</p>
-              <p class="lv">满分5分</p>
-            </view>
-            <view>
-              <p><span><text decode="{{true}}"
+	<view class="index">
+		<view class="has" wx:if="{{diag_report}}">
+			<view class="wrap">
+				<view class="head">
+					<legend>{{diag_report.brand}}</legend>
+				</view>
+				<view class="detailsVin">
+					<label>{{diag_report.vin}}</label>
+					<label>{{diag_report.makeReportDate}}</label>
+				</view>
+				<view class="content">
+					<view class="reportNewTit">历史车况综合评级<label class="ratingTxt">评级说明</label></view>
+					<view class="ratingNenw">
+						<view>
+							<p><span><text decode="{{true}}" space="{{true}}">&nbsp;{{diag_report.reportClass}}&nbsp;</text></span>级
+							</p>
+							<p class="dt">事故火烧水泡</p>
+							<p class="lv">S<text decode="{{true}}" space="{{true}}">&nbsp;M&nbsp;</text>R</p>
+						</view>
+						<view>
+							<p><span>{{format.toFix(diag_report.scoreCarCondition)}}</span></p>
+							<p class="dt">整车车况评分</p>
+							<p class="lv">满分5分</p>
+						</view>
+						<view>
+							<p><span><text decode="{{true}}"
                     space="{{true}}">&nbsp;{{diag_report.importantPartsClass}}&nbsp;</text></span>级</p>
-              <p class="dt">重要部件评级</p>
-              <p class="lv">A<text decode="{{true}}" space="{{true}}">&nbsp;B&nbsp;</text>C</p>
-            </view>
-          </view>
-          <view class="reportNewTit reportNewTit2">解析顺序<label class="ratingTxt">解析规则</label></view>
-          <view class="ratingList">
-            <view class="li {{diag_report.scoreCarFire < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV16.png"></image>
-              火烧排查
-              <label
-                class="{{diag_report.scoreCarFire < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarFire)}}分</label>
-            </view>
-            <view class="li {{diag_report.scoreCarWater < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV20.png"></image>
-              泡水排查
-              <label
-                class="{{diag_report.scoreCarWater < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarWater)}}分</label>
-            </view>
-            <view class="li {{diag_report.scoreCarAccident < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV23.png"></image>
-              事故排查
-              <label
-                class="{{diag_report.scoreCarAccident < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarAccident)}}分</label>
-            </view>
-            <view class="li {{diag_report.scoreCarEngineAndGearbox < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV17.png"></image>
-              发动机/变速箱排查
-              <label
-                class="{{diag_report.scoreCarEngineAndGearbox < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarEngineAndGearbox)}}分</label>
-            </view>
-            <view class="li {{diag_report.scoreComponent < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV22.png"></image>
-              重要部件排查
-              <label
-                class="{{diag_report.scoreComponent < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreComponent)}}分</label>
-            </view>
-            <view class="li {{diag_report.scoreCarOutside < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV21.png"></image>
-              车身外观
-              <label
-                class="{{diag_report.scoreCarOutside < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarOutside)}}分</label>
-            </view>
-            <view class="li">
-              <image src="http://resource.chaboshi.cn/resources/wap/maintenanceReport/reportV27.png"></image>
-              里程记录
-              <label>正常</label>
-            </view>
-            <view class="li">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV19.png"></image>
-              保养记录
-              <label>{{diag_report.recordsMaintenance.length}}条</label>
-            </view>
-            <view class="li {{diag_report.scoreCarOwnerCherishment < 5 ? 'red':''}}">
-              <image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV16.png"></image>
-              车主爱惜度
-              <label
-                class="{{diag_report.scoreCarOwnerCherishment < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarOwnerCherishment)}}分</label>
-            </view>
-          </view>
-          <div class="reportNewPrompt">温馨提示:未满5分异常项，请注意查看具体情况</div>
-        </view>
-        <view class="detailsListCar">
-          <view class="lis-li">
-            <view class="hh">年均行驶里程</view>
-            <view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
-            <view class="ee">{{diag_report.avgYearMileage}}公里</view>
-          </view>
-          <view class="lis-li">
-            <view class="hh">年均保养次数</view>
-            <view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
-            <view class="ee">{{diag_report.avgYearMaintenanceTimes}}次</view>
-          </view>
-          <view class="lis-li">
-            <view class="hh">最后保养时间</view>
-            <view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
-            <view class="ee">{{format.date(diag_report.lastMaintenanceTime)}}</view>
-          </view>
-          <view class="lis-li">
-            <view class="hh">最后记录时间</view>
-            <view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
-            <view class="ee">{{format.date(diag_report.lastRepTime)}}</view>
-          </view>
-        </view>
+							<p class="dt">重要部件评级</p>
+							<p class="lv">A<text decode="{{true}}" space="{{true}}">&nbsp;B&nbsp;</text>C</p>
+						</view>
+					</view>
+					<view class="reportNewTit reportNewTit2">解析顺序<label class="ratingTxt">解析规则</label></view>
+					<view class="ratingList">
+						<view class="li {{diag_report.scoreCarFire < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV16.png"></image>
+							火烧排查
+							<label class="{{diag_report.scoreCarFire < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarFire)}}分</label>
+						</view>
+						<view class="li {{diag_report.scoreCarWater < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV20.png"></image>
+							泡水排查
+							<label class="{{diag_report.scoreCarWater < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarWater)}}分</label>
+						</view>
+						<view class="li {{diag_report.scoreCarAccident < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV23.png"></image>
+							事故排查
+							<label class="{{diag_report.scoreCarAccident < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarAccident)}}分</label>
+						</view>
+						<view class="li {{diag_report.scoreCarEngineAndGearbox < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV17.png"></image>
+							发动机/变速箱排查
+							<label class="{{diag_report.scoreCarEngineAndGearbox < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarEngineAndGearbox)}}分</label>
+						</view>
+						<view class="li {{diag_report.scoreComponent < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV22.png"></image>
+							重要部件排查
+							<label class="{{diag_report.scoreComponent < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreComponent)}}分</label>
+						</view>
+						<view class="li {{diag_report.scoreCarOutside < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV21.png"></image>
+							车身外观
+							<label class="{{diag_report.scoreCarOutside < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarOutside)}}分</label>
+						</view>
+						<view class="li">
+							<image src="http://resource.chaboshi.cn/resources/wap/maintenanceReport/reportV27.png"></image>
+							里程记录
+							<label>正常</label>
+						</view>
+						<view class="li">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV19.png"></image>
+							保养记录
+							<label>{{diag_report.recordsMaintenance.length}}条</label>
+						</view>
+						<view class="li {{diag_report.scoreCarOwnerCherishment < 5 ? 'red':''}}">
+							<image src="https://m.chaboshi.cn/wap/maintenanceReport/img/reportV16.png"></image>
+							车主爱惜度
+							<label class="{{diag_report.scoreCarOwnerCherishment < 5 ? 'red':''}}">{{format.toFix(diag_report.scoreCarOwnerCherishment)}}分</label>
+						</view>
+					</view>
+					<div class="reportNewPrompt">温馨提示:未满5分异常项，请注意查看具体情况</div>
+				</view>
+				<view class="detailsListCar">
+					<view class="lis-li">
+						<view class="hh">年均行驶里程</view>
+						<view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
+						<view class="ee">{{diag_report.avgYearMileage}}公里</view>
+					</view>
+					<view class="lis-li">
+						<view class="hh">年均保养次数</view>
+						<view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
+						<view class="ee">{{diag_report.avgYearMaintenanceTimes}}次</view>
+					</view>
+					<view class="lis-li">
+						<view class="hh">最后保养时间</view>
+						<view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
+						<view class="ee">{{format.date(diag_report.lastMaintenanceTime)}}</view>
+					</view>
+					<view class="lis-li">
+						<view class="hh">最后记录时间</view>
+						<view class="cc"><text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text></view>
+						<view class="ee">{{format.date(diag_report.lastRepTime)}}</view>
+					</view>
+				</view>
 
-        <view class="reportNewTit reportNewTit2">车身外观<label class="ratingTxt ratingTxt2">
-            <span wx:if="{{diag_report.scoreCarOutside > 0}}" class="troubleshootNumImg"><text decode="{{true}}"
+				<view class="reportNewTit reportNewTit2">车身外观<label class="ratingTxt ratingTxt2">
+						<span wx:if="{{diag_report.scoreCarOutside > 0}}" class="troubleshootNumImg"><text decode="{{true}}"
                 space="{{true}}">&nbsp;</text></span>
-            <span wx:if="{{diag_report.scoreCarOutside > 1}}" class="troubleshootNumImg"><text decode="{{true}}"
+						<span wx:if="{{diag_report.scoreCarOutside > 1}}" class="troubleshootNumImg"><text decode="{{true}}"
                 space="{{true}}">&nbsp;</text></span>
-            <span wx:if="{{diag_report.scoreCarOutside > 2}}" class="troubleshootNumImg"><text decode="{{true}}"
+						<span wx:if="{{diag_report.scoreCarOutside > 2}}" class="troubleshootNumImg"><text decode="{{true}}"
                 space="{{true}}">&nbsp;</text></span>
-            <span wx:if="{{diag_report.scoreCarOutside > 3}}" class="troubleshootNumImg"><text decode="{{true}}"
+						<span wx:if="{{diag_report.scoreCarOutside > 3}}" class="troubleshootNumImg"><text decode="{{true}}"
                 space="{{true}}">&nbsp;</text></span>
-            <span wx:if="{{diag_report.scoreCarOutside > 4}}" class="troubleshootNumImg"><text decode="{{true}}"
+						<span wx:if="{{diag_report.scoreCarOutside > 4}}" class="troubleshootNumImg"><text decode="{{true}}"
                 space="{{true}}">&nbsp;</text></span>
-            <span class="troubleshootNumImg2"><text decode="{{true}}"
+						<span class="troubleshootNumImg2"><text decode="{{true}}"
                 space="{{true}}">&nbsp;</text>{{format.toFix(diag_report.scoreCarOutside)}}分</span>
-          </label></view>
-        <view class="troubleshootList">
-          <view
-            class="t-li {{format.car(item,diag_report.carOutSide[0].repairRecord.recordItems)?'detailsAccidentImg':''}}"
-            wx:for="{{car}}">{{item}}</view>
-        </view>
-        <view class="troubleshootTxt">
-          <view class="troubleshootBox">
-            <i></i>
-            <span>维修历史</span>
-            <label>{{format.date(diag_report.carOutSide[0].repairRecord.repairBeginDate)}}</label>
-          </view>
-          <p>项目描述：
-            <block wx:for="{{diag_report.carOutSide[0].repairRecord.recordItems}}" wx:for-item="item2">
-              {{item2.description}}；</block>
-          </p>
-        </view>
+					</label></view>
+				<view class="troubleshootList">
+					<view class="t-li {{format.car(item,diag_report.carOutSide[0].repairRecord.recordItems)?'detailsAccidentImg':''}}" wx:for="{{car}}">{{item}}</view>
+				</view>
+				<view class="troubleshootTxt">
+					<view class="troubleshootBox">
+						<i></i>
+						<span>维修历史</span>
+						<label>{{diag_report.carOutSide[0] ? format.date(diag_report.carOutSide[0].repairRecord.repairBeginDate) : ''}}</label>
+					</view>
+					<p>项目描述：
+						<block wx:if="{{diag_report.carOutSide[0]}}" wx:for="{{diag_report.carOutSide[0].repairRecord.recordItems}}" wx:for-item="item2">
+							{{item2.description}}；
+            </block>
+					</p>
+				</view>
 
-        <view class="reportNewTit reportNewTit2">保养记录<label class="ratingTxt"></label></view>
-        <view class="detailsMaintenance">
-          <view class="mt-li" wx:for="{{diag_report.recordsMaintenance}}">
-            <view>{{format.date(item.repairBeginDate)}}</view>
-            <view>{{item.mileage}} km</view>
-            <view bindtap="showInfo" data-material="{{item.material}}" data-repairType="{{item.repairType}}">查看</view>
-          </view>
-        </view>
+				<view class="reportNewTit reportNewTit2">保养记录<label class="ratingTxt"></label></view>
+				<view class="detailsMaintenance">
+					<view class="mt-li" wx:for="{{diag_report.recordsMaintenance}}">
+						<view>{{format.date(item.repairBeginDate)}}</view>
+						<view>{{item.mileage}} km</view>
+						<view bindtap="showInfo" data-material="{{item.material}}" data-repairType="{{item.repairType}}">查看</view>
+					</view>
+				</view>
 
-        <view class="reportNewTit reportNewTit2">历史里程<label class="ratingTxt"></label></view>
-        <view class="detailsMileage">
-          <view class="detailsMileageBox">
-            <p>
-              <image src="https://wcp.wanchepin.com/public/wap/x431/reportV7.png"></image>
-            </p>
-            <p>{{diag_report.mileageInfo.TraveledMileage}} KM</p>
-            <p>已行驶里程</p>
-          </view>
-          <view class="detailsMileageBox">
-            <p>
-              <image src="https://wcp.wanchepin.com/public/wap/x431/reportV8.png"></image>
-            </p>
-            <p>{{diag_report.mileageInfo.ErrorMileageTimes}} 条</p>
-            <p>异常里程记录</p>
-          </view>
-          <view class="detailsMileageBox">
-            <p>
-              <image src="https://wcp.wanchepin.com/public/wap/x431/reportV9.png"></image>
-            </p>
-            <p>{{diag_report.mileageInfo.ExpectMileage}} KM</p>
-            <p>预估里程数</p>
-          </view>
-        </view>
-        <view class="detailsMaintenance detailsMaintenance2">
-          <view class="mt-li" wx:for="{{diag_report.mileageInfo.MileageBaseInfos}}">
-            <view>{{format.date(item.date)}}</view>
-            <view>{{item.mile}} km</view>
-            <view>{{item.type}}</view>
-          </view>
-        </view>
-      </view>
-      <view class="terms">《万车品免责条款》</view>
-    </view>
-    <view wx:else class="none">
-      <image src="/assets/image/kong.png" mode="widthFix"></image>
-      <text style="display:inline-block;">暂无数据</text>
-    </view>
-  </view>
+				<view class="reportNewTit reportNewTit2">历史里程<label class="ratingTxt"></label></view>
+				<view class="detailsMileage">
+					<view class="detailsMileageBox">
+						<p>
+							<image src="https://wcp.wanchepin.com/public/wap/x431/reportV7.png"></image>
+						</p>
+						<p>{{diag_report.mileageInfo.TraveledMileage}} KM</p>
+						<p>已行驶里程</p>
+					</view>
+					<view class="detailsMileageBox">
+						<p>
+							<image src="https://wcp.wanchepin.com/public/wap/x431/reportV8.png"></image>
+						</p>
+						<p>{{diag_report.mileageInfo.ErrorMileageTimes}} 条</p>
+						<p>异常里程记录</p>
+					</view>
+					<view class="detailsMileageBox">
+						<p>
+							<image src="https://wcp.wanchepin.com/public/wap/x431/reportV9.png"></image>
+						</p>
+						<p>{{diag_report.mileageInfo.ExpectMileage}} KM</p>
+						<p>预估里程数</p>
+					</view>
+				</view>
+				<view class="detailsMaintenance detailsMaintenance2">
+					<view class="mt-li" wx:for="{{diag_report.mileageInfo.MileageBaseInfos}}">
+						<view>{{format.date(item.date)}}</view>
+						<view>{{item.mile}} km</view>
+						<view>{{item.type}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="terms">《万车品免责条款》</view>
+		</view>
+		<view wx:else class="none">
+			<image src="/assets/image/kong.png" mode="widthFix"></image>
+			<text style="display:inline-block;">暂无数据</text>
+		</view>
+	</view>
 </template>
 
 <!--卖车报价编辑-->
 <template name="salepriceedit">
-  <view wx:for="{{list}}" wx:key="index" class="list">
-    <text>{{item.title}}</text>
-    <text wx:if="{{item.name!=='sale_price'}}">{{item.value}}</text>
-    <input wx:else placeholder="(单位：万元)" bindblur="blur" value="{{item.value||''}}" bindinput="input"></input>
-  </view>
+	<view wx:for="{{list}}" wx:key="index" class="list">
+		<text>{{item.title}}</text>
+		<text wx:if="{{item.name!=='sale_price'}}">{{item.value}}</text>
+		<input wx:else placeholder="(单位：元)" bindblur="blur" value="{{item.value||''}}" bindinput="input"></input>
+	</view>
 </template>
 
 <wxs module="format">
-  var carNumFirstFormat = function(str) {
-  return str.substring(0, 2);
-  };
-  var carNumLastFormat = function(str) {
-  return str.substring(2);
-  };
-  var toFix = function (value) {
-  return value.toFixed(1) // 此处2为保留两位小数，保留几位小数，这里写几
-  };
-  var date = function(time)
-  {
-  var date = getDate(time);
-  var YY = date.getFullYear() + '-';
-  var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-' ; var DD=(date.getDate()
-    < 10 ? '0' + (date.getDate()) : date.getDate()); return YY + MM + DD; }; var arrayToStr=function (value) { return
-    value; }; var car=function(value,car){ var flag=false; car.forEach(function(val,key){
-    if(val.description.indexOf(value.replace('保险','')) !==-1) { flag=true; } }); return flag; }; module.exports={
-    carNumFirstFormat: carNumFirstFormat, carNumLastFormat: carNumLastFormat, toFix: toFix, date: date,
-    arrayToStr:arrayToStr, car:car, } </wxs>
+	var carNumFirstFormat = function(str) {
+		return str.substring(0, 2);
+	};
+	var carNumLastFormat = function(str) {
+		return str.substring(2);
+	};
+	var toFix = function(value) {
+		return value.toFixed(1) // 此处2为保留两位小数，保留几位小数，这里写几
+	};
+	var date = function(time) {
+		var date = getDate(time);
+		var YY = date.getFullYear() + '-';
+		var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+		var DD = (date.getDate() <
+			10 ? '0' + (date.getDate()) : date.getDate());
+		return YY + MM + DD;
+	};
+	var arrayToStr = function(value) {
+		return
+		value;
+	};
+	var car = function(value, car) {
+		var flag = false;
+		car.forEach(function(val, key) {
+			if (val.description.indexOf(value.replace('保险', '')) !== -1) {
+				flag = true;
+			}
+		});
+		return flag;
+	};
+	module.exports = {
+		carNumFirstFormat: carNumFirstFormat,
+		carNumLastFormat: carNumLastFormat,
+		toFix: toFix,
+		date: date,
+		arrayToStr: arrayToStr,
+		car: car,
+	}
+</wxs>

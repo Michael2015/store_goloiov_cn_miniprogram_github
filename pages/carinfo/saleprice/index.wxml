@@ -11,7 +11,7 @@
         </view>
       </view>
       <view class="first2">
-        <text>{{carInfo.mileage}}w公里</text>
+        <text>{{carInfo.mileage}}公里</text>
         <text>|</text>
         <text>{{carInfo.drivetime}}</text>
       </view>
@@ -22,7 +22,7 @@
         <view class="second1">卖车报价</view>
         <view class="second2">
           <text>{{carInfo.sale_price}}</text>
-          <text>万元</text>
+          <text>元</text>
         </view>
       </view>
     </view>

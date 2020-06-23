@@ -14,7 +14,7 @@ Page({
       name: "brand_label",
       value: ""
     }, {
-      title: '万公里数',
+      title: '公里数',
       name: "mileage",
       value: ""
     }, {
