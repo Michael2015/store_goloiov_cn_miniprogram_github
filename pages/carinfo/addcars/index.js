@@ -30,7 +30,7 @@ Page({
       name: 'drivetime'
     }],
     hid: true,
-    imgUrl : 'https://wcp.wanchepin.com/public/wap/website/carid.png'
+    imgUrl : 'https://img.wanchepin.com/public/wap/website/carid.png'
   },
   listInit() {
     var arr = this.data.list;

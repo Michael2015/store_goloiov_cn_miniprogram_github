@@ -53,7 +53,7 @@ Page({
     if (!CarNum) {
       wx.showModal({
         title: '提示',
-        content: '您暂未绑定车辆，请先添加我的车辆',
+        content: '您暂未绑定车辆，请先绑定',
         success(res) {
           if (res.confirm) {
             wx.navigateTo({
