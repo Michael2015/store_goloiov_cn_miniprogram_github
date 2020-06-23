@@ -1,10 +1,12 @@
-<view class='redpack' hidden="{{allLoad||!canOpen}}">
+<view hidden="{{hadOpen===null}}">
+<view class='redpack' wx:if="{{hadOpen}}">
   <view class="top_bg">
     <image src='http://img.wanchepin.com/public/wap/tech/5.png' bindload="imgLoad"></image>
     <view class="money">0.97
       <text>元</text>
     </view>
-    <image src="http://img.wanchepin.com/public/wap/tech/1.png" class="tixian" bindload="imgLoad"     bindtap='tixian'></image>
+    <image src="http://img.wanchepin.com/public/wap/tech/1.png" class="tixian" bindload="imgLoad"   
+     bindtap='tixian'></image>
   </view>
   <view class="friend">
     <image src='http://img.wanchepin.com/public/wap/tech/2.png' bindload="imgLoad"></image>
@@ -43,6 +45,11 @@
   <image src="http://img.wanchepin.com/public/wap/tech/4.png" bindload="imgLoad" mode="widthFix"></image>
 </view>
   </view>
+</view>
+<view wx:else class="redpackpic">
+  <image src="http://img.wanchepin.com/public/wap/website/redPaper.gif"  bindtap="openRedPack">
+  </image>
+</view>
 </view>
 <wxs module="format">
 var formatFriend = function(arr,key){
