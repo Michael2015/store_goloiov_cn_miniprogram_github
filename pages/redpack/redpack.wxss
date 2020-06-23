@@ -162,6 +162,14 @@ top: 30%;
 left: 46rpx;
 right: 46rpx;
 }
+.redpackpic{
+  height: 100vh;
+  overflow: hidden;
+}
+.redpackpic image{
+  width: 100%;
+  height: 100%;
+}
 @keyframes mymove {
   from {
     width: 0;

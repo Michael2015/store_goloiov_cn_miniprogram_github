@@ -1,6 +1,6 @@
 
 const app = getApp()
-let ImgNum=0,hasRes=false;
+let ImgNum=0,hasRes=false,Token="";
 Page({
 
   /**
@@ -9,6 +9,7 @@ Page({
   data: {
     allLoad:true,
     canOpen:false,
+    hadOpen:null,
     friend:[]
   },
   imgLoad(){
@@ -24,22 +25,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(wx.getLaunchOptionsSync());
-    app.http.get('/api/marketing/sendRedPack').then(res => {
-      console.log(res)
-     // var { timeStamp, nonceStr, package, signType, paySign }
-      if (res.package){
-      wx.sendBizRedPacket({
-        timeStamp: res.timeStamp, // 支付签名时间戳，
-        nonceStr: res.nonceStr, // 支付签名随机串，不长于 32 位
-        package: res.package, //扩展字段，由商户传入
-        signType: res.signType, // 签名方式，
-        paySign: res. paySign, // 支付签名
-        success: function (r) {console.log(r)},
-        fail: function (e) { console.log(e) }
-        })
-      }
-    })
+    wx.showLoading({
+      title: '加载中',
+    });
+    var flag=false;
+    Token=app.globalData.token;
+if(wx.getStorageSync(Token+'hasOpen')){
+  flag=true;
+}
+this.setData({
+  hadOpen: flag
+},()=>{
+wx.hideLoading();
+});
+   
   },
 
   /**
@@ -53,10 +52,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading({
+    /*wx.showLoading({
       title: '加载中',
     })
-    app.http.get('/api/golotech/getMyFriends').then(res=>{
+     app.http.get('/api/golotech/getMyFriends').then(res=>{
       hasRes=true;
       !this.data.allLoad && wx.hideLoading();
         this.setData({
@@ -74,9 +73,15 @@ Page({
             }
           }))
         })
-      })
+      }) */
     
   },
+openRedPack(){
+  wx.setStorageSync(Token+'hasOpen', true);
+  this.setData({
+    hadOpen:true
+  });
+},
 tixian(){
   wx.switchTab({
     url: '/pages/partner/income/index'
