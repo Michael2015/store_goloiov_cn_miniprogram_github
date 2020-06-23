@@ -5,22 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src:""
+    src: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-console.log(options.url);
-wx.showLoading({
-  title: '加载中',
-})
-this.setData({
-  src: options.url
-},()=>{
-  wx.hideLoading();
-})
+    console.log(options.url);
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.setData({
+      src: options.url
+    }, () => {
+      wx.hideLoading();
+    })
   },
 
   /**
