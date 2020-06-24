@@ -144,6 +144,7 @@ Page({
     return {
       title:"万车品红包活动",
       path: `pages/index/index?type=share&s=${app.globalData.userInfo.uid}&p=${app.globalData.userInfo.uid}&st=0&type=invaite&source=golotech`,
+
     }
   }
 })

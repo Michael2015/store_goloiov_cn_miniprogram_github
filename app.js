@@ -114,7 +114,7 @@ App({
     userInfo: {},
     partnerInfo: {},
     token: '',
-    //token: "7822582cfafe76674744f320cecc6ad1",
+   // token: ""||"5b1361e9ce26196099841d72890d3441",
     // role: 用户角色 0客户 1合伙人
     role: null,   
     HOST: 'https://wcp.wanchepin.com',
