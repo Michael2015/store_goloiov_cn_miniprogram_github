@@ -1,8 +1,9 @@
 <view hidden="{{hadOpen===null}}">
 <view class='redpack' wx:if="{{hadOpen}}">
+  <view hidden="{{!allLoad}}">
   <view class="top_bg">
     <image src='http://img.wanchepin.com/public/wap/tech/5.png' bindload="imgLoad"></image>
-    <view class="money">0.97
+    <view class="money">{{money}}
       <text>元</text>
     </view>
     <image src="http://img.wanchepin.com/public/wap/tech/1.png" class="tixian" bindload="imgLoad"   
@@ -45,6 +46,7 @@
   <image src="http://img.wanchepin.com/public/wap/tech/4.png" bindload="imgLoad" mode="widthFix"></image>
 </view>
   </view>
+</view>
 </view>
 <view wx:else class="redpackpic">
   <image src="http://img.wanchepin.com/public/wap/website/redPaper.gif"  bindtap="openRedPack">

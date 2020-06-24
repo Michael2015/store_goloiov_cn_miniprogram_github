@@ -1,23 +1,24 @@
 
 const app = getApp()
-let ImgNum=0,hasRes=false,Token="";
+let ImgNum = '', Token = "";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    allLoad:true,
-    canOpen:false,
-    hadOpen:null,
-    friend:[]
+    allLoad: false,
+    hadOpen: null,
+    friend: [],
+    money: ''
   },
-  imgLoad(){
+  imgLoad() {
     ++ImgNum;
-    if (ImgNum===5){
-      hasRes && wx.hideLoading();
+    //console.log(ImgNum);
+    if (ImgNum === 5) {
+      wx.hideLoading();
       this.setData({
-        allLoad: false
+        allLoad: true
       })
     }
   },
@@ -25,20 +26,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    ImgNum = 0;
     wx.showLoading({
-      title: '加载中',
+      title: "加载中"
     });
-    var flag=false;
-    Token=app.globalData.token;
-if(wx.getStorageSync(Token+'hasOpen')){
-  flag=true;
-}
-this.setData({
-  hadOpen: flag
-},()=>{
-wx.hideLoading();
-});
-   
+    var flag = false;
+    Token = app.globalData.token;
+    if (wx.getStorageSync(Token + 'hasOpen')) {
+      flag = true;
+
+    }
+    this.setData({
+      hadOpen: flag
+    }, () => {
+      wx.hideLoading();
+    });
+
   },
 
   /**
@@ -52,47 +55,55 @@ wx.hideLoading();
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    /*wx.showLoading({
-      title: '加载中',
+
+
+    app.http.get("/api/golotech/sendRedpack").then(res => {
+      //   console.log(res);
+      this.setData({
+        money: res
+      })
+    });
+
+
+    app.http.get('/api/golotech/getMyFriends').then(res => {
+      this.setData({
+        friend: res.map(item => {
+          return {
+            ...item,
+            has: true
+          }
+        }).concat(Array.from({ length: 5 - res.length }, () => {
+          return {
+            avatar: '',
+            nickname: '',
+            has: false
+          }
+        }))
+      })
     })
-     app.http.get('/api/golotech/getMyFriends').then(res=>{
-      hasRes=true;
-      !this.data.allLoad && wx.hideLoading();
-        this.setData({
-          canOpen:true,
-          friend:res.map(item=>{
-            return{
-              ...item,
-              has:true
-            }
-          }).concat(Array.from({length:5-res.length},()=>{
-            return{
-              avatar:'',
-              nickname:'',
-              has:false
-            }
-          }))
-        })
-      }) */
-    
+
   },
-openRedPack(){
-  wx.setStorageSync(Token+'hasOpen', true);
-  this.setData({
-    hadOpen:true
-  });
-},
-tixian(){
-  wx.switchTab({
-    url: '/pages/partner/income/index'
-  })
-},
-  go_buy(){
+  openRedPack() {
+    wx.showLoading({
+      title: "加载中"
+    });
+    ImgNum = 0;
+    wx.setStorageSync(Token + 'hasOpen', true);
+    this.setData({
+      hadOpen: true
+    });
+  },
+  tixian() {
+    wx.switchTab({
+      url: '/pages/partner/income/index'
+    })
+  },
+  go_buy() {
     wx.navigateTo({
       url: '/pages/partner/detail/detail?id=374',
     })
   },
-  go_wan(){
+  go_wan() {
     wx.navigateTo({
       url: '/pages/index/index',
     })
@@ -130,6 +141,9 @@ tixian(){
    * 用户点击右上角分享
    */
   onShareAppMessage: function (e) {
-    console.log(e)
+    return {
+      title:"万车品红包活动",
+      path: `pages/index/index?type=share&s=${app.globalData.userInfo.uid}&p=${app.globalData.userInfo.uid}&st=0&type=invaite&source=golotech`,
+    }
   }
 })
