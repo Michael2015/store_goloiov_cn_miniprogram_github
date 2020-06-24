@@ -426,6 +426,11 @@ Page({
     this.setData({ scrollTop: event.detail.scrollTop })
   },
   onShow: async function () {
+/*setTimeout(()=>{
+     wx.navigateTo({
+       url: "/pages/redpack/redpack",
+     })
+   },2000)*/
     if (app.pageToTop.get(1)) {
       wx.pageScrollTo({
         scrollTop: 0,
