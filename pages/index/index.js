@@ -360,6 +360,14 @@ function analysisOptions(options, res) {
         app.globalData.shareInfo.share_partner_id = options.p // 店铺 或者 合伙人id
         app.globalData.shareInfo.share_product_id = options.st // 商品id
         app.globalData.shareInfo.type = options.type // 分享类型
+
+        //微信红包活动
+        if(options.source === 'golotech')
+        {
+            wx.redirectTo({
+                url: '/pages/redpack/redpack'
+            })
+        }
         //根据用户身份不同去对应的商品详情页
         if (res.is_promoter === 0) {
             wx.redirectTo({

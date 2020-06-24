@@ -309,6 +309,12 @@ function analysisOptions(options, res) {
             // 到这里说明已经加入团队了
             // 直接跳首页
             app.globalData.role = null
+            if(options.source == 'golotech')
+            {
+                wx.redirectTo({
+                    url: '/pages/redpack/redpack'
+                })
+            }
             wx.reLaunch({
               url: '/pages/index/index'
             })
