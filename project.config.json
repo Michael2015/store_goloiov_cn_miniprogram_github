@@ -24,6 +24,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
+		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
@@ -308,9 +309,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 35,
 					"name": "红包",
-					"pathName": "pages/redpack/redpack",
+					"pathName": "pages/index/index",
+					"query": "scene=12,12,0,invite,golotech",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "x431",
+					"pathName": "pages/index/index",
+					"query": "scene=12,12,0,x431",
 					"scene": null
 				}
 			]

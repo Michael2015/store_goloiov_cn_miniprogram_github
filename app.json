@@ -62,7 +62,19 @@
     "pages/partner/personal/golo_points/index",
     "pages/partner/personal/contribution/detail",
     "pages/partner/personal/contribution/index",
-    "pages/redpack/redpack"
+    "pages/redpack/redpack",
+    "pages/carinfo/addcars/index",
+    "pages/carinfo/cardetails/index",
+    "pages/carinfo/carlist/index",
+    "pages/carinfo/report/index",
+    "pages/carinfo/carvalue/index",
+    "pages/carinfo/saleprice/index",
+    "pages/carinfo/salepriceedit/index",
+    "pages/carinfo/illegalquery/index",
+    "pages/carinfo/commonfaults/index",
+    "pages/firstindex/index",
+    "pages/carinfo/showimage/showimage",
+    "pages/carinfo/maintenance/index"
   ],
   "tabBar": {
     "custom": true,

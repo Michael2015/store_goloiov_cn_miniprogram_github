@@ -48,7 +48,8 @@ App({
               let share_partner_id = app.globalData.shareInfo.share_partner_id;
               let share_product_id = app.globalData.shareInfo.share_product_id;
               let type = app.globalData.shareInfo.type;
-              wx.reLaunch({url:'/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id+'&type='+type});
+              let source = app.globalData.shareInfo.source;
+              wx.reLaunch({url:'/pages/login/index?share_user_id='+share_user_id+'&share_partner_id='+share_partner_id+'&share_product_id='+share_product_id+'&type='+type+'&source='+source});
               reject(data)
             }
             else {
@@ -110,20 +111,40 @@ App({
       return app.globalData.toPageTop[n ? 'partner' : 'custom'];
     }
   },
+  backToIndex:{
+    set(key,bol){
+      app.globalData.isFirstIndex[key]= bol;
+    },
+    get(key){
+      return app.globalData.isFirstIndex[key];
+    },
+    allBack(){
+      let obj = app.globalData.isFirstIndex;
+      for(var key in obj){
+        obj[key]=true;
+      }
+    }
+  },
   globalData: {
     userInfo: {},
     partnerInfo: {},
-    token: '',
+    token:"",
+   // token: '' || '92f862c626264fdf7ec87b7b1b80c917',
     //token: "7822582cfafe76674744f320cecc6ad1",
     // role: 用户角色 0客户 1合伙人
     role: null,   
     HOST: 'https://wcp.wanchepin.com',
-   // HOST: 'https://storemp.golodata.com',
+    //HOST: 'https://storemp.golodata.com',
     shareInfo: {},
     tabInst: [],
     toPageTop:{
       custom:true,
       partner:true
+    },
+    isFirstIndex:{
+      "carinfo_addcars":true,
+      "carinfo_cardetails":true,
+      "carinfo_salepriceedit":true
     }
   }
 })
