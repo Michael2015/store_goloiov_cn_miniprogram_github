@@ -298,6 +298,14 @@ function analysisOptions(options, res) {
         // wx.redirectTo({
         //     url: '/pages/partner/personal/partner/invite?share_id=' + options.share_id
         // })
+        //微信红包活动
+        if(options.source == 'golotech')
+        {
+            wx.redirectTo({
+                url: '/pages/redpack/redpack'
+            })
+            return true;
+        }
         if(app.globalData.role == 1){
             // 已经是合伙人就直接跳首页,不去调接口
             wx.reLaunch({
@@ -309,12 +317,6 @@ function analysisOptions(options, res) {
             // 到这里说明已经加入团队了
             // 直接跳首页
             app.globalData.role = null
-            if(options.source == 'golotech')
-            {
-                wx.redirectTo({
-                    url: '/pages/redpack/redpack'
-                })
-            }
             wx.reLaunch({
               url: '/pages/index/index'
             })

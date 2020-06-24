@@ -142,8 +142,8 @@ Page({
    */
   onShareAppMessage: function (e) {
     return {
-      title:"万车品红包活动",
-      path: `pages/index/index?type=share&s=${app.globalData.userInfo.uid}&p=${app.globalData.userInfo.uid}&st=0&type=invaite&source=golotech`,
+      title:"万车品商城红包活动",
+      path: `pages/index/index?s=${app.globalData.userInfo.uid}&p=${app.globalData.userInfo.uid}&st=0&type=invite&source=golotech`,
     }
   }
 })
