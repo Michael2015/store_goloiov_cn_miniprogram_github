@@ -8,9 +8,11 @@ Page({
     list:""
   },
   toUrl(e){
-    let url = e.currentTarget.dataset.url, kind = "", appId="";
-    console.log(url);
-
+    let url = e.currentTarget.dataset.url;
+   // console.log(url);
+    wx.navigateTo({
+      url: "/pages/common/goout/index?url=" + url,
+    })
   /*  switch (kind) {
       case 1:
       case 2:

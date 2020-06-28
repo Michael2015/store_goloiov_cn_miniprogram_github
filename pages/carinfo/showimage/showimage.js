@@ -5,7 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    src: ""
+    src: "",
+    second:[{title:"车牌号码:",value:"cascsc655"},
+    {title:"VIN码:",value:"cascsc655"},
+    {title:"车辆品牌/车型:",value:"cascsc655"},
+    {title:"年款:",value:"cascsc655"},
+  ],
+  three:[{title:"名称:",value:"cascsc655"},
+    {title:"地址:",value:"cascsc655"},
+    {title:"联系电话:",value:"cascsc655",icon:"/assets/image/lxdh.png",color:"#007aff"},
+    {title:"X431序列号:",value:"cascsc655"},
+    {title:"检测时间:",value:"cascsc655"},
+    {title:"上传地址:",value:"cascsc655",icon:"/assets/image/dz.png",color:"#007aff"},
+  ]
   },
 
   /**

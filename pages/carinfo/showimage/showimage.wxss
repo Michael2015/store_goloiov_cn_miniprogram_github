@@ -1,8 +1,104 @@
 .index {
+  border: 12rpx solid #1CB2A7;
+  background: #1CB2A7;
   height: 100vh;
-  width: 100vw;
   overflow: auto;
+  box-sizing: border-box;
 }
-.index image {
-  width: 100%;
+
+.index .path1 {
+  background: url("http://ait.golo365.com/Public/images/background.png") repeat;
+  background-size: 200rpx 114rpx;
+  overflow: hidden;
+  border-radius: 10rpx;
+}
+
+.index .head {
+  display: flex;
+  justify-content: space-between;
+  margin: 16rpx 16rpx 0 16rpx;
+}
+
+.index .head image {
+  width: 74rpx;
+  height: 36rpx;
+}
+
+.index .head text {
+  font-size: 30rpx;
+  color: #1CB2A7;
+}
+
+.index .yz {
+  color: red;
+  font-weight: bolder;
+  letter-spacing: 4rpx;
+}
+
+.index .title {
+  font-size: 1.4em;
+  margin: 20rpx 0 18rpx 0;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.index .sec_title {
+  line-height: 62rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.index .sec_title image {
+  width: 80rpx;
+  height: 54rpx;
+  vertical-align: middle;
+}
+
+.index .bot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40rpx;
+}
+
+.index .bot image {
+  width: 20rpx;
+  height: 40rpx;
+}
+
+.index .bot text {
+  flex: 1;
+  height: 14rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx dotted #ccc;
+}
+
+.index .content {
+  display: flex;
+  color: #4A4A4A;
+  font-size: 32rpx;
+  padding: 0 40rpx;
+  line-height: 50rpx;
+  align-items: center;
+}
+
+.index .content text:nth-of-type(1) {
+  font-weight: 900;
+  margin-right: 10rpx;
+}
+
+.index .content image {
+  width: 24rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin: 0 10rpx;
+}
+
+.index .content text:nth-of-type(2) {
+  font-weight: 500;
+}
+
+.index .three {
+  padding-bottom: 20rpx;
+  position: relative;
 }

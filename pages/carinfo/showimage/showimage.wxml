@@ -1,0 +1,46 @@
+<view class="index">
+  <view class="path1">
+ <view class="head">
+   <image src="http://ait.golo365.com/Public/images/431_logo.png"></image>
+   <text>报告编号:X0297568285</text>
+ </view>
+ <view class="title">元征汽车诊断及检测报告</view>
+ <view class="sec_title">
+ 该报告由
+ <text class="yz">元征LAUNCH</text> 
+ <image src="http://ait.golo365.com/Public/images/431.png"></image>
+ 提供
+ </view>
+ <view class="bot">
+   <image src="http://ait.golo365.com/Public/images/oval-left.png"></image>
+   <text></text>
+   <image src="http://ait.golo365.com/Public/images/oval-right.png"></image>
+ </view>
+
+ <view class="second">
+  <view class="title">车辆信息</view>
+  <view class="content" wx:for="{{second}}" wx:key="index">
+    <text>{{item.title}}</text>
+    <text>{{item.value}}</text>
+  </view>
+ </view>
+ <view class="bot">
+  <image src="http://ait.golo365.com/Public/images/oval-left.png"></image>
+  <text></text>
+  <image src="http://ait.golo365.com/Public/images/oval-right.png"></image>
+</view>
+
+<view class="three">
+  <image src="https://ait.x431.com/Public/images/stamp1.png" class="yz_img"></image>
+  <image src="https://ait.x431.com/Public/images/stamp2.png" class="qw_img"></image>
+  <view class="title">
+    检测机构
+  </view>
+  <view class="content" wx:for="{{three}}" wx:key="index">
+    <text>{{item.title}}</text>
+    <image wx:if="{{item.icon}}" src="{{item.icon}}"></image>
+  <text style="color:{{item.color?item.color:'#4A4A4A'}}">{{item.value}}</text>
+  </view>
+</view>
+</view>
+</view>
