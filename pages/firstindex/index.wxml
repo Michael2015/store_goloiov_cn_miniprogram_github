@@ -9,14 +9,14 @@
   <text bindtap="toAddcar">新增车辆 ></text>
 </view>
 <view class="carinfo" wx:if="{{carinfo.is_band_car}}">
-  <view class="left">
+  <view class="left" catchtap="toBJ">
     <view class="left_one">
       <text>{{format.carNumFirstFormat(carinfo.carInfo.hphm)}}</text>
       <text>{{format.carNumLastFormat(carinfo.carInfo.hphm)}}</text>
     </view>
     <view class="left_two">{{carinfo.carInfo.brand_label}}</view>
   </view>
-  <view class="right" bindtap="toCarlist">切换车辆</view>
+  <view class="right" catchtap="toCarlist">切换车辆</view>
 </view>
 <view wx:else class="no_car">
   <image src="https://wcp.wanchepin.com/public/wap/x431/no_car.png" bindtap="toAddCar"></image>

@@ -1,0 +1,4 @@
+<import src="../listTemplate.wxml"/>
+<view class="index">
+<template is="showcarinfo" data="{{list}}"/>
+</view>

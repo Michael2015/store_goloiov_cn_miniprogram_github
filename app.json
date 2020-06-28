@@ -74,7 +74,8 @@
     "pages/carinfo/commonfaults/index",
     "pages/firstindex/index",
     "pages/carinfo/showimage/showimage",
-    "pages/carinfo/maintenance/index"
+    "pages/carinfo/maintenance/index",
+    "pages/carinfo/showCarInfo/index"
   ],
   "tabBar": {
     "custom": true,

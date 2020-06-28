@@ -8,12 +8,36 @@ Page({
     list:""
   },
   toUrl(e){
-    console.log(e)
-    let jumpUrl = "/pages/carinfo/showimage/showimage?url=" + e.currentTarget.dataset.url;
-    console.log(jumpUrl);
-    wx.navigateTo({
-      url: jumpUrl,
-    })
+    let url = e.currentTarget.dataset.url, kind = "", appId="";
+    console.log(url);
+
+  /*  switch (kind) {
+      case 1:
+      case 2:
+      case 3:
+        wx.navigateTo({
+          url
+        })
+        break;
+      case 4:
+
+        wx.navigateToMiniProgram({
+          appId: appid,
+          path: url,
+          success(res) {
+            // 打开成功
+            // console.log(res)
+          }
+        })
+        break;
+      case 5:
+        wx.navigateTo({
+          url: "/pages/common/goout/index?url=" + url,
+        })
+        break;
+      default:
+        break;
+    }*/
   },
   /**
    * 生命周期函数--监听页面加载

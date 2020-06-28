@@ -17,6 +17,16 @@
 	</view>
 </template>
 
+<!-- 查看车辆信息-->
+<template name="showcarinfo">
+	<view wx:for="{{list}}" wx:key="index" class="list">
+		<text>{{item.title}}</text>
+		<input disabled="true" wx:if="{{item.name!=='drivetime'}}" placeholder="{{item.name==='mileage'?'单位 (公里)':'请输入'}}" value="{{item.value}}" data-ind="{{index}}" bindblur="blur"></input>
+		<picker wx:else mode="date" value="{{item.value}}" bindchange="bindDateChange" disabled="true">
+			{{item.value}}
+		</picker>
+	</view>
+</template>
 
 <!--车辆列表-->
 <template name="carlist">

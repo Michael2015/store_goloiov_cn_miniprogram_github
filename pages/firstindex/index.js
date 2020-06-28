@@ -37,6 +37,12 @@ Page({
     }],
     chePu: []
   },
+  toBJ(){
+    console.log("编辑");
+    wx.navigateTo({
+      url: '/pages/carinfo/showCarInfo/index',
+    })
+  },
   bannerurl(e){
 var url=e.currentTarget.dataset.url;
 wx.navigateTo({

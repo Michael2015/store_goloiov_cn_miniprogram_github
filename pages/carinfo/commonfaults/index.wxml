@@ -1,6 +1,6 @@
-<view class="index">
+<view class="index" hidden="{{!list}}">
   <view class="inner">
-    <text>本车常见故障排行榜Top10</text>
+    <text>本品牌常见故障排行榜Top10</text>
   </view>
   <view class="list">
     <view class="item" wx:for="{{list}}" wx:key="index">
@@ -8,4 +8,5 @@
       <text>{{item.faultDescription}}</text>
     </view>
   </view>
+  <NoData list="{{list}}" text="暂无数据"/>
 </view>

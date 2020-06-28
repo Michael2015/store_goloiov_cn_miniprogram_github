@@ -1,0 +1,61 @@
+.index{
+  height: 100vh;
+}
+.pla_class{
+  animation: pla_animation 1s infinite;
+  color: black;
+  font-size: 40rpx;
+}
+.pla_class_none{
+  animation:none;
+}
+.list {
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1rpx solid rgba(216,216,216,1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  font-size:30rpx;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+}
+.list text{
+color: #666666;
+width: 30%;
+}
+
+.list input{
+    color:#333333;
+width: 70%;
+  text-align: right;
+}
+.list picker{
+   color:#333333;
+  width: 70%;
+  text-align: right;
+}
+.btn {
+width:556rpx;
+height:92rpx;
+line-height: 92rpx;
+background:rgba(190,0,0,1);
+border-radius:10rpx;
+font-size:30rpx;
+font-family:PingFangSC-Medium,PingFang SC;
+font-weight:500;
+color:rgba(255,255,255,1);
+margin-top: 60rpx;
+}
+.del{
+  background: gray;
+}
+@keyframes pla_animation{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}

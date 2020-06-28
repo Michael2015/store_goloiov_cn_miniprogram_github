@@ -1,3 +1,0 @@
-<view class="index">
-<image src="{{src}}" mode="widthFix"></image>
-</view>

@@ -321,6 +321,19 @@
 					"pathName": "pages/index/index",
 					"query": "scene=12,12,0,x431",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/carinfo/showimage/showimage",
+					"pathName": "pages/carinfo/showimage/showimage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/carinfo/commonfaults/index",
+					"pathName": "pages/carinfo/commonfaults/index",
+					"scene": null
 				}
 			]
 		}
