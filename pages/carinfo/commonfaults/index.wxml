@@ -1,6 +1,6 @@
 <view class="index" hidden="{{!list}}">
   <view class="inner">
-    <text>本品牌常见故障排行榜Top10</text>
+    <text>本车辆品牌常见故障排行榜Top10</text>
   </view>
   <view class="list">
     <view class="item" wx:for="{{list}}" wx:key="index">
