@@ -133,8 +133,8 @@ App({
     //token: "7822582cfafe76674744f320cecc6ad1",
     // role: 用户角色 0客户 1合伙人
     role: null,   
-    HOST: 'https://wcp.wanchepin.com',
-    //HOST: 'https://storemp.golodata.com',
+   // HOST: 'https://wcp.wanchepin.com',
+    HOST: 'https://storemp.golodata.com',
     shareInfo: {},
     tabInst: [],
     toPageTop:{

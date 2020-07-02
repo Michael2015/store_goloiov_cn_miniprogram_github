@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "我的贡献值",
-  "disableScroll": false
+  "disableScroll": false,
+  "navigationBarBackgroundColor": "#E40006",
+  "navigationBarTextStyle": "white"
 }
