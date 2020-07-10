@@ -416,14 +416,9 @@ Page({
     async getCategory() {
      //   const categoryList = await app.http.post('/api/marketing/getCategory', {})
       const categoryList = await app.http.post('/api/Marketing/getAdv', { type: 1 }) 
-        let transverseCar = categoryList.filter(function (item, index) {
-            return index === 0
-        })
-       
-        this.setData({
-          transverseCar_cateId: transverseCar[0].id,
-            categoryList: categoryList,
-        })
+      this.setData({
+          categoryList: categoryList,
+      })
     },
     async CalculationHeight() {
         let height = 0;

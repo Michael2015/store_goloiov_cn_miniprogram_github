@@ -266,13 +266,10 @@ Page({
     })}
   },
  async onLoad() {
-
 //广告部分
    const chePu = await app.http.post('/api/Marketing/getAdv', { type: 2});
-   
 //列表部分
    const ad = await app.http.post('/api/Marketing/getAdv', { type: 3, page: ++adPage });
-
     this.setData({
       chePu,
       adArr: ad.map(item => {
@@ -385,7 +382,6 @@ Page({
           })
           break;
         case 4:
-
           wx.navigateToMiniProgram({
             appId: appid,
             path: url,
@@ -450,7 +446,6 @@ Page({
         wx.showLoading({
           title: '加载中',
         })
-
         this.setData({
           adArr: [],
           storelist: [],
@@ -462,17 +457,9 @@ Page({
           this.storelist();
         })
       }
-     
-     
-     /* this.setData({
-        adArr: [...this.data.adArr, { size: 6, showMore: true }],
-      })*/
-     
-     
     } else {
       app.varStorage.del('isShareBack')
     }
-   
     //获取banner轮播广告
     this.getBanner();
     //获取分类
@@ -492,12 +479,8 @@ Page({
             this.getNews()
           }
         })
-         
-        
       }
-     
     });
-    
     app.pageToTop.set(1, true);
   },
   getNews() {
