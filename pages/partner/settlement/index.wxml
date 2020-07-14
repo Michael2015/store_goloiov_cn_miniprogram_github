@@ -1,57 +1,117 @@
 <!-- index.wxml -->
 <view class="view">
-    <form bindsubmit="formSubmit" report-submit>
-        <view class="item address" wx:if="{{is_show_action == 0 || (isload && getAddressList.length)}}" bindtap="{{is_show_action?'goAddList':''}}">
-            <view class="location_view">
-                <image mode="widthFix" src='/assets/image/location.png' class="location_icon"></image>
-            </view>
-            <view class="textView">
-                <view class="address_name">收货人： {{def_add.real_name}} {{def_add.phone}}</view>
-                <view class="address_text">
-                    {{def_add.province}} {{def_add.city}} {{def_add.district}} {{def_add.detail}}
-                </view>
-            </view>
-            <image mode="widthFix" src='/assets/image/right_ccc.png' class="more"></image>
+  <form bindsubmit="formSubmit" report-submit>
+    <view class="item address" wx:if="{{is_show_action == 0 || (isload && getAddressList.length)}}" bindtap="{{is_show_action?'goAddList':''}}">
+      <view class="location_view">
+        <image mode="widthFix" src='/assets/image/location.png' class="location_icon"></image>
+      </view>
+      <view class="textView">
+        <view class="address_name">收货人： {{def_add.real_name}} {{def_add.phone}}</view>
+        <view class="address_text">
+          {{def_add.province}} {{def_add.city}} {{def_add.district}} {{def_add.detail}}
         </view>
-        <view wx:else class="no_address" bindtap="goAddAddress">+ 添加收货地址</view>
-        <scroll-view scroll-y class="leaveMsgAndList">
-            <view class="commodity">
-                <view class="commodity_info">
-                    <image src="{{info.image?info.image:info.slider_image[0]}}" mode="widthFix" class="commodity_image"></image>
-                    <view>
-                        <view class="commodity_name">
-                            <view class="name">{{info.store_name}}</view>
-                            <view class="price">￥{{price.price}}</view>
-                        </view>
-                        <view class="commodity_num">
-                            <view class="spec">{{price.attr}}</view>
-                            <view class="num">× {{total_num}}</view>
-                        </view>
-                    </view>
-                </view>
-                <view class="number">
-                    <view class="title">商品单价<text class="right">¥{{price.price}}</text></view>
-                    <view class="title">优惠金额<text class="right">¥{{coupon_total}}</text></view>
-                    <view class="title title2">实付金额<text class="right">¥{{pay_price}}</text></view>
-                    <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
-                </view>
-                
-                <view class="number" wx-if="{{!orderId}}">
-                    <view class="title title2 title3">
-                        <image class="one" src="/assets/image/jifen.png" mode="widthFix"></image>
-                        <text decode="{{true}}">  可用{{golo_points}}积分抵用{{golo_points_money}}元&nbsp;&nbsp;</text>
-                        <image src="/assets/image/question.png" mode="widthFix" bindtap="showWindows"></image>
-                        <image wx:if="{{!radio_check}}" src="/assets/image/radio.png" bindtap="radio_check" mode="widthFix" class="right"></image>
-                        <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check" mode="widthFix" class="right"></image>
-                    </view>
-                </view>
+      </view>
+      <image mode="widthFix" src='/assets/image/right_ccc.png' class="more"></image>
+    </view>
+    <view wx:else class="no_address" bindtap="goAddAddress">+ 添加收货地址</view>
+    <scroll-view scroll-y class="leaveMsgAndList">
+      <view class="commodity">
+        <view class="commodity_info">
+          <image src="{{info.image?info.image:info.slider_image[0]}}" mode="widthFix" class="commodity_image"></image>
+          <view>
+            <view class="commodity_name">
+              <view class="name">{{info.store_name}}</view>
+              <view class="price">￥{{price.price}}</view>
             </view>
-            <view class="leaveMsg">
-                <input placeholder="留言内容/备注 （ 选填 ）最多100字符" placeholder-class="search_input_placeholder" bindinput="{{is_show_action?'setMark':''}}" value="{{mark}}" maxlength="100" />
+            <view class="commodity_num">
+              <view class="spec">{{price.attr}}</view>
+              <view class="num">× {{total_num}}</view>
             </view>
-            <view style="height:100rpx"></view>
-        </scroll-view>
-        <button class="confirm_btn" form-type="submit" loading="{{disabled_loading}}" disabled="{{disabled_loading}}">立即购买</button>
-    </form>
+          </view>
+        </view>
+        <view class="number">
+          <view class="title">商品单价
+            <text class="right">¥{{price.price}}</text>
+          </view>
+          <view class="title">优惠金额
+            <text class="right">¥{{format.formatPrice(coupon_total||0)}}</text>
+          </view>
+          <view class="title title2">实付金额
+            <text class="right">¥{{format.formatPrice(pay_price||0)}}</text>
+          </view>
+          <!-- <van-stepper value="{{ 1 }}" bind:change="onChange" /> -->
+        </view>
+
+        <view class="number" wx-if="{{!orderId}}">
+          <view class="title title2 title3">
+            <image class="one" src="/assets/image/jifen.png" mode="widthFix"></image>
+            <text decode="{{true}}">  可用{{golo_points}}积分抵用{{golo_points_money}}元&nbsp;&nbsp;</text>
+            <image src="/assets/image/question.png" mode="widthFix" bindtap="showWindows"></image>
+            <image wx:if="{{!radio_check}}" src="/assets/image/radio.png" bindtap="radio_check" mode="widthFix" class="right"></image>
+            <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check" mode="widthFix" class="right"></image>
+          </view>
+          <view class="title title2 title3">
+            <image class="one" src="/assets/image/yhq.png" style="width:40rpx;left:-4rpx;top:9rpx;" mode="widthFix"></image>
+            <text decode="{{true}}">  {{yhq_list.length}}张优惠券可用</text>
+            <image wx:if="{{!radio_check1}}" src="/assets/image/radio.png" bindtap="radio_check1" mode="widthFix" class="right"></image>
+            <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check1" mode="widthFix" class="right"></image>
+          </view>
+        </view>
+      </view>
+      <view class="leaveMsg">
+        <input placeholder="留言内容/备注 （ 选填 ）最多100字符" placeholder-class="search_input_placeholder" bindinput="{{is_show_action?'setMark':''}}" value="{{mark}}" maxlength="100" />
+      </view>
+      <view style="height:100rpx"></view>
+    </scroll-view>
+
+    <button class="confirm_btn" form-type="submit" loading="{{disabled_loading}}" disabled="{{disabled_loading}}">立即购买</button>
+  </form>
 </view>
 <popup-paytype bind:myevent="selectPayType" pay_type_show="{{pay_type_show}}" now_money="{{now_money}}" can_use_jifen="{{can_use_jifen}}" pay_price="{{pay_price}}"></popup-paytype>
+<view class="yhq_popup_mask" hidden='{{!yhq_popup}}'>
+  <view class="yhq_popup">
+    <view class="yhq_popup_header">
+      优惠券
+      <image src="/assets/image/closeTip.png" mode="widthFix" catchtap="close_yhq"></image>
+    </view>
+    <scroll-view class="yhq_list_wrap" scroll-y="true" scroll-top='{{scroll_top}}'>
+      <view class="yhq_list" wx:for='{{yhq_list}}' wx:key='index'>
+        <view class="yhq_list_one">
+          <image src='/assets/image/yhq_left.png' mode="widthFix"></image>
+          <view class="yhq_list_one_text">
+            <text>{{item}}</text>
+          </view>
+        </view>
+        <view class="yhq_list_two">
+          <view>活动{{item}}元优惠券</view>
+          <view>有效期至2020-09-20</view>
+        </view>
+        <view class="yhq_list_three">
+          <button type="primary" size="mini" style="background:rgba(231, 0, 2, 1);" data-yhq='{{item}}' catchtap='useyhq'>立即使用</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+
+<wxs module="format">
+var formatPrice = function (pri) {
+var arr=pri.toString().split('.'),len=arr.length;
+
+ if(len===1){
+ return pri+'.00';
+ }
+ else{
+ if(arr[1].length===1){
+ return pri+'0';
+ }
+ else{
+ return pri;
+ }
+ }
+}
+module.exports = {
+  formatPrice: formatPrice
+};
+</wxs>

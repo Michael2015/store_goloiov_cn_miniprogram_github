@@ -1,8 +1,11 @@
 const app = getApp()
 let self;
-let isDisabled = 1;
+let isDisabled = 1,Price=0;
 Page({
   data: {
+    scroll_top:0,
+    yhq_list:[1,2,3,4],
+    yhq_popup:false,
     getAddressList: [],
     def_add: {},
     isload: 0,
@@ -22,7 +25,8 @@ Page({
     golo_points:0,
     golo_points_money:0.00,
     used_golo_points:0,
-    radio_check:false,
+    radio_check:true,
+    radio_check1:false,
     pay_price_temp:0.00,
   },
   price(product_id) {
@@ -75,9 +79,16 @@ Page({
         can_use_jifen,
         golo_points_money: parseFloat(golo_points_money).toFixed(2),
         golo_points: golo_points,
+      },()=>{
+        Price=res.price;
       });
      
       wx.hideLoading()
+    })
+  },
+  close_yhq(){
+    this.setData({
+      yhq_popup:false
     })
   },
   pay(order_id,form_id,pay_type="weixin") {
@@ -329,6 +340,22 @@ Page({
      this.setData({radio_check:radio_check,used_golo_points:used_golo_points,pay_price:pay_price});
     }
     
+  },
+  radio_check1(){
+    
+    this.setData({
+      yhq_popup:true,
+      scroll_top:0
+    });
+  },
+  useyhq(e){
+    this.setData({
+      radio_check:false,
+      coupon_total: e.currentTarget.dataset.yhq,
+      radio_check1:true,
+      yhq_popup:false,
+      pay_price: Number(Price) - Number(e.currentTarget.dataset.yhq)
+    })
   }
 
 })

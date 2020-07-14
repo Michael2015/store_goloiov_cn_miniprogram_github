@@ -1,10 +1,23 @@
 import Contact from '../../../utils/contactUser/contactUser'
 const app = getApp()
-let self, adPage = 0;
+let self, adPage = 0, yhq_img_current=0;
 // 低版本ios scroll-view 初始化时必须充满一屏才能滚动，给个默认高度就能满一屏
 const defaultSwiperHeight = 200
 Page({
     data: {
+      yhq_image:[{
+        src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594705293294&di=879d616fb313a071b87233e738d1a882&imgtype=0&src=http%3A%2F%2Fwww.dszhibo.com%2Fuploads%2Fallimg%2F181115%2F0U04a151_0.jpg',
+      hidden:false
+      },
+      {
+        src: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594704448920&di=521b9152b782a1a1d90ac3cef88b9a05&imgtype=0&src=http%3A%2F%2Fimg1.gtimg.com%2Fsports%2Fpics%2Fhv1%2F196%2F208%2F1657%2F107799661.jpg',
+        hidden: true
+      }, 
+      {
+        src:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594706379010&di=cccedd14bbfe83e9aba33f3b1b6d0ecd&imgtype=0&src=http%3A%2F%2Fpublic.zgzcw.com%2Fd%2Fimages%2F201811121542012594528_875.jpg',
+        hidden:true
+      }
+      ],
       chePu: [],
       circleUrl: '',
       adArr: [],
@@ -40,6 +53,30 @@ Page({
         keyword: "",
         news_image: "", //新人专区背景图
     },
+  tolook(){},
+    currentChange(index){
+      var arr = this.data.yhq_image;
+      for(var i in arr){
+        if(Number(i)===index){
+          arr[i].hidden=false;
+        }
+        else{
+          arr[i].hidden = true;
+        }
+      }
+      this.setData({
+        "yhq_image": arr
+      });
+    },
+  yhq_next(){
+    if (yhq_img_current === this.data.yhq_image.length-1){
+      yhq_img_current=0;
+    }
+    else{
+      yhq_img_current ++;
+    }
+    this.currentChange(yhq_img_current);
+  },
     // 初始化内容swiper高度
     initContentSwiperHeight() {
         console.log('重新计算高度')
@@ -346,7 +383,7 @@ Page({
        // this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
-      
+      yhq_img_current=0;
       if (app.pageToTop.get(0)){
         wx.pageScrollTo({
           scrollTop: 0,
