@@ -1,16 +1,17 @@
 const app = getApp()
 let self;
-let isDisabled = 1,Price=0;
+let isDisabled = 1, Price = 0, Discount_type = '', Id = '', Yhq_title='';
 Page({
   data: {
     scroll_top:0,
-    yhq_list:[1,2,3,4],
+    yhq_list:[],
     yhq_popup:false,
     getAddressList: [],
     def_add: {},
     isload: 0,
     price: {},
     mark: '',
+    yhq_title:'',
     orderId: 0,
     is_show_action: 1,
     disabled_loading: false,
@@ -25,7 +26,7 @@ Page({
     golo_points:0,
     golo_points_money:0.00,
     used_golo_points:0,
-    radio_check:true,
+    radio_check:false,
     radio_check1:false,
     pay_price_temp:0.00,
   },
@@ -36,28 +37,8 @@ Page({
       unique:this.data.unique,
       total_num:this.data.total_num,
     }).then(res => {
-      let pay_price = res.price;
-      //优惠券合伙秒杀//优惠券
-      let coupon_total2 = 0.00;
-      //区分是否有优惠券以及是否从现有订单进来支付页
-      if (res.discount.status == 1 && this.data.is_show_action == 0) {
-        //如果是从重新支付订单进来，则不需要再减掉优惠价格
-        coupon_total2 = res.discount.data.total;
-        pay_price = res.discount.data.price ? pay_price - res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
-      } else if (res.discount.status == 1 && this.data.is_show_action == 1) {
-        coupon_total2 = res.discount.data.total || res.discount.data.save_money;
-        pay_price = res.discount.data.price ? pay_price - res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
-      } else if (res.discount.status == 0 && this.data.is_show_action == 0) {
-        pay_price = res.discount.data.price ? pay_price - res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
-      } else {
-        pay_price = res.discount.data.price ? pay_price - res.discount.data.price : (pay_price * +this.data.total_num - coupon_total2);
-      }
-       //如果是新人专区商品,重新计算
-       if (this.data.isnew == 'true') {
-        res.price = this.data.new_price;
-        pay_price = res.price*+this.data.total_num;
-      }
-
+      console.log(res);
+      let pay_price = res.price*this.data.total_num;
       let can_use_jifen = true;
       //判断是否能用积分支付,如果是未支付订单重新支付，不能使用积分
       if(pay_price > res.now_money || this.data.orderId)
@@ -68,13 +49,15 @@ Page({
       let golo_points_money = res.golo_intergal.golo_points_money || 0;
       let golo_points = res.golo_intergal.golo_points || 0;
       //计算优惠后的价格
+      Yhq_title = res.discount.length + '张优惠券可用';
       this.setData({
+        yhq_list: res.discount,
+        yhq_title: res.discount.length+'张优惠券可用',
         price: res,
-        pay_price: parseFloat(pay_price).toFixed(2),
+        pay_price: res.pay_price||parseFloat(pay_price).toFixed(2),
         pay_price_temp: parseFloat(pay_price).toFixed(2),
-        coupon_total: parseFloat(coupon_total2).toFixed(2),
+        coupon_total: res.discount_price||0,
         info: app.varStorage.get('storeDetail'),
-        coupon_total2,
         now_money:res.now_money,
         can_use_jifen,
         golo_points_money: parseFloat(golo_points_money).toFixed(2),
@@ -82,8 +65,7 @@ Page({
       },()=>{
         Price=res.price;
       });
-     
-      wx.hideLoading()
+      wx.hideLoading();
     })
   },
   close_yhq(){
@@ -165,6 +147,7 @@ Page({
         });
         return;
       }
+      var radio_check = this.data.radio_check;
       app.http.post('/api/order/createOrder', {
         product_id: self.data.product_id,
         address_id: self.data.def_add.id,
@@ -172,7 +155,9 @@ Page({
         total_num: self.data.total_num,
         unique:self.data.unique,
         paytype:self.data.pay_type,
-        used_golo_points:self.data.used_golo_points,
+        discount_type: radio_check?4:Discount_type,
+        discount_id: radio_check ?0:Id
+        //used_golo_points:self.data.used_golo_points,
       }).then(res => {
         this.pay(res.order_id, formId,self.data.pay_type)
         wx.hideLoading()
@@ -240,6 +225,7 @@ Page({
     }
   },
   formSubmit(e) {
+    console.log("触发", Discount_type,Id);
     if (isDisabled) {
       this.setData({
         pay_type_show:true,
@@ -266,6 +252,7 @@ Page({
     }
   },
   onLoad(e) {
+    console.log(e);
     self = this;
     app.varStorage.del('isShareBack');
     if (e.id) {
@@ -308,6 +295,7 @@ Page({
     })
   },
   onShow() {
+    Discount_type=0,Id=0;
     this.getAddressList();
   },
   showWindows()
@@ -329,6 +317,7 @@ Page({
   radio_check(){
     if(this.data.golo_points > 0)
     {
+      let golo_points_money=this.data.golo_points_money;
       let radio_check = !this.data.radio_check;
       let used_golo_points = !this.data.used_golo_points;
       let pay_price = this.data.pay_price_temp;
@@ -337,24 +326,33 @@ Page({
         pay_price = pay_price - this.data.golo_points_money;
         pay_price = parseFloat(pay_price).toFixed(2); 
       }
-     this.setData({radio_check:radio_check,used_golo_points:used_golo_points,pay_price:pay_price});
+      Discount_type = radio_check ? 4 : '', Id = radio_check ? 0 : '';
+     this.setData({radio_check:radio_check,used_golo_points:used_golo_points,
+     pay_price:pay_price,
+       coupon_total: radio_check ? golo_points_money:0,
+       yhq_title: Yhq_title
+     });
     }
     
   },
   radio_check1(){
-    
+    if (this.data.yhq_list.length){
     this.setData({
       yhq_popup:true,
       scroll_top:0
     });
+    }
   },
   useyhq(e){
+    var { discount_type, id, discount_price, title} = e.currentTarget.dataset.info;
+    Discount_type = discount_type, Id = id;
+    var total_num = this.data.total_num;
     this.setData({
       radio_check:false,
-      coupon_total: e.currentTarget.dataset.yhq,
-      radio_check1:true,
+      coupon_total: discount_price,
       yhq_popup:false,
-      pay_price: Number(Price) - Number(e.currentTarget.dataset.yhq)
+      yhq_title: title,
+      pay_price: Number(Price) * total_num - Number(discount_price)
     })
   }
 

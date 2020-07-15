@@ -50,14 +50,15 @@
             <image wx:if="{{!radio_check}}" src="/assets/image/radio.png" bindtap="radio_check" mode="widthFix" class="right"></image>
             <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check" mode="widthFix" class="right"></image>
           </view>
-          <view class="title title2 title3">
-            <image class="one" src="/assets/image/yhq.png" style="width:40rpx;left:-4rpx;top:9rpx;" mode="widthFix"></image>
-            <text decode="{{true}}">  {{yhq_list.length}}张优惠券可用</text>
-            <image wx:if="{{!radio_check1}}" src="/assets/image/radio.png" bindtap="radio_check1" mode="widthFix" class="right"></image>
-            <image wx:else src="/assets/image/radio-checked.png" bindtap="radio_check1" mode="widthFix" class="right"></image>
-          </view>
         </view>
+<view class="number" wx-if="{{!orderId}}">
+        <view class="title title2 title3" bindtap="radio_check1">
+            <image class="one" src="/assets/image/yhq.png" style="width:40rpx;left:-4rpx;top:9rpx;" mode="widthFix"></image>
+            <text decode="{{true}}">{{yhq_title}}</text>
+            <image src="/assets/image/yhq_right.png" mode="widthFix" class="right yhq_right"></image>
+          </view>
       </view>
+</view>
       <view class="leaveMsg">
         <input placeholder="留言内容/备注 （ 选填 ）最多100字符" placeholder-class="search_input_placeholder" bindinput="{{is_show_action?'setMark':''}}" value="{{mark}}" maxlength="100" />
       </view>
@@ -79,15 +80,15 @@
         <view class="yhq_list_one">
           <image src='/assets/image/yhq_left.png' mode="widthFix"></image>
           <view class="yhq_list_one_text">
-            <text>{{item}}</text>
+            <text>{{format.formatPrice(item.discount_price,1)}}</text>
           </view>
         </view>
         <view class="yhq_list_two">
-          <view>活动{{item}}元优惠券</view>
-          <view>有效期至2020-09-20</view>
+          <view>{{item.title}}</view>
+          <view>有效期至{{item.end_date}}</view>
         </view>
         <view class="yhq_list_three">
-          <button type="primary" size="mini" style="background:rgba(231, 0, 2, 1);" data-yhq='{{item}}' catchtap='useyhq'>立即使用</button>
+          <button type="primary" size="mini" style="background:rgba(231, 0, 2, 1);"  catchtap='useyhq' data-info='{{item}}'>立即使用</button>
         </view>
       </view>
     </scroll-view>
@@ -96,9 +97,9 @@
 
 
 <wxs module="format">
-var formatPrice = function (pri) {
+var formatPrice = function (pri,flag) {
+if(!flag){
 var arr=pri.toString().split('.'),len=arr.length;
-
  if(len===1){
  return pri+'.00';
  }
@@ -106,10 +107,16 @@ var arr=pri.toString().split('.'),len=arr.length;
  if(arr[1].length===1){
  return pri+'0';
  }
- else{
+ else if(arr[1].length===2){
  return pri;
  }
+ else{
+ return arr[0]+'.'+arr[1].substring(0,2);
  }
+ }
+}else{
+return parseInt(pri);
+}
 }
 module.exports = {
   formatPrice: formatPrice

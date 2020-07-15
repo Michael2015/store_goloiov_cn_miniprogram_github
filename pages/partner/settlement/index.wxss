@@ -173,7 +173,7 @@ width: 30%;
 .commodity_info {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 32rpx;
+    padding: 32rpx 10rpx 32rpx 0;
     border-bottom: 1rpx solid #e4e4e4;
     background-color: #ffffff;
 }
@@ -220,6 +220,7 @@ width: 30%;
     justify-content: flex-start;
     margin-bottom:20rpx;
     background-color: #ffffff;
+    padding: 0 10rpx;
 }
 
 .number view.title {
@@ -251,6 +252,12 @@ margin-right:10rpx;
 }
 .number view.title image.right{
     right:40rpx;
+}
+.number view.title image.yhq_right{
+ width: 44rpx;
+height: 44rpx;
+right: 32rpx;
+top:8rpx;
 }
 .number view.title checkbox{
     float:right;

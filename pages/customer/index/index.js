@@ -47,15 +47,22 @@ Page({
         islogin: false,       //标识是否是登录状态
         isfirst: true,         //是否是第一次进入首页
         newObj: {},            //新人专区对象
+        showUp:false,
         showMoreBlast: false,  //是否需要展示更多爆款专区
         blastProductList: [], //爆款专区商品
         storelist: [], //全部商品
         keyword: "",
         news_image: "", //新人专区背景图
     },
-  tolook(){},
+  tolook(e) {
+    var url = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url,
+    })
+
+  },
     currentChange(index){
-      var arr = this.data.yhq_image;
+      var arr = this.data.newObj;
       for(var i in arr){
         if(Number(i)===index){
           arr[i].hidden=false;
@@ -65,11 +72,11 @@ Page({
         }
       }
       this.setData({
-        "yhq_image": arr
+        "newObj": arr
       });
     },
   yhq_next(){
-    if (yhq_img_current === this.data.yhq_image.length-1){
+    if (yhq_img_current === this.data.newObj.length-1){
       yhq_img_current=0;
     }
     else{
@@ -418,18 +425,22 @@ Page({
         await this.getCategory()
         //获取新人专区信息
       var time = new Date().getTime();
-      if (!wx.getStorageSync('customShowNewPerson')) {
-        this.getNews()
+      if (!wx.getStorageSync(app.globalData.token + 'customisShowNewPerson')) {
+        //第一次进来
+        this.getNews();
       } else {
-        this.setData({
-          isfirst: wx.getStorageSync('customRemainTime') - time >= 0 ? false : true
-        }, () => {
-          if (wx.getStorageSync('customRemainTime') - time < 0) {
-            this.getNews()
-          }
-        })
-
-
+        if (wx.getStorageSync(app.globalData.token + 'customremainTime') - time >= 0) {
+          var ctime = wx.getStorageSync(app.globalData.token + 'customcountTime');
+          console.log(ctime < 3);
+          this.setData({
+            showUp: ctime < 3 ? true : false
+          }, () => {
+            (ctime < 3) && wx.setStorageSync(app.globalData.token + 'customcountTime', ++ctime);
+          })
+        }
+        else {
+          this.getNews();
+        }
       }
       app.pageToTop.set(0, true);
     },
@@ -439,16 +450,21 @@ Page({
     })
   },
     getNews() {
-      if (this.data.isfirst) {
-        app.http.get('/api/marketing/getNewbornZoneStore').then(res => {
-          wx.setStorageSync("customShowNewPerson", true)
-          wx.setStorageSync('customRemainTime', new Date().getTime() + 24 * 60 * 60 * 1000);
-          //  console.log(res)
+        app.http.get('/api/marketing/getpop').then(res => {
+          wx.setStorageSync(app.globalData.token + 'customisShowNewPerson', true)
+          wx.setStorageSync(app.globalData.token + 'customremainTime', new Date().getTime() + 24 * 60 * 60 * 1000);
+          wx.setStorageSync(app.globalData.token + 'customcountTime', 1);
           this.setData({
-            newObj: res
+            newObj: res.map((item, index) => {
+              return {
+                ...item,
+                hidden: index ? true : false
+              }
+            }),
+            showUp: true
           })
         })
-      }
+      
     },
     async getCategory() {
      //   const categoryList = await app.http.post('/api/marketing/getCategory', {})
@@ -534,10 +550,9 @@ Page({
             url: url,
         })
     },
-    close() {
-        console.log('guanbi')
-        this.setData({ isfirst: false })
-    },
+  close() {
+    this.setData({ showUp: false });
+  },
     goBay() {
         wx.navigateTo({ url: `/pages/customer/detail/detail?id=${this.data.newObj.pro_id}` })
         this.close()

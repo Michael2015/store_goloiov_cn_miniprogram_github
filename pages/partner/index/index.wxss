@@ -418,7 +418,7 @@ text-shadow:0px 2px 7px rgba(0,0,0,0.06);
 {
   position: absolute;
   left: 23rpx;
-  bottom: 168rpx;
+  bottom: 230rpx;
 }
 text.coupon3
 {
@@ -663,7 +663,7 @@ button{
 }
 .yhq{
   width: 600rpx;
-  min-height: 600rpx;
+  min-height: 300rpx;
   background: white;
   position: absolute;
   left: 50%;
@@ -677,15 +677,17 @@ button{
   margin: 0 30rpx;
   padding: 30rpx 0;
   border-bottom: 2rpx solid whitesmoke;
+  font-size: 28rpx;
 }
 .yhq .yhq_header .close{
-  width: 50rpx;
+  width: 40rpx;
 }
 .yhq .yhq_main {
 margin: 30rpx;
 }
 .yhq .yhq_main image{
   width: 100%;
+  height: 400rpx;
 }
 .yhq .yhq_btn{
   display: flex;
@@ -693,6 +695,7 @@ margin: 30rpx;
 .yhq .yhq_btn button{
   width: 50%;
   border-radius: 0;
+  font-size: 28rpx;
 }
 .yhq .yhq_btn button:nth-of-type(1){
   background: rgba(240, 240, 240, 1);

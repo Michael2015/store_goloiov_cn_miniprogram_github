@@ -21,7 +21,7 @@
                <view class="t2 t">{{item.end_time}}</view>
                <view class="t3 t">
                     <text wx:if="{{item.status == -1}}" class="used">未开始</text>
-                    <text wx:elif="{{item.status == 0}}">立即使用</text>
+                    <text wx:elif="{{item.status == 0}}" catchtap='toGo' data-url='{{item.jump_url}}'>立即使用</text>
                     <text wx:elif="{{item.status == 1}}" class="used">已使用</text>
                     <text wx:elif="{{item.status == 2}}" class="used">已过期</text>
                </view>

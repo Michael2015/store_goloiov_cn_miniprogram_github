@@ -13,7 +13,11 @@ Page({
     self = this;
     this.getMyCoupon();
   },
-
+  toGo(e){
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url,
+    })
+  },
   getMyCoupon()
   {
     wx.showLoading()

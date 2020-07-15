@@ -218,23 +218,23 @@
   </view>
   <contact-user id="contact-view"></contact-user>
   <view class="modal-mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-  <view class="novice" catchtouchmove="preventTouchMove" wx:if="{{ isfirst && newObj.length}}">
+  <view class="novice" catchtouchmove="preventTouchMove" wx:if="{{ showUp && newObj.length}}">
     <!-- wx:if="{{islogin&&isfirst}}" -->
    <!--  <view class="news_box">
       <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
       <image class="new_bg" src="{{newObj[0].img_url}}" mode="widthFix"  bindtap='newPersonOpen'/>
     </view> -->
 
-    <view class="yhq">
+    <view class="yhq" wx:for='{{newObj}}' wx:key='index' hidden="{{item.hidden}}">
       <view class="yhq_header">
-      <text>优惠券</text>
+      <text>{{item.label}}</text>
       <image class="close" src="/assets/image/closeTip.png" mode="widthFix" bindtap='close' />
       </view>
       <view class="yhq_main">
-      <image wx:for='{{yhq_image}}' wx:key='index' src="{{item.src}}" hidden="{{item.hidden}}" mode="widthFix"></image>
+      <image  src="{{item.img_url}}" data-url='{{item.jump_url}}' catchtap="tolook"></image>
       </view>
       <view class="yhq_btn">
-      <button type="primary" catchtap="tolook">去看看</button>
+      <button type="primary" data-url='{{item.jump_url}}' catchtap="tolook">去看看</button>
       <button type="primary" catchtap='yhq_next'>下一条</button>
       </view>
     </view>
