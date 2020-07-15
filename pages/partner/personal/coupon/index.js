@@ -14,6 +14,7 @@ Page({
     this.getMyCoupon();
   },
   toGo(e){
+    console.log(e.currentTarget.dataset.url)
     wx.navigateTo({
       url: e.currentTarget.dataset.url,
     })
@@ -30,20 +31,6 @@ Page({
     }).catch((e) => {
       wx.hideLoading()
     })
-  },
-  goDetails(e)
-  {
-    let product_ids = e.currentTarget.id;
-    if(product_ids.indexOf(",") != -1){
-      wx.navigateTo({
-        url: '/pages/partner/index/index'
-      })
-    }
-    else{
-      wx.navigateTo({
-        url: '/pages/partner/detail/detail?id=' + product_ids
-      })
-    }
   }
 
 })

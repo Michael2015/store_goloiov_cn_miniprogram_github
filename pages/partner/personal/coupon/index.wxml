@@ -1,5 +1,5 @@
 <view class="coupon-list">
-    <view class="item stamp stamp01"  wx:for="{{couponList}}" wx:key="{{index}}"  catchtap="{{item.status === 0 || item.status === -1? 'goDetails' : ''}}"  id="{{item.with_products}}" data-status="{{item.status}}">
+    <view class="item stamp stamp01"  wx:for="{{couponList}}" wx:key="{{index}}">
         <!-- 左侧 -->
         <view class="float-li t1">
             <view class="coupon-left" wx:if="{{item.coupon_type == 1}}">
@@ -27,7 +27,6 @@
                </view>
             </view>
         </view>
-        <i></i>
     </view>
     <view class="no-more">没有更多数据</view>
 </view>
