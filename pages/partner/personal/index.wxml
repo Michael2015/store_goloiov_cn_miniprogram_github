@@ -71,7 +71,7 @@
 </view>
 <view class="group">
   <view class="nav" bindtap="to" data-url="/pages/partner/personal/coupon/index">
-    <view class="icon"><image src="/assets/image/my_coupon.png" mode="widthFix"></image></view>
+    <view class="icon"><image src="/assets/image/home_mine_sel.png" mode="widthFix"></image></view>
     <view class="name">我的优惠券</view>
     <view class="right-text"></view>
     <view class="right-icon"><image src="/assets/image/right.png" mode="widthFix"></image></view>

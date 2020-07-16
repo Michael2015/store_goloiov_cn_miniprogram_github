@@ -24,10 +24,6 @@
             <image src="../../../assets/image/posterIcon.png" mode="widthFix"></image>
             <view>超级海报</view>
         </view>
-         <view class="item" bindtap="show_modal"  wx:if="{{coupon_id}}">
-            <image src="../../../assets/image/share_coupon.png" mode="widthFix"></image>
-            <view>优惠券</view>
-        </view>
     </view>
      <view class="godetail godetail2" bindtap="godetail">
         <view>查看商品详情>></view>

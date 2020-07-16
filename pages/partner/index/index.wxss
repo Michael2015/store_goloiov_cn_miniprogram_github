@@ -702,7 +702,7 @@ margin: 30rpx;
   color: rgba(217, 0, 27, 1);
 }
 .yhq .yhq_btn button:nth-of-type(2){
-  background: rgba(217, 0, 27, 1);
+  background: #e70002;
 }
 .discount_time {
   font-size: 32rpx;

@@ -21,10 +21,6 @@
             <image src="../../../assets/image/posterIcon.png" mode="widthFix"></image>
             <view>超级海报</view>
         </view>
-          <view class="item" bindtap="show_modal" wx:if="{{coupon_id}}">
-            <image src="../../../assets/image/share_coupon.png" mode="widthFix"></image>
-            <view>优惠券</view>
-        </view>
     </view>
     <button class="back" bindtap="back">返回</button>
 </view>

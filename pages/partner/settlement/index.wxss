@@ -226,14 +226,16 @@ width: 30%;
 .number view.title {
     margin-right: 43rpx;
     width: 100%;
-    padding: 10rpx 0;
+    padding: 15rpx 0;
     position:relative; 
+    font-size: 28rpx;
 }
 .number view.title text.right{
     float:right;
 }
 .number view.title3{
-    padding-left:40rpx;
+    padding: 25rpx 0;
+    padding-left:50rpx;
 }
 .number view.title image.one{
     left:0;
@@ -248,24 +250,18 @@ margin-right:10rpx;
     width:32rpx;
     height:32rpx;
     position:absolute;
-    top:15rpx;
+    top:28rpx;
 }
 .number view.title image.right{
-    right:40rpx;
+    right:50rpx;
 }
-.number view.title image.yhq_right{
- width: 44rpx;
-height: 44rpx;
-right: 32rpx;
-top:8rpx;
-}
+
 .number view.title checkbox{
     float:right;
     margin-right:40rpx;
 }
-checkbox .wx-checkbox-input
-{
-    radius-border:50%;
+checkbox .wx-checkbox-input{
+    border-radius: 50%;
 }
 .van-stepper__minus,
 .van-stepper__plus {
