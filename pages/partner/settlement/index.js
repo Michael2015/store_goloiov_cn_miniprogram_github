@@ -328,7 +328,7 @@ Page({
       }
       Discount_type = radio_check ? 4 : '', Id = radio_check ? 0 : '';
      this.setData({radio_check:radio_check,used_golo_points:used_golo_points,
-     pay_price:pay_price,
+       pay_price: pay_price <= 0 ? 0.01 : pay_price,
        coupon_total: radio_check ? golo_points_money:0,
        yhq_title: Yhq_title
      });
@@ -352,7 +352,7 @@ Page({
       coupon_total: discount_price,
       yhq_popup:false,
       yhq_title: title,
-      pay_price: Number(Price) * total_num - Number(discount_price)
+      pay_price: (Number(Price) * total_num - Number(discount_price)) <= 0 ? 0.01 : Number(Price) * total_num - Number(discount_price)
     })
   }
 

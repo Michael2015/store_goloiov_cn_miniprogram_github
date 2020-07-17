@@ -310,6 +310,7 @@ Page({
     })}
   },
  async onLoad() {
+   app.globalData.partnerIndex = this;
 //广告部分
    const chePu = await app.http.post('/api/Marketing/getAdv', { type: 2});
 //列表部分
@@ -467,7 +468,8 @@ Page({
     this.setData({ scrollTop: event.detail.scrollTop })
   },
   onShow: async function () {
-    yhq_img_current = 0;
+   
+    
 /*setTimeout(()=>{
      wx.navigateTo({
        url: "/pages/redpack/redpack",
@@ -510,30 +512,41 @@ Page({
     this.getBanner();
     //获取分类
     await this.getCategory();
-    //获取新人专区信息
     this.setData({
-      islogin:app.globalData.token ? true : false
+      islogin: app.globalData.token ? true : false
     },()=>{
-      var time=new Date().getTime();
-      if (!wx.getStorageSync(app.globalData.token+'isShowNewPerson')){
+      if (app.globalData.justLogin) {
+        this.newPop();
+      }
+    });
+    
+    app.pageToTop.set(1, true);
+  },
+  newPop(){
+    app.globalData.justLogin=false;
+    //获取新人专区信息
+    yhq_img_current = 0;
+   
+    if (app.globalData.token) {
+      var time = new Date().getTime();
+      if (!wx.getStorageSync(app.globalData.token + 'isShowNewPerson')) {
         //第一次进来
         this.getNews();
-      }else{
-        if (wx.getStorageSync(app.globalData.token + 'remainTime') - time >= 0){
+      } else {
+        if (wx.getStorageSync(app.globalData.token + 'remainTime') - time >= 0) {
           var ctime = wx.getStorageSync(app.globalData.token + 'countTime');
           console.log(ctime < 3);
           this.setData({
-            showUp: ctime < 3? true:false
-          },()=>{
+            showUp: ctime < 3 ? true : false
+          }, () => {
             (ctime < 3) && wx.setStorageSync(app.globalData.token + 'countTime', ++ctime);
           })
         }
-        else{
+        else {
           this.getNews();
         }
       }
-    });
-    app.pageToTop.set(1, true);
+    }
   },
   getNews() {
     if (app.globalData.token) {

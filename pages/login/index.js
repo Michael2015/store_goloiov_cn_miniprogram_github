@@ -345,6 +345,7 @@ function analysisOptions(options, res) {
         })
     }
     else {
+     
         if (res.is_promoter === 0) {
             // 客户进入
             if (res.last_partner_info.length == 0) {
@@ -355,6 +356,8 @@ function analysisOptions(options, res) {
                 })
             } else {
                 // 重做分享信息，相当于打开上次浏览的商品页
+               
+              app.globalData.justLogin = true;
                 app.globalData.shareInfo = res.last_partner_info
                 wx.reLaunch({
                     // url: '/pages/customer/detail/detail?id=' + app.globalData.shareInfo.share_product_id
@@ -363,6 +366,7 @@ function analysisOptions(options, res) {
             }
         } else if (res.is_promoter === 1) {
             // 合伙人
+          app.globalData.justLogin = true;
             wx.reLaunch({
                 url: '/pages/partner/index/index'   
             })

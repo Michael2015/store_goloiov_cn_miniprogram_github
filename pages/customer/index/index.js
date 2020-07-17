@@ -332,10 +332,10 @@ Page({
             this.getProductList()
         }
     },
-
  
   onLoad: async function () {
-        // console.log(app.globalData)
+     console.log("哈哈**********************************");
+    app.globalData.customIndex=this;
       //广告部分
       const chePu = await app.http.post('/api/Marketing/getAdv', { type: 2});
 
@@ -390,7 +390,6 @@ Page({
        // this.setData({ scrollTop: res.scrollTop })
     },
     onShow: async function () {
-      yhq_img_current=0;
       if (app.pageToTop.get(0)){
         wx.pageScrollTo({
           scrollTop: 0,
@@ -423,27 +422,37 @@ Page({
         this.getBanner();
     
         await this.getCategory()
-        //获取新人专区信息
-      var time = new Date().getTime();
-      if (!wx.getStorageSync(app.globalData.token + 'customisShowNewPerson')) {
-        //第一次进来
-        this.getNews();
-      } else {
-        if (wx.getStorageSync(app.globalData.token + 'customremainTime') - time >= 0) {
-          var ctime = wx.getStorageSync(app.globalData.token + 'customcountTime');
-          console.log(ctime < 3);
-          this.setData({
-            showUp: ctime < 3 ? true : false
-          }, () => {
-            (ctime < 3) && wx.setStorageSync(app.globalData.token + 'customcountTime', ++ctime);
-          })
-        }
-        else {
-          this.getNews();
-        }
+      if (app.globalData.justLogin){
+        this.newPop();
       }
+     // 
       app.pageToTop.set(0, true);
     },
+  newPop(){
+    app.globalData.justLogin=false;
+    //获取新人专区信息
+    yhq_img_current = 0;
+    if (app.globalData.token){
+     var time = new Date().getTime();
+     if (!wx.getStorageSync(app.globalData.token + 'customisShowNewPerson')) {
+       //第一次进来
+       this.getNews();
+     } else {
+       if (wx.getStorageSync(app.globalData.token + 'customremainTime') - time >= 0) {
+         var ctime = wx.getStorageSync(app.globalData.token + 'customcountTime');
+         console.log(ctime < 3);
+         this.setData({
+           showUp: ctime < 3 ? true : false
+         }, () => {
+           (ctime < 3) && wx.setStorageSync(app.globalData.token + 'customcountTime', ++ctime);
+         })
+       }
+       else {
+         this.getNews();
+       }
+     }
+   }
+  },
   newPersonOpen() {
     wx.navigateTo({
       url: this.data.newObj[0].jump_url,

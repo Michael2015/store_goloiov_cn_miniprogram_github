@@ -1,5 +1,14 @@
  let app
 App({
+  onShow(){
+    console.log("小程序显示************************************************");
+    if (this.globalData.customIndex){
+      this.globalData.customIndex.newPop();
+    }
+    if (this.globalData.partnerIndex){
+      this.globalData.partnerIndex.newPop();
+    }
+  },
   onLaunch(options) {
     app = this
     // 版本更新
@@ -126,6 +135,10 @@ App({
     }
   },
   globalData: {
+    //刚登录标识,若刚登录，值为true,执行跳转页面的onshow后变为false,主要用于首页弹框
+    justLogin:false,
+    customIndex:'',
+    partnerIndex:'',
     userInfo: {},
     partnerInfo: {},
     token:"",
@@ -133,8 +146,8 @@ App({
     //token: "7822582cfafe76674744f320cecc6ad1",
     // role: 用户角色 0客户 1合伙人
     role: null,   
-   // HOST: 'https://wcp.wanchepin.com',
-    HOST: 'https://storemp.golodata.com',
+    HOST: 'https://wcp.wanchepin.com',
+   // HOST: 'https://storemp.golodata.com',
     shareInfo: {},
     tabInst: [],
     toPageTop:{

@@ -100,6 +100,9 @@ Page({
             }
         })
     },
+    onShow(){
+
+    },
     login(userInfo) {
         wx.showLoading()
         wx.login({
